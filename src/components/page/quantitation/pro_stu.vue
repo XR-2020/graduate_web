@@ -1,0 +1,217 @@
+<template>
+    <div class="table">
+        <div class="crumbs">
+            <el-breadcrumb separator="/">
+                <el-breadcrumb-item><i class="el-icon-tickets"></i>产学研</el-breadcrumb-item>
+            </el-breadcrumb>
+        </div>
+        <div class="container" style="width: 1000px">
+            <div class="handle-box">
+                <el-button type="primary" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
+                <el-input v-model="select_word" placeholder="筛选关键词" class="handle-input mr10"></el-input>
+                <el-button type="primary" icon="search" @click="search">搜索</el-button>
+            </div>
+            <el-table :data="tableData" border ref="multipleTable" @selection-change="handleSelectionChange">
+                <el-table-column type="selection" width="55" align="center"></el-table-column>
+                <el-table-column prop="id" label="ID" width="40px" align="center">
+                </el-table-column>
+                <el-table-column prop="partment" label="部门" align="center">
+                </el-table-column>
+                <el-table-column prop="name" label="项目名称" align="center">
+                </el-table-column>
+                <el-table-column prop="wenhao" label="立项文号" align="center">
+                </el-table-column>
+                <el-table-column prop="lianghua" label="成果依据" align="center">
+                </el-table-column>
+                <el-table-column prop="finishtime" label="完成时间" align="center">
+                </el-table-column>
+                <el-table-column prop="badge" label="第一完成人工号" width="110px"  align="center">
+                </el-table-column>
+                <el-table-column prop="tea_name" label="第一完成人" width="100px"   align="center">
+                </el-table-column>
+                <el-table-column label="操作" width="260px"  align="center">
+                    <template slot-scope="scope">
+                        <el-button size="small" type="info" @click="handleDetial(scope.$index, scope.row)">查看参与人</el-button>
+                        <el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                        <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+            <div class="pagination">
+                <el-pagination @current-change="handleCurrentChange" layout="prev, pager, next" :total="1000">
+                </el-pagination>
+            </div>
+            <router-link to="/产学研申报">
+                <el-button type="primary">产学研申报</el-button>
+            </router-link>
+        </div>
+
+        <!-- 编辑弹出框 -->
+        <el-dialog title="编辑" :visible.sync="editVisible" width="80%">
+            <tool v-bind:edit="form"/>
+        </el-dialog>
+
+        <!--查看完成人弹出框-->
+        <el-dialog>
+            <detali v-bind:detail="people"/>
+        </el-dialog>
+
+    </div>
+</template>
+
+<script>
+import chanxueyan from '../edit/chanxueyan_edit';
+import {getAllChanXueYan, getSearchChanXueYan} from '../../../api/chanxueyanAPI';
+import detail from '../tool/detail'
+    export default {
+    components:{'tool':chanxueyan,'detali':detail},
+        name: 'pro_stu',
+        data() {
+            return {
+                tableData: [],
+                query:{
+                    people:'',
+                    finishtime:'',
+                    name:'',
+                    partment:'',
+                    id:'',
+                    wenhao:'',
+                    lianghua:'',
+                    badge:'',
+                },
+                people:[],
+                detail:false,
+                cur_page: 1,
+                multipleSelection: [],
+                select_cate: '',
+                select_word: '',
+                idlist: [],
+                is_search: false,
+                editVisible: false,
+                delVisible: false,
+                form: {},
+                idx: -1
+            }
+        },
+        created() {
+            this.getData();
+            getAllChanXueYan().then(res=>{
+                this.tableData = res.data })
+        },
+        computed: {
+            data() {
+                return this.tableData.filter((d) => {
+                    let is_del = false;
+                    for (let i = 0; i < this.del_list.length; i++) {
+                        if (d.name === this.del_list[i].name) {
+                            is_del = true;
+                            break;
+                        }
+                    }
+                    if (!is_del) {
+                        if (d.address.indexOf(this.select_cate) > -1 &&
+                            (d.name.indexOf(this.select_word) > -1 ||
+                                d.address.indexOf(this.select_word) > -1)
+                        ) {
+                            return d;
+                        }
+                    }
+                })
+            }
+        },
+        methods: {
+            // 分页导航
+            handleCurrentChange(val) {
+                this.cur_page = val;
+                this.getData();
+            },
+            // 获取 easy-mock 的模拟数据
+            getData() {
+            },
+            search() {
+                getSearchChanXueYan(this.select_word).then(res =>{
+                    this.tableData = res.data
+                } )
+                this.is_search = true;
+            },
+            formatter(row, column) {
+                return row.address;
+            },
+            filterTag(value, row) {
+                return row.tag === value;
+            },
+            handleEdit(index, row) {
+                const item = this.tableData[index];
+                this.form=item,
+                this.editVisible = true;
+            },
+            handleDetial(index, row){
+                getChanXueYanDetial({ids: [row.id]}).then(res =>{
+                    this.people=res.data
+                } )
+                this.detail=true;
+            },
+            handleDelete(index, row) {
+                // 二次确认删除
+                this.$confirm('确定要删除吗？', '提示', {
+                    type: 'warning'
+                })
+                    .then(() => {
+                        deleteOneChanXueYan({ids: [row.id]}).then(res=>{
+                            this.getData();
+                            this.$message.success('删除成功');
+                        }).catch(()=>{
+                            this.$message.error('删除失败');
+                        })
+                    })
+                    .catch(() => {});
+            },
+            delAll() {
+                if (this.idList.length>0){
+                    this.$confirm('确定要删除吗？', '提示', {
+                        type: 'warning'
+                    })
+                        .then(() => {
+                            deleteChanXueYan({ ids: this.idList }).then(res => {
+                                this.$message.error(res.msg);
+                               // this.query.pageIndex = 1;
+                                this.getData();
+                            });
+                        });
+                }
+            },
+            handleSelectionChange(val) {
+                this.idList = [];
+                for (var i=0;i<val.length;i++){
+                    this.idList.push(val[i].id)
+                }
+            },
+            // 保存编辑
+            saveEdit() {
+                this.$set(this.tableData, this.idx, this.form);
+                this.editVisible = false;
+                this.$message.success(`修改第 ${this.idx+1} 行成功`);
+            },
+        }
+    }
+
+</script>
+
+<style scoped>
+    .handle-box {
+        margin-bottom: 20px;
+    }
+
+    .handle-select {
+        width: 120px;
+    }
+
+    .handle-input {
+        width: 300px;
+        display: inline-block;
+    }
+    .del-dialog-cnt{
+        font-size: 16px;
+        text-align: center
+    }
+</style>
