@@ -8,7 +8,7 @@
         <div class="container" style="width: 1000px">
             <div class="handle-box">
                 <el-button type="primary" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
-                <el-input v-model="select_word" placeholder="筛选关键词" class="handle-input mr10"></el-input>
+                <el-input v-model="query.key" placeholder="筛选关键词" class="handle-input mr10"></el-input>
                 <el-button type="primary" icon="search" @click="search">搜索</el-button>
             </div>
             <el-table :data="tableData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
@@ -60,19 +60,12 @@
             <jiaoyanxiangmu v-bind:edit="form"/>
         </el-dialog>
 
-        <!-- 删除提示框 -->
-        <el-dialog title="提示" :visible.sync="delVisible" width="300px" center>
-            <div class="del-dialog-cnt">删除不可恢复，是否确定删除？</div>
-            <span slot="footer" class="dialog-footer">
-                <el-button @click="delVisible = false">取 消</el-button>
-                <el-button type="primary" @click="deleteRow">确 定</el-button>
-            </span>
-        </el-dialog>
     </div>
 </template>
 
 <script>
 import jiaoyanxiangmu from "../shenbao/JiaoYanXiangMu";
+import {deleteJiaoYan, deleteOneJiaoYan, getAllJiaoYan, getSearchJiaoYan} from "../../../api/jiaoyanAPI";
     export default {
         name: 'teach_search',
         components:{'jiaoyanxiangmu':jiaoyanxiangmu},
@@ -80,33 +73,23 @@ import jiaoyanxiangmu from "../shenbao/JiaoYanXiangMu";
             return {
                 url: './static/vuetable.json',
                 header:false,
-                tableData: [{
-                    people:{
-                        name:'教师1',
-                        badge:12112,
-                    },
-                    finishtime:"2022-3-4",
-                    name:"基于互联网的成果申报评审系统研究与建设",
-                    partment:'软件学院',
-                    id:1,
-                    wenhao:'教务〔2020〕36号',
-                    lianghua:'校级教育教学项目结题',
-
-                }],
+                tableData: [],
+                people:[],
+                query:{key:''},
                 cur_page: 1,
-                multipleSelection: [],
-                select_cate: '',
                 select_word: '',
-                del_list: [],
                 is_search: false,
                 editVisible: false,
                 delVisible: false,
                 form: {},
-                idx: -1
+                ids: [],
+                idList:[],
             }
         },
         created() {
             this.getData();
+            getAllJiaoYan().then(res=>{
+                this.tableData = res.data })
         },
         computed: {
             data() {
@@ -147,8 +130,16 @@ import jiaoyanxiangmu from "../shenbao/JiaoYanXiangMu";
                     this.tableData = res.data.list;
                 })
             },
-            handleDetial(index, row){},
+            handleDetail(index, row){
+                getJiaoYanDetail({ids: [row.id]}).then(res =>{
+                    this.people=res.data
+                } )
+                this.detail=true;
+            },
             search() {
+                getSearchJiaoYan(this.query).then(res =>{
+                    this.tableData = res.data
+                } )
                 this.is_search = true;
             },
             formatter(row, column) {
@@ -163,21 +154,39 @@ import jiaoyanxiangmu from "../shenbao/JiaoYanXiangMu";
                 this.editVisible = true;
             },
             handleDelete(index, row) {
-                this.idx = index;
-                this.delVisible = true;
+                // 二次确认删除
+                this.$confirm('确定要删除吗？', '提示', {
+                    type: 'warning'
+                })
+                    .then(() => {
+                        deleteOneJiaoYan({ids: [row.id]}).then(res=>{
+                            this.getData();
+                            this.$message.success('删除成功');
+                        }).catch(()=>{
+                            this.$message.error('删除失败');
+                        })
+                    })
+                    .catch(() => {});
             },
             delAll() {
-                const length = this.multipleSelection.length;
-                let str = '';
-                this.del_list = this.del_list.concat(this.multipleSelection);
-                for (let i = 0; i < length; i++) {
-                    str += this.multipleSelection[i].name + ' ';
+                if (this.idList.length>0){
+                    this.$confirm('确定要删除吗？', '提示', {
+                        type: 'warning'
+                    })
+                        .then(() => {
+                            deleteJiaoYan({ ids: this.idList }).then(res => {
+                                this.$message.error(res.msg);
+                                // this.query.pageIndex = 1;
+                                this.getData();
+                            });
+                        });
                 }
-                this.$message.error('删除了' + str);
-                this.multipleSelection = [];
             },
             handleSelectionChange(val) {
-                this.multipleSelection = val;
+                this.idList = [];
+                for (var i=0;i<val.length;i++){
+                    this.idList.push(val[i].id)
+                }
             },
             // 保存编辑
             saveEdit() {

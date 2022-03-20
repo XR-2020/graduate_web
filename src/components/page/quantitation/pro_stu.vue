@@ -8,7 +8,7 @@
         <div class="container" style="width: 1000px">
             <div class="handle-box">
                 <el-button type="primary" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
-                <el-input v-model="select_word" placeholder="筛选关键词" class="handle-input mr10"></el-input>
+                <el-input v-model="query.key" placeholder="筛选关键词" class="handle-input mr10"></el-input>
                 <el-button type="primary" icon="search" @click="search">搜索</el-button>
             </div>
             <el-table :data="tableData" border ref="multipleTable" @selection-change="handleSelectionChange">
@@ -31,7 +31,7 @@
                 </el-table-column>
                 <el-table-column label="操作" width="260px"  align="center">
                     <template slot-scope="scope">
-                        <el-button size="small" type="info" @click="handleDetial(scope.$index, scope.row)">查看参与人</el-button>
+                        <el-button size="small" type="info" @click="handleDetail(scope.$index, scope.row)">查看参与人</el-button>
                         <el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
                         <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
                     </template>
@@ -52,8 +52,8 @@
         </el-dialog>
 
         <!--查看完成人弹出框-->
-        <el-dialog>
-            <detali v-bind:detail="people"/>
+        <el-dialog :visible.sync="isdetail" width="80%">
+            <detail v-bind:details="people"/>
         </el-dialog>
 
     </div>
@@ -61,30 +61,20 @@
 
 <script>
 import chanxueyan from '../edit/chanxueyan_edit';
-import {getAllChanXueYan, getSearchChanXueYan} from '../../../api/chanxueyanAPI';
+import {getAllChanXueYan, getChanXueYanDetail, getSearchChanXueYan} from '../../../api/chanxueyanAPI';
 import detail from '../tool/detail'
     export default {
-    components:{'tool':chanxueyan,'detali':detail},
+    components:{'tool':chanxueyan,'detail':detail},
         name: 'pro_stu',
         data() {
             return {
                 tableData: [],
-                query:{
-                    people:'',
-                    finishtime:'',
-                    name:'',
-                    partment:'',
-                    id:'',
-                    wenhao:'',
-                    lianghua:'',
-                    badge:'',
-                },
+                query:{key: ''},
                 people:[],
-                detail:false,
+                isdetail:false,
                 cur_page: 1,
                 multipleSelection: [],
                 select_cate: '',
-                select_word: '',
                 idlist: [],
                 is_search: false,
                 editVisible: false,
@@ -127,9 +117,18 @@ import detail from '../tool/detail'
             },
             // 获取 easy-mock 的模拟数据
             getData() {
+                // 开发环境使用 easy-mock 数据，正式环境使用 json 文件
+                if (process.env.NODE_ENV === 'development') {
+                    this.url = '/ms/table/list';
+                };
+                this.$axios.post(this.url, {
+                    page: this.cur_page
+                }).then((res) => {
+                    this.tableData = res.data.list;
+                })
             },
             search() {
-                getSearchChanXueYan(this.select_word).then(res =>{
+                getSearchChanXueYan(this.query).then(res =>{
                     this.tableData = res.data
                 } )
                 this.is_search = true;
@@ -145,11 +144,11 @@ import detail from '../tool/detail'
                 this.form=item,
                 this.editVisible = true;
             },
-            handleDetial(index, row){
-                getChanXueYanDetial({ids: [row.id]}).then(res =>{
+            handleDetail(index, row){
+                getChanXueYanDetail({id: row.id}).then(res =>{
                     this.people=res.data
                 } )
-                this.detail=true;
+                this.isdetail=true;
             },
             handleDelete(index, row) {
                 // 二次确认删除

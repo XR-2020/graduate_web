@@ -205,6 +205,10 @@ export default new Router({
                     path: '/工具',
                     component: resolve => require(['../components/page/edit/ZongXiangKeYan_edit.vue'], resolve),
                     meta: { title: 'tool' }
+                },{
+                    path: '/细节',
+                    component: resolve => require(['../components/page/tool/detail.vue'], resolve),
+                    meta: { title: 'detail' }
                 }
             ]
         },
