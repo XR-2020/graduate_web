@@ -94,9 +94,6 @@ import {getAllChanXueYan, getChanXueYanDetail, getSearchChanXueYan} from '../../
         },
         created() {
             this.getData();
-            getAllChanXueYan().then(res=>{
-                this.tableData = res.data
-                })
         },
         computed: {
             data() {
@@ -133,8 +130,9 @@ import {getAllChanXueYan, getChanXueYanDetail, getSearchChanXueYan} from '../../
                        this.pageTotal=res.pageTotal
                    } )
                }else{
-                   getAllChanXueYan().then(res=>{
-                       this.tableData = res.data
+                   getAllChanXueYan(this.query).then(res=>{
+                       this.tableData = res.list
+                       this.pageTotal=res.pageTotal
                        })
                }
             },

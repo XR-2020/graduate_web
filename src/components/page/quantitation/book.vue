@@ -42,7 +42,7 @@
                 </el-table-column>
             </el-table>
             <div class="pagination">
-                <el-pagination @current-change="handleCurrentChange" layout="prev, pager, next" :total="1000">
+                <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
                 </el-pagination>
             </div>
             <router-link to="/合并申报">
@@ -70,7 +70,7 @@
 
 <script>
 import heBingShenBao from "../shenbao/HeBingShenBao";
-import {getChanXueYanDetail} from "../../../api/chanxueyanAPI";
+import {getAllChanXueYan, getChanXueYanDetail, getSearchChanXueYan} from "../../../api/chanxueyanAPI";
     export default {
         name: 'book',
         components:{'heBingShenBao':heBingShenBao},
@@ -78,6 +78,12 @@ import {getChanXueYanDetail} from "../../../api/chanxueyanAPI";
             return {
                 header:false,
                 isdetail:false,
+                pageTotal:0,
+                query:{
+                    key: '',
+                    pageIndex: 1,
+                    pageSize: 10
+                },
                 tableData: [],
                 people:[],
                 cur_page: 1,
@@ -119,26 +125,33 @@ import {getChanXueYanDetail} from "../../../api/chanxueyanAPI";
         methods: {
             // 分页导航
             handleCurrentChange(val) {
-                this.cur_page = val;
+                this.$set(this.query, 'pageIndex', val);
                 this.getData();
             },
             // 获取 easy-mock 的模拟数据
             getData() {
-                // 开发环境使用 easy-mock 数据，正式环境使用 json 文件
-                if (process.env.NODE_ENV === 'development') {
-                    this.url = '/ms/table/list';
-                };
-                this.$axios.post(this.url, {
-                    page: this.cur_page
-                }).then((res) => {
-                    this.tableData = res.data.list;
-                })
+                if(this.query.key!==''){
+                    getSearchZhuZuo(this.query).then(res =>{
+                        this.tableData = res.list
+                        this.pageTotal=res.pageTotal
+                    } )
+                }else{
+                    getAllZhuZuo(this.query).then(res=>{
+                        this.tableData = res.list
+                        this.pageTotal=res.pageTotal
+                    })
+                }
             },
             search() {
+                getSearchZhuZuo(this.query).then(res =>{
+                    this.tableData = res.list
+                    this.pageTotal=res.pageTotal
+                } )
                 this.is_search = true;
+                this.query.key='';
             },
             handleDetail(index, row){
-                getChanXueYanDetail({id: row.id}).then(res =>{
+                getZhuZuoDetail({id: row.id}).then(res =>{
                     this.people=res.data
                 } )
                 this.isdetail=true;
@@ -156,21 +169,39 @@ import {getChanXueYanDetail} from "../../../api/chanxueyanAPI";
                 this.editVisible = true;
             },
             handleDelete(index, row) {
-                this.idx = index;
-                this.delVisible = true;
+                // 二次确认删除
+                this.$confirm('确定要删除吗？', '提示', {
+                    type: 'warning'
+                })
+                    .then(() => {
+                        deleteOneZhuoZuo({ids: [row.id]}).then(res=>{
+                            this.getData();
+                            this.$message.success('删除成功');
+                        }).catch(()=>{
+                            this.$message.error('删除失败');
+                        })
+                    })
+                    .catch(() => {});
             },
             delAll() {
-                const length = this.multipleSelection.length;
-                let str = '';
-                this.del_list = this.del_list.concat(this.multipleSelection);
-                for (let i = 0; i < length; i++) {
-                    str += this.multipleSelection[i].name + ' ';
+                if (this.idList.length>0){
+                    this.$confirm('确定要删除吗？', '提示', {
+                        type: 'warning'
+                    })
+                        .then(() => {
+                            deleteZhuZuo({ ids: this.idList }).then(res => {
+                                this.$message.error(res.msg);
+                                // this.query.pageIndex = 1;
+                                this.getData();
+                            });
+                        });
                 }
-                this.$message.error('删除了' + str);
-                this.multipleSelection = [];
             },
             handleSelectionChange(val) {
-                this.multipleSelection = val;
+                this.idList = [];
+                for (var i=0;i<val.length;i++){
+                    this.idList.push(val[i].id)
+                }
             },
             // 保存编辑
             saveEdit() {

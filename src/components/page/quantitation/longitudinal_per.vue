@@ -41,7 +41,7 @@
                 </el-table-column>
             </el-table>
             <div class="pagination">
-                <el-pagination @current-change="handleCurrentChange" layout="prev, pager, next" :total="1000">
+                <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
                 </el-pagination>
             </div>
             <router-link to="/纵向科研项目申报">
@@ -68,12 +68,18 @@
 
 <script>
 import zongxiangkeyan from '../shenbao/ZongXiangKeYan'
-import {getChanXueYanDetail} from "../../../api/chanxueyanAPI";
+import {getAllChanXueYan, getChanXueYanDetail, getSearchChanXueYan} from "../../../api/chanxueyanAPI";
     export default {
         name: 'longitudinal_per',
         components:{'zongxiangkeyan':zongxiangkeyan},
         data() {
             return {
+                pageTotal:0,
+                query:{
+                    key: '',
+                    pageIndex: 1,
+                    pageSize: 10
+                },
                 header:false,
                 isdetail:false,
                 tableData: [],
@@ -117,29 +123,36 @@ import {getChanXueYanDetail} from "../../../api/chanxueyanAPI";
         methods: {
             // 分页导航
             handleCurrentChange(val) {
-                this.cur_page = val;
+                this.$set(this.query, 'pageIndex', val);
                 this.getData();
             },
             // 获取 easy-mock 的模拟数据
             getData() {
-                // 开发环境使用 easy-mock 数据，正式环境使用 json 文件
-                if (process.env.NODE_ENV === 'development') {
-                    this.url = '/ms/table/list';
-                };
-                this.$axios.post(this.url, {
-                    page: this.cur_page
-                }).then((res) => {
-                    this.tableData = res.data.list;
-                })
+                if(this.query.key!==''){
+                    getSearchZongXiangKeYan(this.query).then(res =>{
+                        this.tableData = res.list
+                        this.pageTotal=res.pageTotal
+                    } )
+                }else{
+                    getAllZongXiangKeYan(this.query).then(res=>{
+                        this.tableData = res.list
+                        this.pageTotal=res.pageTotal
+                    })
+                }
             },
             search() {
+                getSearchZongXiangKeYan(this.query).then(res =>{
+                    this.tableData = res.list
+                    this.pageTotal=res.pageTotal
+                } )
                 this.is_search = true;
+                this.query.key='';
             },
             formatter(row, column) {
                 return row.address;
             },
             handleDetail(index, row){
-                getChanXueYanDetail({id: row.id}).then(res =>{
+                getZongXiangKeYanDetail({id: row.id}).then(res =>{
                     this.people=res.data
                 } )
                 this.isdetail=true;
@@ -153,21 +166,39 @@ import {getChanXueYanDetail} from "../../../api/chanxueyanAPI";
                 this.editVisible = true;
             },
             handleDelete(index, row) {
-                this.idx = index;
-                this.delVisible = true;
+                // 二次确认删除
+                this.$confirm('确定要删除吗？', '提示', {
+                    type: 'warning'
+                })
+                    .then(() => {
+                        deleteOneZongXiangKeYan({ids: [row.id]}).then(res=>{
+                            this.getData();
+                            this.$message.success('删除成功');
+                        }).catch(()=>{
+                            this.$message.error('删除失败');
+                        })
+                    })
+                    .catch(() => {});
             },
             delAll() {
-                const length = this.multipleSelection.length;
-                let str = '';
-                this.del_list = this.del_list.concat(this.multipleSelection);
-                for (let i = 0; i < length; i++) {
-                    str += this.multipleSelection[i].name + ' ';
+                if (this.idList.length>0){
+                    this.$confirm('确定要删除吗？', '提示', {
+                        type: 'warning'
+                    })
+                        .then(() => {
+                            deleteZongXiangKeYan({ ids: this.idList }).then(res => {
+                                this.$message.error(res.msg);
+                                // this.query.pageIndex = 1;
+                                this.getData();
+                            });
+                        });
                 }
-                this.$message.error('删除了' + str);
-                this.multipleSelection = [];
             },
             handleSelectionChange(val) {
-                this.multipleSelection = val;
+                this.idList = [];
+                for (var i=0;i<val.length;i++){
+                    this.idList.push(val[i].id)
+                }
             },
             // 保存编辑
             saveEdit() {

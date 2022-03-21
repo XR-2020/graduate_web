@@ -47,7 +47,7 @@
                 </el-table-column>
             </el-table>
             <div class="pagination">
-                <el-pagination @current-change="handleCurrentChange" layout="prev, pager, next" :total="1000">
+                <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
                 </el-pagination>
             </div>
             <router-link to="/教研项目申报">
@@ -75,16 +75,22 @@
 <script>
 import jiaoyanxiangmu from "../shenbao/JiaoYanXiangMu";
 import {deleteJiaoYan, deleteOneJiaoYan, getAllJiaoYan, getSearchJiaoYan} from "../../../api/jiaoyanAPI";
+import {getAllChanXueYan, getSearchChanXueYan} from "../../../api/chanxueyanAPI";
     export default {
         name: 'teach_search',
         components:{'jiaoyanxiangmu':jiaoyanxiangmu},
         data() {
             return {
+                pageTotal:0,
+                query:{
+                    key: '',
+                    pageIndex: 1,
+                    pageSize: 10
+                },
                 isdetail:false,
                 header:false,
                 tableData: [],
                 people:[],
-                query:{key:''},
                 cur_page: 1,
                 select_word: '',
                 is_search: false,
@@ -97,8 +103,6 @@ import {deleteJiaoYan, deleteOneJiaoYan, getAllJiaoYan, getSearchJiaoYan} from "
         },
         created() {
             this.getData();
-            getAllJiaoYan().then(res=>{
-                this.tableData = res.data })
         },
         computed: {
             data() {
@@ -124,32 +128,36 @@ import {deleteJiaoYan, deleteOneJiaoYan, getAllJiaoYan, getSearchJiaoYan} from "
         methods: {
             // 分页导航
             handleCurrentChange(val) {
-                this.cur_page = val;
+                this.$set(this.query, 'pageIndex', val);
                 this.getData();
             },
             // 获取 easy-mock 的模拟数据
             getData() {
-                // 开发环境使用 easy-mock 数据，正式环境使用 json 文件
-                if (process.env.NODE_ENV === 'development') {
-                    this.url = '/ms/table/list';
-                };
-                this.$axios.post(this.url, {
-                    page: this.cur_page
-                }).then((res) => {
-                    this.tableData = res.data.list;
-                })
+                if(this.query.key!==''){
+                    getSearchChanXueYan(this.query).then(res =>{
+                        this.tableData = res.list
+                        this.pageTotal=res.pageTotal
+                    } )
+                }else{
+                    getAllChanXueYan(this.query).then(res=>{
+                        this.tableData = res.list
+                        this.pageTotal=res.pageTotal
+                    })
+                }
+            },
+            search() {
+                getSearchChanXueYan(this.query).then(res =>{
+                    this.tableData = res.list
+                    this.pageTotal=res.pageTotal
+                } )
+                this.is_search = true;
+                this.query.key='';
             },
             handleDetail(index, row){
-                getJiaoYanDetail({ids: [row.id]}).then(res =>{
+                getJiaoYanDetail({ids: row.id}).then(res =>{
                     this.people=res.data
                 } )
                 this.detail=true;
-            },
-            search() {
-                getSearchJiaoYan(this.query).then(res =>{
-                    this.tableData = res.data
-                } )
-                this.is_search = true;
             },
             formatter(row, column) {
                 return row.address;
