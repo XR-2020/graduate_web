@@ -27,14 +27,6 @@
                 </el-table-column>
                 <el-table-column prop="finishtime" label="完成时间" width="120" align="center">
                 </el-table-column>
-<!--                <el-table-column align="center" label="人员情况" width="185px">-->
-<!--                    <template slot-scope="scope">-->
-<!--                        <el-table :data="scope.row.people" :show-header="header">-->
-<!--                            <el-table-column prop="badge" align="center"  label="工号"></el-table-column>-->
-<!--                            <el-table-column prop="name" align="center"  label="姓名"></el-table-column>-->
-<!--                        </el-table>-->
-<!--                    </template>-->
-<!--                </el-table-column>-->
                 <el-table-column prop="people.badge" label="第一完成人工号"  align="center">
                 </el-table-column>
                 <el-table-column prop="people.name" label="第一完成人"  align="center">
@@ -61,19 +53,21 @@
             <jiaoyuguihua v-bind:edit="form"/>
         </el-dialog>
 
-        <!-- 删除提示框 -->
-        <el-dialog title="提示" :visible.sync="delVisible" width="300px" center>
-            <div class="del-dialog-cnt">删除不可恢复，是否确定删除？</div>
-            <span slot="footer" class="dialog-footer">
-                <el-button @click="delVisible = false">取 消</el-button>
-                <el-button type="primary" @click="deleteRow">确 定</el-button>
-            </span>
+        <!--查看完成人弹出框-->
+        <el-dialog :visible.sync="isdetail" width="80%">
+            <el-table :data="people" border style="width: 100%" ref="multipleTable">
+                <el-table-column prop="badge" label="第一完成人工号"  align="center">
+                </el-table-column>
+                <el-table-column prop="name" label="第一完成人"  align="center">
+                </el-table-column>
+            </el-table>
         </el-dialog>
     </div>
 </template>
 
 <script>
 import jiaoyuguihua from '../shenbao/JiaoYuGuiHua'
+import {getChanXueYanDetail} from "../../../api/chanxueyanAPI";
     export default {
         name: 'edu_plan',
         components:{'jiaoyuguihua':jiaoyuguihua},
@@ -81,20 +75,9 @@ import jiaoyuguihua from '../shenbao/JiaoYuGuiHua'
             return {
                 url: './static/vuetable.json',
                 header:false,
-                tableData: [{
-                    people:{
-                        name:'教师1',
-                        badge:12112,
-                    },
-                    finishtime:"2022-3-4",
-                    name:"基于交叉培养的应用型大数据人才培养模式研究与实践",
-                    partment:'软件学院',
-                    id:1,
-                    grade:'良好',
-                    level:'市厅',
-                    danwei:'河南省教育科学规划办'
-
-                }],
+                tableData: [],
+                people:[],
+                isdetail:false,
                 cur_page: 1,
                 multipleSelection: [],
                 select_cate: '',
@@ -152,7 +135,12 @@ import jiaoyuguihua from '../shenbao/JiaoYuGuiHua'
             search() {
                 this.is_search = true;
             },
-            handleDetial(index, row){},
+            handleDetail(index, row){
+                getChanXueYanDetail({id: row.id}).then(res =>{
+                    this.people=res.data
+                } )
+                this.isdetail=true;
+            },
             formatter(row, column) {
                 return row.address;
             },

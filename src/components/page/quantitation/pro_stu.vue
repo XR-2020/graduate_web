@@ -38,7 +38,7 @@
                 </el-table-column>
             </el-table>
             <div class="pagination">
-                <el-pagination @current-change="handleCurrentChange" layout="prev, pager, next" :total="1000">
+                <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="100">
                 </el-pagination>
             </div>
             <router-link to="/产学研申报">
@@ -53,7 +53,12 @@
 
         <!--查看完成人弹出框-->
         <el-dialog :visible.sync="isdetail" width="80%">
-            <detail v-bind:details="people"/>
+            <el-table :data="people" border style="width: 100%" ref="multipleTable">
+                <el-table-column prop="badge" label="第一完成人工号"  align="center">
+                </el-table-column>
+                <el-table-column prop="name" label="第一完成人"  align="center">
+                </el-table-column>
+            </el-table>
         </el-dialog>
 
     </div>
@@ -62,14 +67,17 @@
 <script>
 import chanxueyan from '../edit/chanxueyan_edit';
 import {getAllChanXueYan, getChanXueYanDetail, getSearchChanXueYan} from '../../../api/chanxueyanAPI';
-import detail from '../tool/detail'
     export default {
-    components:{'tool':chanxueyan,'detail':detail},
+    components:{'tool':chanxueyan},
         name: 'pro_stu',
         data() {
             return {
                 tableData: [],
-                query:{key: ''},
+                query:{
+                    key: '',
+                    pageIndex: 1,
+                    pageSize: 10
+                },
                 people:[],
                 isdetail:false,
                 cur_page: 1,
@@ -113,7 +121,8 @@ import detail from '../tool/detail'
             // 分页导航
             handleCurrentChange(val) {
                 this.cur_page = val;
-                this.getData();
+                console.log(val)
+                // this.getData();
             },
             // 获取 easy-mock 的模拟数据
             getData() {

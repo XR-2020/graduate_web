@@ -60,6 +60,15 @@
             <jiaoyanxiangmu v-bind:edit="form"/>
         </el-dialog>
 
+        <!--查看完成人弹出框-->
+        <el-dialog :visible.sync="isdetail" width="80%">
+            <el-table :data="people" border style="width: 100%" ref="multipleTable">
+                <el-table-column prop="badge" label="第一完成人工号"  align="center">
+                </el-table-column>
+                <el-table-column prop="name" label="第一完成人"  align="center">
+                </el-table-column>
+            </el-table>
+        </el-dialog>
     </div>
 </template>
 
@@ -71,7 +80,7 @@ import {deleteJiaoYan, deleteOneJiaoYan, getAllJiaoYan, getSearchJiaoYan} from "
         components:{'jiaoyanxiangmu':jiaoyanxiangmu},
         data() {
             return {
-                url: './static/vuetable.json',
+                isdetail:false,
                 header:false,
                 tableData: [],
                 people:[],

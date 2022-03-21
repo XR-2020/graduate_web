@@ -56,37 +56,30 @@
             <heBingShenBao v-bind:edit="form"/>
         </el-dialog>
 
-        <!-- 删除提示框 -->
-        <el-dialog title="提示" :visible.sync="delVisible" width="300px" center>
-            <div class="del-dialog-cnt">删除不可恢复，是否确定删除？</div>
-            <span slot="footer" class="dialog-footer">
-                <el-button @click="delVisible = false">取 消</el-button>
-                <el-button type="primary" @click="deleteRow">确 定</el-button>
-            </span>
+        <!--查看完成人弹出框-->
+        <el-dialog :visible.sync="isdetail" width="80%">
+            <el-table :data="people" border style="width: 100%" ref="multipleTable">
+                <el-table-column prop="badge" label="第一完成人工号"  align="center">
+                </el-table-column>
+                <el-table-column prop="name" label="第一完成人"  align="center">
+                </el-table-column>
+            </el-table>
         </el-dialog>
     </div>
 </template>
 
 <script>
 import heBingShenBao from "../shenbao/HeBingShenBao";
+import {getChanXueYanDetail} from "../../../api/chanxueyanAPI";
     export default {
         name: 'basetable',
         components:{'heBingShenBao':heBingShenBao},
         data() {
             return {
-                url: './static/vuetable.json',
+                isdetail:false,
                 header:false,
-                tableData: [{
-                    people:{
-                        name:'教师1',
-                        badge:12112,
-                    },
-                    finishtime:"2022-3-4",
-                    name:"一种计算机用可移动式支架",
-                    partment:'软件学院',
-                    id:1,
-
-                }],
+                people:[],
+                tableData: [],
                 cur_page: 1,
                 multipleSelection: [],
                 select_cate: '',
@@ -156,7 +149,12 @@ import heBingShenBao from "../shenbao/HeBingShenBao";
                 this.form.type='专利';
                 this.editVisible = true;
             },
-            handleDetial(index, row){},
+            handleDetail(index, row){
+                getChanXueYanDetail({id: row.id}).then(res =>{
+                    this.people=res.data
+                } )
+                this.isdetail=true;
+            },
             handleDelete(index, row) {
                 this.idx = index;
                 this.delVisible = true;

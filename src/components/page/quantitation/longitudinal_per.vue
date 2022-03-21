@@ -28,14 +28,6 @@
 
                 <el-table-column prop="finishtime" label="完成时间" width="120" align="center">
                 </el-table-column>
-<!--                <el-table-column align="center" label="人员情况" width="185px">-->
-<!--                    <template slot-scope="scope">-->
-<!--                        <el-table :data="scope.row.people" :show-header="header">-->
-<!--                            <el-table-column prop="badge" align="center"  label="工号"></el-table-column>-->
-<!--                            <el-table-column prop="name" align="center"  label="姓名"></el-table-column>-->
-<!--                        </el-table>-->
-<!--                    </template>-->
-<!--                </el-table-column>-->
                 <el-table-column prop="badge" label="第一完成人工号" width="110px"  align="center">
                 </el-table-column>
                 <el-table-column prop="tea_name" label="第一完成人" width="100px"   align="center">
@@ -62,40 +54,30 @@
             <zongxiangkeyan v-bind:edit="form"/>
         </el-dialog>
 
-        <!-- 删除提示框 -->
-        <el-dialog title="提示" :visible.sync="delVisible" width="300px" center>
-            <div class="del-dialog-cnt">删除不可恢复，是否确定删除？</div>
-            <span slot="footer" class="dialog-footer">
-                <el-button @click="delVisible = false">取 消</el-button>
-                <el-button type="primary" @click="deleteRow">确 定</el-button>
-            </span>
+        <!--查看完成人弹出框-->
+        <el-dialog :visible.sync="isdetail" width="80%">
+            <el-table :data="people" border style="width: 100%" ref="multipleTable">
+                <el-table-column prop="badge" label="第一完成人工号"  align="center">
+                </el-table-column>
+                <el-table-column prop="name" label="第一完成人"  align="center">
+                </el-table-column>
+            </el-table>
         </el-dialog>
     </div>
 </template>
 
 <script>
 import zongxiangkeyan from '../shenbao/ZongXiangKeYan'
+import {getChanXueYanDetail} from "../../../api/chanxueyanAPI";
     export default {
         name: 'longitudinal_per',
         components:{'zongxiangkeyan':zongxiangkeyan},
         data() {
             return {
-                url: './static/vuetable.json',
                 header:false,
-                tableData: [{
-                    people:{
-                        name:'教师1',
-                        badge:12112,
-                    },
-                    finishtime:"2022-3-4",
-                    name:"大数据背景下河南信息产业人才培养现状调研及改革方案研究",
-                    partment:'软件学院',
-                    id:1,
-                    lixiang:'河南省科协',
-                    type:'河南科技智库调研课题',
-                    level:'市厅级'
-
-                }],
+                isdetail:false,
+                tableData: [],
+                people:[],
                 cur_page: 1,
                 multipleSelection: [],
                 select_cate: '',
@@ -156,7 +138,12 @@ import zongxiangkeyan from '../shenbao/ZongXiangKeYan'
             formatter(row, column) {
                 return row.address;
             },
-            handleDetial(index, row){},
+            handleDetail(index, row){
+                getChanXueYanDetail({id: row.id}).then(res =>{
+                    this.people=res.data
+                } )
+                this.isdetail=true;
+            },
             filterTag(value, row) {
                 return row.tag === value;
             },
