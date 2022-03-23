@@ -40,7 +40,7 @@
                 </el-table-column>
                 <el-table-column label="操作" width="260px"  align="center">
                     <template slot-scope="scope">
-                        <el-button size="small" type="info" @click="handleDetial(scope.$index, scope.row)">查看参与人</el-button>
+                        <el-button size="small" type="info" @click="handleDetail(scope.$index, scope.row)">查看参与人</el-button>
                         <el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
                         <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
                     </template>
@@ -74,7 +74,13 @@
 
 <script>
 import jiaoyanxiangmu from "../shenbao/JiaoYanXiangMu";
-import {deleteJiaoYan, deleteOneJiaoYan, getAllJiaoYan, getSearchJiaoYan} from "../../../api/jiaoyanAPI";
+import {
+    deleteJiaoYan,
+    deleteOneJiaoYan,
+    getAllJiaoYan,
+    getJiaoYanDetail,
+    getSearchJiaoYan
+} from "../../../api/jiaoyanAPI";
 import {getAllChanXueYan, getSearchChanXueYan} from "../../../api/chanxueyanAPI";
     export default {
         name: 'teach_search',
@@ -151,7 +157,6 @@ import {getAllChanXueYan, getSearchChanXueYan} from "../../../api/chanxueyanAPI"
                     this.pageTotal=res.pageTotal
                 } )
                 this.is_search = true;
-                this.query.key='';
             },
             handleDetail(index, row){
                 getJiaoYanDetail({ids: row.id}).then(res =>{

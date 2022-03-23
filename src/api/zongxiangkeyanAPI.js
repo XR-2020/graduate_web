@@ -33,9 +33,9 @@ export const deleteOneZongXiangKeYan = query => {
     });
 };
 //查看某个项目的参与人信息
-export const getChanXueYanDetail = query => {
+export const getZongXiangKeYanDetail = query => {
     return request({
-        url: '/getChanXueYanDetail',
+        url: '/getZongXiangKeYanDetail',
         method: 'get',
         params: query
     });

@@ -9,41 +9,25 @@
             <div class="form-box">
                 <el-form ref="form" :model="form" label-width="100px">
                     <el-form-item label="名称">
-                        <el-input v-model="form.name"></el-input>
+                        <el-input value="form.name"disabled></el-input>
                     </el-form-item>
-<!--                    <el-form-item label="名称" v-if="edit">-->
+<!--                    <el-form-item label="名称" v-if="show">-->
 <!--                        <el-input v-model="form.name" disabled></el-input>-->
 <!--                    </el-form-item>-->
                     <el-form-item label="部门">
-                        <el-input v-model="form.partment"></el-input>
+                        <el-input value="form.partment" disabled></el-input>
                     </el-form-item>
                     <el-form-item label="获奖等级">
-                        <el-input v-model="form.grade"></el-input>
+                        <el-input value="form.grade" disabled></el-input>
                     </el-form-item>
-                    <el-form-item multiple filterable label="人员情况" v-if="!edit">
-                        <el-select multiple filterable v-model="form.people">
-                            <el-option
-                                v-for="item in teacher_list"
-                                :key="item.badge"
-                                :label="item.badge+'—'+item.name"
-                                :value="item.badge">
-                            </el-option>
-                        </el-select>
+                    <el-form-item label="完成人工号" disabled>
+                        <el-input value="form.people.badge"></el-input>
                     </el-form-item>
-                    <el-form-item label="完成人工号" v-if="edit">
-                        <el-input v-model="form.people.badge"></el-input>
-                    </el-form-item>
-                    <el-form-item label="完成人" v-if="edit">
-                        <el-input v-model="form.people.name"></el-input>
+                    <el-form-item label="完成人" disabled>
+                        <el-input value="form.people.name"></el-input>
                     </el-form-item>
                     <el-form-item label="完成时间">
-                        <el-col :span="11">
-                            <el-date-picker type="date" placeholder="选择日期" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
-                        </el-col>
-                    </el-form-item>
-                    <el-form-item>
-                        <el-button type="primary" @click="onSubmit">提交</el-button>
-                        <router-link to="/项目申报" v-if="is_editor"><el-button>取消</el-button></router-link>
+                        <el-input value="form.finishtime" disabled></el-input>
                     </el-form-item>
                 </el-form>
             </div>
@@ -55,7 +39,7 @@
 <script>
     export default {
         name: 'pingguzhongxin',
-        props:['edit'],
+        props:['show'],
         mounted:function(){
             this.form=this.edit
             this.is_editor=false

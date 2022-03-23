@@ -171,40 +171,36 @@ export default new Router({
                     meta: { title: '申报审批', permission: true }
                 },{
                     path: '/产学研展示',
-                    component: resolve => require(['../components/page/edit/chanxueyan_edit.vue'], resolve),
+                    component: resolve => require(['../components/page/show/chanxueyan_edit.vue'], resolve),
                     meta: { title: '产学研展示' }
                 },{
                     path: '/合并申报展示',
-                    component: resolve => require(['../components/page/edit/HeBingShenBao_edit.vue'], resolve),
+                    component: resolve => require(['../components/page/show/HeBingShenBao_edit.vue'], resolve),
                     meta: { title: '合并申报展示' }
                 },{
                     path: '/教研论文展示',
-                    component: resolve => require(['../components/page/edit/JiaoYanLunWen_edit.vue'], resolve),
+                    component: resolve => require(['../components/page/show/JiaoYanLunWen_edit.vue'], resolve),
                     meta: { title: '教研论文展示' }
                 },{
                     path: '/教育规划项目展示',
-                    component: resolve => require(['../components/page/edit/JiaoYuGuiHua_edit.vue'], resolve),
+                    component: resolve => require(['../components/page/show/JiaoYuGuiHua_edit.vue'], resolve),
                     meta: { title: '教育规划项目展示' }
                 },{
                     path: '/评估中心展示',
-                    component: resolve => require(['../components/page/edit/PingGuZhongXin_edit.vue'], resolve),
+                    component: resolve => require(['../components/page/show/PingGuZhongXin_edit.vue'], resolve),
                     meta: { title: '评估中心展示' }
                 },{
                     path: '/荣誉称号展示',
-                    component: resolve => require(['../components/page/edit/RongYuChengHao_edit.vue'], resolve),
+                    component: resolve => require(['../components/page/show/RongYuChengHao_edit.vue'], resolve),
                     meta: { title: '荣誉称号展示' }
                 },{
                     path: '/学科竞赛展示',
-                    component: resolve => require(['../components/page/edit/XueKeJingSai_edit.vue'], resolve),
+                    component: resolve => require(['../components/page/show/XueKeJingSai_edit.vue'], resolve),
                     meta: { title: '学科竞赛展示' }
                 },{
                     path: '/纵向科研展示',
-                    component: resolve => require(['../components/page/edit/ZongXiangKeYan_edit.vue'], resolve),
+                    component: resolve => require(['../components/page/show/ZongXiangKeYan_edit.vue'], resolve),
                     meta: { title: '纵向科研展示' }
-                },{
-                    path: '/工具',
-                    component: resolve => require(['../components/page/edit/ZongXiangKeYan_edit.vue'], resolve),
-                    meta: { title: 'tool' }
                 }
             ]
         },

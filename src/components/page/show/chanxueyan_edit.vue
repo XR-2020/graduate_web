@@ -2,19 +2,20 @@
     <div>
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-tickets"></i>工具</el-breadcrumb-item>
+                <el-breadcrumb-item><i class="el-icon-tickets"></i>产学研</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="container">
             <div class="form-box">
                 <el-form ref="form" :model="form" label-width="100px">
-                    <el-form-item label="部门">
-                        <el-input v-model="form.partment" disabled></el-input>
-                    </el-form-item>
+
                     <el-form-item label="项目名称">
                         <el-input v-model="form.name" disabled></el-input>
                     </el-form-item>
-<!--                    <el-form-item label="项目名称" v-if="edit">-->
+                    <el-form-item label="部门">
+                        <el-input v-model="form.partment" disabled></el-input>
+                    </el-form-item>
+<!--                    <el-form-item label="项目名称" v-if="show">-->
 <!--                        <el-input v-model="form.name" disabled></el-input>-->
 <!--                    </el-form-item>-->
                     <el-form-item label="立项文号" v-if="form.wenhao">
@@ -56,31 +57,15 @@
 <script>
     export default {
         name: 'tool',
-        props:['edit'],
+        props:['show'],
         data: function(){
             return {
-                form: {
-                    name: '',
-                    partment:'',
-                    finishtime: '',
-                    lianghua:'',
-                    wenhao:'',
-                    firstpeople:'',
-                    people:[],
-                    delivery: true,
-                },
+                form: {},
                 is_editor:true,
-                teacher_list:[{
-                    name:'教师1',
-                    badge:12112,
-                },{
-                    name:'教师2',
-                    badge:12113,
-                }],
             }
         },
         mounted:function(){
-            this.form=this.edit
+            this.form=this.show
             this.is_editor=false
         },
         methods: {

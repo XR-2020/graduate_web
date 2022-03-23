@@ -14,7 +14,7 @@
                     <el-form-item label="项目名称">
                         <el-input v-model="form.name"></el-input>
                     </el-form-item>
-<!--                    <el-form-item label="项目名称" v-if="edit">-->
+<!--                    <el-form-item label="项目名称" v-if="show">-->
 <!--                        <el-input v-model="form.name" disabled></el-input>-->
 <!--                    </el-form-item>-->
                     <el-form-item label="立项部门">

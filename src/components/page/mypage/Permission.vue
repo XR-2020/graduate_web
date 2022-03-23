@@ -38,7 +38,7 @@
 
         <!-- 编辑弹出框 -->
         <el-dialog title="编辑" :visible.sync="editVisible" width="80%">
-            <chanxueyan v-bind:edit="form"/>
+            <chanxueyan v-bind:show="form"/>
         </el-dialog>
 
         <!-- 删除提示框 -->
@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import chanxueyan from '../mypage/tool'
+import chanxueyan from '../show/chanxueyan_edit'
 export default {
     name: 'permission',
     components:{"chanxueyan":chanxueyan},
@@ -139,6 +139,7 @@ export default {
         },
         handleDetail(index, row){
             this.form = this.tableData[index];
+            console.log(this.form)
             this.editVisible = true;
         },
         handleDelete(index, row) {

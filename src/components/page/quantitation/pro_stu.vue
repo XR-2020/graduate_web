@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import chanxueyan from '../edit/chanxueyan_edit';
+import chanxueyan from '../show/chanxueyan_edit';
 import {getAllChanXueYan, getChanXueYanDetail, getSearchChanXueYan} from '../../../api/chanxueyanAPI';
     export default {
     components:{'tool':chanxueyan},
@@ -137,12 +137,12 @@ import {getAllChanXueYan, getChanXueYanDetail, getSearchChanXueYan} from '../../
                }
             },
             search() {
+                console.log(this.query.key)
                 getSearchChanXueYan(this.query).then(res =>{
                     this.tableData = res.list
                     this.pageTotal=res.pageTotal
                 } )
                 this.is_search = true;
-                this.query.key='';
             },
             formatter(row, column) {
                 return row.address;

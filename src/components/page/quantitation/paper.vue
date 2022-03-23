@@ -8,7 +8,7 @@
         <div class="container" style="width: 1000px">
             <div class="handle-box">
                 <el-button type="primary" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
-                <el-input v-model="select_word" placeholder="筛选关键词" class="handle-input mr10"></el-input>
+                <el-input v-model="query.key" placeholder="筛选关键词" class="handle-input mr10"></el-input>
                 <el-button type="primary" icon="search" @click="search">搜索</el-button>
             </div>
             <el-table :data="tableData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
@@ -36,7 +36,7 @@
                 </el-table-column>
                 <el-table-column label="操作" width="260px"  align="center">
                     <template slot-scope="scope">
-                        <el-button size="small" type="info" @click="handleDetial(scope.$index, scope.row)">查看参与人</el-button>
+                        <el-button size="small" type="info" @click="handleDetail(scope.$index, scope.row)">查看参与人</el-button>
                         <el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
                         <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
                     </template>
@@ -71,6 +71,13 @@
 <script>
 import heBingShenBao from "../shenbao/HeBingShenBao";
 import {getAllChanXueYan, getChanXueYanDetail, getSearchChanXueYan} from "../../../api/chanxueyanAPI";
+import {
+    deleteKeYanLunWen,
+    deleteOneKeYanLunWen,
+    getAllKeYanLunWen,
+    getKeYanLunWenDetail,
+    getSearchKeYanLunWen
+} from "../../../api/keyanlunwenAPI";
     export default {
         name: 'basetable',
         components:{'heBingShenBao':heBingShenBao},
@@ -148,7 +155,6 @@ import {getAllChanXueYan, getChanXueYanDetail, getSearchChanXueYan} from "../../
                     this.pageTotal=res.pageTotal
                 } )
                 this.is_search = true;
-                this.query.key='';
             },
             formatter(row, column) {
                 return row.address;
