@@ -8,7 +8,6 @@
         <div class="container">
             <div class="form-box">
                 <el-form ref="form" :model="form" label-width="100px">
-
                     <el-form-item label="项目名称">
                         <el-input v-model="form.name" disabled></el-input>
                     </el-form-item>
@@ -32,9 +31,6 @@
                     </el-form-item>
                     <el-form-item label="成果类型" v-if="form.type">
                         <el-input v-model="form.type" disabled></el-input>
-                    </el-form-item>
-                    <el-form-item label="立项依据" v-if="form.lixiang">
-                        <el-input v-model="form.lixiang" disabled></el-input>
                     </el-form-item>
                     <el-form-item  label="立项单位" v-if="form.danwei">
                         <el-input v-model="form.danwei" disabled></el-input>

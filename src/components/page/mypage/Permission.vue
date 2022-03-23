@@ -15,11 +15,43 @@
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
                 <el-table-column prop="id" label="ID" width="55" align="center">
                 </el-table-column>
-                <el-table-column prop="type" label="类型" align="center">
+                <el-table-column prop="shenbao_type" label="申报成果类型" align="center">
                 </el-table-column>
-                <el-table-column prop="name" label="名称" align="center">
+                <el-table-column prop="partment" label="部门" align="center">
                 </el-table-column>
-                <el-table-column prop="teacher" label="申报人" align="center">
+                <el-table-column prop="name" label="项目名称" align="center">
+                </el-table-column>
+                <template slot-scope="scope1">
+                    <el-table-column prop="wenhao" label="立项文号" align="center" v-if="scope1.row.wenhao">
+                    </el-table-column>
+                </template>
+                <template slot-scope="scope2">
+                    <el-table-column prop="lianghua" label="成果依据" align="center" v-if="scope2.row.lianghua">
+                    </el-table-column>
+                </template>
+                <template slot-scope="scope3">
+                    <el-table-column prop="lixiang" label="立项依据" align="center" v-if="scope3.row.lixiang">
+                    </el-table-column>
+                </template>
+                <template slot-scope="scope4">
+                    <el-table-column prop="level" label="项目级别" align="center" v-if="scope4.row.level">
+                    </el-table-column>
+                </template>
+                <template slot-scope="scope5">
+                    <el-table-column prop="type" label="项目类型" align="center" v-if="scope5.row.type">
+                    </el-table-column>
+                </template>
+                <template slot-scope="scope6">
+                    <el-table-column prop="danwei" label="立项单位" align="center" v-if="scope6.row.danwei">
+                    </el-table-column>
+                </template>
+                <template slot-scope="scope7">
+                    <el-table-column prop="grade" label="成果等级" align="center" v-if="scope7.row.grade">
+                    </el-table-column>
+                </template>
+                <el-table-column prop="people" label="参与人情况" align="center">
+                </el-table-column>
+                <el-table-column prop="finishtime" label="完成时间" align="center">
                 </el-table-column>
                 <el-table-column label="操作" width="350px" align="center">
                     <template slot-scope="scope">
