@@ -16,3 +16,10 @@ export const getSearchShenBao = query => {
         params: query
     });
 };
+export const updateHeBing = query => {
+    return request({
+        url: '/updateHeBing',
+        method: 'get',
+        params: query
+    });
+};

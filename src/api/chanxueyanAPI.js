@@ -40,3 +40,10 @@ export const getChanXueYanDetail = query => {
         params: query
     });
 };
+export const updateChanXueYan = query => {
+    return request({
+        url: '/updateChanXueYan',
+        method: 'post',
+        params: query
+    });
+};

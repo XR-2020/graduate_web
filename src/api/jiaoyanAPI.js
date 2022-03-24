@@ -40,3 +40,10 @@ export const getJiaoYanDetail = query => {
         params: query
     });
 };
+export const updateJiaoYan = query => {
+    return request({
+        url: '/updateJiaoYan',
+        method: 'post',
+        params: query
+    });
+};

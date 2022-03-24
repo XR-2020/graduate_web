@@ -50,6 +50,9 @@
 </template>
 
 <script>
+    import {updateChanXueYan} from "../../../api/chanxueyanAPI";
+    import {updateHonor} from "../../../api/rongyuAPI";
+
     export default {
         name: 'rongyuchenghao',
         data: function(){
@@ -72,8 +75,9 @@
         },
         methods: {
             onSubmit() {
-                console.log(this.form);
-                // this.$message.success('提交成功！');
+                updateHonor(this.form).then(res =>{
+                    this.$message.success(`添加成功`);
+                } );
             }
         }
     }

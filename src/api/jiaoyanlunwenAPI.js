@@ -40,3 +40,10 @@ export const getJiaoYanLunWenDetail = query => {
         params: query
     });
 };
+export const updateJiaoYanLunWen = query => {
+    return request({
+        url: '/updateJiaoYanLunWen',
+        method: 'post',
+        params: query
+    });
+};

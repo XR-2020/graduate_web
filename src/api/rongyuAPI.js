@@ -32,10 +32,18 @@ export const deleteOneRongYu = query => {
         params: query
     });
 };
-//查看某个项目的参与人信息
+//批量导入
 export const insertHonor = query => {
     return request({
         url: '/insertHonor',
+        method: 'post',
+        params: query
+    });
+};
+//申报添加
+export const updateHonor = query => {
+    return request({
+        url: '/updateHonor',
         method: 'post',
         params: query
     });

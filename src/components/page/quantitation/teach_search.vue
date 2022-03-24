@@ -152,7 +152,7 @@ import {getAllChanXueYan, getSearchChanXueYan} from "../../../api/chanxueyanAPI"
                 }
             },
             search() {
-                getSearchChanXueYan(this.query).then(res =>{
+                getSearchJiaoYan(this.query).then(res =>{
                     this.tableData = res.list
                     this.pageTotal=res.pageTotal
                 } )

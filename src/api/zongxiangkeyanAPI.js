@@ -40,3 +40,10 @@ export const getZongXiangKeYanDetail = query => {
         params: query
     });
 };
+export const updateZongXiangKeYan = query => {
+    return request({
+        url: '/updateZongXiangKeYan',
+        method: 'post',
+        params: query
+    });
+};

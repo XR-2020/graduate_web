@@ -57,6 +57,9 @@
 </template>
 
 <script>
+    import {updateChanXueYan} from "../../../api/chanxueyanAPI";
+    import {updatePingGuZhongXin} from "../../../api/pingguzhongxinAPI";
+
     export default {
         name: 'pingguzhongxin',
         data: function(){
@@ -81,8 +84,9 @@
         },
         methods: {
             onSubmit() {
-                console.log(this.form);
-                // this.$message.success('提交成功！');
+                updatePingGuZhongXin(this.form).then(res =>{
+                    this.$message.success(`添加成功`);
+                } );
             }
         }
     }

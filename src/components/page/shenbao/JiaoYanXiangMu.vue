@@ -60,6 +60,9 @@
 </template>
 
 <script>
+    import {updateChanXueYan} from "../../../api/chanxueyanAPI";
+    import {updateJiaoYan} from "../../../api/jiaoyanAPI";
+
     export default {
         name: 'jiaoyanxiangmu',
         data: function(){
@@ -86,8 +89,9 @@
         },
         methods: {
             onSubmit() {
-                console.log(this.form);
-                // this.$message.success('提交成功！');
+                updateJiaoYan(this.form).then(res =>{
+                    this.$message.success(`添加成功`);
+                } );
             }
         }
     }

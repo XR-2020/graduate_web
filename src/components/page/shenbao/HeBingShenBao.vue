@@ -64,6 +64,9 @@
 </template>
 
 <script>
+    import {updateChanXueYan} from "../../../api/chanxueyanAPI";
+    import {updateHeBing} from "../../../api/shenbaoAPI";
+
     export default {
         name: 'heBingShenBao',
         data: function(){
@@ -115,7 +118,9 @@
                     }
 
                 }
-                console.log(this.form);
+                    updateHeBing(this.form).then(res =>{
+                        this.$message.success(`添加成功`);
+                    } );
                 // this.$message.success('提交成功！');
             }
         }

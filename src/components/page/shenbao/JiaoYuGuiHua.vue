@@ -63,6 +63,9 @@
 </template>
 
 <script>
+    import {updateChanXueYan} from "../../../api/chanxueyanAPI";
+    import {updateJiaoYuGuiHua} from "../../../api/jiaoyuguihuaAPI";
+
     export default {
         name: 'jiaoyuguihua',
         data: function(){
@@ -89,8 +92,9 @@
         },
         methods: {
             onSubmit() {
-                console.log(this.form);
-                // this.$message.success('提交成功！');
+                updateJiaoYuGuiHua(this.form).then(res =>{
+                    this.$message.success(`添加成功`);
+                } );
             }
         }
     }

@@ -40,3 +40,10 @@ export const getPingGuZhongXinDetail = query => {
         params: query
     });
 };
+export const updatePingGuZhongXin = query => {
+    return request({
+        url: '/updatePingGuZhongXin',
+        method: 'post',
+        params: query
+    });
+};

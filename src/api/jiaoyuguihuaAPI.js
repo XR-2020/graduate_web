@@ -40,3 +40,10 @@ export const getSearchJiaoYuGuiHuaDetail = query => {
         params: query
     });
 };
+export const updateJiaoYuGuiHua = query => {
+    return request({
+        url: '/updateJiaoYuGuiHua',
+        method: 'post',
+        params: query
+    });
+};

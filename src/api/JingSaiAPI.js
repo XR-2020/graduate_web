@@ -48,3 +48,10 @@ export const insertCompetition = query => {
         params: query
     });
 };
+export const updateCompetition = query => {
+    return request({
+        url: '/updateCompetition',
+        method: 'post',
+        params: query
+    });
+};
