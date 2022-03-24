@@ -30,18 +30,17 @@
 <!--                    </template>-->
 <!--                </el-table-column>-->
 
-                <el-table-column prop="teacher.badge" label="指导教师工号" align="center">
+            <el-table-column prop="badge" label="指导教师工号"  align="center">
                 </el-table-column>
-                <el-table-column prop="teacher.name" label="指导教师"  align="center">
+                <el-table-column prop="tea_name" label="指导教师"  align="center">
                 </el-table-column>
                 <el-table-column prop="student" label="参赛学生" align="center">
                 </el-table-column>
                 <el-table-column prop="finishtime" label="获奖时间" align="center">
                 </el-table-column>
-                <el-table-column label="操作" width="260px"  align="center">
+                <el-table-column label="操作" width="200px"  align="center">
                     <template slot-scope="scope">
-                        <el-button size="small" type="info" @click="handleDetail(scope.$index, scope.row)">查看参与人</el-button>
-                        <el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                       <el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
                         <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
                     </template>
                 </el-table-column>
@@ -53,7 +52,7 @@
             <router-link to="/学科竞赛申报">
                 <el-button type="primary">学科竞赛申报</el-button>
             </router-link>
-            <el-button type="primary" @click="importCompetition"><i class="el-icon-upload el-icon--left"></i>&nbsp;批量导入</el-button>
+            <el-button type="primary" @click="isimportCompetition"><i class="el-icon-upload el-icon--left"></i>&nbsp;批量导入</el-button>
         </div>
 
         <!-- 编辑弹出框 -->
@@ -69,7 +68,26 @@
                 <el-button type="primary" @click="deleteRow">确 定</el-button>
             </span>
         </el-dialog>
+
+        <!-- 批量导入弹出框 -->
+        <el-dialog title="批量添加" :visible.sync="isimport" width="30%">
+            <el-form ref="form" :model="form" label-width="70px">
+                <el-upload
+                    class="upload-demo"
+                    drag
+                    action="https://jsonplaceholder.typicode.com/posts/"
+                    multiple>
+                    <i class="el-icon-upload"></i>
+                    <div class="el-upload__text">将Excel文件拖到此处，或<em>点击上传</em></div>
+                </el-upload>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+		        <el-button @click="isimport = false">取 消</el-button>
+		        <el-button type="primary" @click="saveEdit">确 定</el-button>
+		    </span>
+        </el-dialog>
     </div>
+
 </template>
 
 <script>
@@ -80,7 +98,7 @@ import {
     deleteOneJingSai,
     getAllJingSai,
     getJingSaiDetail,
-    getSearchJingSai
+    getSearchJingSai, insertCompetition
 } from "../../../api/JingSaiAPI";
 import {getZhuZuoDetail} from "../../../api/zhuzuoAPI";
     export default {
@@ -106,7 +124,8 @@ import {getZhuZuoDetail} from "../../../api/zhuzuoAPI";
                 delVisible: false,
                 form: {},
                 idx: -1,
-                idList:[]
+                idList:[],
+                isimport:false
             }
         },
         created() {
@@ -134,7 +153,9 @@ import {getZhuZuoDetail} from "../../../api/zhuzuoAPI";
             }
         },
         methods: {
-            importCompetition(){},
+            isimportCompetition(){
+                this.isimport=true
+            },
             // 分页导航
             handleCurrentChange(val) {
                 this.$set(this.query, 'pageIndex', val);
@@ -215,8 +236,11 @@ import {getZhuZuoDetail} from "../../../api/zhuzuoAPI";
             },
             // 保存编辑
             saveEdit() {
-                this.$set(this.tableData, this.idx, this.form);
                 this.editVisible = false;
+                insertCompetition(this.form).then(res=>{
+                    this.$message.success(`修改成功`);
+                    this.getData();
+                })
                 this.$message.success(`修改第 ${this.idx+1} 行成功`);
             },
             // 确定删除

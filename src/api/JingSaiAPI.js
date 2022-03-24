@@ -40,3 +40,11 @@ export const getJingSaiDetail = query => {
         params: query
     });
 };
+
+export const insertCompetition = query => {
+    return request({
+        url: '/insertCompetition',
+        method: 'post',
+        params: query
+    });
+};

@@ -33,10 +33,10 @@ export const deleteOneRongYu = query => {
     });
 };
 //查看某个项目的参与人信息
-export const getRongYuDetail = query => {
+export const insertHonor = query => {
     return request({
-        url: '/getRongYuDetail',
-        method: 'get',
+        url: '/insertHonor',
+        method: 'post',
         params: query
     });
 };

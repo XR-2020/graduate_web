@@ -21,11 +21,11 @@
                 </el-table-column>
                 <el-table-column prop="finishtime" label="获奖时间"  align="center">
                 </el-table-column>
-                <el-table-column prop="teacher_num" label="教师工号" align="center">
+                <el-table-column prop="badge" label="教师工号" align="center">
                 </el-table-column>
-                <el-table-column prop="teacher_name" label="教师姓名"  align="center">
+                <el-table-column prop="tea_name" label="教师姓名"  align="center">
                 </el-table-column>
-                <el-table-column label="操作" width="260px"  align="center">
+                <el-table-column label="操作" width="200px"  align="center">
                     <template slot-scope="scope">
                         <el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
                         <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
@@ -39,7 +39,7 @@
             <router-link to="/荣誉称号申报">
                 <el-button type="primary">荣誉称号申报</el-button>
             </router-link>
-            <el-button type="primary" @click="importHonor"><i class="el-icon-upload el-icon--left"></i>&nbsp;批量导入</el-button>
+            <el-button type="primary" @click="isimportHonor"><i class="el-icon-upload el-icon--left"></i>&nbsp;批量导入</el-button>
         </div>
 
         <!-- 编辑弹出框 -->
@@ -55,19 +55,44 @@
                 <el-button type="primary" @click="deleteRow">确 定</el-button>
             </span>
         </el-dialog>
+
+        <el-dialog title="导入" :visible.sync="isimport" width="30%">
+            <el-form ref="form" :model="form" label-width="70px">
+                <el-upload
+                    class="upload-demo"
+                    drag
+                    action="https://jsonplaceholder.typicode.com/posts/"
+                    multiple>
+                    <i class="el-icon-upload"></i>
+                    <div class="el-upload__text">将Excel文件拖到此处，或<em>点击上传</em></div>
+                </el-upload>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+		        <el-button @click="isimport = false">取 消</el-button>
+		        <el-button type="primary" @click="saveEdit">确 定</el-button>
+		    </span>
+        </el-dialog>
     </div>
 </template>
 
 <script>
 import rongyuchenghao from '../shenbao/rongyuchenghao'
 import {getAllJiaoYuGuiHua, getSearchJiaoYuGuiHua, getSearchJiaoYuGuiHuaDetail} from "../../../api/jiaoyuguihuaAPI";
-import {deleteOneRongYu, deleteRongYu, getAllRongYu, getRongYuDetail, getSearchRongYu} from "../../../api/rongyuAPI";
+import {
+    deleteOneRongYu,
+    deleteRongYu,
+    getAllRongYu,
+    getRongYuDetail,
+    getSearchRongYu,
+    insertHonor
+} from "../../../api/rongyuAPI";
+import {insertCompetition} from "../../../api/JingSaiAPI";
     export default {
         name: 'honor',
         components:{'rongyuchenghao':rongyuchenghao},
         data() {
             return {
-                url: './static/vuetable.json',
+                isimport:false,
                 tableData: [],
                 pageTotal:0,
                 query:{
@@ -113,7 +138,9 @@ import {deleteOneRongYu, deleteRongYu, getAllRongYu, getRongYuDetail, getSearchR
             }
         },
         methods: {
-            importHonor(){},
+            isimportHonor(){
+                this.isimport=true
+            },
             // 分页导航
             handleCurrentChange(val) {
                 this.$set(this.query, 'pageIndex', val);
@@ -194,8 +221,11 @@ import {deleteOneRongYu, deleteRongYu, getAllRongYu, getRongYuDetail, getSearchR
             },
             // 保存编辑
             saveEdit() {
-                this.$set(this.tableData, this.idx, this.form);
                 this.editVisible = false;
+                insertHonor(this.form).then(res=>{
+                    this.$message.success(`修改成功`);
+                    this.getData();
+                })
                 this.$message.success(`修改第 ${this.idx+1} 行成功`);
             },
             // 确定删除
