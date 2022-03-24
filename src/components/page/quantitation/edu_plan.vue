@@ -68,7 +68,13 @@
 <script>
 import jiaoyuguihua from '../shenbao/JiaoYuGuiHua'
 import {getAllChanXueYan, getChanXueYanDetail, getSearchChanXueYan} from "../../../api/chanxueyanAPI";
-import {getAllJiaoYuGuiHua, getSearchJiaoYuGuiHua, getSearchJiaoYuGuiHuaDetail} from "../../../api/jiaoyuguihuaAPI";
+import {
+    deleteJiaoYuGuiHua,
+    deleteOneJiaoYuGuiHua,
+    getAllJiaoYuGuiHua,
+    getSearchJiaoYuGuiHua,
+    getSearchJiaoYuGuiHuaDetail
+} from "../../../api/jiaoyuguihuaAPI";
     export default {
         name: 'edu_plan',
         components:{'jiaoyuguihua':jiaoyuguihua},
@@ -93,7 +99,8 @@ import {getAllJiaoYuGuiHua, getSearchJiaoYuGuiHua, getSearchJiaoYuGuiHuaDetail} 
                 editVisible: false,
                 delVisible: false,
                 form: {},
-                idx: -1
+                idx: -1,
+                idList:[]
             }
         },
         created() {

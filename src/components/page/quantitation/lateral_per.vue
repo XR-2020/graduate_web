@@ -96,7 +96,8 @@ import {
                     date: '',
                     address: ''
                 },
-                idx: -1
+                idx: -1,
+                idList:[]
             }
         },
         created() {

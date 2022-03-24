@@ -96,7 +96,8 @@ import {deleteOneZhuoZuo, getAllZhuZuo, getSearchZhuZuo, getZhuZuoDetail} from "
                 editVisible: false,
                 delVisible: false,
                 form: {},
-                idx: -1
+                idx: -1,
+                idList:[]
             }
         },
         created() {

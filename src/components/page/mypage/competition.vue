@@ -8,7 +8,7 @@
         <div class="container">
             <div class="handle-box">
                 <el-button type="primary" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
-                <el-input v-model="select_word" placeholder="筛选关键词" class="handle-input mr10"></el-input>
+                <el-input v-model="query.key" placeholder="筛选关键词" class="handle-input mr10"></el-input>
                 <el-button type="primary" icon="search" @click="search">搜索</el-button>
             </div>
             <el-table :data="tableData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
@@ -38,15 +38,16 @@
                 </el-table-column>
                 <el-table-column prop="finishtime" label="获奖时间" align="center">
                 </el-table-column>
-                <el-table-column label="操作" width="160px"  align="center">
+                <el-table-column label="操作" width="260px"  align="center">
                     <template slot-scope="scope">
+                        <el-button size="small" type="info" @click="handleDetail(scope.$index, scope.row)">查看参与人</el-button>
                         <el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
                         <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
                     </template>
                 </el-table-column>
             </el-table>
             <div class="pagination">
-                <el-pagination @current-change="handleCurrentChange" layout="prev, pager, next" :total="1000">
+                <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
                 </el-pagination>
             </div>
             <router-link to="/学科竞赛申报">
@@ -73,26 +74,28 @@
 
 <script>
 import xuekejingsai from '../shenbao/XueKeJingSai'
+import {deleteOneRongYu, deleteRongYu, getAllRongYu, getSearchRongYu} from "../../../api/rongyuAPI";
+import {
+    deleteJingSai,
+    deleteOneJingSai,
+    getAllJingSai,
+    getJingSaiDetail,
+    getSearchJingSai
+} from "../../../api/JingSaiAPI";
+import {getZhuZuoDetail} from "../../../api/zhuzuoAPI";
     export default {
         name: 'competition',
         components:{'xuekejingsai':xuekejingsai},
         data() {
             return {
-                url: './static/vuetable.json',
                 header:false,
-                tableData: [{
-                    student:'学生1、学生2、学生3',
-                    finishtime:"2022-3-4",
-                    name:"863软件设计大赛",
-                    partment:'软件学院',
-                    id:1,
-                    level:'市级',
-                    grade:'二等奖',
-                    teacher:{
-                        name:'教师1',
-                        badge:12112,
-                    }
-                }],
+                tableData: [],
+                pageTotal:0,
+                query:{
+                    key: '',
+                    pageIndex: 1,
+                    pageSize: 10
+                },
                 cur_page: 1,
                 multipleSelection: [],
                 select_cate: '',
@@ -102,7 +105,8 @@ import xuekejingsai from '../shenbao/XueKeJingSai'
                 editVisible: false,
                 delVisible: false,
                 form: {},
-                idx: -1
+                idx: -1,
+                idList:[]
             }
         },
         created() {
@@ -133,23 +137,35 @@ import xuekejingsai from '../shenbao/XueKeJingSai'
             importCompetition(){},
             // 分页导航
             handleCurrentChange(val) {
-                this.cur_page = val;
+                this.$set(this.query, 'pageIndex', val);
                 this.getData();
             },
             // 获取 easy-mock 的模拟数据
             getData() {
-                // 开发环境使用 easy-mock 数据，正式环境使用 json 文件
-                if (process.env.NODE_ENV === 'development') {
-                    this.url = '/ms/table/list';
-                };
-                this.$axios.post(this.url, {
-                    page: this.cur_page
-                }).then((res) => {
-                    this.tableData = res.data.list;
-                })
+                if(this.query.key!==''){
+                    getSearchJingSai(this.query).then(res =>{
+                        this.tableData = res.list
+                        this.pageTotal=res.pageTotal
+                    } )
+                }else{
+                    getAllJingSai(this.query).then(res=>{
+                        this.tableData = res.list
+                        this.pageTotal=res.pageTotal
+                    })
+                }
             },
             search() {
+                getSearchJingSai(this.query).then(res =>{
+                    this.tableData = res.list
+                    this.pageTotal=res.pageTotal
+                } )
                 this.is_search = true;
+            },
+            handleDetail(index, row){
+                getJingSaiDetail({id: row.id}).then(res =>{
+                    this.people=res.data
+                } )
+                this.isdetail=true;
             },
             formatter(row, column) {
                 return row.address;
@@ -163,21 +179,39 @@ import xuekejingsai from '../shenbao/XueKeJingSai'
                 this.editVisible = true;
             },
             handleDelete(index, row) {
-                this.idx = index;
-                this.delVisible = true;
+                // 二次确认删除
+                this.$confirm('确定要删除吗？', '提示', {
+                    type: 'warning'
+                })
+                    .then(() => {
+                        deleteOneJingSai({ids: [row.id]}).then(res=>{
+                            this.getData();
+                            this.$message.success('删除成功');
+                        }).catch(()=>{
+                            this.$message.error('删除失败');
+                        })
+                    })
+                    .catch(() => {});
             },
             delAll() {
-                const length = this.multipleSelection.length;
-                let str = '';
-                this.del_list = this.del_list.concat(this.multipleSelection);
-                for (let i = 0; i < length; i++) {
-                    str += this.multipleSelection[i].name + ' ';
+                if (this.idList.length>0){
+                    this.$confirm('确定要删除吗？', '提示', {
+                        type: 'warning'
+                    })
+                        .then(() => {
+                            deleteJingSai({ ids: this.idList }).then(res => {
+                                this.$message.error(res.msg);
+                                // this.query.pageIndex = 1;
+                                this.getData();
+                            });
+                        });
                 }
-                this.$message.error('删除了' + str);
-                this.multipleSelection = [];
             },
             handleSelectionChange(val) {
-                this.multipleSelection = val;
+                this.idList = [];
+                for (var i=0;i<val.length;i++){
+                    this.idList.push(val[i].id)
+                }
             },
             // 保存编辑
             saveEdit() {
