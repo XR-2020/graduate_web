@@ -8,51 +8,17 @@
         <div class="container">
             <div class="handle-box">
                 <el-button type="primary" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
-                <el-input v-model="select_word" placeholder="筛选关键词" class="handle-input mr10"></el-input>
+                <el-input v-model="query.key" placeholder="筛选关键词" class="handle-input mr10"></el-input>
                 <el-button type="primary" icon="search" @click="search">搜索</el-button>
             </div>
             <el-table :data="tableData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
-                <el-table-column prop="id" label="ID" width="55" align="center">
-                </el-table-column>
-                <el-table-column prop="shenbao_type" label="申报成果类型" align="center">
-                </el-table-column>
-                <el-table-column prop="partment" label="部门" align="center">
-                </el-table-column>
-                <el-table-column prop="name" label="项目名称" align="center">
-                </el-table-column>
-                <template slot-scope="scope1">
-                    <el-table-column prop="wenhao" label="立项文号" align="center" v-if="scope1.row.wenhao">
-                    </el-table-column>
-                </template>
-                <template slot-scope="scope2">
-                    <el-table-column prop="lianghua" label="成果依据" align="center" v-if="scope2.row.lianghua">
-                    </el-table-column>
-                </template>
-                <template slot-scope="scope3">
-                    <el-table-column prop="lixiang" label="立项依据" align="center" v-if="scope3.row.lixiang">
-                    </el-table-column>
-                </template>
-                <template slot-scope="scope4">
-                    <el-table-column prop="level" label="项目级别" align="center" v-if="scope4.row.level">
-                    </el-table-column>
-                </template>
-                <template slot-scope="scope5">
-                    <el-table-column prop="type" label="项目类型" align="center" v-if="scope5.row.type">
-                    </el-table-column>
-                </template>
-                <template slot-scope="scope6">
-                    <el-table-column prop="danwei" label="立项单位" align="center" v-if="scope6.row.danwei">
-                    </el-table-column>
-                </template>
-                <template slot-scope="scope7">
-                    <el-table-column prop="grade" label="成果等级" align="center" v-if="scope7.row.grade">
-                    </el-table-column>
-                </template>
-                <el-table-column prop="people" label="参与人情况" align="center">
-                </el-table-column>
-                <el-table-column prop="finishtime" label="完成时间" align="center">
-                </el-table-column>
+                   <el-table-column
+                       v-for="item in cols"
+                       :prop="item.prop"
+                       :label="item.label"
+                   >
+                   </el-table-column>
                 <el-table-column label="操作" width="350px" align="center">
                     <template slot-scope="scope">
                         <el-button size="small" type="primary" @click="handleDetail(scope.$index, scope.row)">查看详情</el-button>
@@ -86,18 +52,21 @@
 
 <script>
 import chanxueyan from '../show/chanxueyan_edit'
+import {getAllShenBao, getSearchShenBao} from "../../../api/shenbaoAPI";
 export default {
     name: 'permission',
     components:{"chanxueyan":chanxueyan},
     data() {
         return {
             url: './static/vuetable.json',
-            tableData: [{
-                teacher:'教师1',
-                name:'产学研申报项目',
-                type:'产学研',
-                id:1
-            }],
+            tableData: [],
+            cols:[],
+            query:{
+                key: '',
+                role:-1,
+                pageIndex: 1,
+                pageSize: 10
+            },
             cur_page: 1,
             multipleSelection: [],
             select_cate: '',
@@ -141,23 +110,31 @@ export default {
     methods: {
         // 分页导航
         handleCurrentChange(val) {
-            this.cur_page = val;
+            this.$set(this.query, 'pageIndex', val);
             this.getData();
         },
         // 获取 easy-mock 的模拟数据
         getData() {
-            // 开发环境使用 easy-mock 数据，正式环境使用 json 文件
-            if (process.env.NODE_ENV === 'development') {
-                this.url = '/ms/table/list';
-            };
-            this.$axios.post(this.url, {
-                page: this.cur_page
-            }).then((res) => {
-                this.tableData = res.data.list;
-            })
+            if(this.query.key!==''){
+                getSearchShenBao(this.query).then(res =>{
+                    this.tableData = res.list
+                    this.pageTotal=res.pageTotal
+                    this.cols=res.cols
+                } )
+            }else{
+                getAllShenBao(this.query).then(res=>{
+                    this.tableData = res.list
+                    this.pageTotal=res.pageTotal
+                    this.cols=res.cols
+                })
+            }
         },
         search() {
-            this.is_search = true;
+            getSearchShenBao(this.query).then(res =>{
+                this.tableData = res.list
+                this.pageTotal=res.pageTotal
+                this.cols=res.cols
+            } )
         },
         formatter(row, column) {
             return row.address;
