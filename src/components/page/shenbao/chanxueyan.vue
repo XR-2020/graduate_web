@@ -63,6 +63,7 @@ import {insertChanXueYan, updateChanXueYan} from "../../../api/chanxueyanAPI";
         data: function(){
             return {
                 form: {
+                    role:-1,
                     name: '',
                     partment:'',
                     finishtime: '',

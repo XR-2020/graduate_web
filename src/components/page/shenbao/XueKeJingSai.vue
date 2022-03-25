@@ -64,6 +64,7 @@
                     teacher:[],
                     level:'',
                     grade:'',
+                    role:-1,
                 },
                 teacher_list:[{
                     name:'教师1',

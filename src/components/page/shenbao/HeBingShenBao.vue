@@ -72,6 +72,7 @@
         data: function(){
             return {
                 form: {
+                    role:-1,
                     name: '',
                     type: '',
                     partment:'',

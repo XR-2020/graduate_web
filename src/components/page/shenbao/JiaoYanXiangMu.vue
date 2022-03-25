@@ -74,6 +74,7 @@
                     wenhao:'',
                     partment:'',
                      finishtime: '',
+                    role:-1,
 
                 },
                 is_editor:true,

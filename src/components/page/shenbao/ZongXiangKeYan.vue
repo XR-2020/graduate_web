@@ -78,6 +78,7 @@
                     type:'',
                     lixiang:'',
                     partment:'',
+                    role:-1,
 
                 },
                 teacher_list:[{

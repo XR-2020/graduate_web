@@ -62,6 +62,7 @@
         data: function(){
             return {
                 form: {
+                    role:-1,
                     name: '',
                     finishtime: '',
                     partment:'',
