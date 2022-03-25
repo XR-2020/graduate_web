@@ -62,7 +62,6 @@
                      finishtime: '',
                     people:[],
                     level:'',
-                    delivery: true,
                 },
                 teacher_list:[{
                     name:'教师1',

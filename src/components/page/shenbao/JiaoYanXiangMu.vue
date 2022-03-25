@@ -74,7 +74,6 @@
                     wenhao:'',
                     partment:'',
                      finishtime: '',
-                    delivery: true,
 
                 },
                 is_editor:true,

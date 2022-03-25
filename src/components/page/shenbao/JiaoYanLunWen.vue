@@ -66,7 +66,6 @@
                     finishtime: '',
                     partment:'',
                     people:[],
-                    delivery: true,
                 },
                 is_editor:true,
                 teacher_list:[{

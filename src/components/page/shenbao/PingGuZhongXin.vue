@@ -71,7 +71,6 @@
                     finishtime: '',
                     people:[],
                     grade:'',
-                    delivery: true,
                 },
                 teacher_list:[{
                     name:'教师1',

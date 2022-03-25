@@ -79,7 +79,6 @@
                     level:'',
                     danwei:'',
                     grade:'',
-                    delivery: true,
                 },
                 teacher_list:[{
                     name:'教师1',
