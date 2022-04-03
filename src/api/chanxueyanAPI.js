@@ -42,8 +42,8 @@ export const getChanXueYanDetail = query => {
 };
 export const updateChanXueYan = query => {
     return request({
-        url: '/updateChanXueYan',
+        url: '/insertChanXueYan',
         method: 'post',
-        params: query
+        data: query
     });
 };

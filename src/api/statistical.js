@@ -1,49 +1,42 @@
 import request from '../utils/request';
 
 // ---------------------------------------- 查询产学研数据
-export const getAllJiaoYuGuiHua = query => {
+export const SearchDetail = query => {
     return request({
-        url: '/getAllJiaoYuGuiHua',
+        url: '/SearchDetail',
         method: 'get',
         params: query
     });
 };
 //产学研关键词全局查询
-export const getSearchJiaoYuGuiHua = query => {
+export const SearchAll = query => {
     return request({
-        url: '/getSearchJiaoYuGuiHua',
+        url: '/SearchAll',
         method: 'get',
         params: query
     });
 };
 //批量删除
-export const deleteJiaoYuGuiHua = query => {
+export const deleteZhuanLi = query => {
     return request({
-        url: '/deleteJiaoYuGuiHua',
+        url: '/deleteZhuanLi',
         method: 'post',
         params: query
     });
 };
 //删除一个产学研
-export const deleteOneJiaoYuGuiHua = query => {
+export const deleteOneZhuanLi = query => {
     return request({
-        url: '/deleteOneJiaoYuGuiHua',
+        url: '/deleteOneZhuanLi',
         method: 'post',
         params: query
     });
 };
 //查看某个项目的参与人信息
-export const getSearchJiaoYuGuiHuaDetail = query => {
+export const getZhuanLiDetail = query => {
     return request({
-        url: '/getChanXueYanDetail',
+        url: '/getZhuanLiDetail',
         method: 'get',
         params: query
-    });
-};
-export const updateJiaoYuGuiHua = query => {
-    return request({
-        url: '/updateJiaoYuGuiHua',
-        method: 'post',
-        data: query
     });
 };

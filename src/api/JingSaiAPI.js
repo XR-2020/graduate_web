@@ -52,6 +52,6 @@ export const updateCompetition = query => {
     return request({
         url: '/updateCompetition',
         method: 'post',
-        params: query
+        data: query
     });
 };

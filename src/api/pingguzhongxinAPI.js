@@ -44,6 +44,6 @@ export const updatePingGuZhongXin = query => {
     return request({
         url: '/updatePingGuZhongXin',
         method: 'post',
-        params: query
+        data: query
     });
 };

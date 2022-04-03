@@ -29,10 +29,6 @@
 <!--                        </el-table>-->
 <!--                    </template>-->
 <!--                </el-table-column>-->
-                <el-table-column prop="badge" label="第一完成人工号"  align="center">
-                </el-table-column>
-                <el-table-column prop="tea_name" label="第一完成人"  align="center">
-                </el-table-column>
                 <el-table-column label="操作" width="260px"  align="center">
                     <template slot-scope="scope">
                         <el-button size="small" type="info" @click="handleDetail(scope.$index, scope.row)">查看参与人</el-button>

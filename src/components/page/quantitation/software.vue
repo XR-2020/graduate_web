@@ -30,10 +30,10 @@
 <!--                    </template>-->
 <!--                </el-table-column>-->
 
-                <el-table-column prop="badge" label="第一完成人工号" width="110px"  align="center">
-                </el-table-column>
-                <el-table-column prop="tea_name" label="第一完成人" width="100px"   align="center">
-                </el-table-column>
+<!--                <el-table-column prop="badge" label="第一完成人工号" width="110px"  align="center">-->
+<!--                </el-table-column>-->
+<!--                <el-table-column prop="tea_name" label="第一完成人" width="100px"   align="center">-->
+<!--                </el-table-column>-->
                 <el-table-column label="操作" width="260px"  align="center">
                     <template slot-scope="scope">
                         <el-button size="small" type="info" @click="handleDetail(scope.$index, scope.row)">查看参与人</el-button>

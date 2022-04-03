@@ -17,6 +17,9 @@
                     <el-form-item label="级别">
                         <el-input v-model="form.level"></el-input>
                     </el-form-item>
+                    <el-form-item label="部门">
+                        <el-input v-model="form.partment"></el-input>
+                    </el-form-item>
                     <el-form-item multiple filterable label="获奖人员" v-if="!edit">
                         <el-select multiple filterable v-model="form.people">
                             <el-option
@@ -63,6 +66,7 @@
                     people:[],
                     level:'',
                     role:-1,
+                    partment:''
                 },
                 teacher_list:[{
                     name:'教师1',

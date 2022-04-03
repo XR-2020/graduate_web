@@ -26,16 +26,16 @@
                     <el-form-item label="部门">
                         <el-input v-model="form.partment"></el-input>
                     </el-form-item>
-                    <el-form-item  label="第一完成人">
-                        <el-select v-model="form.firstpeople">
-                            <el-option
-                                v-for="item in teacher_list"
-                                :key="item.badge"
-                                :label="item.badge+'—'+item.name"
-                                :value="item.badge">
-                            </el-option>
-                        </el-select>
-                    </el-form-item>
+<!--                    <el-form-item  label="第一完成人">-->
+<!--                        <el-select v-model="form.firstpeople">-->
+<!--                            <el-option-->
+<!--                                v-for="item in teacher_list"-->
+<!--                                :key="item.badge"-->
+<!--                                :label="item.badge+'—'+item.name"-->
+<!--                                :value="item.badge">-->
+<!--                            </el-option>-->
+<!--                        </el-select>-->
+<!--                    </el-form-item>-->
                     <el-form-item label="参与人情况">
                         <el-select multiple filterable v-model="form.people">
                             <el-option

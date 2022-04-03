@@ -34,6 +34,8 @@
 
 <script>
     import Schart from 'vue-schart';
+    import {getSearchZhuZuo} from "../../../api/zhuzuoAPI";
+    import {SearchAll, SearchDetail} from "../../../api/statistical"
     export default {
         name: 'basecharts',
         components: {
@@ -106,7 +108,7 @@
                 {name:'科研论文',value:4},
                 {name:'软件著作权',value:10},
                 {name:'科研项目结项',value:8},
-                {name:'科学竞赛',value:26},
+                {name:'学科竞赛',value:26},
                 {name:'荣誉称号',value:5},
             ],
             data2:[
@@ -142,10 +144,14 @@
             search() {
                 this.bysearch=true
                     if(this.form.date1&&this.form.date2){
-                        this.hasdate=true
+                        SearchAll(this.form).then(res =>{
+                            this.data1 = res.list
+                        } )
                     }
                     if(this.form.value){
-                        this.hastype=true
+                        SearchDetail(this.form).then(res =>{
+                            this.data1 = res.list
+                        } )
                     }
             }
         }

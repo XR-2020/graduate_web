@@ -44,6 +44,6 @@ export const updateJiaoYanLunWen = query => {
     return request({
         url: '/updateJiaoYanLunWen',
         method: 'post',
-        params: query
+        data: query
     });
 };

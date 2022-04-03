@@ -44,6 +44,6 @@ export const updateZongXiangKeYan = query => {
     return request({
         url: '/updateZongXiangKeYan',
         method: 'post',
-        params: query
+        data: query
     });
 };

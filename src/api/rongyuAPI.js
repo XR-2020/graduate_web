@@ -45,6 +45,6 @@ export const updateHonor = query => {
     return request({
         url: '/updateHonor',
         method: 'post',
-        params: query
+        data: query
     });
 };

@@ -20,16 +20,16 @@
                     <el-form-item label="成果依据">
                         <el-input v-model="form.lianghua"></el-input>
                     </el-form-item>
-                    <el-form-item  label="第一完成人">
-                        <el-select v-model="form.firstpeople">
-                            <el-option
-                                v-for="item in teacher_list"
-                                :key="item.badge"
-                                :label="item.badge+'—'+item.name"
-                                :value="item.badge">
-                            </el-option>
-                        </el-select>
-                    </el-form-item>
+<!--                    <el-form-item  label="第一完成人">-->
+<!--                        <el-select v-model="form.firstpeople">-->
+<!--                            <el-option-->
+<!--                                v-for="item in teacher_list"-->
+<!--                                :key="item.badge"-->
+<!--                                :label="item.badge+'—'+item.name"-->
+<!--                                :value="item.badge">-->
+<!--                            </el-option>-->
+<!--                        </el-select>-->
+<!--                    </el-form-item>-->
                     <el-form-item label="参与人情况">
                         <el-select multiple filterable v-model="form.people">
                             <el-option
@@ -70,7 +70,6 @@ import {insertChanXueYan, updateChanXueYan} from "../../../api/chanxueyanAPI";
                     lianghua:'',
                     wenhao:'',
                     people:[],
-                    firstpeople:''
                 },
                 open:false,
                 teacher_list:[{
