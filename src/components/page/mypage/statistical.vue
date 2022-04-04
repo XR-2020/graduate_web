@@ -7,9 +7,18 @@
         </div>
         <div class="container">
             <div class="handle-box">
-                <el-date-picker type="date" placeholder="选择日期" v-model="form.date1"></el-date-picker>
-                <span>—</span>
-                <el-date-picker type="date" placeholder="选择日期" v-model="form.date2"></el-date-picker>
+<!--                <el-date-picker type="date" placeholder="选择日期" v-model="form.date1"></el-date-picker>-->
+<!--                <span>—</span>-->
+<!--                <el-date-picker type="date" placeholder="选择日期" v-model="form.date2"></el-date-picker>-->
+                <el-date-picker
+                    v-model="value"
+                    type="daterange"
+                    range-separator="至"
+                    start-placeholder="开始日期"
+                    end-placeholder="结束日期"
+                    unlink-panels>
+                </el-date-picker>
+
                 <el-select v-model="form.value" placeholder="请选择类型">
                     <el-option
                         v-for="item in options"
@@ -20,7 +29,7 @@
                 </el-select>
                 <el-button type="primary" icon="search" @click="search">查看统计</el-button>
             </div>
-            <div v-if="bysearch">
+            <div :visible.sync="bysearch">
                 <div class="schart-box" v-if="hasdate">
                     <schart class="schart" canvasId="line" :data="data1" type="line" :options="options2"></schart>
                 </div>
@@ -47,6 +56,7 @@
                 date2:'',
                 value:''
             },
+            value:'',
             options:[
                 {
                     value: '0',
@@ -96,21 +106,7 @@
                     label: '荣誉称号'
                 }
             ],
-            data1:[
-                {name:'产学研',value:10},
-                {name:'教研项目',value:14},
-                {name:'教研论文',value:22},
-                {name:'评估中心相关',value:11},
-                {name:'教育规划项目',value:9},
-                {name:'横向科研项目',value:14},
-                {name:'纵向科研项目',value:15},
-                {name:'著作',value:7},
-                {name:'科研论文',value:4},
-                {name:'软件著作权',value:10},
-                {name:'科研项目结项',value:8},
-                {name:'学科竞赛',value:26},
-                {name:'荣誉称号',value:5},
-            ],
+            data1:[],
             data2:[
                 {name:'计算机学院', value:8},
                 {name:'软件学院', value:10},
@@ -119,13 +115,15 @@
                 {name:'教育学院', value:4}
             ],
             options2: {
-                title: '2021.6-2022.6成果统计',
-                autoWidth: true,   // 设置宽高自适应
-                showValue: false,
+                title: '成果统计',
+                //autoWidth: true,   // 设置宽高自适应
+                showValue: true,
                 bgColor: '#F9EFCC',
                 fillColor: '#00887C',
                 contentColor: 'rgba(46,199,201,0.3)',
-                yEqual: 7
+                yEqual: 7,
+                width: 500,
+                height: 400,
             },
             options3: {
                 title: '2021.6-2022.6产学研统计',
@@ -142,17 +140,20 @@
         }),
         methods:{
             search() {
-                this.bysearch=true
-                    if(this.form.date1&&this.form.date2){
+                this.form.date1=this.value[0];
+                this.form.date2=this.value[1];
+                    if(!this.form.value){
                         SearchAll(this.form).then(res =>{
-                            this.data1 = res.list
+                            this.data1 = res
+                            this.hasdate=true
                         } )
-                    }
-                    if(this.form.value){
+                    }else{
                         SearchDetail(this.form).then(res =>{
-                            this.data1 = res.list
+                            this.data1 = res
+                            this.hastype=true
                         } )
                     }
+                this.bysearch=true
             }
         }
     }
