@@ -10,6 +10,7 @@
                 <el-button type="primary" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
                 <el-input v-model="query.key" placeholder="筛选关键词" class="handle-input mr10"></el-input>
                 <el-button type="primary" icon="search" @click="search">搜索</el-button>
+                <el-button icon="search" type="primary" style="float: right" @click="crawlerWeb('教务处-实践科_产学研立项')">爬取原网站</el-button>
             </div>
             <el-table :data="tableData" border ref="multipleTable" @selection-change="handleSelectionChange">
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
@@ -67,6 +68,7 @@
 <script>
 import chanxueyan from '../show/chanxueyan_edit';
 import {getAllChanXueYan, getChanXueYanDetail, getSearchChanXueYan} from '../../../api/chanxueyanAPI';
+import {crawlerWebSite} from "../../../api/commonAPI";
     export default {
     components:{'tool':chanxueyan},
         name: 'pro_stu',
@@ -117,6 +119,12 @@ import {getAllChanXueYan, getChanXueYanDetail, getSearchChanXueYan} from '../../
             }
         },
         methods: {
+            //爬取网站
+            crawlerWeb(td){
+                crawlerWebSite({crawlertd:td}).then(res => {
+                    alert(res);
+                })
+            },
             // 分页导航
             handleCurrentChange(val) {
                 this.$set(this.query, 'pageIndex', val);

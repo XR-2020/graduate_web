@@ -65,6 +65,7 @@
 <script>
     import {updateChanXueYan} from "../../../api/chanxueyanAPI";
     import {updateJiaoYuGuiHua} from "../../../api/jiaoyuguihuaAPI";
+    import {getTeacherList} from "../../../api/commonAPI";
 
     export default {
         name: 'jiaoyuguihua',
@@ -81,14 +82,13 @@
                     grade:'',
                     role:-1,
                 },
-                teacher_list:[{
-                    name:'教师1',
-                    badge:12112,
-                },{
-                    name:'教师2',
-                    badge:12113,
-                }],
+                teacher_list:[],
             }
+        },
+        created() {
+            getTeacherList().then(res =>{
+                this.teacher_list=res
+            } )
         },
         methods: {
             onSubmit() {

@@ -10,6 +10,7 @@
                 <el-button type="primary" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
                 <el-input v-model="query.key" placeholder="筛选关键词" class="handle-input mr10"></el-input>
                 <el-button type="primary" icon="search" @click="search">搜索</el-button>
+                <el-button icon="search" type="primary" style="float: right" @click="crawlerWeb('社科处_教育规划项目纵向结题')">爬取原网站</el-button>
             </div>
             <el-table :data="tableData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
@@ -75,6 +76,7 @@ import {
     getSearchJiaoYuGuiHua,
     getSearchJiaoYuGuiHuaDetail
 } from "../../../api/jiaoyuguihuaAPI";
+import {crawlerWebSite} from "../../../api/commonAPI";
     export default {
         name: 'edu_plan',
         components:{'jiaoyuguihua':jiaoyuguihua},
@@ -128,6 +130,12 @@ import {
             }
         },
         methods: {
+            //爬取网站
+            crawlerWeb(td){
+                crawlerWebSite({crawlertd:td}).then(res => {
+                    alert(res);
+                })
+            },
             // 分页导航
             handleCurrentChange(val) {
                 this.$set(this.query, 'pageIndex', val);

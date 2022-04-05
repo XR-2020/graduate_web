@@ -59,6 +59,7 @@
 <script>
     import {updateChanXueYan} from "../../../api/chanxueyanAPI";
     import {updatePingGuZhongXin} from "../../../api/pingguzhongxinAPI";
+    import {getTeacherList} from "../../../api/commonAPI";
 
     export default {
         name: 'pingguzhongxin',
@@ -73,16 +74,15 @@
                     grade:'',
                     role:-1,
                 },
-                teacher_list:[{
-                    name:'教师1',
-                    badge:12112,
-                },{
-                    name:'教师2',
-                    badge:12113,
-                }],
+                teacher_list:[],
             }
         },
         methods: {
+            created() {
+                getTeacherList().then(res =>{
+                    this.teacher_list=res
+                } )
+            },
             onSubmit() {
                 updatePingGuZhongXin(this.form).then(res =>{
                     this.$message.success(`添加成功`);

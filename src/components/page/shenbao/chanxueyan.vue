@@ -57,6 +57,7 @@
 
 <script>
 import {insertChanXueYan, updateChanXueYan} from "../../../api/chanxueyanAPI";
+import {getTeacherList} from "../../../api/commonAPI";
 
     export default {
         name: 'chanxueyan',
@@ -72,14 +73,13 @@ import {insertChanXueYan, updateChanXueYan} from "../../../api/chanxueyanAPI";
                     people:[],
                 },
                 open:false,
-                teacher_list:[{
-                    name:'教师1',
-                    badge:12112,
-                },{
-                    name:'教师2',
-                    badge:12113,
-                }],
+                teacher_list:[],
             }
+        },
+        created() {
+            getTeacherList().then(res =>{
+                this.teacher_list=res
+            } )
         },
         methods: {
             onSubmit() {
