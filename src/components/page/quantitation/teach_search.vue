@@ -148,12 +148,12 @@ import {crawlerWebSite} from "../../../api/commonAPI";
             // 获取 easy-mock 的模拟数据
             getData() {
                 if(this.query.key!==''){
-                    getSearchChanXueYan(this.query).then(res =>{
+                    getSearchJiaoYan(this.query).then(res =>{
                         this.tableData = res.list
                         this.pageTotal=res.pageTotal
                     } )
                 }else{
-                    getAllChanXueYan(this.query).then(res=>{
+                    getAllJiaoYan(this.query).then(res=>{
                         this.tableData = res.list
                         this.pageTotal=res.pageTotal
                     })
