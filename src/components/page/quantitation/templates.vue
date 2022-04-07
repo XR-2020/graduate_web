@@ -136,8 +136,10 @@ import {crawlerWebSite} from "../../../api/commonAPI";
         methods: {
             //爬取网站
             crawlerWeb(td){
+                alert("正在爬取....请稍后")
                 crawlerWebSite({crawlertd:td}).then(res => {
                     alert(res);
+                    this.getData();this.getData();
                 })
             },
             // 分页导航

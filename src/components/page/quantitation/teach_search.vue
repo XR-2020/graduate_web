@@ -136,8 +136,10 @@ import {crawlerWebSite} from "../../../api/commonAPI";
         methods: {
             //爬取网站
             crawlerWeb(td){
+                alert("正在爬取....请稍后")
                 crawlerWebSite({crawlertd:td}).then(res => {
                     alert(res);
+                    this.getData();
                 })
             },
             // 分页导航
@@ -170,7 +172,7 @@ import {crawlerWebSite} from "../../../api/commonAPI";
                 getJiaoYanDetail({ids: row.id}).then(res =>{
                     this.people=res.data
                 } )
-                this.detail=true;
+                this.isdetail=true;
             },
             formatter(row, column) {
                 return row.address;
