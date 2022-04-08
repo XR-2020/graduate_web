@@ -35,7 +35,7 @@ export const deleteOneJiaoYuGuiHua = query => {
 //查看某个项目的参与人信息
 export const getSearchJiaoYuGuiHuaDetail = query => {
     return request({
-        url: '/getChanXueYanDetail',
+        url: '/getJiaoYuGuiHuaDetail',
         method: 'get',
         params: query
     });

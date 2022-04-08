@@ -23,16 +23,7 @@
                     <el-form-item label="成果依据">
                         <el-input v-model="form.lianghua"></el-input>
                     </el-form-item>
-<!--                    <el-form-item  label="第一完成人">-->
-<!--                        <el-select v-model="form.firstpeople">-->
-<!--                            <el-option-->
-<!--                                v-for="item in teacher_list"-->
-<!--                                :key="item.badge"-->
-<!--                                :label="item.badge+'—'+item.name"-->
-<!--                                :value="item.badge">-->
-<!--                            </el-option>-->
-<!--                        </el-select>-->
-<!--                    </el-form-item>-->
+
                     <el-form-item label="参与人情况">
                         <el-select multiple filterable v-model="form.people">
                             <el-option
@@ -48,6 +39,17 @@
                             <el-date-picker type="date" placeholder="选择日期" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
                         </el-col>
                      </el-form-item>
+
+                    <el-form-item  label="申报人">
+                        <el-select v-model="form.shenbao">
+                            <el-option
+                                v-for="item in teacher_list"
+                                :key="item.badge"
+                                :label="item.badge+'—'+item.name"
+                                :value="item.badge">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
                     <el-form-item>
                         <el-button type="primary" @click="onSubmit">提交</el-button>
                         <router-link to="/项目申报"><el-button>取消</el-button></router-link>
@@ -76,7 +78,17 @@
                     partment:'',
                      finishtime: '',
                     role:-1,
-
+                    shenbao:''
+                },
+                baseform: {
+                    name: '',
+                    people:[],
+                    lianghua:'',
+                    wenhao:'',
+                    partment:'',
+                    finishtime: '',
+                    role:-1,
+                    shenbao:''
                 },
                 is_editor:true,
                 teacher_list:[],
@@ -90,7 +102,13 @@
         methods: {
             onSubmit() {
                 updateJiaoYan(this.form).then(res =>{
-                    this.$message.success(`添加成功`);
+                    if(res.data!==0){
+                        this.$message.success(`添加成功`);
+                    }else{
+                        this.$message.error(`添加失败，教研研成果已被申报`);
+                    }
+                    this.form=this.baseform
+
                 } );
             }
         }

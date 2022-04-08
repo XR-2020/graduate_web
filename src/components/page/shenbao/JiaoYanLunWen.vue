@@ -17,16 +17,7 @@
                     <el-form-item label="部门">
                         <el-input v-model="form.partment"></el-input>
                     </el-form-item>
-<!--                    <el-form-item  label="第一完成人">-->
-<!--                        <el-select v-model="form.firstpeople">-->
-<!--                            <el-option-->
-<!--                                v-for="item in teacher_list"-->
-<!--                                :key="item.badge"-->
-<!--                                :label="item.badge+'—'+item.name"-->
-<!--                                :value="item.badge">-->
-<!--                            </el-option>-->
-<!--                        </el-select>-->
-<!--                    </el-form-item>-->
+
                     <el-form-item label="参与人情况">
                         <el-select multiple filterable v-model="form.people">
                             <el-option
@@ -41,6 +32,17 @@
                         <el-col :span="11">
                             <el-date-picker type="date" placeholder="选择日期" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
                         </el-col>
+                    </el-form-item>
+
+                    <el-form-item  label="申报人">
+                        <el-select v-model="form.shenbao">
+                            <el-option
+                                v-for="item in teacher_list"
+                                :key="item.badge"
+                                :label="item.badge+'—'+item.name"
+                                :value="item.badge">
+                            </el-option>
+                        </el-select>
                     </el-form-item>
                     <el-form-item>
                         <el-button type="primary" @click="onSubmit">提交</el-button>
@@ -68,6 +70,15 @@
                     finishtime: '',
                     partment:'',
                     people:[],
+                    shenbao:''
+                },
+                baseform: {
+                    role:-1,
+                    name: '',
+                    finishtime: '',
+                    partment:'',
+                    people:[],
+                    shenbao:''
                 },
                 is_editor:true,
                 teacher_list:[],
@@ -81,7 +92,13 @@
         methods: {
             onSubmit() {
                 updateJiaoYanLunWen(this.form).then(res =>{
-                    this.$message.success(`添加成功`);
+                    if(res.data!==0){
+                        this.$message.success(`添加成功`);
+                        this.form=this.baseform
+                    }else{
+                        this.$message.error(`添加失败，教研研成果已被申报`);
+                        this.form=this.baseform
+                    }
                 } );
             }
         }
