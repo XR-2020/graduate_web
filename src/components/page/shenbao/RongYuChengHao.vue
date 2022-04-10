@@ -53,6 +53,23 @@
                             </el-option>
                         </el-select>
                     </el-form-item>
+
+                    <el-form-item label="证明材料">
+                        <el-form ref="form" :model="form" label-width="70px">
+                            <el-upload
+                                class="upload-demo"
+                                drag
+                                accept=".zip"
+                                action="http://localhost:8080/RongYuChengHaoMetials"
+                                :limit="1"
+                                :on-exceed="handleChange"
+                                :on-success="uploadSuccess"
+                                :show-file-list="true">
+                                <i class="el-icon-upload"></i>
+                                <div class="el-upload__text">将压缩包拖到此处，或<em>点击上传</em></div>
+                            </el-upload>
+                        </el-form>
+                    </el-form-item>
                     <el-form-item>
                         <el-button type="primary" @click="onSubmit">提交</el-button>
                         <router-link to="/项目申报" v-if="is_editor"><el-button>取消</el-button></router-link>
@@ -80,7 +97,8 @@
                     level:'',
                     role:-1,
                     partment:'',
-                    shenbao:''
+                    shenbao:'',
+                    path:''
                 },
                 baseform: {
                     name: '',
@@ -89,7 +107,8 @@
                     level:'',
                     role:-1,
                     partment:'',
-                    shenbao:''
+                    shenbao:'',
+                    path:''
                 },
                 teacher_list:[],
             }
@@ -100,6 +119,12 @@
             } )
         },
         methods: {
+            uploadSuccess(response,file,fileList){
+                this.form.path=response
+            },
+            handleChange(file, fileList) {
+                this.$message.warning(`当前限制选择 1 个文件，请删除后继续上传！`)
+            },
             onSubmit() {
                 updateHonor(this.form).then(res =>{
                     if(res.data!==0){

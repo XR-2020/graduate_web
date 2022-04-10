@@ -75,7 +75,7 @@
                 <el-upload
                     class="upload-demo"
                     drag
-                    action="https://jsonplaceholder.typicode.com/posts/"
+                    action="http://localhost:8080/competitionImport"
                     multiple>
                     <i class="el-icon-upload"></i>
                     <div class="el-upload__text">将Excel文件拖到此处，或<em>点击上传</em></div>
@@ -83,7 +83,7 @@
             </el-form>
             <span slot="footer" class="dialog-footer">
 		        <el-button @click="isimport = false">取 消</el-button>
-		        <el-button type="primary" @click="saveEdit">确 定</el-button>
+		        <el-button type="primary" @click="isimport = false,getData()">确 定</el-button>
 		    </span>
         </el-dialog>
     </div>
