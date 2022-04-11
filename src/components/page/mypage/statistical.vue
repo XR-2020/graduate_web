@@ -35,18 +35,19 @@
                     <schart class="schart" canvasId="line" :data="data1" type="line" :options="options2"></schart>
                     <br/>
                     <p>产学研明细</p>
-                    <el-table :data="tableData" border>
-                        <el-table-column prop="id" label="ID" width="40px" align="center">
+                    <br/>
+                    <el-table :data="chanxueyan" border>
+                        <el-table-column prop="object.id" label="ID"  width="35" align="center">
                         </el-table-column>
-                        <el-table-column prop="partment" label="部门" align="center">
+                        <el-table-column prop="object.partment" label="部门" align="center">
                         </el-table-column>
-                        <el-table-column prop="name" label="项目名称" align="center">
+                        <el-table-column prop="object.name" label="项目名称" align="center">
                         </el-table-column>
-                        <el-table-column prop="wenhao" label="立项文号" align="center">
+                        <el-table-column prop="object.wenhao" label="立项文号" align="center">
                         </el-table-column>
-                        <el-table-column prop="lianghua" label="成果依据" align="center">
+                        <el-table-column prop="object.lianghua" label="成果依据" align="center">
                         </el-table-column>
-                        <el-table-column prop="finishtime" label="完成时间" align="center">
+                        <el-table-column prop="object.finishtime" label="完成时间" align="center">
                         </el-table-column>
                         <el-table-column align="center" label="人员情况" width="185px">
                             <template slot-scope="scope">
@@ -59,18 +60,19 @@
                     </el-table>
                     <br/>
                     <p>教研项目明细</p>
-                    <el-table :data="tableData" border style="width: 100%">
-                        <el-table-column prop="id" label="ID" width="55" align="center">
+                    <br/>
+                    <el-table :data="jiaoyanxiangmu" border style="width: 100%">
+                        <el-table-column prop="object.id" label="ID"  width="35" align="center">
                         </el-table-column>
-                        <el-table-column prop="partment" label="部门" align="center">
+                        <el-table-column prop="object.partment" label="部门" align="center">
                         </el-table-column>
-                        <el-table-column prop="name" label="项目名称" align="center">
+                        <el-table-column prop="object.name" label="项目名称" align="center">
                         </el-table-column>
-                        <el-table-column prop="wenhao" label="立项文号" align="center">
+                        <el-table-column prop="object.wenhao" label="立项文号" align="center">
                         </el-table-column>
-                        <el-table-column prop="lianghua" label="成果依据" align="center">
+                        <el-table-column prop="object.lianghua" label="成果依据" align="center">
                         </el-table-column>
-                        <el-table-column prop="finishtime" label="完成时间" align="center">
+                        <el-table-column prop="object.finishtime" label="完成时间" align="center">
                         </el-table-column>
                         <el-table-column align="center" label="人员情况" width="185px">
                             <template slot-scope="scope">
@@ -83,14 +85,15 @@
                     </el-table>
                     <br/>
                     <p>教研论文明细</p>
-                    <el-table :data="tableData" border style="width: 100%">
-                        <el-table-column prop="id" label="ID" width="55" align="center">
+                    <br/>
+                    <el-table :data="jiaoyanlunwen" border style="width: 100%">
+                        <el-table-column prop="object.id" label="ID"  width="35" align="center">
                         </el-table-column>
-                        <el-table-column prop="name" label="论文名称" align="center">
+                        <el-table-column prop="object.name" label="论文名称" align="center">
                         </el-table-column>
-                        <el-table-column prop="partment" label="部门" align="center">
+                        <el-table-column prop="object.partment" label="部门" align="center">
                         </el-table-column>
-                        <el-table-column prop="finishtime" label="完成时间" align="center">
+                        <el-table-column prop="object.finishtime" label="完成时间" align="center">
                         </el-table-column>
                         <el-table-column align="center" label="人员情况" width="185px">
                             <template slot-scope="scope">
@@ -103,20 +106,21 @@
                     </el-table>
                     <br/>
                     <p>教育规划项目明细</p>
-                    <el-table :data="tableData" border style="width: 100%">
-                        <el-table-column prop="id" label="ID" width="55" align="center">
+                    <br/>
+                    <el-table :data="jiaoyuguihua" border style="width: 100%">
+                        <el-table-column prop="object.id" label="ID"  width="35" align="center">
                         </el-table-column>
-                        <el-table-column prop="name" label="项目名称" width="120" align="center">
+                        <el-table-column prop="object.name" label="项目名称" width="120" align="center">
                         </el-table-column>
-                        <el-table-column prop="danwei" label="结题单位" width="120" align="center">
+                        <el-table-column prop="object.danwei" label="结题单位" width="120" align="center">
                         </el-table-column>
-                        <el-table-column prop="level" label="项目级别" width="120" align="center">
+                        <el-table-column prop="object.level" label="项目级别" width="120" align="center">
                         </el-table-column>
-                        <el-table-column prop="grade" label="结题等级" width="120" align="center">
+                        <el-table-column prop="object.grade" label="结题等级" width="120" align="center">
                         </el-table-column>
-                        <el-table-column prop="partment" label="部门" width="120" align="center">
+                        <el-table-column prop="object.partment" label="部门" width="120" align="center">
                         </el-table-column>
-                        <el-table-column prop="finishtime" label="完成时间" width="120" align="center">
+                        <el-table-column prop="object.finishtime" label="完成时间" width="120" align="center">
                         </el-table-column>
                         <el-table-column align="center" label="人员情况" width="185px">
                             <template slot-scope="scope">
@@ -129,20 +133,21 @@
                     </el-table>
                     <br/>
                     <p>纵向科研项目明细</p>
-                    <el-table :data="tableData" border style="width: 100%">
-                        <el-table-column prop="id" label="ID" width="55" align="center">
+                    <br/>
+                    <el-table :data="zongxiangkeyan" border style="width: 100%">
+                        <el-table-column prop="object.id" label="ID"  width="35" align="center">
                         </el-table-column>
-                        <el-table-column prop="partment" label="部门" align="center">
+                        <el-table-column prop="object.partment" label="部门" align="center">
                         </el-table-column>
-                        <el-table-column prop="name" label="项目名称" align="center">
+                        <el-table-column prop="object.name" label="项目名称" align="center">
                         </el-table-column>
-                        <el-table-column prop="lixiang" label="立项部门" align="center">
+                        <el-table-column prop="object.lixiang" label="立项部门" align="center">
                         </el-table-column>
-                        <el-table-column prop="type" label="项目类别" align="center">
+                        <el-table-column prop="object.type" label="项目类别" align="center">
                         </el-table-column>
-                        <el-table-column prop="level" label="项目级别" align="center">
+                        <el-table-column prop="object.level" label="项目级别" align="center">
                         </el-table-column>
-                        <el-table-column prop="finishtime" label="完成时间" width="120" align="center">
+                        <el-table-column prop="object.finishtime" label="完成时间" width="120" align="center">
                         </el-table-column>
                         <el-table-column align="center" label="人员情况" width="185px">
                             <template slot-scope="scope">
@@ -155,16 +160,17 @@
                     </el-table>
                     <br/>
                     <p>评估中心相关明细</p>
-                    <el-table :data="tableData" border style="width: 100%">
-                        <el-table-column prop="id" label="ID" width="55" align="center">
+                    <br/>
+                    <el-table :data="pingguzhongxin" border style="width: 100%">
+                        <el-table-column prop="object.id" label="ID" width="35" align="center">
                         </el-table-column>
-                        <el-table-column prop="name" label="名称" align="center">
+                        <el-table-column prop="object.name" label="名称" align="center">
                         </el-table-column>
-                        <el-table-column prop="grade" label="获奖等级" align="center">
+                        <el-table-column prop="object.grade" label="获奖等级" align="center">
                         </el-table-column>
-                        <el-table-column prop="partment" label="部门" align="center">
+                        <el-table-column prop="object.partment" label="部门" align="center">
                         </el-table-column>
-                        <el-table-column prop="finishtime" label="完成时间" walign="center">
+                        <el-table-column prop="object.finishtime" label="完成时间" walign="center">
                         </el-table-column>
                         <el-table-column align="center" label="人员情况" width="185px">
                             <template slot-scope="scope">
@@ -177,14 +183,15 @@
                     </el-table>
                     <br/>
                     <p>专利明细</p>
-                    <el-table :data="tableData" border style="width: 100%">
-                        <el-table-column prop="id" label="ID" align="center">
+                    <br/>
+                    <el-table :data="zhuanli" border style="width: 100%">
+                        <el-table-column prop="object.id" label="ID"  width="35" align="center">
                         </el-table-column>
-                        <el-table-column prop="name" label="名称" align="center">
+                        <el-table-column prop="object.name" label="名称" align="center">
                         </el-table-column>
-                        <el-table-column prop="partment" label="部门" align="center">
+                        <el-table-column prop="object.partment" label="部门" align="center">
                         </el-table-column>
-                        <el-table-column prop="finishtime" label="完成时间" align="center">
+                        <el-table-column prop="object.finishtime" label="完成时间" align="center">
                         </el-table-column>
                         <el-table-column align="center" label="人员情况" width="185px">
                             <template slot-scope="scope">
@@ -197,14 +204,15 @@
                     </el-table>
                     <br/>
                     <p>横向科研明细</p>
-                    <el-table :data="tableData" border style="width: 100%">
-                        <el-table-column prop="id" label="ID" width="55" align="center">
+                    <br/>
+                    <el-table :data="hengxiangkeyan" border style="width: 100%">
+                        <el-table-column prop="object.id" label="ID"  width="35" align="center">
                         </el-table-column>
-                        <el-table-column prop="name" label="名称" align="center">
+                        <el-table-column prop="object.name" label="名称" align="center">
                         </el-table-column>
-                        <el-table-column prop="partment" label="部门"  align="center">
+                        <el-table-column prop="object.partment" label="部门"  align="center">
                         </el-table-column>
-                        <el-table-column prop="finishtime" label="完成时间" align="center">
+                        <el-table-column prop="object.finishtime" label="完成时间" align="center">
                         </el-table-column>
                         <el-table-column align="center" label="人员情况" width="185px">
                             <template slot-scope="scope">
@@ -217,14 +225,15 @@
                     </el-table>
                     <br/>
                     <p>著作明细</p>
-                    <el-table :data="tableData" border style="width: 100%">
-                        <el-table-column prop="id" label="ID" width="55" align="center">
+                    <br/>
+                    <el-table :data="zhuzuo" border style="width: 100%">
+                        <el-table-column prop="object.id" label="ID"  width="35" align="center">
                         </el-table-column>
-                        <el-table-column prop="partment" label="部门" align="center">
+                        <el-table-column prop="object.partment" label="部门" align="center">
                         </el-table-column>
-                        <el-table-column prop="name" label="名称" align="center">
+                        <el-table-column prop="object.name" label="名称" align="center">
                         </el-table-column>
-                        <el-table-column prop="finishtime" label="完成时间"  align="center">
+                        <el-table-column prop="object.finishtime" label="完成时间"  align="center">
                         </el-table-column>
                         <el-table-column align="center" label="人员情况" width="185px">
                             <template slot-scope="scope">
@@ -237,14 +246,15 @@
                     </el-table>
                     <br/>
                     <p>科研论文明细</p>
-                    <el-table :data="tableData" border style="width: 100%">
-                        <el-table-column prop="id" label="ID" width="55" align="center">
+                    <br/>
+                    <el-table :data="keyanlunwen" border style="width: 100%">
+                        <el-table-column prop="object.id" label="ID"  width="35" align="center">
                         </el-table-column>
-                        <el-table-column prop="partment" label="部门" align="center">
+                        <el-table-column prop="object.partment" label="部门" align="center">
                         </el-table-column>
-                        <el-table-column prop="name" label="题目" align="center">
+                        <el-table-column prop="object.name" label="题目" align="center">
                         </el-table-column>
-                        <el-table-column prop="finishtime" label="完成时间" align="center">
+                        <el-table-column prop="object.finishtime" label="完成时间" align="center">
                         </el-table-column>
                         <el-table-column align="center" label="人员情况" width="185px">
                             <template slot-scope="scope">
@@ -257,14 +267,15 @@
                     </el-table>
                     <br/>
                     <p>软件著作权</p>
-                    <el-table :data="tableData" border style="width: 100%">
-                        <el-table-column prop="id" label="ID" width="55" align="center">
+                    <br/>
+                    <el-table :data="ruanjianzuzuo" border style="width: 100%">
+                        <el-table-column prop="object.id" label="ID"  width="35" align="center">
                         </el-table-column>
-                        <el-table-column prop="partment" label="部门" align="center">
+                        <el-table-column prop="object.partment" label="部门" align="center">
                         </el-table-column>
-                        <el-table-column prop="name" label="题目" align="center">
+                        <el-table-column prop="object.name" label="题目" align="center">
                         </el-table-column>
-                        <el-table-column prop="finishtime" label="完成时间" align="center">
+                        <el-table-column prop="object.finishtime" label="完成时间" align="center">
                         </el-table-column>
                         <el-table-column align="center" label="人员情况" width="185px">
                             <template slot-scope="scope">
@@ -277,14 +288,15 @@
                     </el-table>
                     <br/>
                     <p>科研项目结项明细</p>
-                    <el-table :data="tableData" border style="width: 100%">
-                        <el-table-column prop="id" label="ID" align="center">
+                    <br/>
+                    <el-table :data="keyanxiangmujiexiang" border style="width: 100%">
+                        <el-table-column prop="object.id" label="ID"  width="35" align="center">
                         </el-table-column>
-                        <el-table-column prop="partment" label="部门" align="center">
+                        <el-table-column prop="object.partment" label="部门" align="center">
                         </el-table-column>
-                        <el-table-column prop="name" label="名称" align="center">
+                        <el-table-column prop="object.name" label="名称" align="center">
                         </el-table-column>
-                        <el-table-column prop="finishtime" label="完成时间" align="center">
+                        <el-table-column prop="object.finishtime" label="完成时间" align="center">
                         </el-table-column>
                         <el-table-column align="center" label="人员情况" width="185px">
                             <template slot-scope="scope">
@@ -297,14 +309,15 @@
                     </el-table>
                     <br/>
                     <p>学科竞赛明细</p>
-                    <el-table :data="tableData" border style="width: 100%">
-                        <el-table-column prop="id" label="ID" width="55" align="center">
+                    <br/>
+                    <el-table :data="xuekejingsai" border style="width: 100%">
+                        <el-table-column prop="object.id" label="ID" width="35" align="center">
                         </el-table-column>
-                        <el-table-column prop="name" label="竞赛名称"  align="center">
+                        <el-table-column prop="object.name" label="竞赛名称"  align="center">
                         </el-table-column>
-                        <el-table-column prop="grade" label="获奖等级"  align="center">
+                        <el-table-column prop="object.grade" label="获奖等级"  align="center">
                         </el-table-column>
-                        <el-table-column prop="level" label="比赛等级"  align="center">
+                        <el-table-column prop="object.level" label="比赛等级"  align="center">
                         </el-table-column>
                         <el-table-column align="center" label="指导教师情况" width="185px">
                             <template slot-scope="scope">
@@ -321,14 +334,15 @@
                     </el-table>
                     <br/>
                     <p>荣誉称号明细</p>
-                    <el-table :data="tableData" border style="width: 100%">
-                        <el-table-column prop="id" label="ID" width="55" align="center">
+                    <br/>
+                    <el-table :data="rongyuchenghao" border style="width: 100%">
+                        <el-table-column prop="object.id" label="ID"  width="35" align="center">
                         </el-table-column>
-                        <el-table-column prop="name" label="称号名称" align="center">
+                        <el-table-column prop="object.name" label="称号名称" align="center">
                         </el-table-column>
-                        <el-table-column prop="level" label="级别"  align="center">
+                        <el-table-column prop="object.level" label="级别"  align="center">
                         </el-table-column>
-                        <el-table-column prop="finishtime" label="获奖时间"  align="center">
+                        <el-table-column prop="object.finishtime" label="获奖时间"  align="center">
                         </el-table-column>
                         <el-table-column align="center" label="获奖人员情况" width="185px">
                             <template slot-scope="scope">
@@ -344,17 +358,17 @@
                     <!--                产学研明细-->
                     <template v-if="form.value === '1'">
                         <el-table :data="tableData" border>
-                            <el-table-column prop="id" label="ID" width="40px" align="center">
+                            <el-table-column prop="object.id" label="ID" width="40px" align="center">
                             </el-table-column>
-                            <el-table-column prop="partment" label="部门" align="center">
+                            <el-table-column prop="object.partment" label="部门" align="center">
                             </el-table-column>
-                            <el-table-column prop="name" label="项目名称" align="center">
+                            <el-table-column prop="object.name" label="项目名称" align="center">
                             </el-table-column>
-                            <el-table-column prop="wenhao" label="立项文号" align="center">
+                            <el-table-column prop="object.wenhao" label="立项文号" align="center">
                             </el-table-column>
-                            <el-table-column prop="lianghua" label="成果依据" align="center">
+                            <el-table-column prop="object.lianghua" label="成果依据" align="center">
                             </el-table-column>
-                            <el-table-column prop="finishtime" label="完成时间" align="center">
+                            <el-table-column prop="object.finishtime" label="完成时间" align="center">
                             </el-table-column>
                             <el-table-column align="center" label="人员情况" width="185px">
                                 <template slot-scope="scope">
@@ -369,17 +383,17 @@
                     <!--                    教研项目明细-->
                     <template v-if="form.value === '2'">
                         <el-table :data="tableData" border style="width: 100%">
-                            <el-table-column prop="id" label="ID" width="55" align="center">
+                            <el-table-column prop="object.id" label="ID"  width="35" align="center">
                             </el-table-column>
-                            <el-table-column prop="partment" label="部门" align="center">
+                            <el-table-column prop="object.partment" label="部门" align="center">
                             </el-table-column>
-                            <el-table-column prop="name" label="项目名称" align="center">
+                            <el-table-column prop="object.name" label="项目名称" align="center">
                             </el-table-column>
-                            <el-table-column prop="wenhao" label="立项文号" align="center">
+                            <el-table-column prop="object.wenhao" label="立项文号" align="center">
                             </el-table-column>
-                            <el-table-column prop="lianghua" label="成果依据" align="center">
+                            <el-table-column prop="object.lianghua" label="成果依据" align="center">
                             </el-table-column>
-                            <el-table-column prop="finishtime" label="完成时间" align="center">
+                            <el-table-column prop="object.finishtime" label="完成时间" align="center">
                             </el-table-column>
                             <el-table-column align="center" label="人员情况" width="185px">
                                 <template slot-scope="scope">
@@ -394,14 +408,14 @@
                     <!--                教研论文明细-->
                     <template v-if="form.value === '3'">
                         <el-table :data="tableData" border style="width: 100%">
-                            <el-table-column type="selection" width="55" align="center"></el-table-column>
-                            <el-table-column prop="id" label="ID" width="55" align="center">
+                            <el-table-column type="selection"  width="35" align="center"></el-table-column>
+                            <el-table-column prop="object.id" label="ID" width="55" align="center">
                             </el-table-column>
-                            <el-table-column prop="name" label="论文名称" align="center">
+                            <el-table-column prop="object.name" label="论文名称" align="center">
                             </el-table-column>
-                            <el-table-column prop="partment" label="部门" align="center">
+                            <el-table-column prop="object.partment" label="部门" align="center">
                             </el-table-column>
-                            <el-table-column prop="finishtime" label="完成时间" align="center">
+                            <el-table-column prop="object.finishtime" label="完成时间" align="center">
                             </el-table-column>
                             <el-table-column align="center" label="人员情况" width="185px">
                                 <template slot-scope="scope">
@@ -416,19 +430,19 @@
                     <!--                教育规划项目明细-->
                     <template v-if="form.value === '4'">
                         <el-table :data="tableData" border style="width: 100%">
-                            <el-table-column prop="id" label="ID" width="55" align="center">
+                            <el-table-column prop="object.id" label="ID"  width="35" align="center">
                             </el-table-column>
-                            <el-table-column prop="name" label="项目名称" width="120" align="center">
+                            <el-table-column prop="object.name" label="项目名称" width="120" align="center">
                             </el-table-column>
-                            <el-table-column prop="danwei" label="结题单位" width="120" align="center">
+                            <el-table-column prop="object.danwei" label="结题单位" width="120" align="center">
                             </el-table-column>
-                            <el-table-column prop="level" label="项目级别" width="120" align="center">
+                            <el-table-column prop="object.level" label="项目级别" width="120" align="center">
                             </el-table-column>
-                            <el-table-column prop="grade" label="结题等级" width="120" align="center">
+                            <el-table-column prop="object.grade" label="结题等级" width="120" align="center">
                             </el-table-column>
-                            <el-table-column prop="partment" label="部门" width="120" align="center">
+                            <el-table-column prop="object.partment" label="部门" width="120" align="center">
                             </el-table-column>
-                            <el-table-column prop="finishtime" label="完成时间" width="120" align="center">
+                            <el-table-column prop="object.finishtime" label="完成时间" width="120" align="center">
                             </el-table-column>
                             <el-table-column align="center" label="人员情况" width="185px">
                                 <template slot-scope="scope">
@@ -443,19 +457,19 @@
                     <!--                纵向科研项目明细-->
                     <template v-if="form.value === '5'">
                         <el-table :data="tableData" border style="width: 100%">
-                            <el-table-column prop="id" label="ID" width="55" align="center">
+                            <el-table-column prop="object.id" label="ID" width="55" align="center">
                             </el-table-column>
-                            <el-table-column prop="partment" label="部门" align="center">
+                            <el-table-column prop="object.partment" label="部门" align="center">
                             </el-table-column>
-                            <el-table-column prop="name" label="项目名称" align="center">
+                            <el-table-column prop="object.name" label="项目名称" align="center">
                             </el-table-column>
-                            <el-table-column prop="lixiang" label="立项部门" align="center">
+                            <el-table-column prop="object.lixiang" label="立项部门" align="center">
                             </el-table-column>
-                            <el-table-column prop="type" label="项目类别" align="center">
+                            <el-table-column prop="object.type" label="项目类别" align="center">
                             </el-table-column>
-                            <el-table-column prop="level" label="项目级别" align="center">
+                            <el-table-column prop="object.level" label="项目级别" align="center">
                             </el-table-column>
-                            <el-table-column prop="finishtime" label="完成时间" width="120" align="center">
+                            <el-table-column prop="object.finishtime" label="完成时间" width="120" align="center">
                             </el-table-column>
                             <el-table-column align="center" label="人员情况" width="185px">
                                 <template slot-scope="scope">
@@ -470,15 +484,15 @@
                     <!--                评估中心相关明细-->
                     <template v-if="form.value === '6'">
                         <el-table :data="tableData" border style="width: 100%">
-                            <el-table-column prop="id" label="ID" width="55" align="center">
+                            <el-table-column prop="object.id" label="ID" width="55" align="center">
                             </el-table-column>
-                            <el-table-column prop="name" label="名称" align="center">
+                            <el-table-column prop="object.name" label="名称" align="center">
                             </el-table-column>
-                            <el-table-column prop="grade" label="获奖等级" align="center">
+                            <el-table-column prop="object.grade" label="获奖等级" align="center">
                             </el-table-column>
-                            <el-table-column prop="partment" label="部门" align="center">
+                            <el-table-column prop="object.partment" label="部门" align="center">
                             </el-table-column>
-                            <el-table-column prop="finishtime" label="完成时间" walign="center">
+                            <el-table-column prop="object.finishtime" label="完成时间" walign="center">
                             </el-table-column>
                             <el-table-column align="center" label="人员情况" width="185px">
                                 <template slot-scope="scope">
@@ -493,13 +507,13 @@
                     <!--                专利明细-->
                     <template v-if="form.value === '7'">
                         <el-table :data="tableData" border style="width: 100%">
-                            <el-table-column prop="id" label="ID" align="center">
+                            <el-table-column prop="object.id" label="ID" align="center">
                             </el-table-column>
-                            <el-table-column prop="name" label="名称" align="center">
+                            <el-table-column prop="object.name" label="名称" align="center">
                             </el-table-column>
-                            <el-table-column prop="partment" label="部门" align="center">
+                            <el-table-column prop="object.partment" label="部门" align="center">
                             </el-table-column>
-                            <el-table-column prop="finishtime" label="完成时间" align="center">
+                            <el-table-column prop="object.finishtime" label="完成时间" align="center">
                             </el-table-column>
                             <el-table-column align="center" label="人员情况" width="185px">
                                 <template slot-scope="scope">
@@ -514,13 +528,13 @@
                     <!--                横向科研明细-->
                     <template v-if="form.value === '8'">
                         <el-table :data="tableData" border style="width: 100%">
-                            <el-table-column prop="id" label="ID" width="55" align="center">
+                            <el-table-column prop="object.id" label="ID" width="55" align="center">
                             </el-table-column>
-                            <el-table-column prop="name" label="名称" align="center">
+                            <el-table-column prop="object.name" label="名称" align="center">
                             </el-table-column>
-                            <el-table-column prop="partment" label="部门"  align="center">
+                            <el-table-column prop="object.partment" label="部门"  align="center">
                             </el-table-column>
-                            <el-table-column prop="finishtime" label="完成时间" align="center">
+                            <el-table-column prop="object.finishtime" label="完成时间" align="center">
                             </el-table-column>
                             <el-table-column align="center" label="人员情况" width="185px">
                                 <template slot-scope="scope">
@@ -535,13 +549,13 @@
                     <!--                著作明细-->
                     <template v-if="form.value === '9'">
                         <el-table :data="tableData" border style="width: 100%">
-                            <el-table-column prop="id" label="ID" width="55" align="center">
+                            <el-table-column prop="object.id" label="ID" width="55" align="center">
                             </el-table-column>
-                            <el-table-column prop="partment" label="部门" align="center">
+                            <el-table-column prop="object.partment" label="部门" align="center">
                             </el-table-column>
-                            <el-table-column prop="name" label="名称" align="center">
+                            <el-table-column prop="object.name" label="名称" align="center">
                             </el-table-column>
-                            <el-table-column prop="finishtime" label="完成时间"  align="center">
+                            <el-table-column prop="object.finishtime" label="完成时间"  align="center">
                             </el-table-column>
                             <el-table-column align="center" label="人员情况" width="185px">
                                 <template slot-scope="scope">
@@ -556,13 +570,13 @@
                     <!--                科研论文明细-->
                     <template v-if="form.value === '10'">
                         <el-table :data="tableData" border style="width: 100%">
-                            <el-table-column prop="id" label="ID" width="55" align="center">
+                            <el-table-column prop="object.id" label="ID" width="55" align="center">
                             </el-table-column>
-                            <el-table-column prop="partment" label="部门" align="center">
+                            <el-table-column prop="object.partment" label="部门" align="center">
                             </el-table-column>
-                            <el-table-column prop="name" label="题目" align="center">
+                            <el-table-column prop="object.name" label="题目" align="center">
                             </el-table-column>
-                            <el-table-column prop="finishtime" label="完成时间" align="center">
+                            <el-table-column prop="object.finishtime" label="完成时间" align="center">
                             </el-table-column>
                             <el-table-column align="center" label="人员情况" width="185px">
                                 <template slot-scope="scope">
@@ -577,13 +591,13 @@
                     <!--                软件著作权-->
                     <template v-if="form.value === '11'">
                         <el-table :data="tableData" border style="width: 100%">
-                            <el-table-column prop="id" label="ID" width="55" align="center">
+                            <el-table-column prop="object.id" label="ID" width="55" align="center">
                             </el-table-column>
-                            <el-table-column prop="partment" label="部门" align="center">
+                            <el-table-column prop="object.partment" label="部门" align="center">
                             </el-table-column>
-                            <el-table-column prop="name" label="题目" align="center">
+                            <el-table-column prop="object.name" label="题目" align="center">
                             </el-table-column>
-                            <el-table-column prop="finishtime" label="完成时间" align="center">
+                            <el-table-column prop="object.finishtime" label="完成时间" align="center">
                             </el-table-column>
                             <el-table-column align="center" label="人员情况" width="185px">
                                 <template slot-scope="scope">
@@ -598,13 +612,13 @@
                     <!--                科研项目结项明细-->
                     <template v-if="form.value === '12'">
                         <el-table :data="tableData" border style="width: 100%">
-                            <el-table-column prop="id" label="ID" align="center">
+                            <el-table-column prop="object.id" label="ID" align="center">
                             </el-table-column>
-                            <el-table-column prop="partment" label="部门" align="center">
+                            <el-table-column prop="object.partment" label="部门" align="center">
                             </el-table-column>
-                            <el-table-column prop="name" label="名称" align="center">
+                            <el-table-column prop="object.name" label="名称" align="center">
                             </el-table-column>
-                            <el-table-column prop="finishtime" label="完成时间" align="center">
+                            <el-table-column prop="object.finishtime" label="完成时间" align="center">
                             </el-table-column>
                             <el-table-column align="center" label="人员情况" width="185px">
                                 <template slot-scope="scope">
@@ -619,13 +633,13 @@
                     <!--                学科竞赛-->
                     <template v-if="form.value === '13'">
                         <el-table :data="tableData" border style="width: 100%">
-                            <el-table-column prop="id" label="ID" width="55" align="center">
+                            <el-table-column prop="object.id" label="ID" width="55" align="center">
                             </el-table-column>
-                            <el-table-column prop="name" label="竞赛名称"  align="center">
+                            <el-table-column prop="object.name" label="竞赛名称"  align="center">
                             </el-table-column>
-                            <el-table-column prop="grade" label="获奖等级"  align="center">
+                            <el-table-column prop="object.grade" label="获奖等级"  align="center">
                             </el-table-column>
-                            <el-table-column prop="level" label="比赛等级"  align="center">
+                            <el-table-column prop="object.level" label="比赛等级"  align="center">
                             </el-table-column>
                             <el-table-column align="center" label="指导教师情况" width="185px">
                                 <template slot-scope="scope">
@@ -644,13 +658,13 @@
                     <!--                    荣誉称号明细-->
                     <template v-if="form.value === '14'">
                         <el-table :data="tableData" border style="width: 100%">
-                            <el-table-column prop="id" label="ID" width="55" align="center">
+                            <el-table-column prop="object.id" label="ID" width="55" align="center">
                             </el-table-column>
-                            <el-table-column prop="name" label="称号名称" align="center">
+                            <el-table-column prop="object.name" label="称号名称" align="center">
                             </el-table-column>
-                            <el-table-column prop="level" label="级别"  align="center">
+                            <el-table-column prop="object.level" label="级别"  align="center">
                             </el-table-column>
-                            <el-table-column prop="finishtime" label="获奖时间"  align="center">
+                            <el-table-column prop="object.finishtime" label="获奖时间"  align="center">
                             </el-table-column>
                             <el-table-column align="center" label="获奖人员情况" width="185px">
                                 <template slot-scope="scope">
@@ -670,8 +684,7 @@
 
 <script>
     import Schart from 'vue-schart';
-    import {getSearchZhuZuo} from "../../../api/zhuzuoAPI";
-    import {SearchAll, SearchDetail} from "../../../api/statistical"
+    import {SearchAll, SearchByDetail} from "../../../api/statistical"
     export default {
         name: 'basecharts',
         components: {
@@ -729,7 +742,20 @@
                     label: '荣誉称号'
                 }
             ],
-            tableData:[],
+            rongyuchenghao:[],
+            xuekejingsai:[],
+            keyanxiangmujiexiang:[],
+            ruanjianzuzuo:[],
+            keyanlunwen:[],
+            zhuzuo:[],
+            hengxiangkeyan:[],
+            zhuanli:[],
+            pingguzhongxin:[],
+            zongxiangkeyan:[],
+            jiaoyuguihua:[],
+            jiaoyanlunwen:[],
+            jiaoyanxiangmu:[],
+            chanxueyan:[],
             options2: {
                 title: '成果统计',
                 //autoWidth: true,   // 设置宽高自适应
@@ -742,10 +768,11 @@
                 height: 400,
             },
             data1:[],
+            tableData:[],
             hasdate:false,
             hastype:false,
             bysearch:false,
-            istype:false
+            istype:false,
         }),
         methods:{
             search() {
@@ -753,14 +780,29 @@
                 this.form.date2=this.value[1];
                     if(!this.form.value){
                         SearchAll(this.form).then(res =>{
-                            this.data1 = res
+                            this.data1 = res.zheXians
+                            console.log(res.chanxueyan)
+                            this.chanxueyan=res.chanxueyan
+                            this.jiaoyanxiangmu=res.jiaoyanxiangmu
+                            this.jiaoyanlunwen=res.jiaoyanlunwen
+                            this.jiaoyuguihua=res.jiaoyuguihua
+                            this.zongxiangkeyan=res.zongxiangkeyan
+                            this.pingguzhongxin=res.pingguzhongxin
+                            this.zhuanli=res.zhuanli
+                            this.hengxiangkeyan=res.hengxiangkeyan
+                            this.zhuzuo=res.zhuzuo
+                            this.keyanlunwen=res.keyanlunwen
+                            this.ruanjianzuzuo=res.ruanjianzhuzuo
+                            this.keyanxiangmujiexiang=res.keyanxiangmujiexiang
+                            this.xuekejingsai=res.xuekejingsai
+                            this.rongyuchenghao=res.rongyuchenghao
                             this.hasdate=true
                         } )
                     }else{
-                        SearchDetail(this.form).then(res =>{
-                            this.data1 = res
+                       SearchByDetail(this.form).then(res =>{
+                           this.tableData=res
                             this.hasdate=false
-                            // this.istype=true
+                            this.istype=true
                         } )
                     }
                 this.bysearch=true

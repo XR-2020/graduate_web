@@ -1,9 +1,9 @@
 import request from '../utils/request';
 
 // ---------------------------------------- 查询产学研数据
-export const SearchDetail = query => {
+export const SearchByDetail = query => {
     return request({
-        url: '/SearchDetail',
+        url: '/SearchByDetail',
         method: 'get',
         params: query
     });
