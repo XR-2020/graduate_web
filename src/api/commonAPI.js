@@ -127,3 +127,102 @@ export const getRongYuChengHaoMetails = query => {
         params: query
     });
 };
+export const passChanXueYan = query => {
+    return request({
+        url: '/passChanXueYan',
+        method: 'post',
+        params: query
+    });
+};
+
+export const passRongYuChengHao = query => {
+    return request({
+        url: '/passRongYuChengHao',
+        method: 'post',
+        params: query
+    });
+};
+export const passXueKeJingSai = query => {
+    return request({
+        url: '/passXueKeJingSai',
+        method: 'post',
+        params: query
+    });
+};
+export const passKeYanXiangMuJieXiang = query => {
+    return request({
+        url: '/passKeYanXiangMuJieXiang',
+        method: 'post',
+        params: query
+    });
+};
+export const passRuanJianZhuZuo = query => {
+    return request({
+        url: '/passRuanJianZhuZuo',
+        method: 'post',
+        params: query
+    });
+};
+export const passKeYanLunWen = query => {
+    return request({
+        url: '/passKeYanLunWen',
+        method: 'post',
+        params: query
+    });
+};
+export const passZhuZuo = query => {
+    return request({
+        url: '/passZhuZuo',
+        method: 'post',
+        params: query
+    });
+};
+export const passZongXiangKeYan = query => {
+    return request({
+        url: '/passZongXiangKeYan',
+        method: 'post',
+        params: query
+    });
+};
+export const passHengXiangKeYan = query => {
+    return request({
+        url: '/passHengXiangKeYan',
+        method: 'post',
+        params: query
+    });
+};
+export const passZhuanLi = query => {
+    return request({
+        url: '/passZhuanLi',
+        method: 'post',
+        params: query
+    });
+};
+export const passJiaoYuGuiHua = query => {
+    return request({
+        url: '/passJiaoYuGuiHua',
+        method: 'post',
+        params: query
+    });
+};
+export const passPingGuZhongXin = query => {
+    return request({
+        url: '/passPingGuZhongXin',
+        method: 'post',
+        params: query
+    });
+};
+export const passJiaoYanLunWen = query => {
+    return request({
+        url: '/passJiaoYanLunWen',
+        method: 'post',
+        params: query
+    });
+};
+export const passJiaoYan = query => {
+    return request({
+        url: '/passJiaoYan',
+        method: 'post',
+        params: query
+    });
+};

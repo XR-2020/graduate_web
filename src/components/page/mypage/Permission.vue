@@ -37,8 +37,8 @@
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,1)">下载证明材料</el-button>
-                                <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,1)">通过</el-button>
-                                <el-button size="small" type="danger" @click="handleDisPass(scope.$index, scope.row,1)">不通过</el-button>
+                                <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
+                                <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -75,8 +75,8 @@
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,2)">下载证明材料</el-button>
-                                <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,2)">通过</el-button>
-                                <el-button size="small" type="danger" @click="handleDisPass(scope.$index, scope.row,2)">不通过</el-button>
+                                <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
+                                <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -109,8 +109,8 @@
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,3)">下载证明材料</el-button>
-                                <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,3)">通过</el-button>
-                                <el-button size="small" type="danger" @click="handleDisPass(scope.$index, scope.row,3)">不通过</el-button>
+                                <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
+                                <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -145,8 +145,8 @@
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,4)">下载证明材料</el-button>
-                                <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,4)">通过</el-button>
-                                <el-button size="small" type="danger" @click="handleDisPass(scope.$index, scope.row,4)">不通过</el-button>
+                                <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
+                                <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -185,8 +185,8 @@
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,5)">下载证明材料</el-button>
-                                <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,5)">通过</el-button>
-                                <el-button size="small" type="danger" @click="handleDisPass(scope.$index, scope.row,5)">不通过</el-button>
+                                <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
+                                <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -221,8 +221,8 @@
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,6)">下载证明材料</el-button>
-                                <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,6)">通过</el-button>
-                                <el-button size="small" type="danger" @click="handleDisPass(scope.$index, scope.row,6)">不通过</el-button>
+                                <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
+                                <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -255,8 +255,8 @@
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,7)">下载证明材料</el-button>
-                                <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,7)">通过</el-button>
-                                <el-button size="small" type="danger" @click="handleDisPass(scope.$index, scope.row,7)">不通过</el-button>
+                                <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
+                                <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -295,8 +295,8 @@
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,8)">下载证明材料</el-button>
-                                <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,8)">通过</el-button>
-                                <el-button size="small" type="danger" @click="handleDisPass(scope.$index, scope.row,8)">不通过</el-button>
+                                <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
+                                <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -329,8 +329,8 @@
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,9)">下载证明材料</el-button>
-                                <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,9)">通过</el-button>
-                                <el-button size="small" type="danger" @click="handleDisPass(scope.$index, scope.row,9)">不通过</el-button>
+                                <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
+                                <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -363,8 +363,8 @@
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,10)">下载证明材料</el-button>
-                                <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,10)">通过</el-button>
-                                <el-button size="small" type="danger" @click="handleDisPass(scope.$index, scope.row,10)">不通过</el-button>
+                                <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
+                                <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -397,8 +397,8 @@
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,11)">下载证明材料</el-button>
-                                <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,11)">通过</el-button>
-                                <el-button size="small" type="danger" @click="handleDisPass(scope.$index, scope.row,11)">不通过</el-button>
+                                <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
+                                <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -431,8 +431,8 @@
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,12)">下载证明材料</el-button>
-                                <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,12)">通过</el-button>
-                                <el-button size="small" type="danger" @click="handleDisPass(scope.$index, scope.row,12)">不通过</el-button>
+                                <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
+                                <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -470,8 +470,8 @@
                     <el-table-column label="操作" width="280px"  align="center">
                         <template slot-scope="scope">
                             <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,13)">下载证明材料</el-button>
-                            <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,13)">通过</el-button>
-                            <el-button size="small" type="danger" @click="handleDisPass(scope.$index, scope.row,13)">不通过</el-button>
+                            <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
+                            <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -505,8 +505,8 @@
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,14)">下载证明材料</el-button>
-                                <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,14)">通过</el-button>
-                                <el-button size="small" type="danger" @click="handleDisPass(scope.$index, scope.row,14)">不通过</el-button>
+                                <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
+                                <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -533,12 +533,18 @@ import {
     getKeYanLunWenMetails,
     getKeYanXiangMuJieXiangMetails,
     getMetails,
-    getPingGuZhongXinMetails, getRongYuChengHaoMetails,
+    getPingGuZhongXinMetails,
+    getRongYuChengHaoMetails,
     getRuanJianZhuZuoMetails,
     getXueKeJingSaiMetails,
     getZhuanLiMetails,
     getZhuZuoMetails,
-    getZongXiangKeYanMetails
+    getZongXiangKeYanMetails, passChanXueYan, passHengXiangKeYan, passJiaoYan, passJiaoYanLunWen, passJiaoYuGuiHua,
+    passKeYanLunWen,
+    passKeYanXiangMuJieXiang, passPingGuZhongXin,
+    passRongYuChengHao,
+    passRuanJianZhuZuo,
+    passXueKeJingSai, passZhuanLi, passZhuZuo, passZongXiangKeYan
 } from "../../../api/commonAPI";
 export default {
     name: 'permission',
@@ -692,9 +698,102 @@ export default {
         filterTag(value, row) {
             return row.tag === value;
         },
-        handlePass(index, row,type) {
-            this.form = this.tableData[index];
-            this.editVisible = true;
+        handle(index, row,type,ispass) {
+            let handleres
+            switch (type) {
+                case 1:{
+                    passChanXueYan({id:row.object.id,ispass:ispass}).then(res =>{
+                        handleres=res
+                    })
+                    break;
+                }
+                case 2:{
+                    passJiaoYan({id:row.object.id,ispass:ispass}).then(res =>{
+                        handleres=res
+                    })
+                    break;
+                }
+                case 3:{
+                    passJiaoYanLunWen({id:row.object.id,ispass:ispass}).then(res =>{
+                        handleres=res
+                    })
+                    break;
+                }
+                case 4:{
+                    passPingGuZhongXin({id:row.object.id,ispass:ispass}).then(res =>{
+                        handleres=res
+                    })
+                    break;
+                }
+                case 5:{
+                    passJiaoYuGuiHua({id:row.object.id,ispass:ispass}).then(res =>{
+                        handleres=res
+                    })
+                    break;
+                }
+                case 6:{
+                    passZhuanLi({id:row.object.id,ispass:ispass}).then(res =>{
+                        handleres=res
+                    })
+                    break;
+                }
+                case 7:{
+                    passHengXiangKeYan({id:row.object.id,ispass:ispass}).then(res =>{
+                        handleres=res
+                    })
+                    break;
+                }
+                case 8:{
+                    passZongXiangKeYan({id:row.object.id,ispass:ispass}).then(res =>{
+                        handleres=res
+                    })
+                    break;
+                }
+                case 9:{
+                    passZhuZuo({id:row.object.id,ispass:ispass}).then(res =>{
+                        handleres=res
+                    })
+                    break;
+                }
+                case 10:{
+                    passKeYanLunWen({id:row.object.id,ispass:ispass}).then(res =>{
+                        handleres=res
+                    })
+                    break;
+                }
+                case 11:{
+                    passRuanJianZhuZuo({id:row.object.id,ispass:ispass}).then(res =>{
+                        handleres=res
+                    })
+                    break;
+                }
+                case 12:{
+                    passKeYanXiangMuJieXiang({id:row.object.id,ispass:ispass}).then(res =>{
+                        handleres=res
+                    })
+                    break;
+                }
+                case 13:{
+                    passXueKeJingSai({id:row.object.id,ispass:ispass}).then(res =>{
+                        handleres=res
+                    })
+                    break;
+                }
+                case 14:{
+                    passRongYuChengHao({id:row.object.id,ispass:ispass}).then(res =>{
+                        handleres=res
+                    })
+                    break;
+                }
+            }
+            console.log(handleres)
+            if(handleres!==0){
+                this.$message.success("通过"+row.object.id+""+row.object.name+"成功");
+                this.getData()
+            }else{
+                this.$message.error("通过"+row.object.id+""+row.object.name+"失败");
+            }
+
         },
         handleMetails(index, row,type){
             switch (type) {
@@ -924,9 +1023,6 @@ export default {
                 }
 
             }
-        },
-        handleDisPass(index, row,type) {
-
         },
     }
 }
