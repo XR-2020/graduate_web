@@ -11,6 +11,6 @@ export const getAllWaiting = query => {
     return request({
         url: '/getAllWaiting',
         method: 'get',
-        data: query
+        params: query
     });
 };

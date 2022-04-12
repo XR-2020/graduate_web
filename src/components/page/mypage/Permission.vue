@@ -7,7 +7,6 @@
         </div>
         <div class="container">
             <div class="handle-box">
-                <el-button type="primary" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
                 <el-input v-model="query.key" placeholder="筛选关键词" class="handle-input mr10"></el-input>
                 <el-button type="primary" icon="search" @click="search">搜索</el-button>
             </div>
@@ -16,9 +15,7 @@
                     <br>
                     <p>产学研申报</p>
                     <br>
-                    <el-table :data="chanxueyanData" border ref="multipleTable" @selection-change="handleSelectionChange">
-                        <el-table-column prop="object.id" label="ID"  width="35" align="center">
-                        </el-table-column>
+                    <el-table :data="chanxueyanData" border>
                         <el-table-column prop="object.partment" label="部门" align="center">
                         </el-table-column>
                         <el-table-column prop="object.name" label="项目名称" align="center">
@@ -37,7 +34,7 @@
                                 </el-table>
                             </template>
                         </el-table-column>
-                        <el-table-column label="操作" width="260px"  align="center">
+                        <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,1)">下载证明材料</el-button>
                                 <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,1)">通过</el-button>
@@ -46,7 +43,7 @@
                         </el-table-column>
                     </el-table>
                     <div class="pagination">
-                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="chanxueyanPageTotal">
                         </el-pagination>
                     </div>
                 </div>
@@ -54,7 +51,7 @@
                     <br>
                     <p>教研项目申报</p>
                     <br>
-                    <el-table :data="jiaoyanData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
+                    <el-table :data="jiaoyanData" border style="width: 100%" >
                         <el-table-column prop="object.id" label="ID"  width="35" align="center">
                         </el-table-column>
                         <el-table-column prop="object.partment" label="部门" align="center">
@@ -75,7 +72,7 @@
                                 </el-table>
                             </template>
                         </el-table-column>
-                        <el-table-column label="操作" width="260px"  align="center">
+                        <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,2)">下载证明材料</el-button>
                                 <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,2)">通过</el-button>
@@ -84,7 +81,7 @@
                         </el-table-column>
                     </el-table>
                     <div class="pagination">
-                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="jiaoyanxiangmuPageTotal">
                         </el-pagination>
                     </div>
                 </div>
@@ -109,7 +106,7 @@
                                 </el-table>
                             </template>
                         </el-table-column>
-                        <el-table-column label="操作" width="260px"  align="center">
+                        <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,3)">下载证明材料</el-button>
                                 <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,3)">通过</el-button>
@@ -118,7 +115,7 @@
                         </el-table-column>
                     </el-table>
                     <div class="pagination">
-                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="jiaoyanlunwenPageTotal">
                         </el-pagination>
                     </div>
                  </div>
@@ -145,7 +142,7 @@
                                 </el-table>
                             </template>
                         </el-table-column>
-                        <el-table-column label="操作" width="260px"  align="center">
+                        <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,4)">下载证明材料</el-button>
                                 <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,4)">通过</el-button>
@@ -154,7 +151,7 @@
                         </el-table-column>
                     </el-table>
                     <div class="pagination">
-                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pingguzhongxinPageTotal">
                         </el-pagination>
                     </div>
                 </div>
@@ -162,7 +159,7 @@
                     <br>
                     <p>教育规划项目申报</p>
                     <br>
-                    <el-table :data="jiaoyuguihuaData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
+                    <el-table :data="jiaoyuguihuaData" border style="width: 100%">
                         <el-table-column prop="object.id" label="ID"  width="35" align="center">
                         </el-table-column>
                         <el-table-column prop="object.name" label="项目名称" width="120" align="center">
@@ -185,7 +182,7 @@
                                 </el-table>
                             </template>
                         </el-table-column>
-                        <el-table-column label="操作" width="260px"  align="center">
+                        <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,5)">下载证明材料</el-button>
                                 <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,5)">通过</el-button>
@@ -194,7 +191,7 @@
                         </el-table-column>
                     </el-table>
                     <div class="pagination">
-                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="jiaoyuguihuaPageTotal">
                         </el-pagination>
                     </div>
                 </div>
@@ -221,7 +218,7 @@
                                 </el-table>
                             </template>
                         </el-table-column>
-                        <el-table-column label="操作" width="260px"  align="center">
+                        <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,6)">下载证明材料</el-button>
                                 <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,6)">通过</el-button>
@@ -230,7 +227,7 @@
                         </el-table-column>
                     </el-table>
                     <div class="pagination">
-                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="zhuanliPageTotal">
                         </el-pagination>
                     </div>
                 </div>
@@ -255,7 +252,7 @@
                                 </el-table>
                             </template>
                         </el-table-column>
-                        <el-table-column label="操作" width="260px"  align="center">
+                        <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,7)">下载证明材料</el-button>
                                 <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,7)">通过</el-button>
@@ -264,7 +261,7 @@
                         </el-table-column>
                     </el-table>
                     <div class="pagination">
-                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="hengxiangkeyanPageTotal">
                         </el-pagination>
                     </div>
                 </div>
@@ -295,7 +292,7 @@
                                 </el-table>
                             </template>
                         </el-table-column>
-                        <el-table-column label="操作" width="260px"  align="center">
+                        <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,8)">下载证明材料</el-button>
                                 <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,8)">通过</el-button>
@@ -304,7 +301,7 @@
                         </el-table-column>
                     </el-table>
                     <div class="pagination">
-                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="zongxiangkeyanPageTotal">
                         </el-pagination>
                     </div>
                 </div>
@@ -329,7 +326,7 @@
                                 </el-table>
                             </template>
                         </el-table-column>
-                        <el-table-column label="操作" width="260px"  align="center">
+                        <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,9)">下载证明材料</el-button>
                                 <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,9)">通过</el-button>
@@ -338,7 +335,7 @@
                         </el-table-column>
                     </el-table>
                     <div class="pagination">
-                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="zhuzuoPageTotal">
                         </el-pagination>
                     </div>
                 </div>
@@ -363,7 +360,7 @@
                                 </el-table>
                             </template>
                         </el-table-column>
-                        <el-table-column label="操作" width="260px"  align="center">
+                        <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,10)">下载证明材料</el-button>
                                 <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,10)">通过</el-button>
@@ -372,7 +369,7 @@
                         </el-table-column>
                     </el-table>
                     <div class="pagination">
-                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="keyanlunwenPageTotal">
                         </el-pagination>
                     </div>
                 </div>
@@ -397,7 +394,7 @@
                                 </el-table>
                             </template>
                         </el-table-column>
-                        <el-table-column label="操作" width="260px"  align="center">
+                        <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,11)">下载证明材料</el-button>
                                 <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,11)">通过</el-button>
@@ -406,7 +403,7 @@
                         </el-table-column>
                     </el-table>
                     <div class="pagination">
-                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="ruanjianzhuzuoPageTotal">
                         </el-pagination>
                     </div>
                 </div>
@@ -431,7 +428,7 @@
                                 </el-table>
                             </template>
                         </el-table-column>
-                        <el-table-column label="操作" width="260px"  align="center">
+                        <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,12)">下载证明材料</el-button>
                                 <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,12)">通过</el-button>
@@ -440,12 +437,15 @@
                         </el-table-column>
                     </el-table>
                     <div class="pagination">
-                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="keyanxiangmujiexiangPageTotal">
                         </el-pagination>
                     </div>
                 </div>
             </div>
             <div v-if="competitionAdmin">
+                <br>
+                <p>学科竞赛申报</p>
+                <br>
                 <el-table :data="xuekejingsaiData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
                     <el-table-column prop="object.id" label="ID" width="35" align="center">
                     </el-table-column>
@@ -467,7 +467,7 @@
                     </el-table-column>
                     <el-table-column prop="finishtime" label="获奖时间" align="center">
                     </el-table-column>
-                    <el-table-column label="操作" width="260px"  align="center">
+                    <el-table-column label="操作" width="280px"  align="center">
                         <template slot-scope="scope">
                             <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,13)">下载证明材料</el-button>
                             <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,13)">通过</el-button>
@@ -476,7 +476,7 @@
                     </el-table-column>
                 </el-table>
                 <div class="pagination">
-                    <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
+                    <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="xuekejingsaiPageTotal">
                     </el-pagination>
                 </div>
             </div>
@@ -485,7 +485,7 @@
                     <br>
                     <p>荣誉称号申报</p>
                     <br>
-                    <el-table :data="honorData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
+                    <el-table :data="honorData" border style="width: 100%">
                         <el-table-column prop="object.id" label="ID"  width="35" align="center">
                         </el-table-column>
                         <el-table-column prop="object.name" label="称号名称" align="center">
@@ -502,7 +502,7 @@
                                 </el-table>
                             </template>
                         </el-table-column>
-                        <el-table-column label="操作" width="260px"  align="center">
+                        <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,14)">下载证明材料</el-button>
                                 <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,14)">通过</el-button>
@@ -511,7 +511,7 @@
                         </el-table-column>
                     </el-table>
                     <div class="pagination">
-                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="rongyuchenghaoPageTotal">
                         </el-pagination>
                     </div>
                 </div>
@@ -562,11 +562,25 @@ export default {
             hengxiangData:[],
             zhuanliData:[],
             honorData:[],
-            role:''
+            role:'',
+            chanxueyanPageTotal:0,
+            zongxiangkeyanPageTotal:0,
+            zhuzuoPageTotal:0,
+            zhuanliPageTotal:0,
+            xuekejingsaiPageTotal:0,
+            ruanjianzhuzuoPageTotal:0,
+            rongyuchenghaoPageTotal:0,
+            pingguzhongxinPageTotal:0,
+            keyanxiangmujiexiangPageTotal:0,
+            keyanlunwenPageTotal:0,
+            jiaoyanxiangmuPageTotal:0,
+            jiaoyanlunwenPageTotal:0,
+            hengxiangkeyanPageTotal:0,
+            jiaoyuguihuaPageTotal:0
         }
     },
     created() {
-        this.getData();
+       this.getData()
     },
     computed: {
         data() {
@@ -597,13 +611,45 @@ export default {
         },
         // 获取 easy-mock 的模拟数据
         getData() {
-           this.role=localStorage.getItem("role");
-            switch (role) {
-                case "1":{
+
+            getAllWaiting(this.query).then(res =>{
+                this.jiaoyuguihuaData=res.jiaoyuguihua,
+                this.pingguzhongxinData=res.pingguzhongxin,
+                this.jiaoyanlunwenData=res.jiaoyanlunwen,
+                this.jiaoyanData=res.jiaoyanxiangmu,
+                this.chanxueyanData=res.chanxueyan,
+                this.xuekejingsaiData=res.xuekejingsai,
+                this.keyanxiangmuData=res.keyanxiangmujiexiang,
+                this.ruanjianzhuzuoData=res.ruanjianzuzuo,
+                this.keyanData=res.keyanxiangmujiexiang,
+                this.zhuzuoData=res.zhuzuo,
+                this.zongxiangData=res.zongxiangkeyan,
+                this.hengxiangData=res.hengxiangkeyan,
+                this.zhuanliData=res.zhuanli,
+                this.honorData=res.rongyuchenghao,
+                this.chanxueyanPageTotal=res.chanxueyanPageTotal,
+                this.zongxiangkeyanPageTotal=res.zongxiangkeyanPageTotal,
+                this.zhuzuoPageTotal=res.zhuzuoPageTotal,
+                this.zhuanliPageTotal=res.zhuanliPageTotal,
+                this.xuekejingsaiPageTotal=res.xuekejingsaiPageTotal,
+                this.ruanjianzhuzuoPageTotal=res.ruanjianzhuzuoPageTotal,
+                this.rongyuchenghaoPageTotal=res.rongyuchenghaoPageTotal,
+                this.pingguzhongxinPageTotal=res.pingguzhongxinPageTotal,
+                this.keyanxiangmujiexiangPageTotal=res.keyanxiangmujiexiangPageTotal,
+                this.keyanlunwenPageTotal=res.keyanlunwenPageTotal,
+                this.jiaoyanxiangmuPageTotal=res.jiaoyanxiangmuPageTotal,
+                this.jiaoyanlunwenPageTotal=res.jiaoyanlunwenPageTotal,
+                this.hengxiangkeyanPageTotal=res.hengxiangkeyanPageTotal,
+                this.jiaoyuguihuaPageTotal=res.jiaoyuguihuaPageTotal
+            } )
+            this.role=localStorage.getItem('role');
+            console.log(this.role)
+            switch (this.role) {
+                case '1':{
                     this.jiaoyanAdmin=true
                     break;
                 }
-                case "2":{
+                case '2':{
                     this.keyanAdmin=true
                     break;
                 }
@@ -619,22 +665,6 @@ export default {
                     break;
                 }
             }
-            getAllWaiting().then(res =>{
-                this.jiaoyuguihuaData=res.jiaoyuguihua
-                this.pingguzhongxinData=res.pingguzhongxin
-                this.jiaoyanlunwenData=res.jiaoyanlunwen
-                this.jiaoyanData=res.jiaoyanxiangmu
-                this.chanxueyanData=res.chanxueyan
-                this.xuekejingsaiData=res.xuekejingsai
-                this.keyanxiangmuData=res.keyanxiangmujiexiang
-                this.ruanjianzhuzuoData=res.ruanjianzuzuo
-                this.keyanData=res.keyanxiangmujiexiang
-                this.zhuzuoData=res.zhuzuo
-                this.zongxiangData=res.zongxiangkeyan
-                this.hengxiangData=res.hengxiangkeyan
-                this.zhuanliData=res.zhuanli
-                this.honorData=res.rongyuchenghao
-            } )
         },
         search() {
 
