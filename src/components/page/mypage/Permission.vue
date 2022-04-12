@@ -11,61 +11,533 @@
                 <el-input v-model="query.key" placeholder="筛选关键词" class="handle-input mr10"></el-input>
                 <el-button type="primary" icon="search" @click="search">搜索</el-button>
             </div>
-            <el-table :data="tableData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
-                <el-table-column type="selection" width="55" align="center"></el-table-column>
-                   <el-table-column
-                       v-for="item in cols"
-                       :prop="item.prop"
-                       :label="item.label"
-                   >
-                   </el-table-column>
-                <el-table-column label="操作" width="350px" align="center">
-                    <template slot-scope="scope">
-                        <el-button size="small" type="primary" @click="handleDetail(scope.$index, scope.row)">查看详情</el-button>
-                        <el-button size="small" type="info" @click="handleEdit(scope.$index, scope.row)">下载材料</el-button>
-                        <el-button size="small" type="success" @click="handleEdit(scope.$index, scope.row)">通过</el-button>
-                        <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">不通过</el-button>
-                    </template>
-                </el-table-column>
-            </el-table>
-            <div class="pagination">
-                <el-pagination @current-change="handleCurrentChange" layout="prev, pager, next" :total="1000">
-                </el-pagination>
+            <div v-if="jiaoyanAdmin">
+                <div>
+                    <br>
+                    <p>产学研申报</p>
+                    <br>
+                    <el-table :data="chanxueyanData" border ref="multipleTable" @selection-change="handleSelectionChange">
+                        <el-table-column prop="object.id" label="ID"  width="35" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.partment" label="部门" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.name" label="项目名称" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.wenhao" label="立项文号" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.lianghua" label="成果依据" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.finishtime" label="完成时间" align="center">
+                        </el-table-column>
+                        <el-table-column align="center" label="人员情况" width="185px">
+                            <template slot-scope="scope">
+                                <el-table :data="scope.row.people" :show-header="false">
+                                    <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
+                                    <el-table-column prop="name" align="center"  label="姓名"></el-table-column>
+                                </el-table>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="操作" width="260px"  align="center">
+                            <template slot-scope="scope">
+                                <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,1)">下载证明材料</el-button>
+                                <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,1)">通过</el-button>
+                                <el-button size="small" type="danger" @click="handleDisPass(scope.$index, scope.row,1)">不通过</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                    <div class="pagination">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
+                        </el-pagination>
+                    </div>
+                </div>
+                <div>
+                    <br>
+                    <p>教研项目申报</p>
+                    <br>
+                    <el-table :data="jiaoyanData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
+                        <el-table-column prop="object.id" label="ID"  width="35" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.partment" label="部门" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.name" label="项目名称" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.wenhao" label="立项文号" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.lianghua" label="成果依据" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.finishtime" label="完成时间" align="center">
+                        </el-table-column>
+                        <el-table-column align="center" label="人员情况" width="185px">
+                            <template slot-scope="scope">
+                                <el-table :data="scope.row.people" :show-header="false">
+                                    <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
+                                    <el-table-column prop="name" align="center"  label="姓名"></el-table-column>
+                                </el-table>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="操作" width="260px"  align="center">
+                            <template slot-scope="scope">
+                                <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,2)">下载证明材料</el-button>
+                                <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,2)">通过</el-button>
+                                <el-button size="small" type="danger" @click="handleDisPass(scope.$index, scope.row,2)">不通过</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                    <div class="pagination">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
+                        </el-pagination>
+                    </div>
+                </div>
+                <div>
+                    <br>
+                    <p>教研论文申报</p>
+                    <br>
+                    <el-table :data="jiaoyanlunwenData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
+                        <el-table-column prop="object.id" label="ID"  width="35" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.name" label="论文名称" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.partment" label="部门" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.finishtime" label="完成时间" align="center">
+                        </el-table-column>
+                        <el-table-column align="center" label="人员情况" width="185px">
+                            <template slot-scope="scope">
+                                <el-table :data="scope.row.people" :show-header="false">
+                                    <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
+                                    <el-table-column prop="name" align="center"  label="姓名"></el-table-column>
+                                </el-table>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="操作" width="260px"  align="center">
+                            <template slot-scope="scope">
+                                <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,3)">下载证明材料</el-button>
+                                <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,3)">通过</el-button>
+                                <el-button size="small" type="danger" @click="handleDisPass(scope.$index, scope.row,3)">不通过</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                    <div class="pagination">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
+                        </el-pagination>
+                    </div>
+                 </div>
+                <div>
+                    <br>
+                    <p>评估中心相关申报</p>
+                    <br>
+                    <el-table :data="pingguzhongxinData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
+                        <el-table-column prop="object.id" label="ID" width="35" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.name" label="名称" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.grade" label="获奖等级" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.partment" label="部门" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.finishtime" label="完成时间" walign="center">
+                        </el-table-column>
+                        <el-table-column align="center" label="人员情况" width="185px">
+                            <template slot-scope="scope">
+                                <el-table :data="scope.row.people" :show-header="false">
+                                    <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
+                                    <el-table-column prop="name" align="center"  label="姓名"></el-table-column>
+                                </el-table>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="操作" width="260px"  align="center">
+                            <template slot-scope="scope">
+                                <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,4)">下载证明材料</el-button>
+                                <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,4)">通过</el-button>
+                                <el-button size="small" type="danger" @click="handleDisPass(scope.$index, scope.row,4)">不通过</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                    <div class="pagination">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
+                        </el-pagination>
+                    </div>
+                </div>
+                <div>
+                    <br>
+                    <p>教育规划项目申报</p>
+                    <br>
+                    <el-table :data="jiaoyuguihuaData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
+                        <el-table-column prop="object.id" label="ID"  width="35" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.name" label="项目名称" width="120" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.danwei" label="结题单位" width="120" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.level" label="项目级别" width="120" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.grade" label="结题等级" width="120" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.partment" label="部门" width="120" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.finishtime" label="完成时间" width="120" align="center">
+                        </el-table-column>
+                        <el-table-column align="center" label="人员情况" width="185px">
+                            <template slot-scope="scope">
+                                <el-table :data="scope.row.people" :show-header="false">
+                                    <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
+                                    <el-table-column prop="name" align="center"  label="姓名"></el-table-column>
+                                </el-table>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="操作" width="260px"  align="center">
+                            <template slot-scope="scope">
+                                <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,5)">下载证明材料</el-button>
+                                <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,5)">通过</el-button>
+                                <el-button size="small" type="danger" @click="handleDisPass(scope.$index, scope.row,5)">不通过</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                    <div class="pagination">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
+                        </el-pagination>
+                    </div>
+                </div>
+                </div>
+            <div v-if="keyanAdmin">
+                <div>
+                    <br>
+                    <p>专利申报</p>
+                    <br>
+                    <el-table :data="zhuanliData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
+                        <el-table-column prop="object.id" label="ID"  width="35" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.name" label="名称" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.partment" label="部门" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.finishtime" label="完成时间" align="center">
+                        </el-table-column>
+                        <el-table-column align="center" label="人员情况" width="185px">
+                            <template slot-scope="scope">
+                                <el-table :data="scope.row.people" :show-header="false">
+                                    <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
+                                    <el-table-column prop="name" align="center"  label="姓名"></el-table-column>
+                                </el-table>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="操作" width="260px"  align="center">
+                            <template slot-scope="scope">
+                                <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,6)">下载证明材料</el-button>
+                                <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,6)">通过</el-button>
+                                <el-button size="small" type="danger" @click="handleDisPass(scope.$index, scope.row,6)">不通过</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                    <div class="pagination">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
+                        </el-pagination>
+                    </div>
+                </div>
+                <div>
+                    <br>
+                    <p>横向科研项目申报</p>
+                    <br>
+                    <el-table :data="hengxiangData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
+                        <el-table-column prop="object.id" label="ID"  width="35" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.name" label="名称" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.partment" label="部门"  align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.finishtime" label="完成时间" align="center">
+                        </el-table-column>
+                        <el-table-column align="center" label="人员情况" width="185px">
+                            <template slot-scope="scope">
+                                <el-table :data="scope.row.people" :show-header="false">
+                                    <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
+                                    <el-table-column prop="name" align="center"  label="姓名"></el-table-column>
+                                </el-table>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="操作" width="260px"  align="center">
+                            <template slot-scope="scope">
+                                <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,7)">下载证明材料</el-button>
+                                <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,7)">通过</el-button>
+                                <el-button size="small" type="danger" @click="handleDisPass(scope.$index, scope.row,7)">不通过</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                    <div class="pagination">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
+                        </el-pagination>
+                    </div>
+                </div>
+                <div>
+                    <br>
+                    <p>纵向科研项目申报</p>
+                    <br>
+                    <el-table :data="zongxiangData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
+                        <el-table-column prop="object.id" label="ID"  width="35" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.partment" label="部门" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.name" label="项目名称" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.lixiang" label="立项部门" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.type" label="项目类别" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.level" label="项目级别" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.finishtime" label="完成时间" width="120" align="center">
+                        </el-table-column>
+                        <el-table-column align="center" label="人员情况" width="185px">
+                            <template slot-scope="scope">
+                                <el-table :data="scope.row.people" :show-header="false">
+                                    <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
+                                    <el-table-column prop="name" align="center"  label="姓名"></el-table-column>
+                                </el-table>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="操作" width="260px"  align="center">
+                            <template slot-scope="scope">
+                                <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,8)">下载证明材料</el-button>
+                                <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,8)">通过</el-button>
+                                <el-button size="small" type="danger" @click="handleDisPass(scope.$index, scope.row,8)">不通过</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                    <div class="pagination">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
+                        </el-pagination>
+                    </div>
+                </div>
+                <div>
+                    <br>
+                    <p>著作申报</p>
+                    <br>
+                    <el-table :data="zhuzuoData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
+                        <el-table-column prop="object.id" label="ID"  width="35" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.partment" label="部门" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.name" label="名称" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.finishtime" label="完成时间"  align="center">
+                        </el-table-column>
+                        <el-table-column align="center" label="人员情况" width="185px">
+                            <template slot-scope="scope">
+                                <el-table :data="scope.row.people" :show-header="false">
+                                    <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
+                                    <el-table-column prop="name" align="center"  label="姓名"></el-table-column>
+                                </el-table>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="操作" width="260px"  align="center">
+                            <template slot-scope="scope">
+                                <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,9)">下载证明材料</el-button>
+                                <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,9)">通过</el-button>
+                                <el-button size="small" type="danger" @click="handleDisPass(scope.$index, scope.row,9)">不通过</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                    <div class="pagination">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
+                        </el-pagination>
+                    </div>
+                </div>
+                <div>
+                    <br>
+                    <p>科研论文申报</p>
+                    <br>
+                    <el-table :data="keyanData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
+                        <el-table-column prop="object.id" label="ID"  width="35" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.partment" label="部门" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.name" label="题目" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.finishtime" label="完成时间" align="center">
+                        </el-table-column>
+                        <el-table-column align="center" label="人员情况" width="185px">
+                            <template slot-scope="scope">
+                                <el-table :data="scope.row.people" :show-header="false">
+                                    <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
+                                    <el-table-column prop="name" align="center"  label="姓名"></el-table-column>
+                                </el-table>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="操作" width="260px"  align="center">
+                            <template slot-scope="scope">
+                                <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,10)">下载证明材料</el-button>
+                                <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,10)">通过</el-button>
+                                <el-button size="small" type="danger" @click="handleDisPass(scope.$index, scope.row,10)">不通过</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                    <div class="pagination">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
+                        </el-pagination>
+                    </div>
+                </div>
+                <div>
+                    <br>
+                    <p>软件著作权申报</p>
+                    <br>
+                    <el-table :data="ruanjianzhuzuoData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
+                        <el-table-column prop="object.id" label="ID"  width="35" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.partment" label="部门" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.name" label="题目" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.finishtime" label="完成时间" align="center">
+                        </el-table-column>
+                        <el-table-column align="center" label="人员情况" width="185px">
+                            <template slot-scope="scope">
+                                <el-table :data="scope.row.people" :show-header="false">
+                                    <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
+                                    <el-table-column prop="name" align="center"  label="姓名"></el-table-column>
+                                </el-table>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="操作" width="260px"  align="center">
+                            <template slot-scope="scope">
+                                <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,11)">下载证明材料</el-button>
+                                <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,11)">通过</el-button>
+                                <el-button size="small" type="danger" @click="handleDisPass(scope.$index, scope.row,11)">不通过</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                    <div class="pagination">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
+                        </el-pagination>
+                    </div>
+                </div>
+                <div>
+                    <br>
+                    <p>科研项目结项申报</p>
+                    <br>
+                    <el-table :data="keyanxiangmuData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
+                        <el-table-column prop="object.id" label="ID"  width="35" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.partment" label="部门" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.name" label="名称" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.finishtime" label="完成时间" align="center">
+                        </el-table-column>
+                        <el-table-column align="center" label="人员情况" width="185px">
+                            <template slot-scope="scope">
+                                <el-table :data="scope.row.people" :show-header="false">
+                                    <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
+                                    <el-table-column prop="name" align="center"  label="姓名"></el-table-column>
+                                </el-table>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="操作" width="260px"  align="center">
+                            <template slot-scope="scope">
+                                <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,12)">下载证明材料</el-button>
+                                <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,12)">通过</el-button>
+                                <el-button size="small" type="danger" @click="handleDisPass(scope.$index, scope.row,12)">不通过</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                    <div class="pagination">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
+                        </el-pagination>
+                    </div>
+                </div>
+            </div>
+            <div v-if="competitionAdmin">
+                <el-table :data="xuekejingsaiData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
+                    <el-table-column prop="object.id" label="ID" width="35" align="center">
+                    </el-table-column>
+                    <el-table-column prop="object.name" label="竞赛名称"  align="center">
+                    </el-table-column>
+                    <el-table-column prop="object.grade" label="获奖等级"  align="center">
+                    </el-table-column>
+                    <el-table-column prop="object.level" label="比赛等级"  align="center">
+                    </el-table-column>
+                    <el-table-column align="center" label="指导教师情况" width="185px">
+                        <template slot-scope="scope">
+                            <el-table :data="scope.row.people" :show-header="false">
+                                <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
+                                <el-table-column prop="name" align="center"  label="姓名"></el-table-column>
+                            </el-table>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="student" label="参赛学生" align="center">
+                    </el-table-column>
+                    <el-table-column prop="finishtime" label="获奖时间" align="center">
+                    </el-table-column>
+                    <el-table-column label="操作" width="260px"  align="center">
+                        <template slot-scope="scope">
+                            <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,13)">下载证明材料</el-button>
+                            <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,13)">通过</el-button>
+                            <el-button size="small" type="danger" @click="handleDisPass(scope.$index, scope.row,13)">不通过</el-button>
+                        </template>
+                    </el-table-column>
+                </el-table>
+                <div class="pagination">
+                    <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
+                    </el-pagination>
+                </div>
+            </div>
+            <div v-if="systemAdmin">
+                <div>
+                    <br>
+                    <p>荣誉称号申报</p>
+                    <br>
+                    <el-table :data="honorData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
+                        <el-table-column prop="object.id" label="ID"  width="35" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.name" label="称号名称" align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.level" label="级别"  align="center">
+                        </el-table-column>
+                        <el-table-column prop="object.finishtime" label="获奖时间"  align="center">
+                        </el-table-column>
+                        <el-table-column align="center" label="获奖人员情况" width="185px">
+                            <template slot-scope="scope">
+                                <el-table :data="scope.row.people" :show-header="false">
+                                    <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
+                                    <el-table-column prop="name" align="center"  label="姓名"></el-table-column>
+                                </el-table>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="操作" width="260px"  align="center">
+                            <template slot-scope="scope">
+                                <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,14)">下载证明材料</el-button>
+                                <el-button size="small" type="primary" @click="handlePass(scope.$index, scope.row,14)">通过</el-button>
+                                <el-button size="small" type="danger" @click="handleDisPass(scope.$index, scope.row,14)">不通过</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                    <div class="pagination">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
+                        </el-pagination>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- 编辑弹出框 -->
-        <el-dialog title="编辑" :visible.sync="editVisible" width="80%">
-            <chanxueyan v-bind:show="form"/>
-        </el-dialog>
-
-        <!-- 删除提示框 -->
-        <el-dialog title="提示" :visible.sync="delVisible" width="300px" center>
-            <div class="del-dialog-cnt">删除不可恢复，是否确定删除？</div>
-            <span slot="footer" class="dialog-footer">
-                <el-button @click="delVisible = false">取 消</el-button>
-                <el-button type="primary" @click="deleteRow">确 定</el-button>
-            </span>
-        </el-dialog>
     </div>
 </template>
 
 <script>
 import chanxueyan from '../show/chanxueyan_edit'
-import {getAllShenBao, getSearchShenBao} from "../../../api/shenbaoAPI";
+import {getAllShenBao, getAllWaiting, getSearchShenBao} from "../../../api/shenbaoAPI";
 export default {
     name: 'permission',
     components:{"chanxueyan":chanxueyan},
     data() {
         return {
-            url: './static/vuetable.json',
-            tableData: [],
+            systemAdmin:false,
+            competitionAdmin:false,
+            keyanAdmin:false,
+            jiaoyanAdmin:false,
             cols:[],
             query:{
                 key: '',
-                role:-1,
                 pageIndex: 1,
-                pageSize: 10
+                pageSize: 4
             },
             cur_page: 1,
             multipleSelection: [],
@@ -75,12 +547,22 @@ export default {
             is_search: false,
             editVisible: false,
             delVisible: false,
-            form: {
-                name: '',
-                date: '',
-                address: ''
-            },
-            idx: -1
+            idx: -1,
+            jiaoyuguihuaData:[],
+            pingguzhongxinData:[],
+            jiaoyanlunwenData:[],
+            jiaoyanData:[],
+            chanxueyanData:[],
+            xuekejingsaiData:[],
+            keyanxiangmuData:[],
+            ruanjianzhuzuoData:[],
+            keyanData:[],
+            zhuzuoData:[],
+            zongxiangData:[],
+            hengxiangData:[],
+            zhuanliData:[],
+            honorData:[],
+            role:''
         }
     },
     created() {
@@ -115,26 +597,47 @@ export default {
         },
         // 获取 easy-mock 的模拟数据
         getData() {
-            if(this.query.key!==''){
-                getSearchShenBao(this.query).then(res =>{
-                    this.tableData = res.list
-                    this.pageTotal=res.pageTotal
-                    this.cols=res.cols
-                } )
-            }else{
-                getAllShenBao(this.query).then(res=>{
-                    this.tableData = res.list
-                    this.pageTotal=res.pageTotal
-                    this.cols=res.cols
-                })
+           this.role=localStorage.getItem("role");
+            switch (role) {
+                case "1":{
+                    this.jiaoyanAdmin=true
+                    break;
+                }
+                case "2":{
+                    this.keyanAdmin=true
+                    break;
+                }
+                case "3":{
+                    this.competitionAdmin=true
+                    break;
+                }
+                case "4":{
+                    this.jiaoyanAdmin=true
+                    this.keyanAdmin=true
+                    this.competitionAdmin=true
+                    this.systemAdmin=true
+                    break;
+                }
             }
+            getAllWaiting().then(res =>{
+                this.jiaoyuguihuaData=res.jiaoyuguihua
+                this.pingguzhongxinData=res.pingguzhongxin
+                this.jiaoyanlunwenData=res.jiaoyanlunwen
+                this.jiaoyanData=res.jiaoyanxiangmu
+                this.chanxueyanData=res.chanxueyan
+                this.xuekejingsaiData=res.xuekejingsai
+                this.keyanxiangmuData=res.keyanxiangmujiexiang
+                this.ruanjianzhuzuoData=res.ruanjianzuzuo
+                this.keyanData=res.keyanxiangmujiexiang
+                this.zhuzuoData=res.zhuzuo
+                this.zongxiangData=res.zongxiangkeyan
+                this.hengxiangData=res.hengxiangkeyan
+                this.zhuanliData=res.zhuanli
+                this.honorData=res.rongyuchenghao
+            } )
         },
         search() {
-            getSearchShenBao(this.query).then(res =>{
-                this.tableData = res.list
-                this.pageTotal=res.pageTotal
-                this.cols=res.cols
-            } )
+
         },
         formatter(row, column) {
             return row.address;
@@ -142,44 +645,16 @@ export default {
         filterTag(value, row) {
             return row.tag === value;
         },
-        handleEdit(index, row) {
+        handlePass(index, row,type) {
             this.form = this.tableData[index];
             this.editVisible = true;
         },
-        handleDetail(index, row){
-            this.form = this.tableData[index];
-            console.log(this.form)
-            this.editVisible = true;
+        handleMetails(index, row,type){
+            console.log(row)
         },
-        handleDelete(index, row) {
-            this.idx = index;
-            this.delVisible = true;
+        handleDisPass(index, row,type) {
+
         },
-        delAll() {
-            const length = this.multipleSelection.length;
-            let str = '';
-            this.del_list = this.del_list.concat(this.multipleSelection);
-            for (let i = 0; i < length; i++) {
-                str += this.multipleSelection[i].name + ' ';
-            }
-            this.$message.error('删除了' + str);
-            this.multipleSelection = [];
-        },
-        handleSelectionChange(val) {
-            this.multipleSelection = val;
-        },
-        // 保存编辑
-        saveEdit() {
-            this.$set(this.tableData, this.idx, this.form);
-            this.editVisible = false;
-            this.$message.success(`修改第 ${this.idx+1} 行成功`);
-        },
-        // 确定删除
-        deleteRow(){
-            this.tableData.splice(this.idx, 1);
-            this.$message.success('删除成功');
-            this.delVisible = false;
-        }
     }
 }
 </script>

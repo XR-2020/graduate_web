@@ -40,6 +40,7 @@
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         localStorage.setItem('ms_username',this.ruleForm.username);
+                        localStorage.setItem('role',"1");
                         this.$router.push('/');
                     } else {
                         console.log('error submit!!');
