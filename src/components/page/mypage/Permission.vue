@@ -26,7 +26,7 @@
                         </el-table-column>
                         <el-table-column prop="object.finishtime" label="完成时间" align="center">
                         </el-table-column>
-                        <el-table-column align="center" label="人员情况" width="185px">
+                        <el-table-column align="center" label="人员情况" width="250px">
                             <template slot-scope="scope">
                                 <el-table :data="scope.row.people" :show-header="false">
                                     <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
@@ -64,7 +64,7 @@
                         </el-table-column>
                         <el-table-column prop="object.finishtime" label="完成时间" align="center">
                         </el-table-column>
-                        <el-table-column align="center" label="人员情况" width="185px">
+                        <el-table-column align="center" label="人员情况" width="250px">
                             <template slot-scope="scope">
                                 <el-table :data="scope.row.people" :show-header="false">
                                     <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
@@ -98,7 +98,7 @@
                         </el-table-column>
                         <el-table-column prop="object.finishtime" label="完成时间" align="center">
                         </el-table-column>
-                        <el-table-column align="center" label="人员情况" width="185px">
+                        <el-table-column align="center" label="人员情况" width="250px">
                             <template slot-scope="scope">
                                 <el-table :data="scope.row.people" :show-header="false">
                                     <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
@@ -134,7 +134,7 @@
                         </el-table-column>
                         <el-table-column prop="object.finishtime" label="完成时间" walign="center">
                         </el-table-column>
-                        <el-table-column align="center" label="人员情况" width="185px">
+                        <el-table-column align="center" label="人员情况" width="250px">
                             <template slot-scope="scope">
                                 <el-table :data="scope.row.people" :show-header="false">
                                     <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
@@ -174,7 +174,7 @@
                         </el-table-column>
                         <el-table-column prop="object.finishtime" label="完成时间" width="120" align="center">
                         </el-table-column>
-                        <el-table-column align="center" label="人员情况" width="185px">
+                        <el-table-column align="center" label="人员情况" width="250px">
                             <template slot-scope="scope">
                                 <el-table :data="scope.row.people" :show-header="false">
                                     <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
@@ -210,7 +210,7 @@
                         </el-table-column>
                         <el-table-column prop="object.finishtime" label="完成时间" align="center">
                         </el-table-column>
-                        <el-table-column align="center" label="人员情况" width="185px">
+                        <el-table-column align="center" label="人员情况" width="250px">
                             <template slot-scope="scope">
                                 <el-table :data="scope.row.people" :show-header="false">
                                     <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
@@ -244,7 +244,7 @@
                         </el-table-column>
                         <el-table-column prop="object.finishtime" label="完成时间" align="center">
                         </el-table-column>
-                        <el-table-column align="center" label="人员情况" width="185px">
+                        <el-table-column align="center" label="人员情况" width="250px">
                             <template slot-scope="scope">
                                 <el-table :data="scope.row.people" :show-header="false">
                                     <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
@@ -284,7 +284,7 @@
                         </el-table-column>
                         <el-table-column prop="object.finishtime" label="完成时间" width="120" align="center">
                         </el-table-column>
-                        <el-table-column align="center" label="人员情况" width="185px">
+                        <el-table-column align="center" label="人员情况" width="250px">
                             <template slot-scope="scope">
                                 <el-table :data="scope.row.people" :show-header="false">
                                     <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
@@ -318,7 +318,7 @@
                         </el-table-column>
                         <el-table-column prop="object.finishtime" label="完成时间"  align="center">
                         </el-table-column>
-                        <el-table-column align="center" label="人员情况" width="185px">
+                        <el-table-column align="center" label="人员情况" width="250px">
                             <template slot-scope="scope">
                                 <el-table :data="scope.row.people" :show-header="false">
                                     <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
@@ -352,7 +352,7 @@
                         </el-table-column>
                         <el-table-column prop="object.finishtime" label="完成时间" align="center">
                         </el-table-column>
-                        <el-table-column align="center" label="人员情况" width="185px">
+                        <el-table-column align="center" label="人员情况" width="250px">
                             <template slot-scope="scope">
                                 <el-table :data="scope.row.people" :show-header="false">
                                     <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
@@ -386,7 +386,7 @@
                         </el-table-column>
                         <el-table-column prop="object.finishtime" label="完成时间" align="center">
                         </el-table-column>
-                        <el-table-column align="center" label="人员情况" width="185px">
+                        <el-table-column align="center" label="人员情况" width="250px">
                             <template slot-scope="scope">
                                 <el-table :data="scope.row.people" :show-header="false">
                                     <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
@@ -420,7 +420,7 @@
                         </el-table-column>
                         <el-table-column prop="object.finishtime" label="完成时间" align="center">
                         </el-table-column>
-                        <el-table-column align="center" label="人员情况" width="185px">
+                        <el-table-column align="center" label="人员情况" width="250px">
                             <template slot-scope="scope">
                                 <el-table :data="scope.row.people" :show-header="false">
                                     <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
@@ -455,7 +455,7 @@
                     </el-table-column>
                     <el-table-column prop="object.level" label="比赛等级"  align="center">
                     </el-table-column>
-                    <el-table-column align="center" label="指导教师情况" width="185px">
+                    <el-table-column align="center" label="人员情况" width="250px">
                         <template slot-scope="scope">
                             <el-table :data="scope.row.people" :show-header="false">
                                 <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
@@ -494,7 +494,7 @@
                         </el-table-column>
                         <el-table-column prop="object.finishtime" label="获奖时间"  align="center">
                         </el-table-column>
-                        <el-table-column align="center" label="获奖人员情况" width="185px">
+                        <el-table-column align="center" label="人员情况" width="250px">
                             <template slot-scope="scope">
                                 <el-table :data="scope.row.people" :show-header="false">
                                     <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
@@ -524,11 +524,28 @@
 <script>
 import chanxueyan from '../show/chanxueyan_edit'
 import {getAllShenBao, getAllWaiting, getSearchShenBao} from "../../../api/shenbaoAPI";
+import {
+    getChanXueYanMetails,
+    getHengXiangKeYanMetails,
+    getJiaoYanLunWenMetails,
+    getJiaoYanMetails,
+    getJiaoYuGuiHuaMetails,
+    getKeYanLunWenMetails,
+    getKeYanXiangMuJieXiangMetails,
+    getMetails,
+    getPingGuZhongXinMetails, getRongYuChengHaoMetails,
+    getRuanJianZhuZuoMetails,
+    getXueKeJingSaiMetails,
+    getZhuanLiMetails,
+    getZhuZuoMetails,
+    getZongXiangKeYanMetails
+} from "../../../api/commonAPI";
 export default {
     name: 'permission',
     components:{"chanxueyan":chanxueyan},
     data() {
         return {
+            metails:{type:'',id:''},
             systemAdmin:false,
             competitionAdmin:false,
             keyanAdmin:false,
@@ -680,7 +697,233 @@ export default {
             this.editVisible = true;
         },
         handleMetails(index, row,type){
-            console.log(row)
+            switch (type) {
+                case 1:{
+                    getChanXueYanMetails({id:row.object.id}).then(res =>{
+                        const blob=new Blob([res],{type:'application/zip'})
+                        console.log(blob)
+                        const downloadElement=document.createElement('a');
+                        const href = window.URL.createObjectURL(blob)
+                        const fileName = (row.object.id+row.object.name+'.zip')
+                        downloadElement.href = href
+                        downloadElement.download = fileName
+                        document.body.appendChild(downloadElement)
+                        downloadElement.click()
+                        document.body.removeChild(downloadElement)
+                        window.URL.revokeObjectURL(href)
+                    })
+                    break;
+                }
+                case 2:{
+                    getJiaoYanMetails({id:row.object.id}).then(res =>{
+                        const blob=new Blob([res],{type:'application/zip'})
+                        console.log(blob)
+                        const downloadElement=document.createElement('a');
+                        const href = window.URL.createObjectURL(blob)
+                        const fileName = (row.object.id+row.object.name+'.zip')
+                        downloadElement.href = href
+                        downloadElement.download = fileName
+                        document.body.appendChild(downloadElement)
+                        downloadElement.click()
+                        document.body.removeChild(downloadElement)
+                        window.URL.revokeObjectURL(href)
+                    })
+                    break;
+                }
+                case 3:{
+                    getJiaoYanLunWenMetails({id:row.object.id}).then(res =>{
+                        const blob=new Blob([res],{type:'application/zip'})
+                        console.log(blob)
+                        const downloadElement=document.createElement('a');
+                        const href = window.URL.createObjectURL(blob)
+                        const fileName = (row.object.id+row.object.name+'.zip')
+                        downloadElement.href = href
+                        downloadElement.download = fileName
+                        document.body.appendChild(downloadElement)
+                        downloadElement.click()
+                        document.body.removeChild(downloadElement)
+                        window.URL.revokeObjectURL(href)
+                    })
+                    break;
+                }
+                case 4:{
+                    getPingGuZhongXinMetails({id:row.object.id}).then(res =>{
+                        const blob=new Blob([res],{type:'application/zip'})
+                        console.log(blob)
+                        const downloadElement=document.createElement('a');
+                        const href = window.URL.createObjectURL(blob)
+                        const fileName = (row.object.id+row.object.name+'.zip')
+                        downloadElement.href = href
+                        downloadElement.download = fileName
+                        document.body.appendChild(downloadElement)
+                        downloadElement.click()
+                        document.body.removeChild(downloadElement)
+                        window.URL.revokeObjectURL(href)
+                    })
+                    break;
+                }
+                case 5:{
+                    getJiaoYuGuiHuaMetails({id:row.object.id}).then(res =>{
+                        const blob=new Blob([res],{type:'application/zip'})
+                        console.log(blob)
+                        const downloadElement=document.createElement('a');
+                        const href = window.URL.createObjectURL(blob)
+                        const fileName = (row.object.id+row.object.name+'.zip')
+                        downloadElement.href = href
+                        downloadElement.download = fileName
+                        document.body.appendChild(downloadElement)
+                        downloadElement.click()
+                        document.body.removeChild(downloadElement)
+                        window.URL.revokeObjectURL(href)
+                    })
+                    break;
+                }
+                case 6:{
+                    getZhuanLiMetails({id:row.object.id}).then(res =>{
+                        const blob=new Blob([res],{type:'application/zip'})
+                        console.log(blob)
+                        const downloadElement=document.createElement('a');
+                        const href = window.URL.createObjectURL(blob)
+                        const fileName = (row.object.id+row.object.name+'.zip')
+                        downloadElement.href = href
+                        downloadElement.download = fileName
+                        document.body.appendChild(downloadElement)
+                        downloadElement.click()
+                        document.body.removeChild(downloadElement)
+                        window.URL.revokeObjectURL(href)
+                    })
+                    break;
+                }
+                case 7:{
+                    getHengXiangKeYanMetails({id:row.object.id}).then(res =>{
+                        const blob=new Blob([res],{type:'application/zip'})
+                        console.log(blob)
+                        const downloadElement=document.createElement('a');
+                        const href = window.URL.createObjectURL(blob)
+                        const fileName = (row.object.id+row.object.name+'.zip')
+                        downloadElement.href = href
+                        downloadElement.download = fileName
+                        document.body.appendChild(downloadElement)
+                        downloadElement.click()
+                        document.body.removeChild(downloadElement)
+                        window.URL.revokeObjectURL(href)
+                    })
+                    break;
+                }
+                case 8:{
+                    getZongXiangKeYanMetails({id:row.object.id}).then(res =>{
+                        const blob=new Blob([res],{type:'application/zip'})
+                        console.log(blob)
+                        const downloadElement=document.createElement('a');
+                        const href = window.URL.createObjectURL(blob)
+                        const fileName = (row.object.id+row.object.name+'.zip')
+                        downloadElement.href = href
+                        downloadElement.download = fileName
+                        document.body.appendChild(downloadElement)
+                        downloadElement.click()
+                        document.body.removeChild(downloadElement)
+                        window.URL.revokeObjectURL(href)
+                    })
+                    break;
+                }
+                case 9:{
+                    getZhuZuoMetails({id:row.object.id}).then(res =>{
+                        const blob=new Blob([res],{type:'application/zip'})
+                        console.log(blob)
+                        const downloadElement=document.createElement('a');
+                        const href = window.URL.createObjectURL(blob)
+                        const fileName = (row.object.id+row.object.name+'.zip')
+                        downloadElement.href = href
+                        downloadElement.download = fileName
+                        document.body.appendChild(downloadElement)
+                        downloadElement.click()
+                        document.body.removeChild(downloadElement)
+                        window.URL.revokeObjectURL(href)
+                    })
+                    break;
+                }
+                case 10:{
+                    getKeYanLunWenMetails({id:row.object.id}).then(res =>{
+                        const blob=new Blob([res],{type:'application/zip'})
+                        console.log(blob)
+                        const downloadElement=document.createElement('a');
+                        const href = window.URL.createObjectURL(blob)
+                        const fileName = (row.object.id+row.object.name+'.zip')
+                        downloadElement.href = href
+                        downloadElement.download = fileName
+                        document.body.appendChild(downloadElement)
+                        downloadElement.click()
+                        document.body.removeChild(downloadElement)
+                        window.URL.revokeObjectURL(href)
+                    })
+                    break;
+                }
+                case 11:{
+                    getRuanJianZhuZuoMetails({id:row.object.id}).then(res =>{
+                        const blob=new Blob([res],{type:'application/zip'})
+                        console.log(blob)
+                        const downloadElement=document.createElement('a');
+                        const href = window.URL.createObjectURL(blob)
+                        const fileName = (row.object.id+row.object.name+'.zip')
+                        downloadElement.href = href
+                        downloadElement.download = fileName
+                        document.body.appendChild(downloadElement)
+                        downloadElement.click()
+                        document.body.removeChild(downloadElement)
+                        window.URL.revokeObjectURL(href)
+                    })
+                    break;
+                }
+                case 12:{
+                    getKeYanXiangMuJieXiangMetails({id:row.object.id}).then(res =>{
+                        const blob=new Blob([res],{type:'application/zip'})
+                        console.log(blob)
+                        const downloadElement=document.createElement('a');
+                        const href = window.URL.createObjectURL(blob)
+                        const fileName = (row.object.id+row.object.name+'.zip')
+                        downloadElement.href = href
+                        downloadElement.download = fileName
+                        document.body.appendChild(downloadElement)
+                        downloadElement.click()
+                        document.body.removeChild(downloadElement)
+                        window.URL.revokeObjectURL(href)
+                    })
+                    break;
+                }
+                case 13:{
+                    getXueKeJingSaiMetails({id:row.object.id}).then(res =>{
+                        const blob=new Blob([res],{type:'application/zip'})
+                        console.log(blob)
+                        const downloadElement=document.createElement('a');
+                        const href = window.URL.createObjectURL(blob)
+                        const fileName = (row.object.id+row.object.name+'.zip')
+                        downloadElement.href = href
+                        downloadElement.download = fileName
+                        document.body.appendChild(downloadElement)
+                        downloadElement.click()
+                        document.body.removeChild(downloadElement)
+                        window.URL.revokeObjectURL(href)
+                    })
+                    break;
+                }
+                case 14:{
+                    getRongYuChengHaoMetails({id:row.object.id}).then(res =>{
+                        const blob=new Blob([res],{type:'application/zip'})
+                        console.log(blob)
+                        const downloadElement=document.createElement('a');
+                        const href = window.URL.createObjectURL(blob)
+                        const fileName = (row.object.id+row.object.name+'.zip')
+                        downloadElement.href = href
+                        downloadElement.download = fileName
+                        document.body.appendChild(downloadElement)
+                        downloadElement.click()
+                        document.body.removeChild(downloadElement)
+                        window.URL.revokeObjectURL(href)
+                    })
+                    break;
+                }
+
+            }
         },
         handleDisPass(index, row,type) {
 
