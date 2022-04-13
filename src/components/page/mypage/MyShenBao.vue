@@ -15,25 +15,25 @@
                 <el-table :data="daishenhe" border style="width: 100%">
                     <el-table-column prop="object.name" label="申报项目名称"  align="center">
                     </el-table-column>
-                    <el-table-column prop="object.type" label="申报项目类别"  align="center">
-                            <template slot-scope="scope">
-                                <span v-if="scope.row.type=='chanxueyan'">产学研</span>
-                                <span v-if="scope.row.type=='competition'">学科竞赛</span>
-                                <span v-if="scope.row.type=='hengxiangkeyanxiangmu'">横向科研项目</span>
-                                <span v-if="scope.row.type=='zongxiangkeyanxiangmu'">纵向科研项目</span>
-                                <span v-if="scope.row.type=='zhuzuo'">著作</span>
-                                <span v-if="scope.row.type=='zhuanli'">专利</span>
-                                <span v-if="scope.row.type=='ruanjianzhuzuoquan'">软件著作权</span>
-                                <span v-if="scope.row.type=='pingguzhongxinxiangguan'">评估中心相关</span>
-                                <span v-if="scope.row.type=='keyanxiangmujiexiang'">科研项目结项</span>
-                                <span v-if="scope.row.type=='keyanlunwen'">科研论文</span>
-                                <span v-if="scope.row.type=='jiaoyuguihuaxiangmu'">教育规划项目</span>
-                                <span v-if="scope.row.type=='jiaoyanxiangmu'">教研项目</span>
-                                <span v-if="scope.row.type=='jiaoyanlunwen'">教研论文</span>
-                                <span v-if="scope.row.type=='honor'">荣誉称号</span>
-                            </template>
+<!--                    <el-table-column prop="object.type" label="申报项目类别"  align="center">-->
+<!--                            <template slot-scope="scope">-->
+<!--                                <span v-if="scope.row.type=='chanxueyan'">产学研</span>-->
+<!--                                <span v-if="scope.row.type=='competition'">学科竞赛</span>-->
+<!--                                <span v-if="scope.row.type=='hengxiangkeyanxiangmu'">横向科研项目</span>-->
+<!--                                <span v-if="scope.row.type=='zongxiangkeyanxiangmu'">纵向科研项目</span>-->
+<!--                                <span v-if="scope.row.type=='zhuzuo'">著作</span>-->
+<!--                                <span v-if="scope.row.type=='zhuanli'">专利</span>-->
+<!--                                <span v-if="scope.row.type=='ruanjianzhuzuoquan'">软件著作权</span>-->
+<!--                                <span v-if="scope.row.type=='pingguzhongxinxiangguan'">评估中心相关</span>-->
+<!--                                <span v-if="scope.row.type=='keyanxiangmujiexiang'">科研项目结项</span>-->
+<!--                                <span v-if="scope.row.type=='keyanlunwen'">科研论文</span>-->
+<!--                                <span v-if="scope.row.type=='jiaoyuguihuaxiangmu'">教育规划项目</span>-->
+<!--                                <span v-if="scope.row.type=='jiaoyanxiangmu'">教研项目</span>-->
+<!--                                <span v-if="scope.row.type=='jiaoyanlunwen'">教研论文</span>-->
+<!--                                <span v-if="scope.row.type=='honor'">荣誉称号</span>-->
+<!--                            </template>-->
 
-                    </el-table-column>
+<!--                    </el-table-column>-->
                     <el-table-column prop="object.partment" label="项目所属部门"  align="center">
                     </el-table-column>
                     <el-table-column align="center" label="项目人员情况" width="250px">
@@ -69,25 +69,25 @@
                 <el-table :data="hadPass" border style="width: 100%">
                     <el-table-column prop="object.name" label="项目名称"  align="center">
                     </el-table-column>
-                    <el-table-column prop="object.type" label="项目类别"  align="center">
-                            <template slot-scope="scope">
-                                <span v-if="scope.row.type=='chanxueyan'">产学研</span>
-                                <span v-if="scope.row.type=='competition'">学科竞赛</span>
-                                <span v-if="scope.row.type=='hengxiangkeyanxiangmu'">横向科研项目</span>
-                                <span v-if="scope.row.type=='zongxiangkeyanxiangmu'">纵向科研项目</span>
-                                <span v-if="scope.row.type=='zhuzuo'">著作</span>
-                                <span v-if="scope.row.type=='zhuanli'">专利</span>
-                                <span v-if="scope.row.type=='ruanjianzhuzuoquan'">软件著作权</span>
-                                <span v-if="scope.row.type=='pingguzhongxinxiangguan'">评估中心相关</span>
-                                <span v-if="scope.row.type=='keyanxiangmujiexiang'">科研项目结项</span>
-                                <span v-if="scope.row.type=='keyanlunwen'">科研论文</span>
-                                <span v-if="scope.row.type=='jiaoyuguihuaxiangmu'">教育规划项目</span>
-                                <span v-if="scope.row.type=='jiaoyanxiangmu'">教研项目</span>
-                                <span v-if="scope.row.type=='jiaoyanlunwen'">教研论文</span>
-                                <span v-if="scope.row.type=='honor'">荣誉称号</span>
-                            </template>
+<!--                    <el-table-column prop="object.type" label="项目类别"  align="center">-->
+<!--                            <template slot-scope="scope">-->
+<!--                                <span v-if="scope.row.type=='chanxueyan'">产学研</span>-->
+<!--                                <span v-if="scope.row.type=='competition'">学科竞赛</span>-->
+<!--                                <span v-if="scope.row.type=='hengxiangkeyanxiangmu'">横向科研项目</span>-->
+<!--                                <span v-if="scope.row.type=='zongxiangkeyanxiangmu'">纵向科研项目</span>-->
+<!--                                <span v-if="scope.row.type=='zhuzuo'">著作</span>-->
+<!--                                <span v-if="scope.row.type=='zhuanli'">专利</span>-->
+<!--                                <span v-if="scope.row.type=='ruanjianzhuzuoquan'">软件著作权</span>-->
+<!--                                <span v-if="scope.row.type=='pingguzhongxinxiangguan'">评估中心相关</span>-->
+<!--                                <span v-if="scope.row.type=='keyanxiangmujiexiang'">科研项目结项</span>-->
+<!--                                <span v-if="scope.row.type=='keyanlunwen'">科研论文</span>-->
+<!--                                <span v-if="scope.row.type=='jiaoyuguihuaxiangmu'">教育规划项目</span>-->
+<!--                                <span v-if="scope.row.type=='jiaoyanxiangmu'">教研项目</span>-->
+<!--                                <span v-if="scope.row.type=='jiaoyanlunwen'">教研论文</span>-->
+<!--                                <span v-if="scope.row.type=='honor'">荣誉称号</span>-->
+<!--                            </template>-->
 
-                    </el-table-column>
+<!--                    </el-table-column>-->
                     <el-table-column prop="object.partment" label="项目所属部门"  align="center">
                     </el-table-column>
                     <el-table-column align="center" label="项目人员情况" width="250px">
@@ -123,24 +123,24 @@
                 <el-table :data="disPass" border style="width: 100%">
                     <el-table-column prop="object.name" label="项目名称"  align="center">
                     </el-table-column>
-                    <el-table-column prop="object.type" label="项目类别" style=""  align="center">
-                            <template slot-scope="scope">
-                                <span v-if="scope.row.type=='chanxueyan'">产学研</span>
-                                <span v-if="scope.row.type=='competition'">学科竞赛</span>
-                                <span v-if="scope.row.type=='hengxiangkeyanxiangmu'">横向科研项目</span>
-                                <span v-if="scope.row.type=='zongxiangkeyanxiangmu'">纵向科研项目</span>
-                                <span v-if="scope.row.type=='zhuzuo'">著作</span>
-                                <span v-if="scope.row.type=='zhuanli'">专利</span>
-                                <span v-if="scope.row.type=='ruanjianzhuzuoquan'">软件著作权</span>
-                                <span v-if="scope.row.type=='pingguzhongxinxiangguan'">评估中心相关</span>
-                                <span v-if="scope.row.type=='keyanxiangmujiexiang'">科研项目结项</span>
-                                <span v-if="scope.row.type=='keyanlunwen'">科研论文</span>
-                                <span v-if="scope.row.type=='jiaoyuguihuaxiangmu'">教育规划项目</span>
-                                <span v-if="scope.row.type=='jiaoyanxiangmu'">教研项目</span>
-                                <span v-if="scope.row.type=='jiaoyanlunwen'">教研论文</span>
-                                <span v-if="scope.row.type=='honor'">荣誉称号</span>
-                            </template>
-                    </el-table-column>
+<!--                    <el-table-column prop="object.type" label="项目类别" style=""  align="center">-->
+<!--                            <template slot-scope="scope">-->
+<!--                                <span v-if="scope.row.type=='chanxueyan'">产学研</span>-->
+<!--                                <span v-if="scope.row.type=='competition'">学科竞赛</span>-->
+<!--                                <span v-if="scope.row.type=='hengxiangkeyanxiangmu'">横向科研项目</span>-->
+<!--                                <span v-if="scope.row.type=='zongxiangkeyanxiangmu'">纵向科研项目</span>-->
+<!--                                <span v-if="scope.row.type=='zhuzuo'">著作</span>-->
+<!--                                <span v-if="scope.row.type=='zhuanli'">专利</span>-->
+<!--                                <span v-if="scope.row.type=='ruanjianzhuzuoquan'">软件著作权</span>-->
+<!--                                <span v-if="scope.row.type=='pingguzhongxinxiangguan'">评估中心相关</span>-->
+<!--                                <span v-if="scope.row.type=='keyanxiangmujiexiang'">科研项目结项</span>-->
+<!--                                <span v-if="scope.row.type=='keyanlunwen'">科研论文</span>-->
+<!--                                <span v-if="scope.row.type=='jiaoyuguihuaxiangmu'">教育规划项目</span>-->
+<!--                                <span v-if="scope.row.type=='jiaoyanxiangmu'">教研项目</span>-->
+<!--                                <span v-if="scope.row.type=='jiaoyanlunwen'">教研论文</span>-->
+<!--                                <span v-if="scope.row.type=='honor'">荣誉称号</span>-->
+<!--                            </template>-->
+<!--                    </el-table-column>-->
                     <el-table-column prop="object.partment" label="项目所属部门"  align="center">
                     </el-table-column>
                     <el-table-column align="center" label="项目人员情况" width="250px">
@@ -185,24 +185,26 @@ export default {
             hadPassPageTotal:'',
             daishenhePageTotal:'',
             daiShenHequery:{
-                key: '',
+                badge: '',
                 pageIndex: 1,
                 pageSize: 5
             },
             hadPassquery:{
-                key: '',
+                badge: '',
                 pageIndex: 1,
                 pageSize: 5
             },
             disPassquery:{
-                key: '',
+                badge: '',
                 pageIndex: 1,
                 pageSize: 5
             },
         }
     },
     created() {
-        this.badge=localStorage.getItem('username')
+        this.daiShenHequery.badge=localStorage.getItem('username')
+        this.hadPassquery.badge=localStorage.getItem('username')
+        this.disPassquery.badge=localStorage.getItem('username')
        this.getData();
     },
     methods: {
@@ -215,19 +217,19 @@ export default {
             this.getDisData()
         },
         getDaiShenHeData(){
-            getDaiShenHeData({badge:this.badge}).then(res =>{
+            getDaiShenHeData(this.daiShenHequery).then(res =>{
                 this.daishenhe=res
                 this.daishenhePageTotal=res.daishenhePageTotal
             } )
         },
         getHadPassData(){
-            getHadPassData({badge:this.badge}).then(res =>{
+            getHadPassData(this.hadPassquery).then(res =>{
                 this.hadPass=res
                 this.hadPassPageTotal=res.hadPassPageTotal
             } )
         },
         getDisData(){
-            getDisData({badge:this.badge}).then(res =>{
+            getDisData(this.disPassquery).then(res =>{
                 this.disPass=res
                 this.disPassPageTotal=res.disPassPageTotal
             } )
