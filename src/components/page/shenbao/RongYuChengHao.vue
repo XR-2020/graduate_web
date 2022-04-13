@@ -11,11 +11,14 @@
                     <el-form-item label="称号名称">
                         <el-input v-model="form.name"></el-input>
                     </el-form-item>
-<!--                    <el-form-item label="称号名称" v-if="show">-->
-<!--                        <el-input v-model="form.name" disabled></el-input>-->
-<!--                    </el-form-item>-->
                     <el-form-item label="级别">
-                        <el-input v-model="form.level"></el-input>
+                            <el-select v-model="form.level" placeholder="请选择">
+                                <el-option key="YuanJi" label="院级" value="院级"></el-option>
+                                <el-option key="XiaoJi" label="校级" value="校级"></el-option>
+                                <el-option key="ShengJi" label="省级" value="省级级"></el-option>
+                                <el-option key="GuoJia" label="国家级" value="国家级"></el-option>
+                                <el-option key="GuoJi" label="国际级" value="国际级"></el-option>
+                            </el-select>
                     </el-form-item>
                     <el-form-item label="部门">
                         <el-input v-model="form.partment"></el-input>

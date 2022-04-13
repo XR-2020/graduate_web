@@ -34,6 +34,8 @@
                                 </el-table>
                             </template>
                         </el-table-column>
+                        <el-table-column prop="object.shenbao" label="申报人" align="center">
+                        </el-table-column>
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,1)">下载证明材料</el-button>
@@ -72,6 +74,7 @@
                                 </el-table>
                             </template>
                         </el-table-column>
+                        <el-table-column prop="object.shenbao" label="申报人" align="center">
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,2)">下载证明材料</el-button>
@@ -106,6 +109,7 @@
                                 </el-table>
                             </template>
                         </el-table-column>
+                        <el-table-column prop="object.shenbao" label="申报人" align="center">
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,3)">下载证明材料</el-button>
@@ -142,6 +146,7 @@
                                 </el-table>
                             </template>
                         </el-table-column>
+                        <el-table-column prop="object.shenbao" label="申报人" align="center">
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,4)">下载证明材料</el-button>
@@ -182,6 +187,7 @@
                                 </el-table>
                             </template>
                         </el-table-column>
+                        <el-table-column prop="object.shenbao" label="申报人" align="center">
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,5)">下载证明材料</el-button>
@@ -218,6 +224,7 @@
                                 </el-table>
                             </template>
                         </el-table-column>
+                        <el-table-column prop="object.shenbao" label="申报人" align="center">
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,6)">下载证明材料</el-button>
@@ -252,6 +259,7 @@
                                 </el-table>
                             </template>
                         </el-table-column>
+                        <el-table-column prop="object.shenbao" label="申报人" align="center">
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,7)">下载证明材料</el-button>
@@ -284,6 +292,7 @@
                         </el-table-column>
                         <el-table-column prop="object.finishtime" label="完成时间" width="120" align="center">
                         </el-table-column>
+                        <el-table-column prop="object.shenbao" label="申报人" align="center">
                         <el-table-column align="center" label="人员情况" width="250px">
                             <template slot-scope="scope">
                                 <el-table :data="scope.row.people" :show-header="false">
@@ -326,6 +335,7 @@
                                 </el-table>
                             </template>
                         </el-table-column>
+                        <el-table-column prop="object.shenbao" label="申报人" align="center">
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,9)">下载证明材料</el-button>
@@ -360,6 +370,7 @@
                                 </el-table>
                             </template>
                         </el-table-column>
+                        <el-table-column prop="object.shenbao" label="申报人" align="center">
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,10)">下载证明材料</el-button>
@@ -394,6 +405,7 @@
                                 </el-table>
                             </template>
                         </el-table-column>
+                        <el-table-column prop="object.shenbao" label="申报人" align="center">
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,11)">下载证明材料</el-button>
@@ -463,10 +475,11 @@
                             </el-table>
                         </template>
                     </el-table-column>
-                    <el-table-column prop="student" label="参赛学生" align="center">
+                    <el-table-column prop="object.student" label="参赛学生" align="center">
                     </el-table-column>
-                    <el-table-column prop="finishtime" label="获奖时间" align="center">
+                    <el-table-column prop="object.finishtime" label="获奖时间" align="center">
                     </el-table-column>
+                    <el-table-column prop="object.shenbao" label="申报人" align="center">
                     <el-table-column label="操作" width="280px"  align="center">
                         <template slot-scope="scope">
                             <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,13)">下载证明材料</el-button>
@@ -502,6 +515,7 @@
                                 </el-table>
                             </template>
                         </el-table-column>
+                        <el-table-column prop="object.shenbao" label="申报人" align="center">
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
                                 <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,14)">下载证明材料</el-button>
