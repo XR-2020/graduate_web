@@ -123,6 +123,10 @@ export default new Router({
                     path: '/纵向科研项目申报',
                     component: resolve => require(['../components/page/shenbao/ZongXiangKeYan.vue'], resolve),
                     meta: { title: '纵向科研项目申报' }
+                },{
+                    path: '/我的申报',
+                    component: resolve => require(['../components/page/mypage/MyShenBao.vue'], resolve),
+                    meta: { title: '纵向科研项目申报' }
                 },
                 // {
                 //     path: '/tabs',

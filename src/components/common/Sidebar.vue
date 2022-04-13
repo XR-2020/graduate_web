@@ -31,6 +31,11 @@
                 collapse: false,
                 items: [
                     {
+                        icon: 'el-icon-tickets',
+                        index: '我的申报',
+                        title: '我的申报'
+                    },
+                    {
                         icon: 'el-icon-setting',
                         index: '系统首页',
                         title: '系统首页'
