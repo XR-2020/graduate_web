@@ -126,7 +126,7 @@ export default new Router({
                 },{
                     path: '/我的申报',
                     component: resolve => require(['../components/page/mypage/MyShenBao.vue'], resolve),
-                    meta: { title: '纵向科研项目申报' }
+                    meta: { title: '纵向科研项目申报',permission2: true }
                 },
                 // {
                 //     path: '/tabs',
@@ -219,6 +219,10 @@ export default new Router({
         {
             path: '/403',
             component: resolve => require(['../components/page/403.vue'], resolve)
+        },
+        {
+            path: '/406',
+            component: resolve => require(['../components/page/406.vue'], resolve)
         },
         {
             path: '*',

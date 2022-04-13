@@ -28,6 +28,7 @@
     export default {
         data() {
             return {
+                role:4,
                 collapse: false,
                 items: [
                     {

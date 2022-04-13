@@ -38,6 +38,12 @@ router.beforeEach((to, from, next) => {
                 next('/403');
             }
         }
+    }else if(to.meta.permission2){
+        if(role!=5){
+            next('/406');
+        }else{
+            next();
+        }
     }else{
         // 简单的判断IE10及以下不进入富文本编辑器，该组件不兼容
         if(navigator.userAgent.indexOf('MSIE') > -1 && to.path === '/editor'){

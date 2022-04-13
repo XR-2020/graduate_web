@@ -82,6 +82,7 @@
                                 <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
                             </template>
                         </el-table-column>
+                        </el-table-column>
                     </el-table>
                     <div class="pagination">
                         <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="jiaoyanxiangmuPageTotal">
@@ -116,6 +117,7 @@
                                 <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
                                 <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
                             </template>
+                        </el-table-column>
                         </el-table-column>
                     </el-table>
                     <div class="pagination">
@@ -153,6 +155,7 @@
                                 <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
                                 <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
                             </template>
+                        </el-table-column>
                         </el-table-column>
                     </el-table>
                     <div class="pagination">
@@ -195,6 +198,7 @@
                                 <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
                             </template>
                         </el-table-column>
+                        </el-table-column>
                     </el-table>
                     <div class="pagination">
                         <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="jiaoyuguihuaPageTotal">
@@ -232,6 +236,7 @@
                                 <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
                             </template>
                         </el-table-column>
+                        </el-table-column>
                     </el-table>
                     <div class="pagination">
                         <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="zhuanliPageTotal">
@@ -266,6 +271,7 @@
                                 <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
                                 <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
                             </template>
+                        </el-table-column>
                         </el-table-column>
                     </el-table>
                     <div class="pagination">
@@ -308,6 +314,7 @@
                                 <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
                             </template>
                         </el-table-column>
+                        </el-table-column>
                     </el-table>
                     <div class="pagination">
                         <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="zongxiangkeyanPageTotal">
@@ -342,6 +349,7 @@
                                 <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
                                 <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
                             </template>
+                        </el-table-column>
                         </el-table-column>
                     </el-table>
                     <div class="pagination">
@@ -378,6 +386,7 @@
                                 <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
                             </template>
                         </el-table-column>
+                        </el-table-column>
                     </el-table>
                     <div class="pagination">
                         <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="keyanlunwenPageTotal">
@@ -412,6 +421,7 @@
                                 <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
                                 <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
                             </template>
+                        </el-table-column>
                         </el-table-column>
                     </el-table>
                     <div class="pagination">
@@ -487,6 +497,7 @@
                             <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
                         </template>
                     </el-table-column>
+                    </el-table-column>
                 </el-table>
                 <div class="pagination">
                     <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="xuekejingsaiPageTotal">
@@ -522,6 +533,7 @@
                                 <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
                                 <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
                             </template>
+                        </el-table-column>
                         </el-table-column>
                     </el-table>
                     <div class="pagination">
