@@ -39,7 +39,7 @@
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        localStorage.setItem('ms_username',this.ruleForm.username);
+                        localStorage.setItem('username',this.ruleForm.username);
                         localStorage.setItem('role',this.ruleForm.username);
                         this.$router.push('/');
                     } else {

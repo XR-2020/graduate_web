@@ -10,6 +10,8 @@
                 <br>
                 <p style="color: #6f7180">待审核</p>
                 <br>
+<!--                <el-input v-model="daiShenHequery.key" placeholder="筛选关键词" style="width: 200px" class="handle-input mr10"></el-input>-->
+<!--                <el-button type="primary" icon="search" @click="searchDaiShenHe">搜索</el-button>-->
                 <el-table :data="daishenhe" border style="width: 100%">
                     <el-table-column prop="object.name" label="申报项目名称"  align="center">
                     </el-table-column>
@@ -61,6 +63,9 @@
                 <br>
                 <p style="color: #5daf34">已通过</p>
                 <br>
+<!--                <el-input v-model="hadPassquery.key" placeholder="筛选关键词" class="handle-input mr10" style="width: 200px"></el-input>-->
+<!--                <el-button type="primary" icon="search" @click="searchHadPass">搜索</el-button>-->
+                <br>
                 <el-table :data="hadPass" border style="width: 100%">
                     <el-table-column prop="object.name" label="项目名称"  align="center">
                     </el-table-column>
@@ -111,6 +116,9 @@
             <div>
                 <br>
                 <p style="color: #dd6161">未通过</p>
+                <br>
+<!--                <el-input v-model="disPassquery.key" placeholder="筛选关键词" style="width: 200px" class="handle-input mr10"></el-input>-->
+<!--                <el-button type="primary" icon="search" @click="searchDisPass">搜索</el-button>-->
                 <br>
                 <el-table :data="disPass" border style="width: 100%">
                     <el-table-column prop="object.name" label="项目名称"  align="center">
@@ -169,6 +177,7 @@ export default {
     name: "MyShenBao",
     data: function(){
         return {
+            badge:'',
             disPass:[],
             hadPass:[],
             daishenhe:[],
@@ -193,13 +202,36 @@ export default {
         }
     },
     created() {
+        this.badge=localStorage.getItem('username')
        this.getData();
     },
     methods: {
-        getData(){},
-        getDaiShenHeData(){},
-        getHadPassData(){},
-        getDisData(){},
+        // searchDaiShenHe(){},
+        // searchHadPass(){},
+        // searchDisPass(){},
+        getData(){
+            this.getDaiShenHeData()
+            this.getHadPassData()
+            this.getDisData()
+        },
+        getDaiShenHeData(){
+            getDaiShenHeData({badge:this.badge}).then(res =>{
+                this.daishenhe=res
+                this.daishenhePageTotal=res.daishenhePageTotal
+            } )
+        },
+        getHadPassData(){
+            getHadPassData({badge:this.badge}).then(res =>{
+                this.hadPass=res
+                this.hadPassPageTotal=res.hadPassPageTotal
+            } )
+        },
+        getDisData(){
+            getDisData({badge:this.badge}).then(res =>{
+                this.disPass=res
+                this.disPassPageTotal=res.disPassPageTotal
+            } )
+        },
         handleDisPassChange(val){
             this.$set(this.disPassquery, 'pageIndex', val);
             this.getDisData();
