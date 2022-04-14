@@ -40,6 +40,13 @@ export const getJiaoYanLunWenDetail = query => {
         params: query
     });
 };
+export const getJiaoYanLunWenDetailBadge = query => {
+    return request({
+        url: '/getJiaoYanLunWenDetailBadge',
+        method: 'get',
+        params: query
+    });
+};
 export const updateJiaoYanLunWen = query => {
     return request({
         url: '/updateJiaoYanLunWen',

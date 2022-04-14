@@ -7,43 +7,42 @@
         </div>
         <div class="container">
             <div class="form-box">
-                <el-form ref="form" :model="form" label-width="80px">
-                    <el-form-item label="项目名称">
-                    <el-input value="form.name" disabled></el-input>
-                    </el-form-item>
+                <el-form ref="form" :model="form" label-width="100px">
                     <el-form-item label="部门">
-                        <el-input value="form.partment" disabled></el-input>
+                        <el-input v-model="form.partment"></el-input>
                     </el-form-item>
-<!--                    <el-form-item label="项目名称" v-if="show">-->
-<!--                        <el-input v-model="form.name" disabled></el-input>-->
-<!--                    </el-form-item>-->
+                    <el-form-item label="项目名称">
+                        <el-input v-model="form.name"></el-input>
+                    </el-form-item>
                     <el-form-item label="立项部门">
-                        <el-input value="form.lixiang" disabled></el-input>
+                        <el-input v-model="form.lixiang"></el-input>
                     </el-form-item>
                     <el-form-item label="项目类别">
-                        <el-input value="form.type" disabled></el-input>
+                        <el-input v-model="form.type"></el-input>
                     </el-form-item>
                     <el-form-item label="项目级别">
-                        <el-input value="form.level" disabled></el-input>
+                        <el-input v-model="form.level"></el-input>
                     </el-form-item>
-<!--                    <el-form-item multiple filterable label="人员情况" v-if="!show">-->
-<!--                        <el-select multiple filterable v-model="form.people">-->
-<!--                            <el-option-->
-<!--                                v-for="item in teacher_list"-->
-<!--                                :key="item.badge"-->
-<!--                                :label="item.badge+'—'+item.name"-->
-<!--                                :value="item.badge">-->
-<!--                            </el-option>-->
-<!--                        </el-select>-->
-<!--                    </el-form-item>-->
-                    <el-form-item label="完成人工号">
-                        <el-input value="form.badge" disabled></el-input>
+
+                    <el-form-item label="参与人情况">
+                        <el-select multiple filterable v-model="form.people" @change="handleChange">
+                            <el-option
+                                v-for="item in teacher_list"
+                                :key="item.badge"
+                                :label="item.badge+'—'+item.name"
+                                :value="item.badge">
+                            </el-option>
+                        </el-select>
                     </el-form-item>
-                    <el-form-item label="完成人">
-                        <el-input value="form.name" disabled></el-input>
+                    <el-form-item label="完成时间">
+                        <el-input v-show="isInput" v-model="form.finishtime" disabled />
+                        <el-col :span="11">
+                            <el-date-picker type="date" placeholder="选择日期" @change="change" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
+                        </el-col>
                     </el-form-item>
-                        <el-form-item label="完成时间">
-                            <el-input value="form.finishtime" disabled></el-input>
+                    <el-form-item>
+                        <el-button type="primary" @click="onSubmit">提交</el-button>
+                        <el-button @click="closethis">取消</el-button>
                     </el-form-item>
                 </el-form>
             </div>
@@ -53,90 +52,40 @@
 </template>
 
 <script>
+    import {getTeacherList} from "../../../api/commonAPI";
+
     export default {
         name: 'zongxiangkeyan',
-        props:['show'],
+        props:['edit'],
         mounted:function(){
             this.form=this.edit
-            this.is_editor=false
         },
         data: function(){
             return {
                 is_editor:true,
-                options:[
-                    {
-                        value: 'guangdong',
-                        label: '广东省',
-                        children: [
-                            {
-                                value: 'guangzhou',
-                                label: '广州市',
-                                children: [
-                                    {
-                                        value: 'tianhe',
-                                        label: '天河区'
-                                    },
-                                    {
-                                        value: 'haizhu',
-                                        label: '海珠区'
-                                    }
-                                ]
-                            },
-                            {
-                                value: 'dongguan',
-                                label: '东莞市',
-                                children: [
-                                    {
-                                        value: 'changan',
-                                        label: '长安镇'
-                                    },
-                                    {
-                                        value: 'humen',
-                                        label: '虎门镇'
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        value: 'hunan',
-                        label: '湖南省',
-                        children: [
-                            {
-                                value: 'changsha',
-                                label: '长沙市',
-                                children: [
-                                    {
-                                        value: 'yuelu',
-                                        label: '岳麓区'
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ],
-                form: {
-                    name: '',
-                    finishtime: '',
-                    people:[],
-                    level:'',
-                    type:'',
-                    lixiang:'',
-                    partment:'',
-                    delivery: true,
-
-                },
-                teacher_list:[{
-                    name:'教师1',
-                    badge:12112,
-                },{
-                    name:'教师2',
-                    badge:12113,
-                }],
+                form: { },
+                teacher_list:[],
+                isInput:true
             }
 
         },
+        created() {
+            getTeacherList().then(res =>{
+                this.teacher_list=res
+            } )
+        },
         methods: {
+            change(){
+                this.isInput=false
+            },
+            handleChange(item){
+                this.isPeople=false
+                this.$forceUpdate();
+
+            },
+            closethis(){
+                this.$parent.$parent.closeDialog()
+            },
             onSubmit() {
                 console.log(this.form);
                 // this.$message.success('提交成功！');

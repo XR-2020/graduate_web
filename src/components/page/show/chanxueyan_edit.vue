@@ -6,68 +6,78 @@
             </el-breadcrumb>
         </div>
         <div class="container">
-            <div class="form-box">
-                <el-form ref="form" :model="form" label-width="100px">
-                    <el-form-item label="项目名称">
-                        <el-input v-model="form.name" disabled></el-input>
-                    </el-form-item>
-                    <el-form-item label="部门">
-                        <el-input v-model="form.partment" disabled></el-input>
-                    </el-form-item>
-<!--                    <el-form-item label="项目名称" v-if="show">-->
-<!--                        <el-input v-model="form.name" disabled></el-input>-->
-<!--                    </el-form-item>-->
-                    <el-form-item label="立项文号" v-if="form.wenhao">
-                        <el-input v-model="form.wenhao" disabled></el-input>
-                    </el-form-item>
-                    <el-form-item label="成果依据" v-if="form.lianghua">
-                        <el-input v-model="form.lianghua" disabled></el-input>
-                    </el-form-item>
-                    <el-form-item label="立项依据" v-if="form.lixiang">
-                        <el-input v-model="form.lixiang" disabled></el-input>
-                    </el-form-item>
-                    <el-form-item label="项目级别" v-if="form.level">
-                        <el-input v-model="form.level" disabled></el-input>
-                    </el-form-item>
-                    <el-form-item label="成果类型" v-if="form.type">
-                        <el-input v-model="form.type" disabled></el-input>
-                    </el-form-item>
-                    <el-form-item  label="立项单位" v-if="form.danwei">
-                        <el-input v-model="form.danwei" disabled></el-input>
-                    </el-form-item>
-                    <el-form-item label="成果等级" v-if="form.grade">
-                        <el-input v-model="form.grade" disabled></el-input>
-                    </el-form-item>
-                    <el-form-item multiple filterable label="参与人情况" v-if="form.people" >
-                        <el-input v-model="form.people" disabled></el-input>
-                    </el-form-item>
-                    <el-form-item label="完成时间">
-                        <el-input v-model="form.finishtime" disabled></el-input>
-                    </el-form-item>
-                </el-form>
-            </div>
+            <el-form ref="form" :model="form" label-width="100px">
+                <el-form-item label="部门">
+                    <el-input v-model="form.partment"></el-input>
+                </el-form-item>
+                <el-form-item label="项目名称">
+                    <el-input v-model="form.name"></el-input>
+                </el-form-item>
+                <el-form-item label="立项文号">
+                    <el-input v-model="form.wenhao"></el-input>
+                </el-form-item>
+                <el-form-item label="成果依据">
+                    <el-input v-model="form.lianghua"></el-input>
+                </el-form-item>
+                <el-form-item label="参与人情况">
+                    <el-select multiple filterable v-model="form.people" @change="handleChange">
+                        <el-option
+                            v-for="item in teacher_list"
+                            :key="item.badge"
+                            :label="item.badge+'—'+item.name"
+                            :value="item.badge">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="完成时间">
+                    <el-input v-show="isInput" v-model="form.finishtime" disabled />
+                    <el-col :span="11">
+                        <el-date-picker type="date" placeholder="选择日期" @change="change" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
+                    </el-col>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="onSubmit">提交</el-button>
+                   <el-button @click="closethis">取消</el-button>
+                </el-form-item>
+            </el-form>
         </div>
     </div>
 </template>
 
 <script>
+    import {getTeacherList} from "../../../api/commonAPI";
+
     export default {
         name: 'tool',
-        props:['show'],
+        props:['edit'],
         data: function(){
             return {
                 form: {},
                 is_editor:true,
+                teacher_list:[],
+                isInput:true
             }
         },
         mounted:function(){
-            this.form=this.show
-            this.is_editor=false
+            this.form=this.edit
+            console.log(this.form)
+        },
+        created() {
+            this.form=this.edit
+            getTeacherList().then(res =>{
+                this.teacher_list=res
+            } )
         },
         methods: {
+            change(){
+                this.isInput=false
+            },
             onSubmit() {
                 console.log(this.form);
                // this.$message.success('提交成功！');
+            },
+            closethis(){
+                this.$parent.$parent.closeDialog()
             }
         }
     }

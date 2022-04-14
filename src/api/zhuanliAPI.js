@@ -40,3 +40,10 @@ export const getZhuanLiDetail = query => {
         params: query
     });
 };
+export const getZhuanLiDetailBadge = query => {
+    return request({
+        url: '/getZhuanLiDetailBadge',
+        method: 'get',
+        params: query
+    });
+};

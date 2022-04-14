@@ -40,3 +40,10 @@ export const getRuanJianZhuZuoDetail = query => {
         params: query
     });
 };
+export const getRuanJianZhuZuoDetailBadge = query => {
+    return request({
+        url: '/getRuanJianZhuZuoDetailBadge',
+        method: 'get',
+        params: query
+    });
+};

@@ -47,3 +47,10 @@ export const updateZongXiangKeYan = query => {
         data: query
     });
 };
+export const getZongXiangKeYanDetailBadge = query => {
+    return request({
+        url: '/getZongXiangKeYanDetailBadge',
+        method: 'get',
+        params: query
+    });
+};

@@ -40,3 +40,11 @@ export const getHengXiangKeYanDetail = query => {
         params: query
     });
 };
+
+export const getHengXiangKeYanDetailBadge = query => {
+    return request({
+        url: '/getHengXiangKeYanDetailBadge',
+        method: 'get',
+        params: query
+    });
+};

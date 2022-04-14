@@ -40,3 +40,11 @@ export const getZhuZuoDetail = query => {
         params: query
     });
 };
+
+export const getZhuZuoDetailBadge = query => {
+    return request({
+        url: '/getZhuZuoDetailBadge',
+        method: 'get',
+        params: query
+    });
+};

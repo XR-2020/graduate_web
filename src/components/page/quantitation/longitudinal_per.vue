@@ -51,8 +51,45 @@
         </div>
 
         <!-- 编辑弹出框 -->
-        <el-dialog title="编辑" :visible.sync="editVisible" width="80%">
-            <zongxiangkeyan v-bind:edit="form"/>
+        <el-dialog title="编辑" :visible.sync="editVisible" width="50%">
+            <el-form ref="form" :model="form" label-width="100px">
+                <el-form-item label="项目名称">
+                    <el-input v-model="form.name"></el-input>
+                </el-form-item>
+                <el-form-item label="部门">
+                    <el-input style="width: 310px" v-model="form.partment"></el-input>
+                </el-form-item>
+                <el-form-item label="立项部门">
+                    <el-input style="width: 310px" v-model="form.lixiang"></el-input>
+                </el-form-item>
+                <el-form-item label="项目类别">
+                    <el-input style="width: 310px" v-model="form.type"></el-input>
+                </el-form-item>
+                <el-form-item label="项目级别">
+                    <el-input style="width: 310px" v-model="form.level"></el-input>
+                </el-form-item>
+
+                <el-form-item label="参与人情况">
+                    <el-select multiple filterable v-model="form.people">
+                        <el-option
+                            v-for="item in teacher_list"
+                            :key="item.badge"
+                            :label="item.badge+'—'+item.name"
+                            :value="item.badge">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="完成时间">
+                    <el-input style="width: 250px" v-show="isInput" v-model="form.finishtime" disabled /><br>
+                    <el-col :span="11">
+                        <el-date-picker type="date" placeholder="选择日期" @change="change" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
+                    </el-col>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="onSubmit">提交</el-button>
+                    <el-button @click="editVisible=false">取消</el-button>
+                </el-form-item>
+            </el-form>
         </el-dialog>
 
         <!--查看完成人弹出框-->
@@ -68,14 +105,19 @@
 </template>
 
 <script>
-import zongxiangkeyan from '../shenbao/ZongXiangKeYan'
-import {getAllChanXueYan, getChanXueYanDetail, getSearchChanXueYan} from "../../../api/chanxueyanAPI";
+import zongxiangkeyan from '../show/ZongXiangKeYan_edit'
+import {
+    getAllChanXueYan,
+    getChanXueYanDetail,
+    getChanXueYanDetailBadge,
+    getSearchChanXueYan
+} from "../../../api/chanxueyanAPI";
 import {
     deleteOneZongXiangKeYan, deleteZongXiangKeYan, getAllZongXiangKeYan,
     getSearchZongXiangKeYan,
-    getZongXiangKeYanDetail
+    getZongXiangKeYanDetail, getZongXiangKeYanDetailBadge
 } from "../../../api/zongxiangkeyanAPI";
-import {crawlerWebSite} from "../../../api/commonAPI";
+import {crawlerWebSite, getTeacherList} from "../../../api/commonAPI";
     export default {
         name: 'longitudinal_per',
         components:{'zongxiangkeyan':zongxiangkeyan},
@@ -101,11 +143,16 @@ import {crawlerWebSite} from "../../../api/commonAPI";
                 delVisible: false,
                 form: {},
                 idx: -1,
-                idList:[]
+                idList:[],
+                teacher_list:[],
+                isInput:true
             }
         },
         created() {
             this.getData();
+            getTeacherList().then(res =>{
+                this.teacher_list=res
+            } )
         },
         computed: {
             data() {
@@ -129,6 +176,13 @@ import {crawlerWebSite} from "../../../api/commonAPI";
             }
         },
         methods: {
+            change(){
+                this.isInput=false
+            },
+            onSubmit() {
+                console.log(this.form);
+                // this.$message.success('提交成功！');
+            },
             //爬取网站
             crawlerWeb(td){
                 alert("正在爬取....请稍后")
@@ -141,6 +195,9 @@ import {crawlerWebSite} from "../../../api/commonAPI";
             handleCurrentChange(val) {
                 this.$set(this.query, 'pageIndex', val);
                 this.getData();
+            },
+            closeDialog(){
+                this.editVisible = false;
             },
             // 获取 easy-mock 的模拟数据
             getData() {
@@ -176,8 +233,10 @@ import {crawlerWebSite} from "../../../api/commonAPI";
                 return row.tag === value;
             },
             handleEdit(index, row) {
-                const item = this.tableData[index];
-                this.form=item;
+                getZongXiangKeYanDetailBadge({id: row.id}).then(res =>{
+                    this.form.people=res.data
+                } )
+                this.form=row;
                 this.editVisible = true;
             },
             handleDelete(index, row) {

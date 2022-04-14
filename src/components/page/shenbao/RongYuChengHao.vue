@@ -24,7 +24,7 @@
                         <el-input v-model="form.partment"></el-input>
                     </el-form-item>
 
-                    <el-form-item multiple filterable label="获奖人员" v-if="!edit">
+                    <el-form-item multiple filterable label="获奖人员">
                         <el-select multiple filterable v-model="form.people">
                             <el-option
                                 v-for="item in teacher_list"
@@ -33,12 +33,6 @@
                                 :value="item.badge">
                             </el-option>
                         </el-select>
-                    </el-form-item>
-                    <el-form-item label="获奖人工号" v-if="edit">
-                        <el-input v-model="form.teacher_num"></el-input>
-                    </el-form-item>
-                    <el-form-item label="获奖人" v-if="edit">
-                        <el-input v-model="form.teacher_name"></el-input>
                     </el-form-item>
                     <el-form-item label="获奖时间">
                         <el-col :span="11">

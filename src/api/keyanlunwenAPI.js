@@ -40,3 +40,10 @@ export const getKeYanLunWenDetail = query => {
         params: query
     });
 };
+export const getKeYanLunWenDetailBadge = query => {
+    return request({
+        url: '/getKeYanLunWenDetailBadge',
+        method: 'get',
+        params: query
+    });
+};

@@ -40,3 +40,11 @@ export const getKeYanXiangMuJieXiangDetail = query => {
         params: query
     });
 };
+
+export const getKeYanXiangMuJieXiangDetailBadge = query => {
+    return request({
+        url: '/getKeYanXiangMuJieXiangDetailBadge',
+        method: 'get',
+        params: query
+    });
+};

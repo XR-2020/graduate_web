@@ -40,6 +40,13 @@ export const getChanXueYanDetail = query => {
         params: query
     });
 };
+export const getChanXueYanDetailBadge = query => {
+    return request({
+        url: '/getChanXueYanDetailBadge',
+        method: 'get',
+        params: query
+    });
+};
 export const updateChanXueYan = query => {
     return request({
         url: '/insertChanXueYan',

@@ -40,6 +40,13 @@ export const getPingGuZhongXinDetail = query => {
         params: query
     });
 };
+export const getPingGuZhongXinDetailBadge = query => {
+    return request({
+        url: '/getPingGuZhongXinDetailBadge',
+        method: 'get',
+        params: query
+    });
+};
 export const updatePingGuZhongXin = query => {
     return request({
         url: '/updatePingGuZhongXin',

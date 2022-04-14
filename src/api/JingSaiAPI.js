@@ -40,6 +40,13 @@ export const getJingSaiDetail = query => {
         params: query
     });
 };
+export const getJingSaiDetailBadge = query => {
+    return request({
+        url: '/getJingSaiDetailBadge',
+        method: 'get',
+        params: query
+    });
+};
 
 export const insertCompetition = query => {
     return request({

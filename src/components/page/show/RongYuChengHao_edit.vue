@@ -9,22 +9,39 @@
             <div class="form-box">
                 <el-form ref="form" :model="form" label-width="100px">
                     <el-form-item label="称号名称">
-                        <el-input value="form.name" disabled></el-input>
+                        <el-input v-model="form.name"></el-input>
                     </el-form-item>
-<!--                    <el-form-item label="称号名称" v-if="show">-->
-<!--                        <el-input v-model="form.name" disabled></el-input>-->
-<!--                    </el-form-item>-->
                     <el-form-item label="级别">
-                        <el-input value="form.level" disabled></el-input>
+                        <el-select v-model="form.level" placeholder="请选择">
+                            <el-option key="YuanJi" label="院级" value="院级"></el-option>
+                            <el-option key="XiaoJi" label="校级" value="校级"></el-option>
+                            <el-option key="ShengJi" label="省级" value="省级级"></el-option>
+                            <el-option key="GuoJia" label="国家级" value="国家级"></el-option>
+                            <el-option key="GuoJi" label="国际级" value="国际级"></el-option>
+                        </el-select>
                     </el-form-item>
-                    <el-form-item label="教师工号" disabled>
-                        <el-input value="form.teacher_num"></el-input>
+                    <el-form-item label="部门">
+                        <el-input v-model="form.partment"></el-input>
                     </el-form-item>
-                    <el-form-item label="教师姓名" disabled>
-                        <el-input value="form.teacher_name"></el-input>
+                    <el-form-item label="参与人情况">
+                        <el-select multiple filterable v-model="form.people" @change="handleChange">
+                            <el-option
+                                v-for="item in teacher_list"
+                                :key="item.badge"
+                                :label="item.badge+'—'+item.name"
+                                :value="item.badge">
+                            </el-option>
+                        </el-select>
                     </el-form-item>
-                    <el-form-item label="获奖时间">
-                        <el-input value="form.finishtime" disabled></el-input>
+                    <el-form-item label="完成时间">
+                        <el-input v-show="isInput" v-model="form.finishtime" disabled />
+                        <el-col :span="11">
+                            <el-date-picker type="date" placeholder="选择日期" @change="change" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
+                        </el-col>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" @click="onSubmit">提交</el-button>
+                        <el-button @click="closethis">取消</el-button>
                     </el-form-item>
                 </el-form>
             </div>
@@ -34,6 +51,8 @@
 </template>
 
 <script>
+    import {getTeacherList} from "../../../api/commonAPI";
+
     export default {
         name: 'rongyuchenghao',
         props:['show'],
@@ -44,75 +63,27 @@
         data: function(){
             return {
                 is_editor:true,
-                options:[
-                    {
-                        value: 'guangdong',
-                        label: '广东省',
-                        children: [
-                            {
-                                value: 'guangzhou',
-                                label: '广州市',
-                                children: [
-                                    {
-                                        value: 'tianhe',
-                                        label: '天河区'
-                                    },
-                                    {
-                                        value: 'haizhu',
-                                        label: '海珠区'
-                                    }
-                                ]
-                            },
-                            {
-                                value: 'dongguan',
-                                label: '东莞市',
-                                children: [
-                                    {
-                                        value: 'changan',
-                                        label: '长安镇'
-                                    },
-                                    {
-                                        value: 'humen',
-                                        label: '虎门镇'
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        value: 'hunan',
-                        label: '湖南省',
-                        children: [
-                            {
-                                value: 'changsha',
-                                label: '长沙市',
-                                children: [
-                                    {
-                                        value: 'yuelu',
-                                        label: '岳麓区'
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ],
-                form: {
-                    name: '',
-                     finishtime: '',
-                    people:[],
-                    level:'',
-                    delivery: true,
-                },
-                teacher_list:[{
-                    name:'教师1',
-                    badge:12112,
-                },{
-                    name:'教师2',
-                    badge:12113,
-                }],
+                form: {},
+                teacher_list:[],
+                isInput:false
             }
         },
+        created() {
+            getTeacherList().then(res =>{
+                this.teacher_list=res
+            } )
+        },
+        closethis(){
+            this.$parent.$parent.closeDialog()
+        },
         methods: {
+            change(){
+                this.isInput=false
+            },
+            handleChange(item){
+                this.$forceUpdate();
+
+            },
             onSubmit() {
                 console.log(this.form);
                 // this.$message.success('提交成功！');

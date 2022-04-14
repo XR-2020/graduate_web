@@ -9,30 +9,40 @@
             <div class="form-box">
                 <el-form ref="form" :model="form" label-width="100px">
                     <el-form-item label="项目名称">
-                        <el-input value="form.name" disabled></el-input>
+                        <el-input v-model="form.name"></el-input>
                     </el-form-item>
-<!--                    <el-form-item label="项目名称" v-if="show">-->
-<!--                        <el-input v-model="form.name" disabled></el-input>-->
-<!--                    </el-form-item>-->
                     <el-form-item label="组织结题单位">
-                        <el-input value="form.danwei" disabled></el-input>
+                        <el-input v-model="form.danwei"></el-input>
                     </el-form-item>
                     <el-form-item label="项目级别">
-                        <el-input value="form.level" disabled></el-input>
+                        <el-input v-model="form.level"></el-input>
                     </el-form-item>
                     <el-form-item label="结题等级">
-                        <el-input value="form.grade" disabled></el-input>
+                        <el-input v-model="form.grade"></el-input>
                     </el-form-item>
                     <el-form-item label="部门">
-                        <el-input value="form.partment" disabled></el-input>
+                        <el-input v-model="form.partment"></el-input>
                     </el-form-item>
-                    <el-form-item label="完成人工号" disabled>
-                        <el-input value="form.badge"></el-input>
+                    <el-form-item label="参与人情况">
+                        <el-select multiple filterable v-model="form.people" @change="handleChange">
+                            <el-option
+                                v-for="item in teacher_list"
+                                :key="item.badge"
+                                :label="item.badge+'—'+item.name"
+                                :value="item.badge">
+                            </el-option>
+                        </el-select>
                     </el-form-item>
-                    <el-form-item label="完成人" disabled>
-                        <el-input value="form.tea_name"></el-input>
+                    <el-form-item label="完成时间">
+                        <el-input v-show="isInput" v-model="form.finishtime" disabled />
+                        <el-col :span="11">
+                            <el-date-picker type="date" placeholder="选择日期" @change="change" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
+                        </el-col>
                     </el-form-item>
-                    <el-input label="完成时间" value="form.finishtime" disabled></el-input>
+                    <el-form-item>
+                        <el-button type="primary" @click="onSubmit">提交</el-button>
+                        <el-button @click="closethis">取消</el-button>
+                    </el-form-item>
                 </el-form>
             </div>
         </div>
@@ -41,36 +51,38 @@
 </template>
 
 <script>
+    import {getTeacherList} from "../../../api/commonAPI";
+
     export default {
         name: 'jiaoyuguihua',
-        props:['show'],
+        props:['edit'],
         mounted:function(){
             this.form=this.edit
-            this.is_editor=false
         },
         data: function(){
             return {
                 is_editor:true,
-                form: {
-                    name: '',
-                     finishtime: '',
-                    people:[],
-                    partment:'',
-                    level:'',
-                    danwei:'',
-                    grade:'',
-                    delivery: true,
-                },
-                teacher_list:[{
-                    name:'教师1',
-                    badge:12112,
-                },{
-                    name:'教师2',
-                    badge:12113,
-                }],
+                form: {},
+                teacher_list:[],
+                isInput:true
             }
         },
+        closethis(){
+            this.$parent.$parent.closeDialog()
+        },
+        created() {
+            getTeacherList().then(res =>{
+                this.teacher_list=res
+            } )
+        },
         methods: {
+            change(){
+                this.isInput=false
+            },
+            handleChange(item){
+                this.$forceUpdate();
+
+            },
             onSubmit() {
                 console.log(this.form);
                 // this.$message.success('提交成功！');

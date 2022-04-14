@@ -40,6 +40,13 @@ export const getSearchJiaoYuGuiHuaDetail = query => {
         params: query
     });
 };
+export const getJiaoYuGuiHuaDetailBadge = query => {
+    return request({
+        url: '/getJiaoYuGuiHuaDetailBadge',
+        method: 'get',
+        params: query
+    });
+};
 export const updateJiaoYuGuiHua = query => {
     return request({
         url: '/updateJiaoYuGuiHua',

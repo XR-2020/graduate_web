@@ -53,8 +53,36 @@
         </div>
 
         <!-- 编辑弹出框 -->
-        <el-dialog title="编辑" :visible.sync="editVisible" width="80%">
-            <jiaoyulunwen v-bind:edit="form"/>
+        <el-dialog title="编辑" :visible.sync="editVisible" width="50%">
+            <el-form ref="form" :model="form" label-width="100px">
+                <el-form-item label="论文名称">
+                    <el-input v-model="form.name"></el-input>
+                </el-form-item>
+                <el-form-item label="部门">
+                    <el-input style="width: 310px" v-model="form.partment"></el-input>
+                </el-form-item>
+
+                <el-form-item label="参与人情况">
+                    <el-select multiple filterable v-model="form.people">
+                        <el-option
+                            v-for="item in teacher_list"
+                            :key="item.badge"
+                            :label="item.badge+'—'+item.name"
+                            :value="item.badge">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="完成时间">
+                    <el-input style="width: 250px" v-show="isInput" v-model="form.finishtime" disabled /><br>
+                    <el-col :span="11">
+                        <el-date-picker type="date" placeholder="选择日期" @change="change" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
+                    </el-col>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="onSubmit">提交</el-button>
+                    <el-button @click="editVisible=false">取消</el-button>
+                </el-form-item>
+            </el-form>
         </el-dialog>
 
         <!--查看完成人弹出框-->
@@ -70,16 +98,16 @@
 </template>
 
 <script>
-import jiaoYulunwen from "../shenbao/JiaoYanLunWen";
+import jiaoYulunwen from "../show/JiaoYanLunWen_edit";
 import {getAllChanXueYan, getChanXueYanDetail, getSearchChanXueYan} from "../../../api/chanxueyanAPI";
 import {
     deleteJiaoYanLunWen,
     deleteOneJiaoYanLunWen,
     getAllJiaoYanLunWen,
-    getJiaoYanLunWenDetail,
+    getJiaoYanLunWenDetail, getJiaoYanLunWenDetailBadge,
     getSearchJiaoYanLunWen
 } from "../../../api/jiaoyanlunwenAPI";
-import {crawlerWebSite} from "../../../api/commonAPI";
+import {crawlerWebSite, getTeacherList} from "../../../api/commonAPI";
     export default {
         name: 'teach_paper',
         components:{'jiaoyulunwen':jiaoYulunwen},
@@ -105,11 +133,16 @@ import {crawlerWebSite} from "../../../api/commonAPI";
                 delVisible: false,
                 form: {},
                 idx: -1,
-                idList:[]
+                idList:[],
+                teacher_list:[],
+                isInput:true
             }
         },
         created() {
             this.getData();
+            getTeacherList().then(res =>{
+                this.teacher_list=res
+            } )
         },
         computed: {
             data() {
@@ -133,6 +166,13 @@ import {crawlerWebSite} from "../../../api/commonAPI";
             }
         },
         methods: {
+            change(){
+                this.isInput=false
+            },
+            onSubmit() {
+                console.log(this.form);
+                // this.$message.success('提交成功！');
+            },
             //爬取网站
             crawlerWeb(td){
                 alert("正在爬取....请稍后")
@@ -140,6 +180,9 @@ import {crawlerWebSite} from "../../../api/commonAPI";
                     alert(res);
                     this.getData();
                 })
+            },
+            closeDialog(){
+                this.editVisible = false;
             },
             // 分页导航
             handleCurrentChange(val) {
@@ -180,8 +223,10 @@ import {crawlerWebSite} from "../../../api/commonAPI";
                 this.isdetail=true;
             },
             handleEdit(index, row) {
-                const item = this.tableData[index];
-                this.form=item;
+                getJiaoYanLunWenDetailBadge({id: row.id}).then(res =>{
+                    this.form.people=res.data
+                } )
+                this.form=row;
                 this.editVisible = true;
             },
             handleDelete(index, row) {

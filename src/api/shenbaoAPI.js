@@ -14,3 +14,10 @@ export const getAllWaiting = query => {
         params: query
     });
 };
+export const newUpdateHeBing = query => {
+    return request({
+        url: '/newUpdateHeBing',
+        method: 'post',
+        data: query
+    });
+};
