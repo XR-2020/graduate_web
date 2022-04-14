@@ -126,7 +126,7 @@ export default new Router({
                 },{
                     path: '/我的申报',
                     component: resolve => require(['../components/page/mypage/MyShenBao.vue'], resolve),
-                    meta: { title: '纵向科研项目申报',permission2: true }
+                    meta: { title: '我的申报',permission2: true }
                 },
                 // {
                 //     path: '/tabs',

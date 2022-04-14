@@ -23,3 +23,11 @@ export const getDaiShenHeData = query => {
         params: query
     });
 };
+
+export const deleteMyShenBao = query => {
+    return request({
+        url: '/deleteMyShenBao',
+        method: 'post',
+        params: query
+    });
+};
