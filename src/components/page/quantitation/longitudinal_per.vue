@@ -113,7 +113,7 @@ import {
     getSearchChanXueYan
 } from "../../../api/chanxueyanAPI";
 import {
-    deleteOneZongXiangKeYan, deleteZongXiangKeYan, getAllZongXiangKeYan,
+    deleteOneZongXiangKeYan, deleteZongXiangKeYan, editZongXiangKeYan, getAllZongXiangKeYan,
     getSearchZongXiangKeYan,
     getZongXiangKeYanDetail, getZongXiangKeYanDetailBadge
 } from "../../../api/zongxiangkeyanAPI";

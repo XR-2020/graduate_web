@@ -102,7 +102,7 @@ import jiaoYulunwen from "../show/JiaoYanLunWen_edit";
 import {getAllChanXueYan, getChanXueYanDetail, getSearchChanXueYan} from "../../../api/chanxueyanAPI";
 import {
     deleteJiaoYanLunWen,
-    deleteOneJiaoYanLunWen,
+    deleteOneJiaoYanLunWen, editJiaoYanLunWen,
     getAllJiaoYanLunWen,
     getJiaoYanLunWenDetail, getJiaoYanLunWenDetailBadge,
     getSearchJiaoYanLunWen

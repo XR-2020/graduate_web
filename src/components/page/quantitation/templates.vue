@@ -106,7 +106,7 @@
 import pingguzhongxin from '../show/PingGuZhongXin_edit'
 import {getAllChanXueYan, getChanXueYanDetail, getSearchChanXueYan} from "../../../api/chanxueyanAPI";
 import {
-    deleteOnePingGuZhongXin, deletePingGuZhongXin, getAllPingGuZhongXin,
+    deleteOnePingGuZhongXin, deletePingGuZhongXin, editPingGuZhongXin, getAllPingGuZhongXin,
     getPingGuZhongXinDetail, getPingGuZhongXinDetailBadge,
     getSearchPingGuZhongXin
 } from "../../../api/pingguzhongxinAPI";
