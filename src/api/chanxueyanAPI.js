@@ -54,3 +54,11 @@ export const updateChanXueYan = query => {
         data: query
     });
 };
+
+export const editChanXueYan = query => {
+    return request({
+        url: '/editChanXueYan',
+        method: 'post',
+        data: query
+    });
+};

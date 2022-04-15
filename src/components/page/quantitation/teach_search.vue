@@ -110,7 +110,7 @@
 import jiaoyanxiangmu from "../show/JiaoYanXiangMu_edit";
 import {
     deleteJiaoYan,
-    deleteOneJiaoYan,
+    deleteOneJiaoYan, editJiaoYan,
     getAllJiaoYan,
     getJiaoYanDetail, getJiaoYanDetialBadge,
     getSearchJiaoYan
@@ -176,8 +176,16 @@ import {crawlerWebSite, getTeacherList} from "../../../api/commonAPI";
                 this.isInput=false
             },
             onSubmit() {
-                console.log(this.form);
-                // this.$message.success('提交成功！');
+                this.editVisible = false;
+                console.log(this.form)
+                editJiaoYan(this.form).then(res => {
+                    if(res!==0){
+                        this.$message.success(`修改第 ${this.idx+1} 行成功`);
+                        this.$set(this.tableData, this.idx, this.form);
+                    }else{
+                        this.$message.error(`修改第 ${this.idx+1} 行失败`);
+                    }
+                })
             },
             //爬取网站
             crawlerWeb(td){

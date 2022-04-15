@@ -54,3 +54,11 @@ export const updateJiaoYanLunWen = query => {
         data: query
     });
 };
+
+export const editJiaoYanLunWen = query => {
+    return request({
+        url: '/editJiaoYanLunWen',
+        method: 'post',
+        data: query
+    });
+};

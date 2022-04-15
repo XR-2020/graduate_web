@@ -54,3 +54,10 @@ export const getZongXiangKeYanDetailBadge = query => {
         params: query
     });
 };
+export const editZongXiangKeYan = query => {
+    return request({
+        url: '/editZongXiangKeYan',
+        method: 'post',
+        data: query
+    });
+};

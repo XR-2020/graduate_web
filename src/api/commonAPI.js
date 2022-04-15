@@ -226,3 +226,10 @@ export const passJiaoYan = query => {
         params: query
     });
 };
+export const editHeBing = query => {
+    return request({
+        url: '/editHeBing',
+        method: 'post',
+        data: query
+    });
+};

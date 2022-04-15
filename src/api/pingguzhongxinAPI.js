@@ -54,3 +54,10 @@ export const updatePingGuZhongXin = query => {
         data: query
     });
 };
+export const editPingGuZhongXin = query => {
+    return request({
+        url: '/editPingGuZhongXin',
+        method: 'post',
+        data: query
+    });
+};

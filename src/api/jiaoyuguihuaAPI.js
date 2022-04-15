@@ -54,3 +54,10 @@ export const updateJiaoYuGuiHua = query => {
         data: query
     });
 };
+export const editJiaoYuGuiHua = query => {
+    return request({
+        url: '/editJiaoYuGuiHua',
+        method: 'post',
+        data: query
+    });
+};

@@ -54,3 +54,10 @@ export const updateJiaoYan = query => {
         data: query
     });
 };
+export const editJiaoYan = query => {
+    return request({
+        url: '/editJiaoYan',
+        method: 'post',
+        data: query
+    });
+};

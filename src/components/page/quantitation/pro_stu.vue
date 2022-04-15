@@ -102,6 +102,7 @@
 <script>
 import chanxueyan from '../show/chanxueyan_edit';
 import {
+    editChanXueYan,
     getAllChanXueYan,
     getChanXueYanDetail,
     getChanXueYanDetailBadge,
@@ -175,8 +176,15 @@ import {crawlerWebSite, getTeacherList} from "../../../api/commonAPI";
                 })
             },
             onSubmit() {
-                console.log(this.form);
-                // this.$message.success('提交成功！');
+                this.editVisible = false;
+                editChanXueYan(this.form).then(res => {
+                    if(res!==0){
+                        this.$message.success(`修改第 ${this.idx+1} 行成功`);
+                        this.$set(this.tableData, this.idx, this.form);
+                    }else{
+                        this.$message.error(`修改第 ${this.idx+1} 行失败`);
+                    }
+                })
             },
             // 分页导航
             handleCurrentChange(val) {
@@ -261,13 +269,7 @@ import {crawlerWebSite, getTeacherList} from "../../../api/commonAPI";
                 for (var i=0;i<val.length;i++){
                     this.idList.push(val[i].id)
                 }
-            },
-            // 保存编辑
-            saveEdit() {
-                this.$set(this.tableData, this.idx, this.form);
-                this.editVisible = false;
-                this.$message.success(`修改第 ${this.idx+1} 行成功`);
-            },
+            }
         }
     }
 

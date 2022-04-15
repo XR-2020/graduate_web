@@ -125,33 +125,33 @@
                 this.$message.warning(`当前限制选择 1 个文件，请删除后继续上传！`)
             },
             onSubmit() {
-                switch (this.form.type) {
-                    case "专利":{
-                        this.form.type=2;
-                        break;
-                    }
-                    case "横向科研项目":{
-                        this.form.type=3;
-                        break;
-                    }
-                    case "著作":{
-                        this.form.type=4;
-                        break;
-                    }
-                    case "科研论文":{
-                        this.form.type=5;
-                        break;
-                    }
-                    case "软件著作权":{
-                        this.form.type=6;
-                        break;
-                    }
-                    case "科研项目结项":{
-                        this.form.type=7;
-                        break;
-                    }
-
-                }
+                // switch (this.form.type) {
+                //     case "专利":{
+                //         this.form.type=2;
+                //         break;
+                //     }
+                //     case "横向科研项目":{
+                //         this.form.type=3;
+                //         break;
+                //     }
+                //     case "著作":{
+                //         this.form.type=4;
+                //         break;
+                //     }
+                //     case "科研论文":{
+                //         this.form.type=5;
+                //         break;
+                //     }
+                //     case "软件著作权":{
+                //         this.form.type=6;
+                //         break;
+                //     }
+                //     case "科研项目结项":{
+                //         this.form.type=7;
+                //         break;
+                //     }
+                //
+                // }
                     updateHeBing(this.form).then(res =>{
                         if(res.data!==0){
                             this.$message.success(`添加成功`);
