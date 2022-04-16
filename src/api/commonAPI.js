@@ -233,3 +233,11 @@ export const editHeBing = query => {
         data: query
     });
 };
+
+export const selectProject = query => {
+    return request({
+        url: '/selectProject',
+        method: 'get',
+        params: query
+    });
+};

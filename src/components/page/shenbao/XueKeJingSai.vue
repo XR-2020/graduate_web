@@ -11,8 +11,8 @@
                     <el-form-item label="竞赛名称">
                         <el-input v-model="form.name"></el-input>
                     </el-form-item>
-                    <el-form-item label="获奖等级">
-                        <el-select v-model="form.grade" placeholder="请选择">
+                    <el-form-item label="比赛等级">
+                        <el-select v-model="form.level" placeholder="请选择">
                             <el-option key="YuanJi" label="院级" value="院级"></el-option>
                             <el-option key="XiaoJi" label="校级" value="校级"></el-option>
                             <el-option key="ShengJi" label="省级" value="省级级"></el-option>
@@ -20,8 +20,8 @@
                             <el-option key="GuoJi" label="国际级" value="国际级"></el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item label="比赛级别">
-                        <el-input v-model="form.level"></el-input>
+                    <el-form-item label="获奖级别">
+                        <el-input v-model="form.grade"></el-input>
                     </el-form-item>
                     <el-form-item label="指导教师">
                         <el-select multiple filterable v-model="form.people">

@@ -98,12 +98,6 @@
                     </el-table-column>
                     <el-table-column prop="object.finishtime" label="项目完成时间" align="center">
                     </el-table-column>
-                    <el-table-column label="操作" width="280px"  align="center">
-                        <template slot-scope="scope">
-                            <el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                            <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-                        </template>
-                    </el-table-column>
                 </el-table>
                 <div class="pagination">
                     <el-pagination background @current-change="handleHadPassChange" layout="total,prev, pager, next" :total="hadPassPageTotal">
@@ -158,18 +152,80 @@
                 </div>
             </div>
         </div>
+
+        <el-dialog title="编辑" :visible.sync="editVisible" width="80%">
+            <el-form ref="form" :model="form" label-width="100px">
+                <el-form-item label="项目名称">
+                    <el-input v-model="form.name"></el-input>
+                </el-form-item>
+                <el-form-item v-if="form.level" label="项目等级">
+                    <el-input v-model="form.level"></el-input>
+                </el-form-item>
+                <el-form-item v-if="form.grade" label="项目获奖等级">
+                    <el-input v-model="form.grade"></el-input>
+                </el-form-item>
+                <el-form-item label="项目所属部门">
+                    <el-input v-model="form.partment" disabled></el-input>
+                </el-form-item>
+                <el-form-item label="项目立项文号" v-if="form.wenhao" >
+                    <el-input v-model="form.wenhao"></el-input>
+                </el-form-item>
+                <el-form-item label="项目成果依据"  v-if="form.lianghua">
+                    <el-input v-model="form.lianghua"></el-input>
+                </el-form-item>
+                <el-form-item label="项目级别" v-if="form.level" >
+                    <el-input v-model="form.level"></el-input>
+                </el-form-item>
+                <el-form-item label="参赛学生" v-if="form.student">
+                    <el-input type="textarea" rows="5"  v-model="form.student"></el-input>
+                </el-form-item>
+                <el-form-item label="组织结题单位" v-if="form.danwei" >
+                    <el-input v-model="form.danwei"></el-input>
+                </el-form-item>
+                <el-form-item label="项目人员">
+                    <el-select multiple filterable v-model="form.people" @change="handleChange">
+                        <el-option
+                            v-for="item in teacher_list"
+                            :key="item.badge"
+                            :label="item.badge+'—'+item.name"
+                            :value="item.badge">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="完成时间">
+                    <el-col :span="11">
+                        <el-date-picker type="date" placeholder="选择日期" value-format="yyyy-MM-dd" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
+                    </el-col>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="onSubmit">提交</el-button>
+                    <el-button @click="editVisible=false">取消</el-button>
+                </el-form-item>
+            </el-form>
+        </el-dialog>
         </div>
 </template>
 
 <script>
-import {getTeacherList} from "../../../api/commonAPI";
-import {updateChanXueYan} from "../../../api/chanxueyanAPI";
+import {editHeBing, getTeacherList, selectProject} from "../../../api/commonAPI";
+import {editChanXueYan, updateChanXueYan} from "../../../api/chanxueyanAPI";
 import {deleteMyShenBao, getDaiShenHeData, getDisData, getHadPassData} from "../../../api/myShenBaoAPI";
+import {editHonor} from "../../../api/rongyuAPI";
+import {editJiaoYanLunWen} from "../../../api/jiaoyanlunwenAPI";
+import {editJiaoYuGuiHua} from "../../../api/jiaoyuguihuaAPI";
+import {editJiaoYan} from "../../../api/jiaoyanAPI";
+import {editPingGuZhongXin} from "../../../api/pingguzhongxinAPI";
+import {editZongXiangKeYan} from "../../../api/zongxiangkeyanAPI";
+import {editCompetition} from "../../../api/JingSaiAPI";
 
 export default {
     name: "MyShenBao",
     data: function(){
         return {
+            updatetablename:'',
+            teacher_list:[],
+            form:{},
+            editVisible:false,
             badge:'',
             disPass:[],
             hadPass:[],
@@ -198,12 +254,194 @@ export default {
         this.daiShenHequery.badge=localStorage.getItem('ms_username')
         this.hadPassquery.badge=localStorage.getItem('ms_username')
         this.disPassquery.badge=localStorage.getItem('ms_username')
+        getTeacherList().then(res =>{
+            this.teacher_list=res
+        } )
        this.getData();
     },
     methods: {
         // searchDaiShenHe(){},
         // searchHadPass(){},
         // searchDisPass(){},
+        handleChange(item){
+            this.$forceUpdate();
+        },
+        onSubmit(){
+            this.form.metails=null;
+            switch (this.updatetablename){
+                case "honor":{
+                    editHonor(this.form).then(res => {
+                        if(res!==0){
+                            this.$message.success(`修改成功`);
+                        }else{
+                            this.$message.error(`修改失败`);
+                        }
+                        this.getData()
+                    })
+                    break;
+                }
+                case "jiaoyanlunwen":{
+                    editJiaoYanLunWen(this.form).then(res => {
+                        if(res!==0){
+                            this.$message.success(`修改成功`);
+                            this.$set(this.tableData, this.idx, this.form);
+                        }else{
+                            this.$message.error(`修改失败`);
+                        }
+                    })
+                   break;
+                }
+                case "jiaoyanxiangmu":{
+                    editJiaoYan(this.form).then(res => {
+                        if(res!==0){
+                            this.$message.success(`修改成功`);
+                            this.$set(this.tableData, this.idx, this.form);
+                        }else{
+                            this.$message.error(`修改失败`);
+                        }
+                        this.getData()
+                    })
+                   break;
+                }
+                case "jiaoyuguihuaxiangmu":{
+                    editJiaoYuGuiHua(this.form).then(res => {
+                        if(res!==0){
+                            this.$message.success(`修改成功`);
+                            this.$set(this.tableData, this.idx, this.form);
+                        }else{
+                            this.$message.error(`修改失败`);
+                        }
+                    })
+                    break;
+                }
+                case "keyanlunwen":{
+                    this.form.type=5;
+                    editHeBing(this.form).then(res => {
+                        if(res!==0){
+                            this.$message.success(`修改成功`);
+                            this.$set(this.tableData, this.idx, this.form);
+                        }else{
+                            this.$message.error(`修改失败`);
+                        }
+                        this.getData()
+                    })
+                    break;
+                }
+                case "keyanxiangmujiexiang":{
+                    this.form.type=7;
+                    editHeBing(this.form).then(res => {
+                        if(res!==0){
+                            this.$message.success(`修改成功`);
+                            this.$set(this.tableData, this.idx, this.form);
+                        }else{
+                            this.$message.error(`修改失败`);
+                        }
+                        this.getData()
+                    })
+                    break;
+                }
+                case "pingguzhongxinxiangguan":{
+                    editPingGuZhongXin(this.form).then(res => {
+                        if(res!==0){
+                            this.$message.success(`修改成功`);
+                            this.$set(this.tableData, this.idx, this.form);
+                        }else{
+                            this.$message.error(`修改失败`);
+                        }
+                        this.getData()
+                    })
+                    break;
+                }
+                case "ruanjianzhuzuoquan":{
+                    this.form.type=6;
+                    editHeBing(this.form).then(res => {
+                        if(res!==0){
+                            this.$message.success(`修改成功`);
+                            this.$set(this.tableData, this.idx, this.form);
+                        }else{
+                            this.$message.error(`修改失败`);
+                        }
+                        this.getData()
+                    })
+                    break;
+                }
+                case "zhuanli":{
+                    this.form.type=2;
+                    editHeBing(this.form).then(res => {
+                        if(res!==0){
+                            this.$message.success(`修改成功`);
+                            this.$set(this.tableData, this.idx, this.form);
+                        }else{
+                            this.$message.error(`修改失败`);
+                        }
+                        this.getData()
+                    })
+                    break;
+                }
+                case "zhuzuo":{
+                    this.form.type=4;
+                    editHeBing(this.form).then(res => {
+                        if(res!==0){
+                            this.$message.success(`修改成功`);
+                            this.$set(this.tableData, this.idx, this.form);
+                        }else{
+                            this.$message.error(`修改失败`);
+                        }
+                        this.getData()
+                    })
+                    break;
+                }
+                case "zongxiangkeyanxiangmu":{
+                    editZongXiangKeYan(this.form).then(res => {
+                        if(res!==0){
+                            this.$message.success(`修改成功`);
+                            this.$set(this.tableData, this.idx, this.form);
+                        }else{
+                            this.$message.error(`修改失败`);
+                        }
+                        this.getData()
+                    })
+                    break;
+                }
+                case "hengxiangkeyanxiangmu":{
+                    this.form.type=3;
+                    editHeBing(this.form).then(res => {
+                        if(res!==0){
+                            this.$message.success(`修改成功`);
+                            this.$set(this.tableData, this.idx, this.form);
+                        }else{
+                            this.$message.error(`修改失败`);
+                        }
+                        this.getData()
+                    })
+                    break;
+                }
+                case "competition":{
+                    editCompetition(this.form).then(res => {
+                        if(res!==0){
+                            this.$message.success(`修改成功`);
+                        }else{
+                            this.$message.error(`修改失败`);
+                        }
+                        this.getData()
+                    })
+                    break;
+                }
+                case "chanxueyan":{
+                    editChanXueYan(this.form).then(res => {
+                        if(res!==0){
+                            this.$message.success(`修改成功`);
+                        }else{
+                            this.$message.error(`修改失败`);
+                        }
+                        this.getData()
+                    })
+                    break;
+                }
+            }
+            this.editVisible = false;
+           // this.getDaiShenHeData()
+        },
         getData(){
             this.getDaiShenHeData()
             this.getHadPassData()
@@ -231,7 +469,14 @@ export default {
             this.$set(this.daiShenHequery, 'pageIndex', val);
             this.getDaiShenHeData();
         },
-        handleEdit(index, row) {},
+        handleEdit(index, row) {
+            selectProject({id:row.object.id,tablename:row.tablename}).then(res =>{
+                this.form=res.data.object
+                this.form.people=res.data.people
+                this.updatetablename=row.tablename
+            } )
+            this.editVisible=true
+        },
         handleDelete(index, row) {
             deleteMyShenBao({id:row.object.id,tablename:row.tablename}).then(res =>{
                 if(res===0){

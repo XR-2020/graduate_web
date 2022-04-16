@@ -13,15 +13,17 @@
             </div>
             <el-table :data="tableData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
-                <el-table-column prop="id" label="ID" width="55" align="center">
+                <el-table-column prop="object.id" label="ID" width="55" align="center">
                 </el-table-column>
-                <el-table-column prop="name" label="称号名称" align="center">
+                <el-table-column prop="object.name" label="称号名称" align="center">
                 </el-table-column>
-                <el-table-column prop="level" label="级别"  align="center">
+                <el-table-column prop="object.partment" label="级别"  align="center">
                 </el-table-column>
-                <el-table-column prop="finishtime" label="获奖时间"  align="center">
+                <el-table-column prop="object.level" label="级别"  align="center">
                 </el-table-column>
-                <el-table-column align="center" label="获奖教师" width="185px">
+                <el-table-column prop="object.finishtime" label="获奖时间"  align="center">
+                </el-table-column>
+                <el-table-column align="center" label="获奖人员情况" width="185px">
                     <template slot-scope="scope">
                         <el-table :data="scope.row.people" :show-header="false">
                             <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
@@ -56,7 +58,7 @@
                     <el-select v-model="form.level" placeholder="请选择">
                         <el-option key="YuanJi" label="院级" value="院级"></el-option>
                         <el-option key="XiaoJi" label="校级" value="校级"></el-option>
-                        <el-option key="ShengJi" label="省级" value="省级级"></el-option>
+                        <el-option key="ShengJi" label="省级" value="省级"></el-option>
                         <el-option key="GuoJia" label="国家级" value="国家级"></el-option>
                         <el-option key="GuoJi" label="国际级" value="国际级"></el-option>
                     </el-select>
@@ -228,10 +230,11 @@ import {getTeacherList} from "../../../api/commonAPI";
                 return row.tag === value;
             },
             handleEdit(index, row) {
-                getHonorBadge({id: row.id}).then(res =>{
+                console.log(row)
+                getHonorBadge({id: row.object.id}).then(res =>{
                     this.form.people=res.data
                 } )
-                this.form=row;
+                this.form=row.object;
                 this.editVisible = true;
             },
             handleDelete(index, row) {

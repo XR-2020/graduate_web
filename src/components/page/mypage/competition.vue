@@ -13,13 +13,15 @@
             </div>
             <el-table :data="tableData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
-                <el-table-column prop="id" label="ID" width="55" align="center">
+                <el-table-column prop="object.id" label="ID" width="55" align="center">
                 </el-table-column>
-                <el-table-column prop="name" label="竞赛名称"  align="center">
+                <el-table-column prop="object.name" label="竞赛名称"  align="center">
                 </el-table-column>
-                <el-table-column prop="grade" label="获奖等级"  align="center">
+                <el-table-column prop="object.partment" label="部门"  align="center">
                 </el-table-column>
-                <el-table-column prop="level" label="比赛等级"  align="center">
+                <el-table-column prop="object.grade" label="获奖等级"  align="center">
+                </el-table-column>
+                <el-table-column prop="object.level" label="比赛等级"  align="center">
                 </el-table-column>
                 <el-table-column align="center" label="指导教师情况" width="185px">
                     <template slot-scope="scope">
@@ -29,9 +31,9 @@
                         </el-table>
                     </template>
                 </el-table-column>
-                <el-table-column prop="student" label="参赛学生" align="center">
+                <el-table-column prop="object.student" label="参赛学生" align="center">
                 </el-table-column>
-                <el-table-column prop="finishtime" label="获奖时间" align="center">
+                <el-table-column prop="object.finishtime" label="获奖时间" align="center">
                 </el-table-column>
                 <el-table-column label="操作" width="200px"  align="center">
                     <template slot-scope="scope">
@@ -64,6 +66,9 @@
                         <el-option key="GuoJia" label="国家级" value="国家级"></el-option>
                         <el-option key="GuoJi" label="国际级" value="国际级"></el-option>
                     </el-select>
+                </el-form-item>
+                <el-form-item label="部门">
+                    <el-input v-model="form.partment" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="比赛级别">
                     <el-input v-model="form.level"></el-input>
@@ -215,10 +220,7 @@ import {editHeBing, getTeacherList} from "../../../api/commonAPI";
                 }
             },
             search() {
-                getSearchJingSai(this.query).then(res =>{
-                    this.tableData = res.list
-                    this.pageTotal=res.pageTotal
-                } )
+                this.getData()
                 this.is_search = true;
             },
             handleDetail(index, row){
@@ -234,10 +236,10 @@ import {editHeBing, getTeacherList} from "../../../api/commonAPI";
                 return row.tag === value;
             },
             handleEdit(index, row) {
-                getComputitionBadge({id: row.id}).then(res =>{
+                getComputitionBadge({id: row.object.id}).then(res =>{
                     this.form.people=res.data
                 } )
-                this.form=row;
+                this.form=row.object;
                 this.editVisible = true;
             },
             onSubmit(){
