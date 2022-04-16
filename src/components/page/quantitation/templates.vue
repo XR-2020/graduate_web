@@ -78,9 +78,8 @@
                     </el-select>
                 </el-form-item>
                 <el-form-item label="完成时间">
-                    <el-input style="width: 250px" v-show="isInput" v-model="form.finishtime" disabled /><br>
                     <el-col :span="11">
-                        <el-date-picker type="date" placeholder="选择日期" @change="change" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
+                        <el-date-picker type="date" placeholder="选择日期" value-format="yyyy-MM-dd" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
                     </el-col>
                 </el-form-item>
                 <el-form-item>
@@ -177,11 +176,12 @@ import {crawlerWebSite, getTeacherList} from "../../../api/commonAPI";
                 console.log(this.form)
                 editPingGuZhongXin(this.form).then(res => {
                     if(res!==0){
-                        this.$message.success(`修改第 ${this.idx+1} 行成功`);
+                        this.$message.success(`修改成功`);
                         this.$set(this.tableData, this.idx, this.form);
                     }else{
-                        this.$message.error(`修改第 ${this.idx+1} 行失败`);
+                        this.$message.error(`修改失败`);
                     }
+                    this.getData()
                 })
             },
             //爬取网站

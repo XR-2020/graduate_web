@@ -74,9 +74,8 @@
                         </el-select>
                     </el-form-item>
                     <el-form-item label="完成时间">
-                        <el-input style="width: 250px" v-show="isInput" v-model="form.finishtime" disabled /><br>
                         <el-col :span="11">
-                            <el-date-picker type="date" placeholder="选择日期" @change="change" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
+                            <el-date-picker type="date" placeholder="选择日期" value-format="yyyy-MM-dd" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
                         </el-col>
                     </el-form-item>
                     <el-form-item>
@@ -133,7 +132,6 @@ import {crawlerWebSite, getTeacherList} from "../../../api/commonAPI";
                 form: {},
                 idx: -1,
                 teacher_list:[],
-                isInput:true
             }
         },
         created() {
@@ -164,9 +162,6 @@ import {crawlerWebSite, getTeacherList} from "../../../api/commonAPI";
             }
         },
         methods: {
-            change(){
-                this.isInput=false
-            },
             //爬取网站
             crawlerWeb(td){
                 alert("正在爬取....请稍后")
@@ -179,11 +174,11 @@ import {crawlerWebSite, getTeacherList} from "../../../api/commonAPI";
                 this.editVisible = false;
                 editChanXueYan(this.form).then(res => {
                     if(res!==0){
-                        this.$message.success(`修改第 ${this.idx+1} 行成功`);
-                        this.$set(this.tableData, this.idx, this.form);
+                        this.$message.success(`修改成功`);
                     }else{
-                        this.$message.error(`修改第 ${this.idx+1} 行失败`);
+                        this.$message.error(`修改失败`);
                     }
+                    this.getData()
                 })
             },
             // 分页导航
