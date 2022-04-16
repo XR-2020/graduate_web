@@ -48,3 +48,17 @@ export const updateHonor = query => {
         data: query
     });
 };
+export const editHonor = query => {
+    return request({
+        url: '/editHonor',
+        method: 'post',
+        data: query
+    });
+};
+export const getHonorBadge = query => {
+    return request({
+        url: '/getHonorBadge',
+        method: 'get',
+        params: query
+    });
+};

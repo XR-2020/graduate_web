@@ -62,3 +62,17 @@ export const updateCompetition = query => {
         data: query
     });
 };
+export const editCompetition = query => {
+    return request({
+        url: '/editCompetition',
+        method: 'post',
+        data: query
+    });
+};
+export const getComputitionBadge = query => {
+    return request({
+        url: '/getComputitionBadge',
+        method: 'get',
+        params: query
+    });
+};

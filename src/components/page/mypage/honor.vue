@@ -21,9 +21,13 @@
                 </el-table-column>
                 <el-table-column prop="finishtime" label="获奖时间"  align="center">
                 </el-table-column>
-                <el-table-column prop="badge" label="教师工号" align="center">
-                </el-table-column>
-                <el-table-column prop="tea_name" label="教师姓名"  align="center">
+                <el-table-column align="center" label="获奖教师" width="185px">
+                    <template slot-scope="scope">
+                        <el-table :data="scope.row.people" :show-header="false">
+                            <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
+                            <el-table-column prop="name" align="center"  label="姓名"></el-table-column>
+                        </el-table>
+                    </template>
                 </el-table-column>
                 <el-table-column label="操作" width="200px"  align="center">
                     <template slot-scope="scope">
@@ -44,7 +48,42 @@
 
         <!-- 编辑弹出框 -->
         <el-dialog title="编辑" :visible.sync="editVisible" width="80%">
-            <rongyuchenghao v-bind:edit="form"/>
+            <el-form ref="form" :model="form" label-width="100px">
+                <el-form-item label="称号名称">
+                    <el-input v-model="form.name"></el-input>
+                </el-form-item>
+                <el-form-item label="级别">
+                    <el-select v-model="form.level" placeholder="请选择">
+                        <el-option key="YuanJi" label="院级" value="院级"></el-option>
+                        <el-option key="XiaoJi" label="校级" value="校级"></el-option>
+                        <el-option key="ShengJi" label="省级" value="省级级"></el-option>
+                        <el-option key="GuoJia" label="国家级" value="国家级"></el-option>
+                        <el-option key="GuoJi" label="国际级" value="国际级"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="部门">
+                    <el-input v-model="form.partment"></el-input>
+                </el-form-item>
+                <el-form-item label="获奖教师">
+                    <el-select multiple filterable v-model="form.people">
+                        <el-option
+                            v-for="item in teacher_list"
+                            :key="item.badge"
+                            :label="item.badge+'—'+item.name"
+                            :value="item.badge">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="完成时间">
+                    <el-col :span="11">
+                        <el-date-picker type="date" placeholder="选择日期" value-format="yyyy-MM-dd" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
+                    </el-col>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="onSubmit">提交</el-button>
+                    <el-button @click="editVisible = false">取消</el-button>
+                </el-form-item>
+            </el-form>
         </el-dialog>
 
         <!-- 删除提示框 -->
@@ -80,13 +119,13 @@ import rongyuchenghao from '../shenbao/rongyuchenghao'
 import {getAllJiaoYuGuiHua, getSearchJiaoYuGuiHua, getSearchJiaoYuGuiHuaDetail} from "../../../api/jiaoyuguihuaAPI";
 import {
     deleteOneRongYu,
-    deleteRongYu,
-    getAllRongYu,
-    getRongYuDetail,
+    deleteRongYu, editHonor,
+    getAllRongYu, getHonorBadge,
     getSearchRongYu,
     insertHonor
 } from "../../../api/rongyuAPI";
-import {insertCompetition} from "../../../api/JingSaiAPI";
+import {editCompetition, insertCompetition} from "../../../api/JingSaiAPI";
+import {getTeacherList} from "../../../api/commonAPI";
     export default {
         name: 'honor',
         components:{'rongyuchenghao':rongyuchenghao},
@@ -110,11 +149,15 @@ import {insertCompetition} from "../../../api/JingSaiAPI";
                 delVisible: false,
                 form: {},
                 idx: -1,
-                idList:[]
+                idList:[],
+                teacher_list:[]
             }
         },
         created() {
             this.getData();
+            getTeacherList().then(res =>{
+                this.teacher_list=res
+            } )
         },
         computed: {
             data() {
@@ -167,11 +210,16 @@ import {insertCompetition} from "../../../api/JingSaiAPI";
                 } )
                 this.is_search = true;
             },
-            handleDetail(index, row){
-                getRongYuDetail({id: row.id}).then(res =>{
-                    this.people=res.data
-                } )
-                this.isdetail=true;
+            onSubmit(){
+                this.editVisible = false;
+                editHonor(this.form).then(res => {
+                    if(res!==0){
+                        this.$message.success(`修改成功`);
+                    }else{
+                        this.$message.error(`修改失败`);
+                    }
+                    this.getData()
+                })
             },
             formatter(row, column) {
                 return row.address;
@@ -180,8 +228,10 @@ import {insertCompetition} from "../../../api/JingSaiAPI";
                 return row.tag === value;
             },
             handleEdit(index, row) {
-                const item = this.tableData[index];
-                this.form=item;
+                getHonorBadge({id: row.id}).then(res =>{
+                    this.form.people=res.data
+                } )
+                this.form=row;
                 this.editVisible = true;
             },
             handleDelete(index, row) {

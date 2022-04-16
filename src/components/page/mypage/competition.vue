@@ -21,18 +21,13 @@
                 </el-table-column>
                 <el-table-column prop="level" label="比赛等级"  align="center">
                 </el-table-column>
-<!--                <el-table-column align="center" label="指导教师" width="185px">-->
-<!--                    <template slot-scope="scope">-->
-<!--                        <el-table :data="scope.row.teacher" :show-header="header">-->
-<!--                            <el-table-column prop="badge" align="center"  label="工号"></el-table-column>-->
-<!--                            <el-table-column prop="name" align="center"  label="姓名"></el-table-column>-->
-<!--                        </el-table>-->
-<!--                    </template>-->
-<!--                </el-table-column>-->
-
-            <el-table-column prop="badge" label="指导教师工号"  align="center">
-                </el-table-column>
-                <el-table-column prop="tea_name" label="指导教师"  align="center">
+                <el-table-column align="center" label="指导教师情况" width="185px">
+                    <template slot-scope="scope">
+                        <el-table :data="scope.row.people" :show-header="false">
+                            <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
+                            <el-table-column prop="name" align="center"  label="姓名"></el-table-column>
+                        </el-table>
+                    </template>
                 </el-table-column>
                 <el-table-column prop="student" label="参赛学生" align="center">
                 </el-table-column>
@@ -57,7 +52,45 @@
 
         <!-- 编辑弹出框 -->
         <el-dialog title="编辑" :visible.sync="editVisible" width="80%">
-            <xuekejingsai v-bind:edit="form"/>
+            <el-form ref="form" :model="form" label-width="100px">
+                <el-form-item label="竞赛名称">
+                    <el-input v-model="form.name"></el-input>
+                </el-form-item>
+                <el-form-item label="获奖等级">
+                    <el-select v-model="form.grade" placeholder="请选择">
+                        <el-option key="YuanJi" label="院级" value="院级"></el-option>
+                        <el-option key="XiaoJi" label="校级" value="校级"></el-option>
+                        <el-option key="ShengJi" label="省级" value="省级级"></el-option>
+                        <el-option key="GuoJia" label="国家级" value="国家级"></el-option>
+                        <el-option key="GuoJi" label="国际级" value="国际级"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="比赛级别">
+                    <el-input v-model="form.level"></el-input>
+                </el-form-item>
+                <el-form-item label="参赛学生">
+                    <el-input type="textarea" rows="5" v-model="form.student"></el-input>
+                </el-form-item>
+                <el-form-item label="指导教师">
+                    <el-select multiple filterable v-model="form.people">
+                        <el-option
+                            v-for="item in teacher_list"
+                            :key="item.badge"
+                            :label="item.badge+'—'+item.name"
+                            :value="item.badge">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="完成时间">
+                    <el-col :span="11">
+                        <el-date-picker type="date" placeholder="选择日期" value-format="yyyy-MM-dd" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
+                    </el-col>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="onSubmit">提交</el-button>
+                    <el-button @click="editVisible=false">取消</el-button>
+                </el-form-item>
+            </el-form>
         </el-dialog>
 
         <!-- 删除提示框 -->
@@ -95,12 +128,13 @@ import xuekejingsai from '../shenbao/XueKeJingSai'
 import {deleteOneRongYu, deleteRongYu, getAllRongYu, getSearchRongYu} from "../../../api/rongyuAPI";
 import {
     deleteJingSai,
-    deleteOneJingSai,
-    getAllJingSai,
+    deleteOneJingSai, editCompetition,
+    getAllJingSai, getComputitionBadge,
     getJingSaiDetail,
     getSearchJingSai, insertCompetition
 } from "../../../api/JingSaiAPI";
-import {getZhuZuoDetail} from "../../../api/zhuzuoAPI";
+import {getZhuZuoDetail, getZhuZuoDetailBadge} from "../../../api/zhuzuoAPI";
+import {editHeBing, getTeacherList} from "../../../api/commonAPI";
     export default {
         name: 'competition',
         components:{'xuekejingsai':xuekejingsai},
@@ -125,11 +159,16 @@ import {getZhuZuoDetail} from "../../../api/zhuzuoAPI";
                 form: {},
                 idx: -1,
                 idList:[],
-                isimport:false
+                isimport:false,
+                teacher_list:[]
+
             }
         },
         created() {
             this.getData();
+            getTeacherList().then(res =>{
+                this.teacher_list=res
+            } )
         },
         computed: {
             data() {
@@ -195,9 +234,22 @@ import {getZhuZuoDetail} from "../../../api/zhuzuoAPI";
                 return row.tag === value;
             },
             handleEdit(index, row) {
-                const item = this.tableData[index];
-                this.form=item;
+                getComputitionBadge({id: row.id}).then(res =>{
+                    this.form.people=res.data
+                } )
+                this.form=row;
                 this.editVisible = true;
+            },
+            onSubmit(){
+                this.editVisible = false;
+                editCompetition(this.form).then(res => {
+                    if(res!==0){
+                        this.$message.success(`修改成功`);
+                    }else{
+                        this.$message.error(`修改失败`);
+                    }
+                    this.getData()
+                })
             },
             handleDelete(index, row) {
                 // 二次确认删除

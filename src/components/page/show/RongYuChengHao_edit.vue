@@ -34,14 +34,13 @@
                         </el-select>
                     </el-form-item>
                     <el-form-item label="完成时间">
-                        <el-input v-show="isInput" v-model="form.finishtime" disabled />
                         <el-col :span="11">
-                            <el-date-picker type="date" placeholder="选择日期" @change="change" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
+                            <el-date-picker type="date" placeholder="选择日期" value-format="yyyy-MM-dd" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
                         </el-col>
                     </el-form-item>
                     <el-form-item>
                         <el-button type="primary" @click="onSubmit">提交</el-button>
-                        <el-button @click="closethis">取消</el-button>
+                        <el-button @click="editVisible = false">取消</el-button>
                     </el-form-item>
                 </el-form>
             </div>

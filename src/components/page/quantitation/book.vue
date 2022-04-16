@@ -249,7 +249,6 @@ import {crawlerWebSite, editHeBing, getTeacherList} from "../../../api/commonAPI
                 return row.tag === value;
             },
             handleEdit(index, row) {
-                this.form={}
                 getZhuZuoDetailBadge({id: row.id}).then(res =>{
                     this.form.people=res.data
                 } )
