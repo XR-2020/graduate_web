@@ -23,13 +23,15 @@
                 </el-table-column>
                 <el-table-column prop="object.finishtime" label="获奖时间"  align="center">
                 </el-table-column>
-                <el-table-column align="center" label="获奖人员情况" width="185px">
-                    <template slot-scope="scope">
-                        <el-table :data="scope.row.people" :show-header="false">
-                            <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
-                            <el-table-column prop="name" align="center"  label="姓名"></el-table-column>
-                        </el-table>
-                    </template>
+<!--                <el-table-column align="center" label="获奖人员情况" width="185px">-->
+<!--                    <template slot-scope="scope">-->
+<!--                        <el-table :data="scope.row.people" :show-header="false">-->
+<!--                            <el-table-column prop="badge" align="center"  label="工号"></el-table-column>-->
+<!--                            <el-table-column prop="name" align="center"  label="姓名"></el-table-column>-->
+<!--                        </el-table>-->
+<!--                    </template>-->
+<!--                </el-table-column>-->
+                <el-table-column prop="object.teacher" label="获奖教师"  align="center">
                 </el-table-column>
                 <el-table-column label="操作" width="200px"  align="center">
                     <template slot-scope="scope">
@@ -67,15 +69,18 @@
                     <el-input v-model="form.partment"></el-input>
                 </el-form-item>
                 <el-form-item label="获奖教师">
-                    <el-select multiple filterable v-model="form.people">
-                        <el-option
-                            v-for="item in teacher_list"
-                            :key="item.badge"
-                            :label="item.badge+'—'+item.name"
-                            :value="item.badge">
-                        </el-option>
-                    </el-select>
+                    <el-input v-model="form.teacher"></el-input>
                 </el-form-item>
+<!--                <el-form-item label="获奖教师">-->
+<!--                    <el-select multiple filterable v-model="form.people">-->
+<!--                        <el-option-->
+<!--                            v-for="item in teacher_list"-->
+<!--                            :key="item.badge"-->
+<!--                            :label="item.badge+'—'+item.name"-->
+<!--                            :value="item.badge">-->
+<!--                        </el-option>-->
+<!--                    </el-select>-->
+<!--                </el-form-item>-->
                 <el-form-item label="完成时间">
                     <el-col :span="11">
                         <el-date-picker type="date" placeholder="选择日期" value-format="yyyy-MM-dd" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
@@ -97,11 +102,19 @@
             </span>
         </el-dialog>
 
-        <el-dialog title="导入" :visible.sync="isimport" width="30%">
+        <el-dialog title="荣誉称号导入" :visible.sync="isimport" width="40%">
             <el-form ref="form" :model="form" label-width="70px">
+                <h3>模板示例</h3>
+                <br>
+                <div style="text-align: center">
+                    <img src="static/img/honor.PNG" style="border: black solid 1px;margin: auto">
+                </div>
+                <br>
                 <el-upload
+                    align="center"
                     class="upload-demo"
                     drag
+                    accept=".xls,.xlsx"
                     action="http://localhost:8080/honorImport"
                     multiple>
                     <i class="el-icon-upload"></i>

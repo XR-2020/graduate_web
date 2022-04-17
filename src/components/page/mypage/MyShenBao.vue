@@ -35,14 +35,14 @@
                     </el-table-column>
                     <el-table-column prop="object.partment" label="项目所属部门"  align="center">
                     </el-table-column>
-                    <el-table-column align="center" label="项目人员情况" width="250px">
-                        <template slot-scope="scope">
-                            <el-table :data="scope.row.people" :show-header="false">
-                                <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
-                                <el-table-column prop="name" align="center"  label="姓名"></el-table-column>
-                            </el-table>
-                        </template>
-                    </el-table-column>
+<!--                    <el-table-column align="center" label="项目人员情况" width="250px" v-if="object.people">-->
+<!--                        <template slot-scope="scope">-->
+<!--                            <el-table :data="scope.row.people" :show-header="false">-->
+<!--                                <el-table-column prop="badge" align="center"  label="工号"></el-table-column>-->
+<!--                                <el-table-column prop="name" align="center"  label="姓名"></el-table-column>-->
+<!--                            </el-table>-->
+<!--                        </template>-->
+<!--                    </el-table-column>-->
                     <el-table-column prop="object.finishtime" label="项目完成时间" align="center">
                     </el-table-column>
                     <el-table-column label="操作" width="280px"  align="center">
@@ -53,7 +53,11 @@
                     </el-table-column>
                 </el-table>
                 <div class="pagination">
-                    <el-pagination background @current-change="handleDaiShenHeChange" layout="total,prev, pager, next" :total="daishenhePageTotal">
+                    <el-pagination background layout="total, prev, pager, next"
+                                   @current-change="handleDaiShenHeChange"
+                                   :current-page="daiShenHequery.pageIndex"
+                                   :page-size="daiShenHequery.pageSize"
+                                   :total="daishenhePageTotal">
                     </el-pagination>
                 </div>
             </div>
@@ -88,19 +92,25 @@
                     </el-table-column>
                     <el-table-column prop="object.partment" label="项目所属部门"  align="center">
                     </el-table-column>
-                    <el-table-column align="center" label="项目人员情况" width="250px">
-                        <template slot-scope="scope">
-                            <el-table :data="scope.row.people" :show-header="false">
-                                <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
-                                <el-table-column prop="name" align="center"  label="姓名"></el-table-column>
-                            </el-table>
-                        </template>
-                    </el-table-column>
+<!--                    <el-table-column align="center" label="项目人员情况" width="250px">-->
+<!--                        <template slot-scope="scope">-->
+<!--                            <el-table :data="scope.row.people" :show-header="false">-->
+<!--                                <el-table-column prop="badge" align="center"  label="工号"></el-table-column>-->
+<!--                                <el-table-column prop="name" align="center"  label="姓名"></el-table-column>-->
+<!--                            </el-table>-->
+<!--                        </template>-->
+<!--                    </el-table-column>-->
                     <el-table-column prop="object.finishtime" label="项目完成时间" align="center">
                     </el-table-column>
                 </el-table>
                 <div class="pagination">
-                    <el-pagination background @current-change="handleHadPassChange" layout="total,prev, pager, next" :total="hadPassPageTotal">
+                    <el-pagination
+                        background layout="total, prev, pager, next"
+                        @current-change="handleHadPassChange"
+                        :current-page="hadPassquery.pageIndex"
+                        :page-size="hadPassquery.pageSize"
+                        :total="hadPassPageTotal"
+                    >
                     </el-pagination>
                 </div>
             </div>
@@ -135,19 +145,24 @@
                     </el-table-column>
                     <el-table-column prop="object.partment" label="项目所属部门"  align="center">
                     </el-table-column>
-                    <el-table-column align="center" label="项目人员情况" width="250px">
-                        <template slot-scope="scope">
-                            <el-table :data="scope.row.people" :show-header="false">
-                                <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
-                                <el-table-column prop="name" align="center"  label="姓名"></el-table-column>
-                            </el-table>
-                        </template>
-                    </el-table-column>
+<!--                    <el-table-column align="center" label="项目人员情况" width="250px">-->
+<!--                        <template slot-scope="scope">-->
+<!--                            <el-table :data="scope.row.people" :show-header="false">-->
+<!--                                <el-table-column prop="badge" align="center"  label="工号"></el-table-column>-->
+<!--                                <el-table-column prop="name" align="center"  label="姓名"></el-table-column>-->
+<!--                            </el-table>-->
+<!--                        </template>-->
+<!--                    </el-table-column>-->
                     <el-table-column prop="object.finishtime" label="项目完成时间" align="center">
                     </el-table-column>
                 </el-table>
                 <div class="pagination">
-                    <el-pagination background @current-change="handleDisPassChange" layout="total,prev, pager, next" :total="disPassPageTotal">
+                    <el-pagination
+                        background layout="total, prev, pager, next"
+                        @current-change="handleDisPassChange"
+                        :current-page="hadPassquery.pageIndex"
+                        :page-size="hadPassquery.pageSize"
+                        :total="disPassPageTotal">
                     </el-pagination>
                 </div>
             </div>
@@ -182,7 +197,10 @@
                 <el-form-item label="组织结题单位" v-if="form.danwei" >
                     <el-input v-model="form.danwei"></el-input>
                 </el-form-item>
-                <el-form-item label="项目人员">
+                <el-form-item label="项目人员" v-if="form.teacher">
+                    <el-input v-model="form.teacher"></el-input>
+                </el-form-item>
+                <el-form-item label="项目人员" v-if="form.people">
                     <el-select multiple filterable v-model="form.people" @change="handleChange">
                         <el-option
                             v-for="item in teacher_list"
@@ -219,6 +237,7 @@ import {editZongXiangKeYan} from "../../../api/zongxiangkeyanAPI";
 import {editCompetition} from "../../../api/JingSaiAPI";
 
 export default {
+    inject:['reload'],
     name: "MyShenBao",
     data: function(){
         return {
@@ -230,9 +249,9 @@ export default {
             disPass:[],
             hadPass:[],
             daishenhe:[],
-            disPassPageTotal:'',
-            hadPassPageTotal:'',
-            daishenhePageTotal:'',
+            disPassPageTotal:0,
+            hadPassPageTotal:0,
+            daishenhePageTotal:0,
             daiShenHequery:{
                 badge: 0,
                 pageIndex: 1,
@@ -276,7 +295,6 @@ export default {
                         }else{
                             this.$message.error(`修改失败`);
                         }
-                        this.getData()
                     })
                     break;
                 }
@@ -299,7 +317,6 @@ export default {
                         }else{
                             this.$message.error(`修改失败`);
                         }
-                        this.getData()
                     })
                    break;
                 }
@@ -323,7 +340,6 @@ export default {
                         }else{
                             this.$message.error(`修改失败`);
                         }
-                        this.getData()
                     })
                     break;
                 }
@@ -336,7 +352,6 @@ export default {
                         }else{
                             this.$message.error(`修改失败`);
                         }
-                        this.getData()
                     })
                     break;
                 }
@@ -348,7 +363,6 @@ export default {
                         }else{
                             this.$message.error(`修改失败`);
                         }
-                        this.getData()
                     })
                     break;
                 }
@@ -361,7 +375,6 @@ export default {
                         }else{
                             this.$message.error(`修改失败`);
                         }
-                        this.getData()
                     })
                     break;
                 }
@@ -374,7 +387,6 @@ export default {
                         }else{
                             this.$message.error(`修改失败`);
                         }
-                        this.getData()
                     })
                     break;
                 }
@@ -387,7 +399,6 @@ export default {
                         }else{
                             this.$message.error(`修改失败`);
                         }
-                        this.getData()
                     })
                     break;
                 }
@@ -399,7 +410,6 @@ export default {
                         }else{
                             this.$message.error(`修改失败`);
                         }
-                        this.getData()
                     })
                     break;
                 }
@@ -412,7 +422,6 @@ export default {
                         }else{
                             this.$message.error(`修改失败`);
                         }
-                        this.getData()
                     })
                     break;
                 }
@@ -423,7 +432,6 @@ export default {
                         }else{
                             this.$message.error(`修改失败`);
                         }
-                        this.getData()
                     })
                     break;
                 }
@@ -434,13 +442,12 @@ export default {
                         }else{
                             this.$message.error(`修改失败`);
                         }
-                        this.getData()
                     })
                     break;
                 }
             }
             this.editVisible = false;
-           // this.getDaiShenHeData()
+            this.reload()
         },
         getData(){
             this.getDaiShenHeData()
@@ -468,6 +475,14 @@ export default {
         handleDaiShenHeChange(val){
             this.$set(this.daiShenHequery, 'pageIndex', val);
             this.getDaiShenHeData();
+        },
+        handleHadPassChange(val){
+            this.$set(this.hadPassquery, 'pageIndex', val);
+            this.getHadPassData();
+        },
+        handleDisPassChange(val){
+            this.$set(this.disPassquery, 'pageIndex', val);
+            this.getDisData();
         },
         handleEdit(index, row) {
             selectProject({id:row.object.id,tablename:row.tablename}).then(res =>{

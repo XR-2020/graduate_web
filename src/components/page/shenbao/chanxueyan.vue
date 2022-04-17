@@ -76,22 +76,12 @@ import {insertChanXueYan, updateChanXueYan} from "../../../api/chanxueyanAPI";
 import {getTeacherList} from "../../../api/commonAPI";
 
     export default {
+        inject:['reload'],
         name: 'chanxueyan',
         data: function(){
             return {
                 fileList:[],
                 form: {
-                    role:-1,
-                    name: '',
-                    partment:'',
-                    finishtime: '',
-                    lianghua:'',
-                    wenhao:'',
-                    people:[],
-                    shenbao:'',
-                    path:''
-                },
-                baseform: {
                     role:-1,
                     name: '',
                     partment:'',
@@ -127,6 +117,7 @@ import {getTeacherList} from "../../../api/commonAPI";
                    }
                    this.form=this.baseform
                } );
+               this.reload()
             }
         }
     }

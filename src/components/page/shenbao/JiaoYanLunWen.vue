@@ -75,19 +75,11 @@
     import {getTeacherList} from "../../../api/commonAPI";
 
     export default {
+        inject:['reload'],
         name: 'jiaoyulunwen',
         data: function(){
             return {
                 form: {
-                    role:-1,
-                    name: '',
-                    finishtime: '',
-                    partment:'',
-                    people:[],
-                    shenbao:'',
-                    path:''
-                },
-                baseform: {
                     role:-1,
                     name: '',
                     finishtime: '',
@@ -116,11 +108,10 @@
                 updateJiaoYanLunWen(this.form).then(res =>{
                     if(res.data!==0){
                         this.$message.success(`添加成功`);
-                        this.form=this.baseform
                     }else{
                         this.$message.error(`添加失败，教研研成果已被申报`);
-                        this.form=this.baseform
                     }
+                    this.reload()
                 } );
             }
         }

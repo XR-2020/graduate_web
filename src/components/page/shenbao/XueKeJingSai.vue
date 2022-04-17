@@ -29,7 +29,7 @@
                                 v-for="item in teacher_list"
                                 :key="item.badge"
                                 :label="item.badge+'—'+item.name"
-                                :value="item.badge">
+                                :value="item.name">
                             </el-option>
                         </el-select>
                     </el-form-item>
@@ -86,21 +86,11 @@
     import {getTeacherList} from "../../../api/commonAPI";
 
     export default {
+        inject:['reload'],
         name: 'xuekejingsai',
         data: function(){
             return {
                 form: {
-                    name: '',
-                    finishtime: '',
-                    student:'',
-                    teacher:[],
-                    level:'',
-                    grade:'',
-                    role:-1,
-                    shenbao:'',
-                    path:''
-                },
-                baseform: {
                     name: '',
                     finishtime: '',
                     student:'',
@@ -134,8 +124,7 @@
                     }else{
                         this.$message.error(`添加失败，教研研成果已被申报`);
                     }
-                    this.form=this.baseform
-
+                    this.reload()
                 } );
             }
         }

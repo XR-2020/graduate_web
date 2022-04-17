@@ -81,10 +81,10 @@
     import {getTeacherList} from "../../../api/commonAPI";
 
     export default {
+        inject:['reload'],
         name: 'jiaoyanxiangmu',
         data: function(){
             return {
-
                 form: {
                     name: '',
                     people:[],
@@ -92,17 +92,6 @@
                     wenhao:'',
                     partment:'',
                      finishtime: '',
-                    role:-1,
-                    shenbao:'',
-                    path:''
-                },
-                baseform: {
-                    name: '',
-                    people:[],
-                    lianghua:'',
-                    wenhao:'',
-                    partment:'',
-                    finishtime: '',
                     role:-1,
                     shenbao:'',
                     path:''
@@ -130,8 +119,7 @@
                     }else{
                         this.$message.error(`添加失败，教研研成果已被申报`);
                     }
-                    this.form=this.baseform
-
+                    this.reload()
                 } );
             }
         }

@@ -84,23 +84,12 @@
     import {getTeacherList} from "../../../api/commonAPI";
 
     export default {
+        inject:['reload'],
         name: 'jiaoyuguihua',
         data: function(){
             return {
                 is_editor:true,
                 form: {
-                    name: '',
-                    finishtime: '',
-                    people:[],
-                    partment:'',
-                    level:'',
-                    danwei:'',
-                    grade:'',
-                    role:-1,
-                    shenbao:'',
-                    path:''
-                },
-                baseform: {
                     name: '',
                     finishtime: '',
                     people:[],
@@ -134,8 +123,7 @@
                     }else{
                         this.$message.error(`添加失败，教研研成果已被申报`);
                     }
-                    this.form=this.baseform
-
+                    this.reload()
                 } );
             }
         }

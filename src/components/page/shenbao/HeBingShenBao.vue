@@ -85,20 +85,11 @@
     import {getTeacherList} from "../../../api/commonAPI";
 
     export default {
+        inject:['reload'],
         name: 'heBingShenBao',
         data: function(){
             return {
                 form: {
-                    role:-1,
-                    name: '',
-                    type: '',
-                    partment:'',
-                    finishtime: '',
-                    people:[],
-                    shenbao:'',
-                    path:''
-                },
-                baseform: {
                     role:-1,
                     name: '',
                     type: '',
@@ -161,6 +152,7 @@
                         this.form=this.baseform
                     } );
                 // this.$message.success('提交成功！');
+                this.reload()
             }
         }
     }

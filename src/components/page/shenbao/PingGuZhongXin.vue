@@ -87,22 +87,12 @@
     import {getTeacherList} from "../../../api/commonAPI";
 
     export default {
+        inject:['reload'],
         name: 'pingguzhongxin',
         data: function(){
             return {
                 is_editor:true,
                 form: {
-                    name: '',
-                    partment:'',
-                    finishtime: '',
-                    people:[],
-                    grade:'',
-                    role:-1,
-                    shenbao:'',
-                    firstpeople:'',
-                    path:''
-                },
-                baseform: {
                     name: '',
                     partment:'',
                     finishtime: '',
@@ -135,8 +125,7 @@
                     }else{
                         this.$message.error(`添加失败，教研研成果已被申报`);
                     }
-                    this.form=this.baseform
-
+                    this.reload()
                 } );
             }
         }
