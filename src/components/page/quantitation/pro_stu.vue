@@ -101,6 +101,8 @@
 <script>
 import chanxueyan from '../show/chanxueyan_edit';
 import {
+    deleteChanXueYan,
+    deleteOneChanXueYan,
     editChanXueYan,
     getAllChanXueYan,
     getChanXueYanDetail,
@@ -236,7 +238,7 @@ import {crawlerWebSite, getTeacherList} from "../../../api/commonAPI";
                     type: 'warning'
                 })
                     .then(() => {
-                        deleteOneChanXueYan({ids: [row.id]}).then(res=>{
+                        deleteOneChanXueYan({id: row.id}).then(res=>{
                             this.getData();
                             this.$message.success('删除成功');
                         }).catch(()=>{
@@ -246,23 +248,22 @@ import {crawlerWebSite, getTeacherList} from "../../../api/commonAPI";
                     .catch(() => {});
             },
             delAll() {
-                if (this.idList.length>0){
+                console.log(this.idlist.length)
+                if (this.idlist.length>0){
                     this.$confirm('确定要删除吗？', '提示', {
                         type: 'warning'
-                    })
-                        .then(() => {
-                            deleteChanXueYan({ ids: this.idList }).then(res => {
-                                this.$message.error(res.msg);
-                               // this.query.pageIndex = 1;
+                    }).then(() => {
+                            deleteChanXueYan({ ids: this.idlist }).then(res => {
+                                this.$message.success("删除成功");
                                 this.getData();
                             });
                         });
                 }
             },
             handleSelectionChange(val) {
-                this.idList = [];
+                this.idlist = [];
                 for (var i=0;i<val.length;i++){
-                    this.idList.push(val[i].id)
+                    this.idlist.push(val[i].id)
                 }
             }
         }

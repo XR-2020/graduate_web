@@ -1,4 +1,5 @@
 import request from '../utils/request';
+import qs from "qs";
 
 // ---------------------------------------- 查询产学研数据
 export const getAllRongYu= query => {
@@ -21,7 +22,10 @@ export const deleteRongYu = query => {
     return request({
         url: '/deleteRongYu',
         method: 'post',
-        params: query
+        params: query,
+        paramsSerializer: params => {
+            return qs.stringify(params, { indices: false })
+        }
     });
 };
 //删除一个产学研

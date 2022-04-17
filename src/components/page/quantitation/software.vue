@@ -100,7 +100,7 @@
 import heBingShenBao from "../show/HeBingShenBao_edit";
 import {getAllChanXueYan, getChanXueYanDetail, getSearchChanXueYan} from "../../../api/chanxueyanAPI";
 import {
-    deleteOneRuanJianZhuZuo,
+    deleteOneRuanJianZhuZuo, deleteRuanJianZhuZuo,
     getAllRuanJianZhuZuo,
     getRuanJianZhuZuoDetail, getRuanJianZhuZuoDetailBadge,
     getSearchRuanJianZhuZuo
@@ -269,7 +269,7 @@ import {crawlerWebSite, editHeBing, getTeacherList} from "../../../api/commonAPI
                     type: 'warning'
                 })
                     .then(() => {
-                        deleteOneRuanJianZhuZuo({ids: [row.id]}).then(res=>{
+                        deleteOneRuanJianZhuZuo({id: row.id}).then(res=>{
                             this.getData();
                             this.$message.success('删除成功');
                         }).catch(()=>{
@@ -285,8 +285,7 @@ import {crawlerWebSite, editHeBing, getTeacherList} from "../../../api/commonAPI
                     })
                         .then(() => {
                             deleteRuanJianZhuZuo({ ids: this.idList }).then(res => {
-                                this.$message.error(res.msg);
-                                // this.query.pageIndex = 1;
+                                this.$message.success("删除成功");
                                 this.getData();
                             });
                         });

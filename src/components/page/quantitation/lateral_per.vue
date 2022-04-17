@@ -260,7 +260,7 @@ import {getZhuZuoDetail} from "../../../api/zhuzuoAPI";
                     type: 'warning'
                 })
                     .then(() => {
-                        deleteOneHengXiangKeYan({ids: [row.id]}).then(res=>{
+                        deleteOneHengXiangKeYan({id: row.id}).then(res=>{
                             this.getData();
                             this.$message.success('删除成功');
                         }).catch(()=>{
@@ -276,8 +276,7 @@ import {getZhuZuoDetail} from "../../../api/zhuzuoAPI";
                     })
                         .then(() => {
                             deleteHengXiangKeYan({ ids: this.idList }).then(res => {
-                                this.$message.error(res.msg);
-                                // this.query.pageIndex = 1;
+                                this.$message.success("删除成功");
                                 this.getData();
                             });
                         });

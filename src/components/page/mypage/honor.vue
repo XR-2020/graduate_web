@@ -17,7 +17,7 @@
                 </el-table-column>
                 <el-table-column prop="object.name" label="称号名称" align="center">
                 </el-table-column>
-                <el-table-column prop="object.partment" label="级别"  align="center">
+                <el-table-column prop="object.partment" label="部门"  align="center">
                 </el-table-column>
                 <el-table-column prop="object.level" label="级别"  align="center">
                 </el-table-column>
@@ -111,11 +111,14 @@
                 </div>
                 <br>
                 <el-upload
+                    ref="upload"
                     align="center"
                     class="upload-demo"
                     drag
                     accept=".xls,.xlsx"
+                    :auto-upload="false"
                     action="http://localhost:8080/honorImport"
+                    :on-success="success"
                     multiple>
                     <i class="el-icon-upload"></i>
                     <div class="el-upload__text">将Excel文件拖到此处，或<em>点击上传</em></div>
@@ -123,7 +126,7 @@
             </el-form>
             <span slot="footer" class="dialog-footer">
 		        <el-button @click="isimport = false">取 消</el-button>
-		        <el-button type="primary" @click="isimport = false,getData()">确 定</el-button>
+		       <el-button type="primary" @click="handleImport">确 定</el-button>
 		    </span>
         </el-dialog>
     </div>
@@ -142,6 +145,7 @@ import {
 import {editCompetition, insertCompetition} from "../../../api/JingSaiAPI";
 import {getTeacherList} from "../../../api/commonAPI";
     export default {
+        inject:['reload'],
         name: 'honor',
         components:{'rongyuchenghao':rongyuchenghao},
         data() {
@@ -196,6 +200,11 @@ import {getTeacherList} from "../../../api/commonAPI";
             }
         },
         methods: {
+            handleImport(){
+                this.$refs.upload.submit()
+                this.isimport = false
+                this.reload()
+            },
             isimportHonor(){
                 this.isimport=true
             },
@@ -217,6 +226,9 @@ import {getTeacherList} from "../../../api/commonAPI";
                         this.pageTotal=res.pageTotal
                     })
                 }
+            },
+            success(response,file,filename){
+                this.$message.success(response.msg)
             },
             search() {
                 getSearchRongYu(this.query).then(res =>{
@@ -256,7 +268,7 @@ import {getTeacherList} from "../../../api/commonAPI";
                     type: 'warning'
                 })
                     .then(() => {
-                        deleteOneRongYu({ids: [row.id]}).then(res=>{
+                        deleteOneRongYu({id: row.id}).then(res=>{
                             this.getData();
                             this.$message.success('删除成功');
                         }).catch(()=>{
@@ -272,7 +284,7 @@ import {getTeacherList} from "../../../api/commonAPI";
                     })
                         .then(() => {
                             deleteRongYu({ ids: this.idList }).then(res => {
-                                this.$message.error(res.msg);
+                                this.$message.success("删除成功");
                                 // this.query.pageIndex = 1;
                                 this.getData();
                             });
@@ -282,7 +294,7 @@ import {getTeacherList} from "../../../api/commonAPI";
             handleSelectionChange(val) {
                 this.idList = [];
                 for (var i=0;i<val.length;i++){
-                    this.idList.push(val[i].id)
+                    this.idList.push(val[i].object.id)
                 }
             },
             // 保存编辑

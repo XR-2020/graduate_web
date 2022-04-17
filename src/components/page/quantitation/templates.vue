@@ -246,7 +246,7 @@ import {crawlerWebSite, getTeacherList} from "../../../api/commonAPI";
                     type: 'warning'
                 })
                     .then(() => {
-                        deleteOnePingGuZhongXin({ids: [row.id]}).then(res=>{
+                        deleteOnePingGuZhongXin({id: row.id}).then(res=>{
                             this.getData();
                             this.$message.success('删除成功');
                         }).catch(()=>{
@@ -262,8 +262,7 @@ import {crawlerWebSite, getTeacherList} from "../../../api/commonAPI";
                     })
                         .then(() => {
                             deletePingGuZhongXin({ ids: this.idList }).then(res => {
-                                this.$message.error(res.msg);
-                                // this.query.pageIndex = 1;
+                                this.$message.success("删除成功");
                                 this.getData();
                             });
                         });
