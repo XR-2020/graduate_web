@@ -90,7 +90,7 @@
         data: function(){
             return {
                 form: {
-                    role:-1,
+                    role:localStorage.getItem('ms_role'),
                     name: '',
                     type: '',
                     partment:'',

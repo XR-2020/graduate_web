@@ -97,7 +97,7 @@
                     level:'',
                     danwei:'',
                     grade:'',
-                    role:-1,
+                    role:localStorage.getItem('ms_role'),
                     shenbao:'',
                     path:''
                 },

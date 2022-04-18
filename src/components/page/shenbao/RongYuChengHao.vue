@@ -93,7 +93,7 @@
                      finishtime: '',
                     people:[],
                     level:'',
-                    role:-1,
+                    role:localStorage.getItem('ms_role'),
                     partment:'',
                     shenbao:'',
                     path:''

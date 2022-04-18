@@ -8,6 +8,7 @@
                             <div class="user-info">
                                 <div class="user-info-cont">
                                     <div class="user-info-name">{{name}}</div>
+                                    <br>
                                     <div class="user-info-role">{{role}}</div>
                                 </div>
                                <img src="../../../assets/first_page.png">
@@ -127,7 +128,7 @@
     }
 
     .user-info-cont div:first-child {
-        font-size: 40px;
+        font-size: 20px;
         color: #222;
     }
 

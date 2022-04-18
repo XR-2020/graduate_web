@@ -241,3 +241,11 @@ export const selectProject = query => {
         params: query
     });
 };
+
+export const login = query => {
+    return request({
+        url: '/login',
+        method: 'get',
+        params: query
+    });
+};

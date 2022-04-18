@@ -37,7 +37,7 @@
                 </el-table-column>
                 <el-table-column prop="object.finishtime" label="获奖时间" align="center">
                 </el-table-column>
-                <el-table-column label="操作" width="200px"  align="center">
+                <el-table-column label="操作" width="200px"  align="center" v-if="role==='4'||role==='3'">
                     <template slot-scope="scope">
                        <el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
                         <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
@@ -162,6 +162,7 @@ import {editHeBing, getTeacherList} from "../../../api/commonAPI";
         components:{'xuekejingsai':xuekejingsai},
         data() {
             return {
+                role:localStorage.getItem('ms_role'),
                 header:false,
                 tableData: [],
                 pageTotal:0,

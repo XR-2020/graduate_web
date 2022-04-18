@@ -159,7 +159,7 @@
         color: #fff;
     }
     .user-name{
-        margin-left: 10px;
+        margin-left: 6px;
     }
     .user-avator{
         margin-left: 20px;

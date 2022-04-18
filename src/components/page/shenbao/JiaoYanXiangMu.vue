@@ -92,7 +92,7 @@
                     wenhao:'',
                     partment:'',
                      finishtime: '',
-                    role:-1,
+                    role:localStorage.getItem('ms_role'),
                     shenbao:'',
                     path:''
                 },

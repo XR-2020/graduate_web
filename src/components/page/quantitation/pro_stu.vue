@@ -30,11 +30,17 @@
 <!--                </el-table-column>-->
 <!--                <el-table-column prop="tea_name" label="第一完成人" width="100px"   align="center">-->
 <!--                </el-table-column>-->
-                <el-table-column label="操作" width="260px"  align="center">
+                <el-table-column label="操作" width="260px"  align="center" v-if="role==='4'||role==='1'">
                     <template slot-scope="scope">
                         <el-button size="small" type="info" @click="handleDetail(scope.$index, scope.row)">查看参与人</el-button>
                         <el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
                         <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                    </template>
+                </el-table-column>
+
+                <el-table-column label="操作" width="260px"  align="center" v-else >
+                    <template slot-scope="scope">
+                        <el-button size="small" type="info" @click="handleDetail(scope.$index, scope.row)">查看参与人</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -115,6 +121,7 @@ import {crawlerWebSite, getTeacherList} from "../../../api/commonAPI";
         name: 'pro_stu',
         data() {
             return {
+                role:localStorage.getItem('ms_role'),
                 pageTotal:0,
                 tableData: [],
                 query:{

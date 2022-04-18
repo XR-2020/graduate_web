@@ -82,7 +82,7 @@ import {getTeacherList} from "../../../api/commonAPI";
             return {
                 fileList:[],
                 form: {
-                    role:-1,
+                    role:localStorage.getItem('ms_role'),
                     name: '',
                     partment:'',
                     finishtime: '',

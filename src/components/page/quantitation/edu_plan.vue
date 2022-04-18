@@ -32,13 +32,20 @@
 <!--                </el-table-column>-->
 <!--                <el-table-column prop="people.name" label="第一完成人"  align="center">-->
 <!--                </el-table-column>-->
-                <el-table-column label="操作" width="260px"  align="center">
+                <el-table-column label="操作" width="260px"  align="center" v-if="role==='4'||role==='1'">
                     <template slot-scope="scope">
                         <el-button size="small" type="info" @click="handleDetail(scope.$index, scope.row)">查看参与人</el-button>
                         <el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
                         <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
                     </template>
                 </el-table-column>
+
+                <el-table-column label="操作" width="260px"  align="center" v-else >
+                    <template slot-scope="scope">
+                        <el-button size="small" type="info" @click="handleDetail(scope.$index, scope.row)">查看参与人</el-button>
+                       </template>
+                </el-table-column>
+
             </el-table>
             <div class="pagination">
                 <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
@@ -124,6 +131,7 @@ import {getZhuZuoDetailBadge} from "../../../api/zhuzuoAPI";
         components:{'jiaoyuguihua':jiaoyuguihua},
         data() {
             return {
+                role:localStorage.getItem('ms_role'),
                 pageTotal:0,
                 query:{
                     key: '',

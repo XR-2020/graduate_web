@@ -33,7 +33,7 @@
 <!--                </el-table-column>-->
                 <el-table-column prop="object.teacher" label="获奖教师"  align="center">
                 </el-table-column>
-                <el-table-column label="操作" width="200px"  align="center">
+                <el-table-column label="操作" width="200px"  align="center" v-if="role==='4'">
                     <template slot-scope="scope">
                         <el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
                         <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
@@ -150,6 +150,7 @@ import {getTeacherList} from "../../../api/commonAPI";
         components:{'rongyuchenghao':rongyuchenghao},
         data() {
             return {
+                role:localStorage.getItem('ms_role'),
                 isimport:false,
                 tableData: [],
                 pageTotal:0,
