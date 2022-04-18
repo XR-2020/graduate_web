@@ -691,7 +691,7 @@ export default {
                 this.hengxiangkeyanPageTotal=res.hengxiangkeyanPageTotal,
                 this.jiaoyuguihuaPageTotal=res.jiaoyuguihuaPageTotal
             } )
-            this.role=localStorage.getItem('role');
+            this.role=localStorage.getItem('ms_role');
             console.log(this.role)
             switch (this.role) {
                 case '1':{

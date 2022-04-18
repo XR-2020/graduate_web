@@ -8,8 +8,8 @@
                             <div class="user-info">
                                 <div class="user-info-cont">
                                     <div class="user-info-name">{{name}}</div>
-                                    <br>
-                                    <div class="user-info-role">{{role}}</div>
+<!--                                    <br>-->
+<!--                                    <div class="user-info-role">{{role}}</div>-->
                                 </div>
                                <img src="../../../assets/first_page.png">
                             </div>
@@ -27,17 +27,18 @@
         data() {
             return {
                 name: localStorage.getItem('ms_username'),
+                role:localStorage.getItem('ms_role'),
             }
         },
         computed: {
             role() {
-                if(this.name === '1'){
+                if(this.role === '1'){
                     return '教研管理员 ';
-                }else if(this.name === '2'){
+                }else if(this.role === '2'){
                     return '科研管理员'
-                }else if(this.name === '3'){
+                }else if(this.role === '3'){
                     return '学科竞赛管理员'
-                }else if(this.name === '4'){
+                }else if(this.role === '4'){
                     return '系统管理员'
                 }else{
                     return '普通教师'

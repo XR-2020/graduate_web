@@ -270,9 +270,9 @@ export default {
         }
     },
     created() {
-        this.daiShenHequery.badge=localStorage.getItem('ms_username')
-        this.hadPassquery.badge=localStorage.getItem('ms_username')
-        this.disPassquery.badge=localStorage.getItem('ms_username')
+        this.daiShenHequery.badge=localStorage.getItem('ms_badge')
+        this.hadPassquery.badge=localStorage.getItem('ms_badge')
+        this.disPassquery.badge=localStorage.getItem('ms_badge')
         getTeacherList().then(res =>{
             this.teacher_list=res
         } )

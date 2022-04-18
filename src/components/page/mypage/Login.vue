@@ -49,6 +49,7 @@
                             }else{
                                   localStorage.setItem('ms_role',res.data.role);
                                   localStorage.setItem('ms_username',res.data.name);
+                                  localStorage.setItem('ms_badge',res.data.badge);
                                   this.$router.push('/');
                             }
                         })
