@@ -42,20 +42,11 @@
                         </el-col>
                     </el-form-item>
 
-                    <el-form-item  label="申报人">
-                        <el-select v-model="form.shenbao">
-                            <el-option
-                                v-for="item in teacher_list"
-                                :key="item.badge"
-                                :label="item.badge+'—'+item.name"
-                                :value="item.badge">
-                            </el-option>
-                        </el-select>
-                    </el-form-item>
-
                     <el-form-item label="证明材料">
                         <el-form ref="form" :model="form" label-width="70px">
                             <el-upload
+                                :auto-upload="false"
+                                ref="upload"
                                 class="upload-demo"
                                 drag
                                 accept=".zip"
@@ -98,7 +89,7 @@
                     level:'',
                     grade:'',
                     role:localStorage.getItem('ms_role'),
-                    shenbao:'',
+                    shenbao:localStorage.getItem('ms_badge'),
                     path:''
                 },
                 teacher_list:[],
@@ -118,6 +109,7 @@
                 this.$message.warning(`当前限制选择 1 个文件，请删除后继续上传！`)
             },
             onSubmit() {
+                this.$refs.upload.submit()
                 updateCompetition(this.form).then(res =>{
                     if(res.data!==0){
                         this.$message.success(`添加成功`);

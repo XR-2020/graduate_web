@@ -37,20 +37,11 @@
                         </el-col>
                      </el-form-item>
 
-                    <el-form-item  label="申报人">
-                        <el-select v-model="form.shenbao">
-                            <el-option
-                                v-for="item in teacher_list"
-                                :key="item.badge"
-                                :label="item.badge+'—'+item.name"
-                                :value="item.badge">
-                            </el-option>
-                        </el-select>
-                    </el-form-item>
-
                     <el-form-item label="证明材料">
                         <el-form ref="form" :model="form" label-width="70px">
                             <el-upload
+                                ref="upload"
+                                :auto-upload="false"
                                 class="upload-demo"
                                 drag
                                 accept=".zip"
@@ -91,9 +82,9 @@
                     lianghua:'',
                     wenhao:'',
                     partment:'',
-                     finishtime: '',
+                    finishtime: '',
                     role:localStorage.getItem('ms_role'),
-                    shenbao:'',
+                    shenbao:localStorage.getItem('ms_badge'),
                     path:''
                 },
                 is_editor:true,
@@ -113,6 +104,7 @@
                 this.form.path=response
             },
             onSubmit() {
+                this.$refs.upload.submit()
                 updateJiaoYan(this.form).then(res =>{
                     if(res.data!==0){
                         this.$message.success(`添加成功`);

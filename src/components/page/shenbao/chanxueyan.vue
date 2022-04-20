@@ -35,19 +35,11 @@
                             <el-date-picker type="date" placeholder="选择日期" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
                         </el-col>
                     </el-form-item>
-                    <el-form-item  label="申报人">
-                        <el-select v-model="form.shenbao">
-                            <el-option
-                                v-for="item in teacher_list"
-                                :key="item.badge"
-                                :label="item.badge+'—'+item.name"
-                                :value="item.badge">
-                            </el-option>
-                        </el-select>
-                    </el-form-item>
                     <el-form-item label="证明材料">
                         <el-form ref="form" :model="form" label-width="70px">
                             <el-upload
+                                ref="upload"
+                                :auto-upload="false"
                                 class="upload-demo"
                                 drag
                                 accept=".zip"
@@ -89,7 +81,7 @@ import {getTeacherList} from "../../../api/commonAPI";
                     lianghua:'',
                     wenhao:'',
                     people:[],
-                    shenbao:'',
+                    shenbao:localStorage.getItem('ms_badge'),
                     path:''
                 },
                 open:false,
@@ -109,13 +101,13 @@ import {getTeacherList} from "../../../api/commonAPI";
                 this.$message.warning(`当前限制选择 1 个文件，请删除后继续上传！`)
             },
             onSubmit() {
-               updateChanXueYan(this.form).then(res =>{
+                this.$refs.upload.submit()
+                updateChanXueYan(this.form).then(res =>{
                    if(res.data!==0){
                        this.$message.success(`添加成功`);
                    }else{
                        this.$message.error(`添加失败，教研研成果已被申报`);
                    }
-                   this.form=this.baseform
                } );
                this.reload()
             }
