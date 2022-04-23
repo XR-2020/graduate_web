@@ -2,33 +2,29 @@
     <div>
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-tickets"></i> 评估中心相关申报</el-breadcrumb-item>
+                <el-breadcrumb-item><i class="el-icon-tickets"></i>新成果申报</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="container">
             <div class="form-box">
                 <el-form ref="subform" :model="form" label-width="100px" :rules="rules">
-                    <el-form-item label="名称" prop="name">
+                        <el-form-item label="申报类型" prop="type">
+                            <el-select filterable v-model="form.type">
+                                <el-option
+                                    v-for="item in typeList"
+                                    :key="item"
+                                    :label="item"
+                                    :value="item">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                    <el-form-item label="项目名称" prop="name">
                         <el-input v-model="form.name"></el-input>
                     </el-form-item>
                     <el-form-item label="部门" prop="partment">
                         <el-input v-model="form.partment"></el-input>
                     </el-form-item>
-                    <el-form-item label="获奖等级" prop="grade">
-                        <el-input v-model="form.grade"></el-input>
-                    </el-form-item>
-
-                    <el-form-item label="第一完成人" prop="firstpeople">
-                        <el-select multiple filterable v-model="form.firstpeople">
-                            <el-option
-                                v-for="item in teacher_list"
-                                :key="item.badge"
-                                :label="item.badge+'—'+item.name"
-                                :value="item.badge">
-                            </el-option>
-                        </el-select>
-                    </el-form-item>
-                    <el-form-item label="所有参与人" prop="people">
+                    <el-form-item label="参与人情况" prop="people">
                         <el-select multiple filterable v-model="form.people">
                             <el-option
                                 v-for="item in teacher_list"
@@ -47,12 +43,12 @@
                     <el-form-item label="证明材料" prop="path">
                         <el-form ref="form" :model="form" label-width="70px">
                             <el-upload
-                                :auto-upload="false"
                                 ref="upload"
+                                :auto-upload="false"
                                 class="upload-demo"
                                 drag
                                 accept=".zip"
-                                action="http://localhost:8080/PingGuZhongXinMetials"
+                                action="http://localhost:8080/HeBingMetials"
                                 :limit="1"
                                 :on-exceed="handleChange"
                                 :on-success="uploadSuccess"
@@ -74,29 +70,34 @@
 </template>
 
 <script>
-    import {updatePingGuZhongXin} from "../../../api/pingguzhongxinAPI";
+    import {updateChanXueYan} from "../../../api/chanxueyanAPI";
+    import {updateHeBing} from "../../../api/shenbaoAPI";
     import {getTeacherList} from "../../../api/commonAPI";
+    import {CrawlerTypeList} from "../../../api/newSystem";
 
     export default {
         inject:['reload'],
-        name: 'pingguzhongxin',
+        name: 'heBingShenBao',
         data: function(){
             return {
-                is_editor:true,
+                typeList:[],
                 form: {
+                    role:localStorage.getItem('ms_role'),
                     name: '',
+                    type: '',
                     partment:'',
                     finishtime: '',
                     people:[],
-                    grade:'',
-                    role:localStorage.getItem('ms_role'),
                     shenbao:localStorage.getItem('ms_badge'),
-                    firstpeople:'',
                     path:''
                 },
+                is_editor:true,
                 teacher_list:[],
                 rules: {
                     name: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    type: [
                         { required: true, message: '必填', trigger: 'blur' }
                     ],
                     partment: [
@@ -105,18 +106,12 @@
                     finishtime: [
                         { required: true, message: '必填', trigger: 'blur' }
                     ],
-                    grade: [
-                        { required: true, message: '必填', trigger: 'blur' }
-                    ],
                     people: [
-                        { required: true, message: '必填', trigger: 'blur' }
-                    ],
-                    firstpeople: [
                         { required: true, message: '必填', trigger: 'blur' }
                     ],
                     path: [
                         { required: true, message: '必填', trigger: 'blur' }
-                    ],
+                    ]
                 },
             }
         },
@@ -126,6 +121,11 @@
             } )
         },
         methods: {
+            getCrawerlist(){
+                CrawlerTypeList().then(res =>{
+                    this.typeList=res
+                } )
+            },
             uploadSuccess(response,file,fileList){
                 this.form.path=response
             },
@@ -136,15 +136,42 @@
                 this.$refs.upload.submit()
                 this.$refs.subform.validate(valid => {
                     if (valid) {
-                        updatePingGuZhongXin(this.form).then(res => {
-                            if (res.data !== 0) {
+                        switch (this.form.type) {
+                            case "专利":{
+                                this.form.type=2;
+                                break;
+                            }
+                            case "横向科研项目":{
+                                this.form.type=3;
+                                break;
+                            }
+                            case "著作":{
+                                this.form.type=4;
+                                break;
+                            }
+                            case "科研论文":{
+                                this.form.type=5;
+                                break;
+                            }
+                            case "软件著作权":{
+                                this.form.type=6;
+                                break;
+                            }
+                            case "科研项目结项":{
+                                this.form.type=7;
+                                break;
+                            }
+
+                        }
+                        updateHeBing(this.form).then(res =>{
+                            if(res.data!==0){
                                 this.$message.success(`添加成功`);
-                            } else {
+                            }else{
                                 this.$message.error(`添加失败，教研研成果已被申报`);
                             }
                             this.reload()
-                        });
-                    }else{
+                        } );
+                    } else {
                         this.$message.error("请完善信息")
                     }
                 })

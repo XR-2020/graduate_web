@@ -7,11 +7,11 @@
         </div>
         <div class="container">
             <div class="form-box">
-                <el-form ref="form" :model="form" label-width="100px">
-                    <el-form-item label="竞赛名称">
+                <el-form ref="subform" :model="form" label-width="100px" :rules="rules">
+                    <el-form-item label="竞赛名称" prop="name">
                         <el-input v-model="form.name"></el-input>
                     </el-form-item>
-                    <el-form-item label="比赛等级">
+                    <el-form-item label="比赛等级" prop="level">
                         <el-select v-model="form.level" placeholder="请选择">
                             <el-option key="YuanJi" label="院级" value="院级"></el-option>
                             <el-option key="XiaoJi" label="校级" value="校级"></el-option>
@@ -20,10 +20,10 @@
                             <el-option key="GuoJi" label="国际级" value="国际级"></el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item label="获奖级别">
+                    <el-form-item label="获奖级别" prop="grade">
                         <el-input v-model="form.grade"></el-input>
                     </el-form-item>
-                    <el-form-item label="指导教师">
+                    <el-form-item label="指导教师" prop="people">
                         <el-select multiple filterable v-model="form.people">
                             <el-option
                                 v-for="item in teacher_list"
@@ -33,16 +33,16 @@
                             </el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item label="参赛学生">
+                    <el-form-item label="参赛学生" prop="student">
                         <el-input type="textarea" rows="5" v-model="form.student"></el-input>
                     </el-form-item>
-                    <el-form-item label="获奖时间">
+                    <el-form-item label="获奖时间" prop="finishtime">
                         <el-col :span="11">
                             <el-date-picker type="date" placeholder="选择日期" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
                         </el-col>
                     </el-form-item>
 
-                    <el-form-item label="证明材料">
+                    <el-form-item label="证明材料" prop="path">
                         <el-form ref="form" :model="form" label-width="70px">
                             <el-upload
                                 :auto-upload="false"
@@ -93,6 +93,29 @@
                     path:''
                 },
                 teacher_list:[],
+                rules: {
+                    name: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    finishtime: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    student: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    level: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    teacher: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    grade: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    path: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                },
             }
 
         },
@@ -110,14 +133,20 @@
             },
             onSubmit() {
                 this.$refs.upload.submit()
-                updateCompetition(this.form).then(res =>{
-                    if(res.data!==0){
-                        this.$message.success(`添加成功`);
+                this.$refs.subform.validate(valid => {
+                    if (valid) {
+                        updateCompetition(this.form).then(res => {
+                            if (res.data !== 0) {
+                                this.$message.success(`添加成功`);
+                            } else {
+                                this.$message.error(`添加失败，教研研成果已被申报`);
+                            }
+                            this.reload()
+                        });
                     }else{
-                        this.$message.error(`添加失败，教研研成果已被申报`);
+                        this.$message.error("请完善信息")
                     }
-                    this.reload()
-                } );
+                })
             }
         }
     }

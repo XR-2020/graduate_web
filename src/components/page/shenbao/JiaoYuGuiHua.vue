@@ -7,24 +7,24 @@
         </div>
         <div class="container">
             <div class="form-box">
-                <el-form ref="form" :model="form" label-width="100px">
-                    <el-form-item label="项目名称">
+                <el-form ref="subform" :model="form" label-width="100px" :rules="rules">
+                    <el-form-item label="项目名称" prop="name">
                         <el-input v-model="form.name"></el-input>
                     </el-form-item>
-                    <el-form-item label="组织结题单位">
+                    <el-form-item label="结题单位" prop="danwei">
                         <el-input v-model="form.danwei"></el-input>
                     </el-form-item>
-                    <el-form-item label="项目级别">
+                    <el-form-item label="项目级别" prop="level">
                         <el-input v-model="form.level"></el-input>
                     </el-form-item>
-                    <el-form-item label="结题等级">
+                    <el-form-item label="结题等级" prop="grade">
                         <el-input v-model="form.grade"></el-input>
                     </el-form-item>
-                    <el-form-item label="部门">
+                    <el-form-item label="部门" prop="partment">
                         <el-input v-model="form.partment"></el-input>
                     </el-form-item>
 
-                    <el-form-item label="参与人情况">
+                    <el-form-item label="参与人情况" prop="people">
                         <el-select multiple filterable v-model="form.people">
                             <el-option
                                 v-for="item in teacher_list"
@@ -34,13 +34,13 @@
                             </el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item label="结题时间">
+                    <el-form-item label="结题时间" prop="finishtime">
                         <el-col :span="11">
                             <el-date-picker type="date" placeholder="选择日期" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
                         </el-col>
                     </el-form-item>
 
-                    <el-form-item label="证明材料">
+                    <el-form-item label="证明材料" prop="path">
                         <el-form ref="form" :model="form" label-width="70px">
                             <el-upload
                                 :auto-upload="false"
@@ -93,6 +93,32 @@
                     path:''
                 },
                 teacher_list:[],
+                rules: {
+                    name: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    level: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    danwei: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    grade: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    partment: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    finishtime: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    people: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    path: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                },
             }
         },
         created() {
@@ -109,7 +135,9 @@
             },
             onSubmit() {
                 this.$refs.upload.submit()
-                updateJiaoYuGuiHua(this.form).then(res =>{
+                this.$refs.subform.validate(valid => {
+                    if (valid) {
+                     updateJiaoYuGuiHua(this.form).then(res =>{
                     if(res.data!==0){
                         this.$message.success(`添加成功`);
                     }else{
@@ -117,6 +145,10 @@
                     }
                     this.reload()
                 } );
+                    }else{
+                        this.$message.error("请完善信息")
+                    }
+                })
             }
         }
     }

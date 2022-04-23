@@ -7,8 +7,8 @@
         </div>
         <div class="container">
             <div class="form-box">
-                <el-form ref="form" :model="form" label-width="100px">
-                    <el-form-item label="申报类型">
+                <el-form ref="subform" :model="form" label-width="100px" :rules="rules">
+                    <el-form-item label="申报类型" prop="type">
                         <el-select v-model="form.type" placeholder="请选择">
                             <el-option key="ZhuanLi" label="专利" value="2"></el-option>
                             <el-option key="HengXiangKeYan" label="横向科研项目" value="3"></el-option>
@@ -18,14 +18,14 @@
                             <el-option key="KeYanXiangMuJieXiang" label="科研项目结项" value="7"></el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item label="项目名称">
+                    <el-form-item label="项目名称" prop="name">
                         <el-input v-model="form.name"></el-input>
                     </el-form-item>
-                    <el-form-item label="部门">
+                    <el-form-item label="部门" prop="partment">
                         <el-input v-model="form.partment"></el-input>
                     </el-form-item>
 
-                    <el-form-item label="参与人情况">
+                    <el-form-item label="参与人情况" prop="people">
                         <el-select multiple filterable v-model="form.people">
                             <el-option
                                 v-for="item in teacher_list"
@@ -35,13 +35,13 @@
                             </el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item label="完成时间">
+                    <el-form-item label="完成时间" prop="finishtime">
                         <el-col :span="11">
                             <el-date-picker type="date" placeholder="选择日期" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
                         </el-col>
                     </el-form-item>
 
-                    <el-form-item label="证明材料">
+                    <el-form-item label="证明材料" prop="path">
                         <el-form ref="form" :model="form" label-width="70px">
                             <el-upload
                                 ref="upload"
@@ -92,6 +92,26 @@
                 },
                 is_editor:true,
                 teacher_list:[],
+                rules: {
+                    name: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    type: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    partment: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    finishtime: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    people: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    path: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ]
+                },
             }
         },
         created() {
@@ -108,43 +128,47 @@
             },
             onSubmit() {
                 this.$refs.upload.submit()
-                switch (this.form.type) {
-                    case "专利":{
-                        this.form.type=2;
-                        break;
-                    }
-                    case "横向科研项目":{
-                        this.form.type=3;
-                        break;
-                    }
-                    case "著作":{
-                        this.form.type=4;
-                        break;
-                    }
-                    case "科研论文":{
-                        this.form.type=5;
-                        break;
-                    }
-                    case "软件著作权":{
-                        this.form.type=6;
-                        break;
-                    }
-                    case "科研项目结项":{
-                        this.form.type=7;
-                        break;
-                    }
+                this.$refs.subform.validate(valid => {
+                    if (valid) {
+                        switch (this.form.type) {
+                            case "专利":{
+                                this.form.type=2;
+                                break;
+                            }
+                            case "横向科研项目":{
+                                this.form.type=3;
+                                break;
+                            }
+                            case "著作":{
+                                this.form.type=4;
+                                break;
+                            }
+                            case "科研论文":{
+                                this.form.type=5;
+                                break;
+                            }
+                            case "软件著作权":{
+                                this.form.type=6;
+                                break;
+                            }
+                            case "科研项目结项":{
+                                this.form.type=7;
+                                break;
+                            }
 
-                }
-                    updateHeBing(this.form).then(res =>{
-                        if(res.data!==0){
-                            this.$message.success(`添加成功`);
-                        }else{
-                            this.$message.error(`添加失败，教研研成果已被申报`);
                         }
-                        this.form=this.baseform
-                    } );
-                // this.$message.success('提交成功！');
-                this.reload()
+                        updateHeBing(this.form).then(res =>{
+                            if(res.data!==0){
+                                this.$message.success(`添加成功`);
+                            }else{
+                                this.$message.error(`添加失败，教研研成果已被申报`);
+                            }
+                            this.reload()
+                        } );
+                    } else {
+                        this.$message.error("请完善信息")
+                    }
+                })
             }
         }
     }

@@ -91,11 +91,11 @@
         </el-dialog>
 
         <!--查看完成人弹出框-->
-        <el-dialog :visible.sync="isdetail" width="80%">
+        <el-dialog :visible.sync="isdetail" width="50%">
             <el-table :data="people" border style="width: 100%" ref="multipleTable">
-                <el-table-column prop="badge" label="第一完成人工号"  align="center">
+                <el-table-column prop="badge" label="完成人工号"  align="center">
                 </el-table-column>
-                <el-table-column prop="name" label="第一完成人"  align="center">
+                <el-table-column prop="name" label="完成人"  align="center">
                 </el-table-column>
             </el-table>
         </el-dialog>

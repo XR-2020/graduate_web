@@ -7,36 +7,26 @@
         </div>
         <div class="container">
             <div class="form-box">
-                <el-form ref="form" :model="form" label-width="100px">
-                    <el-form-item label="部门">
-                        <el-input v-model="form.partment"></el-input>
-                    </el-form-item>
-                    <el-form-item label="项目名称">
+                <el-form ref="subform" :model="form" label-width="100px" :rules="rules">
+                    <el-form-item label="项目名称" prop="name">
                         <el-input v-model="form.name"></el-input>
+                    </el-form-item>
+                    <el-form-item label="部门" prop="partment">
+                        <el-input v-model="form.partment"></el-input>
                     </el-form-item>
 <!--                    <el-form-item label="项目名称" v-if="show">-->
 <!--                        <el-input v-model="form.name" disabled></el-input>-->
 <!--                    </el-form-item>-->
-                    <el-form-item label="立项部门">
+                    <el-form-item label="立项部门" prop="lixiang">
                         <el-input v-model="form.lixiang"></el-input>
                     </el-form-item>
-                    <el-form-item label="项目类别">
+                    <el-form-item label="项目类别" prop="type">
                         <el-input v-model="form.type"></el-input>
                     </el-form-item>
-                    <el-form-item label="项目级别">
+                    <el-form-item label="项目级别" prop="level">
                         <el-input v-model="form.level"></el-input>
                     </el-form-item>
-<!--                    <el-form-item  label="第一完成人">-->
-<!--                        <el-select v-model="form.firstpeople">-->
-<!--                            <el-option-->
-<!--                                v-for="item in teacher_list"-->
-<!--                                :key="item.badge"-->
-<!--                                :label="item.badge+'—'+item.name"-->
-<!--                                :value="item.badge">-->
-<!--                            </el-option>-->
-<!--                        </el-select>-->
-<!--                    </el-form-item>-->
-                    <el-form-item label="参与人情况">
+                    <el-form-item label="参与人情况" prop="people">
                         <el-select multiple filterable v-model="form.people">
                             <el-option
                                 v-for="item in teacher_list"
@@ -46,13 +36,13 @@
                             </el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item label="日期时间">
+                    <el-form-item label="日期时间" prop="finishtime">
                         <el-col :span="11">
                             <el-date-picker type="date" placeholder="选择日期" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
                         </el-col>
                     </el-form-item>
 
-                    <el-form-item label="证明材料">
+                    <el-form-item label="证明材料" prop="path">
                         <el-form ref="form" :model="form" label-width="70px">
                             <el-upload
                                 :auto-upload="false"
@@ -104,6 +94,32 @@
                     path:''
                 },
                 teacher_list:[],
+                rules: {
+                    name: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    partment: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    finishtime: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    level: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    type: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    people: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    lixiang: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    path: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                },
             }
 
         },
@@ -121,15 +137,21 @@
             },
             onSubmit() {
                 this.$refs.upload.submit()
-                updateZongXiangKeYan(this.form).then(res =>{
-                    if(res.data!==0){
-                        this.$message.success(`添加成功`);
-                    }else{
-                        this.$message.error(`添加失败，教研研成果已被申报`);
-                    }
-                    this.reload()
+                this.$refs.subform.validate(valid => {
+                    if (valid) {
+                        updateZongXiangKeYan(this.form).then(res => {
+                            if (res.data !== 0) {
+                                this.$message.success(`添加成功`);
+                            } else {
+                                this.$message.error(`添加失败，教研研成果已被申报`);
+                            }
+                            this.reload()
 
-                } );
+                        });
+                    }else{
+                        this.$message.error("请完善信息")
+                    }
+                })
             }
         }
     }

@@ -124,9 +124,17 @@ export default new Router({
                     component: resolve => require(['../components/page/shenbao/ZongXiangKeYan.vue'], resolve),
                     meta: { title: '纵向科研项目申报' }
                 },{
+                    path: '/新成果申报',
+                    component: resolve => require(['../components/page/shenbao/NewSystemShenBao.vue'], resolve),
+                    meta: { title: '新成果申报' }
+                }, {
                     path: '/我的申报',
                     component: resolve => require(['../components/page/mypage/MyShenBao.vue'], resolve),
                     meta: { title: '我的申报',permission2: true }
+                },{
+                    path: '/新教研成果',
+                    component: resolve => require(['../components/page/quantitation/newSystem.vue'], resolve),
+                    meta: { title: '新教研成果'}
                 },
                 // {
                 //     path: '/tabs',
