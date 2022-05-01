@@ -2,7 +2,7 @@
     <div class="table">
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-tickets"></i>评估中心相关</el-breadcrumb-item>
+                <el-breadcrumb-item><i class="el-icon-tickets"></i>科研获奖</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="container" style="width: 1000px">
@@ -10,35 +10,33 @@
                 <el-button type="primary" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
                 <el-input v-model="query.key" placeholder="筛选关键词" class="handle-input mr10"></el-input>
                 <el-button type="primary" icon="search" @click="search">搜索</el-button>
-                <el-button icon="search" type="primary" style="float: right" @click="crawlerWeb('教务处-评估中心_2020届本科优秀毕业设计（论文）指导教师')">爬取原网站</el-button>
-
+                <el-button icon="search" type="primary" style="float: right" @click="crawlerWeb('社科处_7.科研获奖')">爬取原网站</el-button>
             </div>
             <el-table :data="tableData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
                 <el-table-column prop="id" label="ID" width="55" align="center">
                 </el-table-column>
-                <el-table-column prop="name" label="名称" align="center">
-                </el-table-column>
-                <el-table-column prop="grade" label="获奖等级" align="center">
-                </el-table-column>
                 <el-table-column prop="partment" label="部门" align="center">
                 </el-table-column>
-                <el-table-column prop="finishtime" label="完成时间" walign="center">
+                <el-table-column prop="name" label="项目名称" align="center">
                 </el-table-column>
-<!--                <el-table-column align="center" label="人员情况" width="185px">-->
-<!--                    <template slot-scope="scope">-->
-<!--                        <el-table :data="scope.row.people" :show-header="header">-->
-<!--                            <el-table-column prop="badge" align="center"  label="工号"></el-table-column>-->
-<!--                            <el-table-column prop="name" align="center"  label="姓名"></el-table-column>-->
-<!--                        </el-table>-->
-<!--                    </template>-->
-<!--                </el-table-column>-->
-
+                <el-table-column prop="chengguotype" label="成果类别" align="center">
+                </el-table-column>
+                <el-table-column prop="huojiangleibie" label="获奖类别" align="center">
+                </el-table-column>
+                <el-table-column prop="danwei" label="奖励单位" align="center">
+                </el-table-column>
+                <el-table-column prop="jianglijibie" label="奖励级别" align="center">
+                </el-table-column>
+                <el-table-column prop="jianglidengji" label="奖励等级" align="center">
+                </el-table-column>
+                <el-table-column prop="finishtime" label="完成时间" width="120" align="center">
+                </el-table-column>
 <!--                <el-table-column prop="badge" label="第一完成人工号" width="110px"  align="center">-->
 <!--                </el-table-column>-->
 <!--                <el-table-column prop="tea_name" label="第一完成人" width="100px"   align="center">-->
 <!--                </el-table-column>-->
-                <el-table-column label="操作" width="260px"  align="center" v-if="role==='4'||role==='1'">
+                <el-table-column label="操作" width="260px"  align="center" v-if="role==='4'||role==='2'">
                     <template slot-scope="scope">
                         <el-button size="small" type="info" @click="handleDetail(scope.$index, scope.row)">查看参与人</el-button>
                         <el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
@@ -56,22 +54,34 @@
                 <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
                 </el-pagination>
             </div>
-            <router-link to="/评估中心相关申报">
-                <el-button type="primary">评估中心相关申报</el-button>
+            <router-link to="/社科处项目申报">
+                <el-button type="primary">社科项目申报</el-button>
             </router-link>
         </div>
 
         <!-- 编辑弹出框 -->
         <el-dialog title="编辑" :visible.sync="editVisible" width="50%">
             <el-form ref="form" :model="form" label-width="100px">
-                <el-form-item label="名称">
+                <el-form-item label="项目名称">
                     <el-input v-model="form.name"></el-input>
                 </el-form-item>
                 <el-form-item label="部门">
                     <el-input style="width: 310px" v-model="form.partment"></el-input>
                 </el-form-item>
-                <el-form-item label="获奖等级">
-                    <el-input style="width: 310px" v-model="form.grade"></el-input>
+                <el-form-item label="成果类别">
+                    <el-input style="width: 310px" v-model="form.chengguotype"></el-input>
+                </el-form-item>
+                <el-form-item label="获奖类别">
+                    <el-input style="width: 310px" v-model="form.huojiangleibie"></el-input>
+                </el-form-item>
+                <el-form-item label="奖励等级">
+                    <el-input style="width: 310px" v-model="form.jianglidengji"></el-input>
+                </el-form-item>
+                <el-form-item label="奖励单位">
+                    <el-input style="width: 310px" v-model="form.danwei"></el-input>
+                </el-form-item>
+                <el-form-item label="奖励级别">
+                    <el-input style="width: 310px" v-model="form.jianglijibie"></el-input>
                 </el-form-item>
                 <el-form-item label="参与人情况">
                     <el-select multiple filterable v-model="form.people">
@@ -85,7 +95,7 @@
                 </el-form-item>
                 <el-form-item label="完成时间">
                     <el-col :span="11">
-                        <el-date-picker type="date" placeholder="选择日期" value-format="yyyy-MM-dd" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
+                        <el-date-picker type="date" placeholder="选择日期" @change="change" value-format="yyyy-MM-dd" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
                     </el-col>
                 </el-form-item>
                 <el-form-item>
@@ -108,30 +118,52 @@
 </template>
 
 <script>
-import pingguzhongxin from '../show/PingGuZhongXin_edit'
-import {getAllChanXueYan, getChanXueYanDetail, getSearchChanXueYan} from "../../../api/chanxueyanAPI";
+import zongxiangkeyan from '../show/ZongXiangKeYan_edit'
 import {
-    deleteOnePingGuZhongXin, deletePingGuZhongXin, editPingGuZhongXin, getAllPingGuZhongXin,
-    getPingGuZhongXinDetail, getPingGuZhongXinDetailBadge,
-    getSearchPingGuZhongXin
-} from "../../../api/pingguzhongxinAPI";
+    getAllChanXueYan,
+    getChanXueYanDetail,
+    getChanXueYanDetailBadge,
+    getSearchChanXueYan
+} from "../../../api/chanxueyanAPI";
+import {
+    deleteOneZongXiangKeYan, deleteZongXiangKeYan, editZongXiangKeYan, getAllZongXiangKeYan,
+    getSearchZongXiangKeYan,
+    getZongXiangKeYanDetail, getZongXiangKeYanDetailBadge
+} from "../../../api/zongxiangkeyanAPI";
 import {crawlerWebSite, getTeacherList} from "../../../api/commonAPI";
+import {NewSystemCrawlerWebSite} from "../../../api/newSystem";
+import {
+    deleteKeYanHuoJiang,
+    deleteOneKeYanHuoJiang,
+    deleteOneSheKeChu,
+    deleteSheKeChu,
+    editKeYanHUoJiang,
+    editSheKeChu,
+    getAllKeYanHuoJiang,
+    getAllSheKeChu,
+    getKeYanHuoJiangDetail,
+    getKeYanHuoJiangDetailBadge,
+    getSearchKeYanHuoJiang,
+    getSearchSheKeChu,
+    getSheKeChuDetail,
+    getSheKeChuDetailBadge
+} from "../../../api/SheKeChuAPI";
     export default {
-        name: 'templates',
-        components:{'pingguzhongxin':pingguzhongxin},
+        name: 'longitudinal_per',
         data() {
             return {
                 role:localStorage.getItem('ms_role'),
                 pageTotal:0,
                 query:{
                     key: '',
+                    type:'社科处_7.科研获奖',
                     pageIndex: 1,
                     pageSize: 10
                 },
-                isdetail:false,
                 header:false,
-                people:[],
+                isdetail:false,
                 tableData: [],
+                people:[],
                 cur_page: 1,
                 multipleSelection: [],
                 select_cate: '',
@@ -181,7 +213,7 @@ import {crawlerWebSite, getTeacherList} from "../../../api/commonAPI";
             onSubmit() {
                 this.editVisible = false;
                 console.log(this.form)
-                editPingGuZhongXin(this.form).then(res => {
+                editSheKeChu(this.form).then(res => {
                     if(res!==0){
                         this.$message.success(`修改成功`);
                         this.$set(this.tableData, this.idx, this.form);
@@ -194,9 +226,9 @@ import {crawlerWebSite, getTeacherList} from "../../../api/commonAPI";
             //爬取网站
             crawlerWeb(td){
                 alert("正在爬取....请稍后")
-                crawlerWebSite({crawlertd:td}).then(res => {
+                NewSystemCrawlerWebSite({crawlertd:td}).then(res => {
                     alert(res);
-                    this.getData();this.getData();
+                    this.getData();
                 })
             },
             // 分页导航
@@ -210,38 +242,38 @@ import {crawlerWebSite, getTeacherList} from "../../../api/commonAPI";
             // 获取 easy-mock 的模拟数据
             getData() {
                 if(this.query.key!==''){
-                    getSearchPingGuZhongXin(this.query).then(res =>{
+                    getSearchSheKeChu(this.query).then(res =>{
                         this.tableData = res.list
                         this.pageTotal=res.pageTotal
                     } )
                 }else{
-                    getAllPingGuZhongXin(this.query).then(res=>{
+                    getAllSheKeChu(this.query).then(res=>{
                         this.tableData = res.list
                         this.pageTotal=res.pageTotal
                     })
                 }
             },
             search() {
-                getSearchPingGuZhongXin(this.query).then(res =>{
+                getSearchSheKeChu(this.query).then(res =>{
                     this.tableData = res.list
                     this.pageTotal=res.pageTotal
                 } )
                 this.is_search = true;
             },
+            formatter(row, column) {
+                return row.address;
+            },
             handleDetail(index, row){
-                getPingGuZhongXinDetail({id: row.id}).then(res =>{
+                getSheKeChuDetail({id: row.id,type:row.type}).then(res =>{
                     this.people=res.data
                 } )
                 this.isdetail=true;
-            },
-            formatter(row, column) {
-                return row.address;
             },
             filterTag(value, row) {
                 return row.tag === value;
             },
             handleEdit(index, row) {
-                getPingGuZhongXinDetailBadge({id: row.id}).then(res =>{
+                getSheKeChuDetailBadge({id: row.id,type:row.type}).then(res =>{
                     this.form.people=res.data
                 } )
                 this.form=row;
@@ -253,7 +285,7 @@ import {crawlerWebSite, getTeacherList} from "../../../api/commonAPI";
                     type: 'warning'
                 })
                     .then(() => {
-                        deleteOnePingGuZhongXin({id: row.id}).then(res=>{
+                        deleteOneSheKeChu({id: row.id,type:row.type}).then(res=>{
                             this.getData();
                             this.$message.success('删除成功');
                         }).catch(()=>{
@@ -268,7 +300,7 @@ import {crawlerWebSite, getTeacherList} from "../../../api/commonAPI";
                         type: 'warning'
                     })
                         .then(() => {
-                            deletePingGuZhongXin({ ids: this.idList }).then(res => {
+                            deleteSheKeChu({ ids: this.idList,type: '社科处_7.科研获奖' }).then(res => {
                                 this.$message.success("删除成功");
                                 this.getData();
                             });

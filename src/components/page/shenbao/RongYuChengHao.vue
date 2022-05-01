@@ -43,8 +43,6 @@
                     <el-form-item label="证明材料" prop="path">
                         <el-form ref="form" :model="form" label-width="70px">
                             <el-upload
-                                :auto-upload="false"
-                                ref="upload"
                                 class="upload-demo"
                                 drag
                                 accept=".zip"
@@ -125,7 +123,6 @@
                 this.$message.warning(`当前限制选择 1 个文件，请删除后继续上传！`)
             },
             onSubmit() {
-                this.$refs.upload.submit()
                 this.$refs.subform.validate(valid => {
                     if (valid) {
                         updateHonor(this.form).then(res => {

@@ -2,114 +2,46 @@
     <div>
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-tickets"></i> 原系统项目申报</el-breadcrumb-item>
+                <el-breadcrumb-item><i class="el-icon-tickets"></i> 新系统项目申报</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
+        <br> <br> <br>
         <div class="container">
             <el-row :gutter="20" class="mgb20">
-                    <el-col :span="6">
-                        <el-card shadow="hover" :body-style="{padding: '10px 5px'}">
-                            <div class="grid-content grid-con-1">
-                                <div class="grid-cont-right">
-                                    <div><router-link to="/产学研申报">
-                                        <el-button type="primary"  style="padding: 15%;font-size: large">产学研</el-button>
-                                    </router-link></div>
-                                </div>
+                <el-col :span="8">
+                    <el-card shadow="hover" :body-style="{padding: '10px 5px'}">
+                        <div class="grid-content grid-con-1">
+                            <div class="grid-cont-right">
+                                <div><router-link to="/教务处成果申报" style="text-align: center">
+                                    <el-button type="primary" style="padding: 15%;font-size: large">教务处成果申报</el-button>
+                                </router-link></div>
                             </div>
-                        </el-card>
-                    </el-col>
-                    <el-col :span="6">
-                        <el-card shadow="hover" :body-style="{padding: '10px 5px'}">
-                            <div class="grid-content grid-con-1">
-                                <div class="grid-cont-right">
-                                    <div><router-link to="/教研项目申报" style="text-align: center">
-                                        <el-button type="primary"  style="padding: 15%;font-size: large"> 教研项目</el-button>
-                                    </router-link></div>
-                                </div>
+                        </div>
+                    </el-card>
+                </el-col>
+                <el-col :span="8">
+                    <el-card shadow="hover" :body-style="{padding: '10px 5px'}">
+                        <div class="grid-content grid-con-1">
+                            <div class="grid-cont-right">
+                                <div><router-link to="/社科处项目申报" style="text-align: center">
+                                    <el-button type="primary" style="padding: 15%;font-size: large">社科处成果申报</el-button>
+                                </router-link></div>
                             </div>
-                        </el-card>
-                    </el-col>
-                    <el-col :span="6">
-                        <el-card shadow="hover" :body-style="{padding: '10px 5px'}">
-                            <div class="grid-content grid-con-1">
-                                <div class="grid-cont-right">
-                                    <div><router-link to="/教研论文申报" style="text-align: center">
-                                        <el-button type="primary" style="padding: 15%;font-size: large">教研论文</el-button>
-                                    </router-link></div>
-                                </div>
-                            </div>
-                        </el-card>
-                    </el-col>
-                    <el-col :span="6">
-                        <el-card shadow="hover" :body-style="{padding: '10px 5px'}">
-                            <div class="grid-content grid-con-1">
-                                <div class="grid-cont-right">
-                                    <div><router-link to="/评估中心相关申报" style="text-align: center">
-                                        <el-button type="primary"  style="padding: 15%;font-size: large">评估中心相关</el-button>
-                                    </router-link></div>
-                                </div>
-                            </div>
-                        </el-card>
-                    </el-col>
-                </el-row>
-            <el-row :gutter="20" class="mgb20">
-                <el-col :span="24">
+                        </div>
+                    </el-card>
+                </el-col>
+                <el-col :span="8">
                     <el-card shadow="hover" :body-style="{padding: '10px 5px'}">
                         <div class="grid-content grid-con-1">
                             <div class="grid-cont-right">
                                 <div><router-link to="/合并申报" style="text-align: center">
-                                    <el-button type="primary" style="padding: 15%;font-size: large">专利/横向科研项目/著作/科研论文/软件著作权/科研项目结项</el-button>
+                                    <el-button type="primary" style="padding: 15%;font-size: large">科技处成果申报</el-button>
                                 </router-link></div>
                             </div>
                         </div>
                     </el-card>
                 </el-col>
-
-            </el-row>
-            <el-row :gutter="20" class="mgb20">
-                <el-col :span="6">
-                    <el-card shadow="hover" :body-style="{padding: '10px 5px'}">
-                        <div class="grid-content grid-con-1">
-                            <div class="grid-cont-right">
-                                <div><router-link to="/教育规划项目申报"><el-button type="primary" style="padding: 15%;font-size: large">教育规划项目</el-button></router-link></div>
-                            </div>
-                        </div>
-                    </el-card>
-                </el-col>
-                <el-col :span="6">
-                    <el-card shadow="hover" :body-style="{padding: '10px 5px'}">
-                        <div class="grid-content grid-con-1">
-                            <div class="grid-cont-right">
-                                <div><router-link to="/纵向科研项目申报" style="text-align: center">
-                                    <el-button type="primary"  style="padding: 15%;font-size: large">纵向科研项目</el-button>
-                                </router-link></div>
-                            </div>
-                        </div>
-                    </el-card>
-                </el-col>
-                <el-col :span="6">
-                    <el-card shadow="hover" :body-style="{padding: '10px 5px'}">
-                        <div class="grid-content grid-con-1">
-                            <div class="grid-cont-right">
-                                <div><router-link to="/学科竞赛申报" style="text-align: center">
-                                    <el-button type="primary"  style="padding: 15%;font-size: large">学科竞赛</el-button>
-                                </router-link></div>
-                            </div>
-                        </div>
-                    </el-card>
-                </el-col>
-                <el-col :span="6">
-                    <el-card shadow="hover" :body-style="{padding: '10px 5px'}">
-                        <div class="grid-content grid-con-1">
-                            <div class="grid-cont-right">
-                                <div><router-link to="/荣誉称号申报" style="text-align: center">
-                                    <el-button type="primary" style="padding: 15%;font-size: large">荣誉称号</el-button>
-                                </router-link></div>
-                            </div>
-                        </div>
-                    </el-card>
-                </el-col>
-            </el-row>
+                </el-row>
         </div>
     </div>
 </template>

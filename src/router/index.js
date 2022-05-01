@@ -20,8 +20,16 @@ export default new Router({
                     meta: { title: '系统首页' }
                 },
                 {
-                    path: '/项目申报',
+                    path: '/原系统项目申报',
                     component: resolve => require(['../components/page/mypage/project_declare.vue'], resolve),
+                    meta: { title: '原系统项目申报' }
+                },{
+                    path: '/新系统项目申报',
+                    component: resolve => require(['../components/page/mypage/newproject_declare.vue'], resolve),
+                    meta: { title: '新系统项目申报' }
+                },{
+                    path: '/项目申报',
+                    component: resolve => require(['../components/page/mypage/firstdeclare.vue'], resolve),
                     meta: { title: '项目申报' }
                 },
                 // {
@@ -37,6 +45,14 @@ export default new Router({
                     path: '/教研项目',
                     component: resolve => require(['../components/page/quantitation/teach_search.vue'], resolve),
                     meta: { title: '教研项目' }
+                },{
+                    path: '/科研获奖',
+                    component: resolve => require(['../components/page/quantitation/keyanhuojiang.vue'], resolve),
+                    meta: { title: '科研获奖' }
+                },{
+                    path: '/纵向结题',
+                    component: resolve => require(['../components/page/quantitation/newlongitudinal_per.vue'], resolve),
+                    meta: { title: '纵向结题' }
                 },{
                     path: '/教研论文',
                     component: resolve => require(['../components/page/quantitation/teach_paper.vue'], resolve),
@@ -62,6 +78,10 @@ export default new Router({
                     component: resolve => require(['../components/page/quantitation/longitudinal_per.vue'], resolve),
                     meta: { title: '纵向科研项目' }
                 },{
+                    path: '/纵向结题',
+                    component: resolve => require(['../components/page/quantitation/longitudinal_per.vue'], resolve),
+                    meta: { title: '纵向科研项目' }
+                }, {
                     path: '/著作',
                     component: resolve => require(['../components/page/quantitation/book.vue'], resolve),
                     meta: { title: '著作' }
@@ -100,6 +120,16 @@ export default new Router({
                     meta: { title: '评估中心相关' }
                 },
                 {
+                    path: '/教务处成果申报',
+                    component: resolve => require(['../components/page/shenbao/JiaoWuChuShenBao.vue'], resolve),
+                    meta: { title: '教务处成果申报' }
+                },
+                {
+                    path: '/社科处项目申报',
+                    component: resolve => require(['../components/page/shenbao/SheKeChuShenBao.vue'], resolve),
+                    meta: { title: '社科处项目申报' }
+                },
+                {
                     path: '/教研论文申报',
                     component: resolve => require(['../components/page/shenbao/JiaoYanLunWen.vue'], resolve),
                     meta: { title: '教研论文申报' }
@@ -132,9 +162,9 @@ export default new Router({
                     component: resolve => require(['../components/page/mypage/MyShenBao.vue'], resolve),
                     meta: { title: '我的申报',permission2: true }
                 },{
-                    path: '/新教研成果',
+                    path: '/教务处',
                     component: resolve => require(['../components/page/quantitation/newSystem.vue'], resolve),
-                    meta: { title: '新教研成果'}
+                    meta: { title: '教务处'}
                 },
                 // {
                 //     path: '/tabs',

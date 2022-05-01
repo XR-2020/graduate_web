@@ -6,11 +6,26 @@
                 <template v-if="item.subs">
                     <el-submenu :index="item.index" :key="item.index">
                         <template slot="title">
-                            <i :class="item.icon"></i><span slot="title">{{ item.title }}</span>
+                             <i :class="item.icon"></i> <span slot="title">{{ item.title }}</span>
                         </template>
-                        <el-menu-item v-for="(subItem,i) in item.subs" :key="i" :index="subItem.index">
-                            {{ subItem.title }}
-                        </el-menu-item>
+                          <template v-for="subItem in item.subs">
+                            <!-- 如果第二层有子菜单，则继续循环 -->
+                            <template v-if="subItem.subs">
+                                <el-submenu :index="subItem.index" :key="subItem.index">
+                                    <i :class="subItem.icon"></i><span slot="title">{{ subItem.title }}</span>
+                                    <template v-for="thirdItem in subItem.subs">
+                                        <el-menu-item :index="thirdItem.index" :key="thirdItem.index">
+                                            <i :class="thirdItem.icon"></i><span>{{ thirdItem.title }}</span>
+                                        </el-menu-item>
+                                    </template>
+                                </el-submenu>
+                            </template>
+                            <template v-else>
+                                <el-menu-item :index="subItem.index" :key="subItem.index">
+                                    <span>{{ subItem.title }}</span>
+                                </el-menu-item>
+                            </template>
+                        </template>
                     </el-submenu>
                 </template>
                 <template v-else>
@@ -119,27 +134,37 @@
                             },{
                                 index:'科研项目结项',
                                 title:'科研项目结项'
-                            },{
-                                index:'新教研成果',
-                                title:'新教研成果'
-                            },
+                            }
                         ]
                     },
-                    // {
-                    //     icon: 'el-icon-star-on',
-                    //     index: 'charts',
-                    //     title: 'schart图表'
-                    // },
-                    // {
-                    //     icon: 'el-icon-rank',
-                    //     index: 'drag',
-                    //     title: '拖拽列表'
-                    // },
-                    // {
-                    //     icon: 'el-icon-error',
-                    //     index: '404',
-                    //     title: '404页面'
-                    // }
+                    {
+                        icon: 'el-icon-tickets',
+                        index: '4',
+                        title: '新教科研成果',
+                        subs: [
+                            {
+                                icon: 'el-icon-office-building',
+                                index:'教务处',
+                                title:'教务处',
+                            },{
+                                icon: 'el-icon-office-building',
+                                index:'科技处',
+                                title: '科技处',
+                                subs:[
+                                    {
+                                        icon: 'el-icon-trophy',
+                                        index:'纵向结题',
+                                        title:'纵向结题'
+                                    },{
+                                        icon: 'el-icon-trophy',
+                                        index:'科研获奖',
+                                        title:'科研获奖'
+                                    }
+                                ]
+                            }
+
+                        ]
+                    },
                     {
                         icon: 'el-icon-tickets',
                         index: '学科竞赛',
@@ -168,6 +193,8 @@
             bus.$on('collapse', msg => {
                 this.collapse = msg;
             })
+
+            console.log(this.items)
         }
     }
 </script>

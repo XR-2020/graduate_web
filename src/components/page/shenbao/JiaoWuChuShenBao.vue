@@ -2,13 +2,23 @@
     <div>
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-tickets"></i>教研论文申报</el-breadcrumb-item>
+                <el-breadcrumb-item><i class="el-icon-tickets"></i> 教务处成果申报</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="container">
             <div class="form-box">
                 <el-form ref="subform" :model="form" label-width="100px" :rules="rules">
-                    <el-form-item label="论文名称" prop="name">
+                    <el-form-item label="申报类型" prop="type">
+                        <el-select filterable v-model="form.type" style="width: 50%">
+                            <el-option
+                                v-for="item in typeList"
+                                :key="item"
+                                :label="item"
+                                :value="item">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="项目名称" prop="name">
                         <el-input v-model="form.name"></el-input>
                     </el-form-item>
                     <el-form-item label="部门" prop="partment">
@@ -27,7 +37,7 @@
                     </el-form-item>
                     <el-form-item label="完成时间" prop="finishtime">
                         <el-col :span="11">
-                            <el-date-picker type="date" placeholder="选择日期" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
+                            <el-date-picker value-format="yyyy-MM-dd" type="date" placeholder="选择日期" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
                         </el-col>
                     </el-form-item>
 
@@ -37,7 +47,7 @@
                                 class="upload-demo"
                                 drag
                                 accept=".zip"
-                                action="http://localhost:8080/JiaoYanLunWenMetials"
+                                action="http://localhost:8080/HeBingMetials"
                                 :limit="1"
                                 :on-exceed="handleChange"
                                 :on-success="uploadSuccess"
@@ -49,7 +59,7 @@
                     </el-form-item>
                     <el-form-item>
                         <el-button type="primary" @click="onSubmit">提交</el-button>
-                        <router-link to="/项目申报"><el-button>取消</el-button></router-link>
+                        <router-link to="/新系统项目申报"><el-button>取消</el-button></router-link>
                     </el-form-item>
                 </el-form>
             </div>
@@ -60,19 +70,27 @@
 
 <script>
     import {updateChanXueYan} from "../../../api/chanxueyanAPI";
-    import {updateJiaoYanLunWen} from "../../../api/jiaoyanlunwenAPI";
+    import {updateHeBing} from "../../../api/shenbaoAPI";
     import {getTeacherList} from "../../../api/commonAPI";
+    import {insertJiaoWuChu, updateJiaoWuChu} from "../../../api/JiaoWuChuAPI";
 
     export default {
         inject:['reload'],
-        name: 'jiaoyulunwen',
+        name: 'heBingShenBao',
         data: function(){
             return {
+                typeList:['教务处-实践科_校外实践基地',
+                    '教务处-实践科_立项',
+                    '教务处-实践科_结项',
+                    '教务处-教材科_教材业绩点',
+                    '教务处-教研科_教研业绩',
+                    '教务处-教研科_教研论文'],
                 form: {
                     role:localStorage.getItem('ms_role'),
                     name: '',
-                    finishtime: '',
+                    type: '',
                     partment:'',
+                    finishtime: '',
                     people:[],
                     shenbao:localStorage.getItem('ms_badge'),
                     path:''
@@ -81,6 +99,9 @@
                 teacher_list:[],
                 rules: {
                     name: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    type: [
                         { required: true, message: '必填', trigger: 'blur' }
                     ],
                     partment: [
@@ -94,7 +115,7 @@
                     ],
                     path: [
                         { required: true, message: '必填', trigger: 'blur' }
-                    ],
+                    ]
                 },
             }
         },
@@ -104,25 +125,25 @@
             } )
         },
         methods: {
-            handleChange(file, fileList) {
-                this.$message.warning(`当前限制选择 1 个文件，请删除后继续上传！`)
-            },
             uploadSuccess(response,file,fileList){
                 this.form.path=response
+            },
+            handleChange(file, fileList) {
+                this.$message.warning(`当前限制选择 1 个文件，请删除后继续上传！`)
             },
             onSubmit() {
                 this.$refs.subform.validate(valid => {
                     if (valid) {
-                        updateJiaoYanLunWen(this.form).then(res =>{
-                    if(res.data!==0){
-                        this.$message.success(`添加成功`);
-                    }else{
-                        this.$message.error(`添加失败，教研研成果已被申报`);
-                    }
-                    this.reload()
-                } );
-                    }else{
-                    this.$message.error("请完善信息")
+                        insertJiaoWuChu(this.form).then(res =>{
+                            if(res.data!==0){
+                                this.$message.success(`添加成功`);
+                            }else{
+                                this.$message.error(`添加失败，成果已被申报`);
+                            }
+                            this.reload()
+                        } );
+                    } else {
+                        this.$message.error("请完善信息")
                     }
                 })
             }

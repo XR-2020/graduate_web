@@ -48,8 +48,8 @@
                 <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
                 </el-pagination>
             </div>
-            <router-link to="/教研论文申报">
-                <el-button type="primary">教研论文</el-button>
+            <router-link to="/科研论文申报">
+                <el-button type="primary">科研论文申报</el-button>
             </router-link>
         </div>
 

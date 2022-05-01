@@ -40,8 +40,6 @@
                     <el-form-item label="证明材料" prop="path">
                         <el-form ref="form" :model="form" label-width="70px">
                             <el-upload
-                                ref="upload"
-                                :auto-upload="false"
                                 class="upload-demo"
                                 drag
                                 accept=".zip"
@@ -127,7 +125,6 @@
                 this.form.path=response
             },
             onSubmit() {
-                this.$refs.upload.submit()
                 this.$refs.subform.validate(valid => {
                     if (valid) {
                         updateJiaoYan(this.form).then(res =>{

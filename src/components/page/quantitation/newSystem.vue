@@ -2,7 +2,7 @@
     <div class="table">
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-tickets"></i>新教研成果</el-breadcrumb-item>
+                <el-breadcrumb-item><i class="el-icon-tickets"></i>教务处</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="container" style="width: 1000px">
@@ -136,7 +136,12 @@ import {
         components:{'heBingShenBao':heBingShenBao},
         data() {
             return {
-                typeList:[],
+                typeList:['教务处-实践科_校外实践基地',
+                        '教务处-实践科_立项',
+                        '教务处-实践科_结项',
+                        '教务处-教材科_教材业绩点',
+                        '教务处-教研科_教研业绩',
+                        '教务处-教研科_教研论文'],
                 crawlertd:'',
                 role:localStorage.getItem('ms_role'),
                 header:false,
@@ -193,9 +198,6 @@ import {
         },
         methods: {
             getCrawerlist(){
-                CrawlerTypeList().then(res =>{
-                    this.typeList=res
-                } )
                 this.isCrawer=true
             },
             handleCrawer(){
