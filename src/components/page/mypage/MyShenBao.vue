@@ -31,6 +31,8 @@
                             <span v-if="scope.row.tablename=='jiaoyanxiangmu'">教研项目</span>
                             <span v-if="scope.row.tablename=='jiaoyanlunwen'">教研论文</span>
                             <span v-if="scope.row.tablename=='honor'">荣誉称号</span>
+                            <span v-if="scope.row.tablename=='newsystem'">教务处成果</span>
+                            <span v-if="scope.row.tablename=='shekechu'">社科处成果</span>
                         </template>
                     </el-table-column>
                     <el-table-column prop="object.partment" label="项目所属部门"  align="center">
@@ -88,6 +90,8 @@
                             <span v-if="scope.row.tablename=='jiaoyanxiangmu'">教研项目</span>
                             <span v-if="scope.row.tablename=='jiaoyanlunwen'">教研论文</span>
                             <span v-if="scope.row.tablename=='honor'">荣誉称号</span>
+                            <span v-if="scope.row.tablename=='newsystem'">教务处成果</span>
+                            <span v-if="scope.row.tablename=='shekechu'">社科处成果</span>
                         </template>
                     </el-table-column>
                     <el-table-column prop="object.partment" label="项目所属部门"  align="center">
@@ -141,6 +145,8 @@
                                 <span v-if="scope.row.tablename=='jiaoyanxiangmu'">教研项目</span>
                                 <span v-if="scope.row.tablename=='jiaoyanlunwen'">教研论文</span>
                                 <span v-if="scope.row.tablename=='honor'">荣誉称号</span>
+                                <span v-if="scope.row.tablename=='newsystem'">教务处成果</span>
+                                <span v-if="scope.row.tablename=='shekechu'">社科处成果</span>
                             </template>
                     </el-table-column>
                     <el-table-column prop="object.partment" label="项目所属部门"  align="center">
@@ -184,6 +190,24 @@
                 </el-form-item>
                 <el-form-item label="项目立项文号" v-if="form.wenhao" >
                     <el-input v-model="form.wenhao"></el-input>
+                </el-form-item>
+                <el-form-item label="项目级别" v-if="form.xiangmujibie" >
+                    <el-input v-model="form.xiangmujibie"></el-input>
+                </el-form-item>
+                <el-form-item label="结题等级" v-if="form.jietidengji" >
+                    <el-input v-model="form.jietidengji"></el-input>
+                </el-form-item>
+                <el-form-item label="成果类别" v-if="form.chengguotype" >
+                    <el-input v-model="form.chengguotype"></el-input>
+                </el-form-item>
+                <el-form-item label="获奖类别" v-if="form.huojiangleibie" >
+                    <el-input v-model="form.huojiangleibie"></el-input>
+                </el-form-item>
+                <el-form-item label="奖励级别" v-if="form.jianglijibie" >
+                    <el-input v-model="form.jianglijibie"></el-input>
+                </el-form-item>
+                <el-form-item label="奖励等级" v-if="form.jianglidengji" >
+                    <el-input v-model="form.jianglidengji"></el-input>
                 </el-form-item>
                 <el-form-item label="项目成果依据"  v-if="form.lianghua">
                     <el-input v-model="form.lianghua"></el-input>
@@ -235,6 +259,8 @@ import {editJiaoYan} from "../../../api/jiaoyanAPI";
 import {editPingGuZhongXin} from "../../../api/pingguzhongxinAPI";
 import {editZongXiangKeYan} from "../../../api/zongxiangkeyanAPI";
 import {editCompetition} from "../../../api/JingSaiAPI";
+import {editNewSystem} from "../../../api/newSystem";
+import {editSheKeChu} from "../../../api/SheKeChuAPI";
 
 export default {
     inject:['reload'],
@@ -439,6 +465,28 @@ export default {
                     editChanXueYan(this.form).then(res => {
                         if(res!==0){
                             this.$message.success(`修改成功`);
+                        }else{
+                            this.$message.error(`修改失败`);
+                        }
+                    })
+                    break;
+                }
+                case "newsystem":{
+                    editNewSystem(this.form).then(res => {
+                        if(res!==0){
+                            this.$message.success(`修改成功`);
+                            this.$set(this.tableData, this.idx, this.form);
+                        }else{
+                            this.$message.error(`修改失败`);
+                        }
+                    })
+                    break;
+                }
+                case "shekechu":{
+                    editSheKeChu(this.form).then(res => {
+                        if(res!==0){
+                            this.$message.success(`修改成功`);
+                            this.$set(this.tableData, this.idx, this.form);
                         }else{
                             this.$message.error(`修改失败`);
                         }
