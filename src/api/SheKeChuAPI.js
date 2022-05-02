@@ -62,3 +62,18 @@ export const getSheKeChuDetailBadge = query => {
         params: query
     });
 };
+export const passSheKeChuChu = query => {
+    return request({
+        url: '/passSheKeChuChu',
+        method: 'post',
+        params: query
+    });
+};
+export const getSheKeChuMetails = query => {
+    return request({
+        url: '/getSheKeChuMetails',
+        method: 'get',
+        responseType:'arraybuffer',
+        params: query
+    });
+};

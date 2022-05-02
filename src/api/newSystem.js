@@ -73,3 +73,18 @@ export const deleteOneNewSystem = query => {
         params: query
     });
 };
+export const passJiaoWuChu = query => {
+    return request({
+        url: '/passJiaoWuChu',
+        method: 'post',
+        params: query
+    });
+};
+export const getJiaoWuChuMetails = query => {
+    return request({
+        url: '/getJiaoWuChuMetails',
+        method: 'get',
+        responseType:'arraybuffer',
+        params: query
+    });
+};
