@@ -200,6 +200,11 @@ export default new Router({
                     component: resolve => require(['../components/page/mypage/statistical.vue'], resolve),
                     meta: { title: '教研成果统计' }
                 },
+                {
+                    path: '/新教研成果统计',
+                    component: resolve => require(['../components/page/mypage/newstatistical.vue'], resolve),
+                    meta: { title: '新教研成果统计' }
+                },
                 // {
                 //     // 拖拽列表组件
                 //     path: '/drag',

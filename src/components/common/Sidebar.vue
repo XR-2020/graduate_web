@@ -179,6 +179,11 @@
                         icon: 'el-icon-star-on',
                         index: '教研成果统计',
                         title: '教研成果统计'
+                    },
+                    {
+                        icon: 'el-icon-star-on',
+                        index: '新教研成果统计',
+                        title: '新教研成果统计'
                     }
                 ]
             }

@@ -32,8 +32,8 @@
             </div>
             <div :visible.sync="bysearch">
                 <div class="schart-box" v-if="hasdate">
-                    <schart class="schart" canvasId="line" :data="data1" type="line" :options="options2"></schart>
-                    <br/>
+<!--                    <schart class="schart" canvasId="line" :data="data1" type="line" :options="options2"></schart>-->
+<!--                    <br/>-->
                     <p>产学研明细</p>
                     <br/>
                     <el-table :data="chanxueyan" border>
