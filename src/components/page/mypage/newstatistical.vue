@@ -15,7 +15,14 @@
                     end-placeholder="结束日期"
                     unlink-panels>
                 </el-date-picker>
-
+                <el-select filterable v-model="form.key" placeholder="请选择教师" >
+                    <el-option
+                        v-for="item in teacher_list"
+                        :key="item.badge"
+                        :label="item.badge+'—'+item.name"
+                        :value="item.badge">
+                    </el-option>
+                </el-select>
                 <el-select v-model="form.value" placeholder="请选择类型" @change="search">
                     <el-option
                         v-for="item in options"
@@ -448,6 +455,7 @@
 <script>
     import Schart from 'vue-schart';
     import {NewSearchAll, NewSearchByDetail} from "../../../api/newstatistical";
+    import {getTeacherList} from "../../../api/commonAPI";
     export default {
         inject:['reload'],
         name: 'basecharts',
@@ -458,7 +466,8 @@
             form: {
                 date1: '',
                 date2:'',
-                value:''
+                value:'',
+                key:''
             },
             value:'',
             options:[
@@ -472,6 +481,7 @@
                 {lable:"纵向结题", value:"社科处_3.纵向结题"},
                 {lable:"科研获奖", value:"社科处_7.科研获奖"}
             ],
+            teacher_list:[],
             xiaowaishijianjidi:[],
             shijianlixiang:[],
             shijianjiexiang:[],
@@ -488,6 +498,11 @@
             bysearch:false,
             istype:false,
         }),
+        created() {
+            getTeacherList().then(res =>{
+                this.teacher_list=res
+            } )
+        },
         methods:{
             search() {
                 this.form.date1=this.value[0];

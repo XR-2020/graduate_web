@@ -7,9 +7,6 @@
         </div>
         <div class="container">
             <div class="handle-box">
-<!--                <el-date-picker type="date" placeholder="选择日期" v-model="form.date1"></el-date-picker>-->
-<!--                <span>—</span>-->
-<!--                <el-date-picker type="date" placeholder="选择日期" v-model="form.date2"></el-date-picker>-->
                 <el-date-picker
                     v-model="value"
                     type="daterange"
@@ -18,7 +15,14 @@
                     end-placeholder="结束日期"
                     unlink-panels>
                 </el-date-picker>
-
+                <el-select filterable v-model="form.key" placeholder="请选择教师">
+                    <el-option
+                        v-for="item in teacher_list"
+                        :key="item.badge"
+                        :label="item.badge+'—'+item.name"
+                        :value="item.badge">
+                    </el-option>
+                </el-select>
                 <el-select v-model="form.value" placeholder="请选择类型" @change="search">
                     <el-option
                         v-for="item in options"
@@ -321,14 +325,6 @@
                         </el-table-column>
                         <el-table-column prop="object.teacher" label="指导教师"  align="center">
                         </el-table-column>
-<!--                        <el-table-column align="center" label="指导教师情况" width="185px">-->
-<!--                            <template slot-scope="scope">-->
-<!--                                <el-table :data="scope.row.people" :show-header="false">-->
-<!--                                    <el-table-column prop="badge" align="center"  label="工号"></el-table-column>-->
-<!--                                    <el-table-column prop="name" align="center"  label="姓名"></el-table-column>-->
-<!--                                </el-table>-->
-<!--                            </template>-->
-<!--                        </el-table-column>-->
 
                         <el-table-column prop="object.student" label="参赛学生" align="center">
                         </el-table-column>
@@ -339,8 +335,6 @@
                     <p>荣誉称号明细</p>
                     <br/>
                     <el-table :data="rongyuchenghao" border style="width: 100%">
-<!--                        <el-table-column prop="object.id" label="ID"  width="40" align="center">-->
-<!--                        </el-table-column>-->
                         <el-table-column prop="object.name" label="称号名称" align="center">
                         </el-table-column>
                         <el-table-column prop="object.level" label="级别"  align="center">
@@ -695,6 +689,7 @@
 <script>
     import Schart from 'vue-schart';
     import {SearchAll, SearchByDetail} from "../../../api/statistical"
+    import {getTeacherList} from "../../../api/commonAPI";
     export default {
         inject:['reload'],
         name: 'basecharts',
@@ -705,7 +700,8 @@
             form: {
                 date1: '',
                 date2:'',
-                value:''
+                value:'',
+                key:''
             },
             value:'',
             options:[
@@ -778,6 +774,7 @@
                 width: 500,
                 height: 400,
             },
+            teacher_list:[],
             data1:[],
             tableData:[],
             hasdate:false,
@@ -785,6 +782,11 @@
             bysearch:false,
             istype:false,
         }),
+        created() {
+            getTeacherList().then(res =>{
+                this.teacher_list=res
+            } )
+        },
         methods:{
             search() {
                 this.form.date1=this.value[0];

@@ -76,71 +76,71 @@
                     //     index: 'tabs',
                     //     title: 'tab选项卡'
                     // },
+                    // {
+                    //     icon: 'el-icon-tickets',
+                    //     index: '3',
+                    //     title: '教科研成果',
+                    //     subs: [
+                    //         // {
+                    //         //     index: 'form',
+                    //         //     title: '基本表单'
+                    //         // },
+                    //         // {
+                    //         //     index: 'editor',
+                    //         //     title: '富文本编辑器'
+                    //         // },
+                    //         // {
+                    //         //     index: 'markdown',
+                    //         //     title: 'markdown编辑器'
+                    //         // },
+                    //         // {
+                    //         //     index: 'upload',
+                    //         //     title: '文件上传'
+                    //         // }
+                    //         {
+                    //             index:'产学研',
+                    //             title:'产学研'
+                    //         },
+                    //         {
+                    //             index:'教研项目',
+                    //             title:'教研项目'
+                    //         },{
+                    //             index:'教研论文',
+                    //             title:'教研论文'
+                    //         },{
+                    //             index:'评估中心相关',
+                    //             title:'评估中心相关'
+                    //         },{
+                    //             index:'教育规划项目',
+                    //             title:'教育规划项目'
+                    //         },{
+                    //             index:'专利',
+                    //             title:'专利'
+                    //         },{
+                    //             index:'横向科研项目',
+                    //             title:'横向科研项目'
+                    //         },{
+                    //             index:'纵向科研项目',
+                    //             title:'纵向科研项目'
+                    //         },{
+                    //             index:'著作',
+                    //             title:'著作'
+                    //         },{
+                    //             index:'科研论文',
+                    //             title:'科研论文'
+                    //         },{
+                    //             index:'软件著作权',
+                    //             title:'软件著作权'
+                    //         },{
+                    //             index:'科研项目结项',
+                    //             title:'科研项目结项'
+                    //         }
+                    //     ]
+                    // },
                     {
                         icon: 'el-icon-tickets',
                         index: '3',
                         title: '教科研成果',
-                        subs: [
-                            // {
-                            //     index: 'form',
-                            //     title: '基本表单'
-                            // },
-                            // {
-                            //     index: 'editor',
-                            //     title: '富文本编辑器'
-                            // },
-                            // {
-                            //     index: 'markdown',
-                            //     title: 'markdown编辑器'
-                            // },
-                            // {
-                            //     index: 'upload',
-                            //     title: '文件上传'
-                            // }
-                            {
-                                index:'产学研',
-                                title:'产学研'
-                            },
-                            {
-                                index:'教研项目',
-                                title:'教研项目'
-                            },{
-                                index:'教研论文',
-                                title:'教研论文'
-                            },{
-                                index:'评估中心相关',
-                                title:'评估中心相关'
-                            },{
-                                index:'教育规划项目',
-                                title:'教育规划项目'
-                            },{
-                                index:'专利',
-                                title:'专利'
-                            },{
-                                index:'横向科研项目',
-                                title:'横向科研项目'
-                            },{
-                                index:'纵向科研项目',
-                                title:'纵向科研项目'
-                            },{
-                                index:'著作',
-                                title:'著作'
-                            },{
-                                index:'科研论文',
-                                title:'科研论文'
-                            },{
-                                index:'软件著作权',
-                                title:'软件著作权'
-                            },{
-                                index:'科研项目结项',
-                                title:'科研项目结项'
-                            }
-                        ]
-                    },
-                    {
-                        icon: 'el-icon-tickets',
-                        index: '4',
-                        title: '新教科研成果',
                         subs: [
                             {
                                 icon: 'el-icon-office-building',
@@ -148,8 +148,8 @@
                                 title:'教务处',
                             },{
                                 icon: 'el-icon-office-building',
-                                index:'科技处',
-                                title: '科技处',
+                                index:'社科处',
+                                title: '社科处',
                                 subs:[
                                     {
                                         icon: 'el-icon-trophy',
@@ -159,6 +159,34 @@
                                         icon: 'el-icon-trophy',
                                         index:'科研获奖',
                                         title:'科研获奖'
+                                    }
+                                ]
+                            },{
+                                icon: 'el-icon-office-building',
+                                index:'科技处',
+                                title: '科技处',
+                                subs:[
+                                    {
+                                        index:'专利',
+                                        title:'专利'
+                                    },{
+                                        index:'横向科研项目',
+                                        title:'横向科研项目'
+                                    },{
+                                        index:'纵向科研项目',
+                                        title:'纵向科研项目'
+                                    },{
+                                        index:'著作',
+                                        title:'著作'
+                                    },{
+                                        index:'科研论文',
+                                        title:'科研论文'
+                                    },{
+                                        index:'软件著作权',
+                                        title:'软件著作权'
+                                    },{
+                                        index:'科研项目结项',
+                                        title:'科研项目结项'
                                     }
                                 ]
                             }
