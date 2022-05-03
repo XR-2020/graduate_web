@@ -8,7 +8,7 @@
         <br> <br> <br>
         <div class="container">
             <el-row :gutter="20" class="mgb20">
-                <el-col :span="8">
+                <el-col :span="12">
                     <el-card shadow="hover" :body-style="{padding: '10px 5px'}">
                         <div class="grid-content grid-con-1">
                             <div class="grid-cont-right">
@@ -19,7 +19,7 @@
                         </div>
                     </el-card>
                 </el-col>
-                <el-col :span="8">
+                <el-col :span="12">
                     <el-card shadow="hover" :body-style="{padding: '10px 5px'}">
                         <div class="grid-content grid-con-1">
                             <div class="grid-cont-right">
@@ -30,17 +30,17 @@
                         </div>
                     </el-card>
                 </el-col>
-                <el-col :span="8">
-                    <el-card shadow="hover" :body-style="{padding: '10px 5px'}">
-                        <div class="grid-content grid-con-1">
-                            <div class="grid-cont-right">
-                                <div><router-link to="/合并申报" style="text-align: center">
-                                    <el-button type="primary" style="padding: 15%;font-size: large">科技处成果申报</el-button>
-                                </router-link></div>
-                            </div>
-                        </div>
-                    </el-card>
-                </el-col>
+<!--                <el-col :span="8">-->
+<!--                    <el-card shadow="hover" :body-style="{padding: '10px 5px'}">-->
+<!--                        <div class="grid-content grid-con-1">-->
+<!--                            <div class="grid-cont-right">-->
+<!--                                <div><router-link to="/合并申报" style="text-align: center">-->
+<!--                                    <el-button type="primary" style="padding: 15%;font-size: large">科技处成果申报</el-button>-->
+<!--                                </router-link></div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </el-card>-->
+<!--                </el-col>-->
                 </el-row>
         </div>
     </div>

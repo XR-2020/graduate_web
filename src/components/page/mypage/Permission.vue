@@ -235,7 +235,7 @@
                         </el-table-column>
                     </el-table>
                     <div class="pagination">
-                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="jiaoyuguihuaPageTotal">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="xiaowaishijianjidiPageTotal">
                         </el-pagination>
                     </div>
                 </div>
@@ -270,7 +270,7 @@
                         </el-table-column>
                     </el-table>
                     <div class="pagination">
-                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="jiaoyuguihuaPageTotal">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="shijianlixiangPageTotal">
                         </el-pagination>
                     </div>
                 </div>
@@ -306,7 +306,7 @@
                         </el-table-column>
                     </el-table>
                     <div class="pagination">
-                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="jiaoyuguihuaPageTotal">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="shijianjiexiangPageTotal">
                         </el-pagination>
                     </div>
                 </div>
@@ -314,7 +314,7 @@
                     <br>
                     <p>新系统教材业绩点申报</p>
                     <br>
-                    <el-table :data="jiaoyuguihuaData" border style="width: 100%">
+                    <el-table :data="jiaocaiyejidian" border style="width: 100%">
                         <el-table-column prop="object.id" label="ID"  width="35" align="center">
                         </el-table-column>
                         <el-table-column prop="object.name" label="项目名称" width="120" align="center">
@@ -348,7 +348,7 @@
                         </el-table-column>
                     </el-table>
                     <div class="pagination">
-                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="jiaoyuguihuaPageTotal">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="jiaocaiyejidianPageTotal">
                         </el-pagination>
                     </div>
                 </div>
@@ -390,7 +390,7 @@
                         </el-table-column>
                     </el-table>
                     <div class="pagination">
-                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="jiaoyuguihuaPageTotal">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="jiaoyanyejiPageTotal">
                         </el-pagination>
                     </div>
                 </div>
@@ -425,7 +425,7 @@
                         </el-table-column>
                     </el-table>
                     <div class="pagination">
-                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="jiaoyuguihuaPageTotal">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="newjiaoyanlunwenPageTotal">
                         </el-pagination>
                     </div>
                 </div>
@@ -461,7 +461,7 @@
                         </el-table-column>
                     </el-table>
                     <div class="pagination">
-                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="jiaoyuguihuaPageTotal">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="youxiubishePageTotal">
                         </el-pagination>
                     </div>
                 </div>
@@ -761,7 +761,7 @@
                         </el-table-column>
                     </el-table>
                     <div class="pagination">
-                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="keyanxiangmujiexiangPageTotal">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="zongxiangjietiPageTotal">
                         </el-pagination>
                     </div>
                 </div>
@@ -806,7 +806,7 @@
                         </el-table-column>
                     </el-table>
                     <div class="pagination">
-                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="keyanxiangmujiexiangPageTotal">
+                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="keyanhuojiangPageTotal">
                         </el-pagination>
                     </div>
                 </div>
@@ -985,7 +985,16 @@ export default {
             jiaoyanxiangmuPageTotal:0,
             jiaoyanlunwenPageTotal:0,
             hengxiangkeyanPageTotal:0,
-            jiaoyuguihuaPageTotal:0
+            jiaoyuguihuaPageTotal:0,
+            keyanhuojiangPageTotal:0,
+            zongxiangjietiPageTotal:0,
+            youxiubishePageTotal:0,
+            newjiaoyanlunwenPageTotal:0,
+            jiaoyanyejiPageTotal:0,
+            jiaocaiyejidianPageTotal:0,
+            shijianjiexiangPageTotal:0,
+            shijianlixiangPageTotal:0,
+            xiaowaishijianjidiPageTotal:0
         }
     },
     created() {
@@ -1035,17 +1044,24 @@ export default {
                 this.hengxiangData=res.hengxiangkeyan,
                 this.zhuanliData=res.zhuanli,
                 this.honorData=res.rongyuchenghao,
-
-                    this.xiaowaishijianjidi=res.xiaowaishijianjidi,
-                    this.shijianlixiang=res.shijianlixiang,
-                    this.shijianjiexiang=res.shijianjiexiang,
-                    this.jiaocaiyejidian=res.jiaocaiyejidian,
-                    this.jiaoyanyeji=res.jiaoyanyeji,
-                    this.jiaoyanlunwen=res.newjiaoyanlunwen,
-                    this.youxiubishe=res.youxiubishe,
-                    this.zongxiangjieti=res.zongxiangjieti,
-                    this.keyanhuojiang=res.keyanhuojiang,
-
+                this.xiaowaishijianjidi=res.xiaowaishijianjidi,
+                this.shijianlixiang=res.shijianlixiang,
+                this.shijianjiexiang=res.shijianjiexiang,
+                this.jiaocaiyejidian=res.jiaocaiyejidian,
+                this.jiaoyanyeji=res.jiaoyanyeji,
+                this.jiaoyanlunwen=res.newjiaoyanlunwen,
+                this.youxiubishe=res.youxiubishe,
+                this.zongxiangjieti=res.zongxiangjieti,
+                this.keyanhuojiang=res.keyanhuojiang,
+                this.keyanhuojiangPageTotal=res.keyanhuojiangPageTotal,
+                this.zongxiangjietiPageTotal=res.zongxiangjietiPageTotal,
+                this.youxiubishePageTotal=res.youxiubishePageTotal,
+                this.newjiaoyanlunwenPageTotal=res.newjiaoyanlunwenPageTotal,
+                this.jiaoyanyejiPageTotal=res.jiaoyanyejiPageTotal,
+                this.jiaocaiyejidianPageTotal=res.jiaocaiyejidianPageTotal,
+                this.shijianjiexiangPageTotal=res.shijianjiexiangPageTotal,
+                this.shijianlixiangPageTotal=res.shijianlixiangPageTotal,
+                this.xiaowaishijianjidiPageTotal=res.xiaowaishijianjidiPageTotal,
                 this.chanxueyanPageTotal=res.chanxueyanPageTotal,
                 this.zongxiangkeyanPageTotal=res.zongxiangkeyanPageTotal,
                 this.zhuzuoPageTotal=res.zhuzuoPageTotal,
