@@ -201,9 +201,9 @@ export default new Router({
                     meta: { title: '教研成果统计' }
                 },
                 {
-                    path: '/新教研成果统计',
+                    path: '/教研成果明细',
                     component: resolve => require(['../components/page/mypage/newstatistical.vue'], resolve),
-                    meta: { title: '新教研成果统计' }
+                    meta: { title: '教研成果明细' }
                 },
                 // {
                 //     // 拖拽列表组件

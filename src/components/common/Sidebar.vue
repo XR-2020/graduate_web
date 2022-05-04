@@ -66,77 +66,6 @@
                         index: '申报审批',
                         title: '申报审批'
                     },
-                    // {
-                    //     icon: 'el-icon-tickets',
-                    //     index: 'table',
-                    //     title: '申报审批'
-                    // },
-                    // {
-                    //     icon: 'el-icon-message',
-                    //     index: 'tabs',
-                    //     title: 'tab选项卡'
-                    // },
-                    // {
-                    //     icon: 'el-icon-tickets',
-                    //     index: '3',
-                    //     title: '教科研成果',
-                    //     subs: [
-                    //         // {
-                    //         //     index: 'form',
-                    //         //     title: '基本表单'
-                    //         // },
-                    //         // {
-                    //         //     index: 'editor',
-                    //         //     title: '富文本编辑器'
-                    //         // },
-                    //         // {
-                    //         //     index: 'markdown',
-                    //         //     title: 'markdown编辑器'
-                    //         // },
-                    //         // {
-                    //         //     index: 'upload',
-                    //         //     title: '文件上传'
-                    //         // }
-                    //         {
-                    //             index:'产学研',
-                    //             title:'产学研'
-                    //         },
-                    //         {
-                    //             index:'教研项目',
-                    //             title:'教研项目'
-                    //         },{
-                    //             index:'教研论文',
-                    //             title:'教研论文'
-                    //         },{
-                    //             index:'评估中心相关',
-                    //             title:'评估中心相关'
-                    //         },{
-                    //             index:'教育规划项目',
-                    //             title:'教育规划项目'
-                    //         },{
-                    //             index:'专利',
-                    //             title:'专利'
-                    //         },{
-                    //             index:'横向科研项目',
-                    //             title:'横向科研项目'
-                    //         },{
-                    //             index:'纵向科研项目',
-                    //             title:'纵向科研项目'
-                    //         },{
-                    //             index:'著作',
-                    //             title:'著作'
-                    //         },{
-                    //             index:'科研论文',
-                    //             title:'科研论文'
-                    //         },{
-                    //             index:'软件著作权',
-                    //             title:'软件著作权'
-                    //         },{
-                    //             index:'科研项目结项',
-                    //             title:'科研项目结项'
-                    //         }
-                    //     ]
-                    // },
                     {
                         icon: 'el-icon-tickets',
                         index: '3',
@@ -210,8 +139,8 @@
                     },
                     {
                         icon: 'el-icon-star-on',
-                        index: '新教研成果统计',
-                        title: '新教研成果统计'
+                        index: '教研成果明细',
+                        title: '教研成果明细'
                     }
                 ]
             }
