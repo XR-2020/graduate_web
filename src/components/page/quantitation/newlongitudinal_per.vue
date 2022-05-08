@@ -110,26 +110,12 @@
 </template>
 
 <script>
-import zongxiangkeyan from '../show/ZongXiangKeYan_edit'
-import {
-    getAllChanXueYan,
-    getChanXueYanDetail,
-    getChanXueYanDetailBadge,
-    getSearchChanXueYan
-} from "../../../api/chanxueyanAPI";
-import {
-    deleteOneZongXiangKeYan, deleteZongXiangKeYan, editZongXiangKeYan, getAllZongXiangKeYan,
-    getSearchZongXiangKeYan,
-    getZongXiangKeYanDetail, getZongXiangKeYanDetailBadge
-} from "../../../api/zongxiangkeyanAPI";
 import {crawlerWebSite, getTeacherList} from "../../../api/commonAPI";
 import {NewSystemCrawlerWebSite} from "../../../api/newSystem";
 import {
     deleteOneSheKeChu,
     deleteSheKeChu, editSheKeChu,
     getAllSheKeChu,
-    getKeYanHuoJiangDetail,
-    getKeYanHuoJiangDetailBadge,
     getSearchSheKeChu, getSheKeChuDetail, getSheKeChuDetailBadge
 } from "../../../api/SheKeChuAPI";
     export default {
@@ -209,10 +195,11 @@ import {
             },
             //爬取网站
             crawlerWeb(td){
-                alert("正在爬取....请稍后")
+                this.isCrawer=false
+                this.$message("正在爬取请稍等")
                 NewSystemCrawlerWebSite({crawlertd:td}).then(res => {
-                    alert(res);
-                    this.getData();
+                    alert("爬取完成！")
+                    this.reload();
                 })
             },
             // 分页导航
@@ -225,6 +212,12 @@ import {
             },
             // 获取 easy-mock 的模拟数据
             getData() {
+                    getAllSheKeChu(this.query).then(res=>{
+                        this.tableData = res.list
+                        this.pageTotal=res.pageTotal
+                    })
+            },
+            search() {
                 if(this.query.key!==''){
                     getSearchSheKeChu(this.query).then(res =>{
                         this.tableData = res.list
@@ -236,12 +229,6 @@ import {
                         this.pageTotal=res.pageTotal
                     })
                 }
-            },
-            search() {
-                getSearchSheKeChu(this.query).then(res =>{
-                    this.tableData = res.list
-                    this.pageTotal=res.pageTotal
-                } )
                 this.is_search = true;
             },
             formatter(row, column) {

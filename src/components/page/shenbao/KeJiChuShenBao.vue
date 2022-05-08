@@ -2,19 +2,28 @@
     <div>
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-tickets"></i>教研论文申报</el-breadcrumb-item>
+                <el-breadcrumb-item><i class="el-icon-tickets"></i>科技处成果申报</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="container">
             <div class="form-box">
                 <el-form ref="subform" :model="form" label-width="100px" :rules="rules">
-                    <el-form-item label="论文名称" prop="name">
+                        <el-form-item label="申报类型" prop="type">
+                            <el-select filterable v-model="form.type">
+                                <el-option
+                                    v-for="item in typeList"
+                                    :key="item"
+                                    :label="item"
+                                    :value="item">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                    <el-form-item label="项目名称" prop="name">
                         <el-input v-model="form.name"></el-input>
                     </el-form-item>
                     <el-form-item label="部门" prop="partment">
                         <el-input v-model="form.partment"></el-input>
                     </el-form-item>
-
                     <el-form-item label="参与人情况" prop="people">
                         <el-select multiple filterable v-model="form.people">
                             <el-option
@@ -37,7 +46,7 @@
                                 class="upload-demo"
                                 drag
                                 accept=".zip"
-                                action="http://localhost:8080/JiaoYanLunWenMetials"
+                                action="http://localhost:8080/HeBingMetials"
                                 :limit="1"
                                 :on-exceed="handleChange"
                                 :on-success="uploadSuccess"
@@ -60,19 +69,29 @@
 
 <script>
     import {updateChanXueYan} from "../../../api/chanxueyanAPI";
-    import {updateJiaoYanLunWen} from "../../../api/jiaoyanlunwenAPI";
+    import {updateHeBing} from "../../../api/shenbaoAPI";
     import {getTeacherList} from "../../../api/commonAPI";
+    import {CrawlerTypeList} from "../../../api/newSystem";
+    import {insertKeJiChu} from "../../../api/kejichu";
 
     export default {
         inject:['reload'],
-        name: 'jiaoyulunwen',
+        name: 'heBingShenBao',
         data: function(){
             return {
+                typeList:['科技处_专利',
+                    '科技处_横向项目',
+                    '科技处_纵向立项',
+                    '科技处_著作',
+                    '科技处_论文',
+                    '科技处_软件著作权',
+                    '科技处_项目结项'],
                 form: {
                     role:localStorage.getItem('ms_role'),
                     name: '',
-                    finishtime: '',
+                    type: '',
                     partment:'',
+                    finishtime: '',
                     people:[],
                     shenbao:localStorage.getItem('ms_badge'),
                     path:''
@@ -81,6 +100,9 @@
                 teacher_list:[],
                 rules: {
                     name: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    type: [
                         { required: true, message: '必填', trigger: 'blur' }
                     ],
                     partment: [
@@ -94,7 +116,7 @@
                     ],
                     path: [
                         { required: true, message: '必填', trigger: 'blur' }
-                    ],
+                    ]
                 },
             }
         },
@@ -104,25 +126,30 @@
             } )
         },
         methods: {
-            handleChange(file, fileList) {
-                this.$message.warning(`当前限制选择 1 个文件，请删除后继续上传！`)
+            getCrawerlist(){
+                CrawlerTypeList().then(res =>{
+                    this.typeList=res
+                } )
             },
             uploadSuccess(response,file,fileList){
                 this.form.path=response
             },
+            handleChange(file, fileList) {
+                this.$message.warning(`当前限制选择 1 个文件，请删除后继续上传！`)
+            },
             onSubmit() {
                 this.$refs.subform.validate(valid => {
                     if (valid) {
-                        updateJiaoYanLunWen(this.form).then(res =>{
-                    if(res.data!==0){
-                        this.$message.success(`添加成功`);
-                    }else{
-                        this.$message.error(`添加失败，教研研成果已被申报`);
-                    }
-                    this.reload()
-                } );
-                    }else{
-                    this.$message.error("请完善信息")
+                        insertKeJiChu(this.form).then(res =>{
+                            if(res.data!==0){
+                                this.$message.success(`添加成功`);
+                            }else{
+                                this.$message.error(`添加失败，教研研成果已被申报`);
+                            }
+                            this.reload()
+                        } );
+                    } else {
+                        this.$message.error("请完善信息")
                     }
                 })
             }

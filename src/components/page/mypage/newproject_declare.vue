@@ -2,7 +2,7 @@
     <div>
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-tickets"></i> 新系统项目申报</el-breadcrumb-item>
+                <el-breadcrumb-item><i class="el-icon-tickets"></i>项目申报</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <br> <br> <br>
@@ -34,7 +34,7 @@
                     <el-card shadow="hover" :body-style="{padding: '10px 5px'}">
                         <div class="grid-content grid-con-1">
                             <div class="grid-cont-right">
-                                <div><router-link to="/合并申报" style="text-align: center">
+                                <div><router-link to="/科技处成果申报" style="text-align: center">
                                     <el-button type="primary" style="padding: 15%;font-size: large">科技处成果申报</el-button>
                                 </router-link></div>
                             </div>
@@ -42,6 +42,30 @@
                     </el-card>
                 </el-col>
                 </el-row>
+            <el-row :gutter="20" class="mgb20">
+                <el-col :span="12">
+                    <el-card shadow="hover" :body-style="{padding: '10px 5px'}">
+                        <div class="grid-content grid-con-1">
+                            <div class="grid-cont-right">
+                                <div><router-link to="/学科竞赛果申报" style="text-align: center">
+                                    <el-button type="primary" style="padding: 15%;font-size: large">学科竞赛果申报</el-button>
+                                </router-link></div>
+                            </div>
+                        </div>
+                    </el-card>
+                </el-col>
+                <el-col :span="12">
+                    <el-card shadow="hover" :body-style="{padding: '10px 5px'}">
+                        <div class="grid-content grid-con-1">
+                            <div class="grid-cont-right">
+                                <div><router-link to="/荣誉称号申报" style="text-align: center">
+                                    <el-button type="primary" style="padding: 15%;font-size: large">荣誉称号申报</el-button>
+                                </router-link></div>
+                            </div>
+                        </div>
+                    </el-card>
+                </el-col>
+            </el-row>
         </div>
     </div>
 </template>

@@ -79,7 +79,7 @@
                     </el-form-item>
                     <el-form-item>
                         <el-button type="primary" @click="onSubmit">提交</el-button>
-                        <router-link to="/新系统项目申报"><el-button>取消</el-button></router-link>
+                        <router-link to="/项目申报"><el-button>取消</el-button></router-link>
                     </el-form-item>
                 </el-form>
             </div>
@@ -116,7 +116,7 @@
                     jianglidengji:'',
                     huojiangleibie:''
                 },
-                teacher_list:[{name:'aa',badge:1111}],
+                teacher_list:[],
                 rules: {
                     name: [
                         { required: true, message: '必填', trigger: 'blur' }

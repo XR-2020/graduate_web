@@ -114,17 +114,8 @@
 </template>
 
 <script>
-import heBingShenBao from "../show/HeBingShenBao_edit";
-import {
-    deleteOneZhuoZuo, deleteZhuZuo,
-    getAllZhuZuo,
-    getSearchZhuZuo,
-    getZhuZuoDetail,
-    getZhuZuoDetailBadge
-} from "../../../api/zhuzuoAPI";
-import {crawlerWebSite, editHeBing, getTeacherList} from "../../../api/commonAPI";
-import {
-    CrawlerTypeList, deleteNewSystem, deleteOneNewSystem, editNewSystem,
+import {getTeacherList} from "../../../api/commonAPI";
+import {deleteNewSystem, deleteOneNewSystem, editNewSystem,
     getAllNewSystem, getNewSystemBadge,
     getNewSystemDetail,
     getSearchNewSystem,
@@ -133,7 +124,6 @@ import {
     export default {
         inject:['reload'],
         name: 'book',
-        components:{'heBingShenBao':heBingShenBao},
         data() {
             return {
                 typeList:['教务处-实践科_校外实践基地',
@@ -201,13 +191,12 @@ import {
                 this.isCrawer=true
             },
             handleCrawer(){
+                this.isCrawer=false
                 this.$message("正在爬取请稍等")
                 NewSystemCrawlerWebSite({crawlertd:this.crawlertd}).then(res => {
-                    this.$message(res);
-
+                    alert("爬取完成！")
+                    this.reload()
                 })
-                this.isCrawer=false
-                this.reload()
             },
             onSubmit() {
                 this.editVisible = false;
@@ -228,6 +217,12 @@ import {
             },
             // 获取 easy-mock 的模拟数据
             getData() {
+                    getAllNewSystem(this.query).then(res=>{
+                        this.tableData = res.list
+                        this.pageTotal=res.pageTotal
+                    })
+            },
+            search() {
                 if(this.query.key!==''){
                     getSearchNewSystem(this.query).then(res =>{
                         this.tableData = res.list
@@ -239,12 +234,6 @@ import {
                         this.pageTotal=res.pageTotal
                     })
                 }
-            },
-            search() {
-                getSearchNewSystem(this.query).then(res =>{
-                    this.tableData = res.list
-                    this.pageTotal=res.pageTotal
-                } )
                 this.is_search = true;
             },
             handleDetail(index, row){

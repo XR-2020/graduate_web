@@ -2,7 +2,7 @@
     <div>
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-tickets"></i>新成果申报</el-breadcrumb-item>
+                <el-breadcrumb-item><i class="el-icon-tickets"></i>教务处成果申报</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="container">
@@ -58,7 +58,7 @@
                     </el-form-item>
                     <el-form-item>
                         <el-button type="primary" @click="onSubmit">提交</el-button>
-                        <router-link to="/项目申报"><el-button>取消</el-button></router-link>
+                        <router-link to="/教务处成果申报"><el-button>取消</el-button></router-link>
                     </el-form-item>
                 </el-form>
             </div>
@@ -72,13 +72,19 @@
     import {updateHeBing} from "../../../api/shenbaoAPI";
     import {getTeacherList} from "../../../api/commonAPI";
     import {CrawlerTypeList} from "../../../api/newSystem";
+    import {insertJiaoWuChu} from "../../../api/JiaoWuChuAPI";
 
     export default {
         inject:['reload'],
         name: 'heBingShenBao',
         data: function(){
             return {
-                typeList:[],
+                typeList:['教务处-实践科_校外实践基地',
+                    '教务处-实践科_立项',
+                    '教务处-实践科_结项',
+                    '教务处-教材科_教材业绩点',
+                    '教务处-教研科_教研业绩',
+                    '教务处-教研科_教研论文'],
                 form: {
                     role:localStorage.getItem('ms_role'),
                     name: '',
@@ -133,34 +139,7 @@
             onSubmit() {
                 this.$refs.subform.validate(valid => {
                     if (valid) {
-                        switch (this.form.type) {
-                            case "专利":{
-                                this.form.type=2;
-                                break;
-                            }
-                            case "横向科研项目":{
-                                this.form.type=3;
-                                break;
-                            }
-                            case "著作":{
-                                this.form.type=4;
-                                break;
-                            }
-                            case "科研论文":{
-                                this.form.type=5;
-                                break;
-                            }
-                            case "软件著作权":{
-                                this.form.type=6;
-                                break;
-                            }
-                            case "科研项目结项":{
-                                this.form.type=7;
-                                break;
-                            }
-
-                        }
-                        updateHeBing(this.form).then(res =>{
+                        insertJiaoWuChu(this.form).then(res =>{
                             if(res.data!==0){
                                 this.$message.success(`添加成功`);
                             }else{

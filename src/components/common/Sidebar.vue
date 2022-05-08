@@ -94,30 +94,6 @@
                                 icon: 'el-icon-office-building',
                                 index:'科技处',
                                 title: '科技处',
-                                subs:[
-                                    {
-                                        index:'专利',
-                                        title:'专利'
-                                    },{
-                                        index:'横向科研项目',
-                                        title:'横向科研项目'
-                                    },{
-                                        index:'纵向科研项目',
-                                        title:'纵向科研项目'
-                                    },{
-                                        index:'著作',
-                                        title:'著作'
-                                    },{
-                                        index:'科研论文',
-                                        title:'科研论文'
-                                    },{
-                                        index:'软件著作权',
-                                        title:'软件著作权'
-                                    },{
-                                        index:'科研项目结项',
-                                        title:'科研项目结项'
-                                    }
-                                ]
                             }
 
                         ]
@@ -131,11 +107,6 @@
                         icon: 'el-icon-tickets',
                         index: '荣誉称号',
                         title: '荣誉称号'
-                    },
-                    {
-                        icon: 'el-icon-star-on',
-                        index: '教研成果统计',
-                        title: '教研成果统计'
                     },
                     {
                         icon: 'el-icon-star-on',

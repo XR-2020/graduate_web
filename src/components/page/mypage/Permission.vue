@@ -15,198 +15,7 @@
             <div v-if="jiaoyanAdmin">
                 <div>
                     <br>
-                    <p>产学研申报</p>
-                    <br>
-                    <el-table :data="chanxueyanData" border>
-                        <el-table-column prop="object.partment" label="部门" align="center">
-                        </el-table-column>
-                        <el-table-column prop="object.name" label="项目名称" align="center">
-                        </el-table-column>
-                        <el-table-column prop="object.wenhao" label="立项文号" align="center">
-                        </el-table-column>
-                        <el-table-column prop="object.lianghua" label="成果依据" align="center">
-                        </el-table-column>
-                        <el-table-column prop="object.finishtime" label="完成时间" align="center">
-                        </el-table-column>
-                        <el-table-column align="center" label="人员情况" width="250px">
-                            <template slot-scope="scope">
-                                <el-table :data="scope.row.people" :show-header="false">
-                                    <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
-                                    <el-table-column prop="name" align="center"  label="姓名"></el-table-column>
-                                </el-table>
-                            </template>
-                        </el-table-column>
-                        <el-table-column prop="object.shenbao" label="申报人" align="center">
-                        </el-table-column>
-                        <el-table-column label="操作" width="280px"  align="center">
-                            <template slot-scope="scope">
-                                <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,1)">下载证明材料</el-button>
-                                <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
-                                <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
-                            </template>
-                        </el-table-column>
-                    </el-table>
-                    <div class="pagination">
-                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="chanxueyanPageTotal">
-                        </el-pagination>
-                    </div>
-                </div>
-                <div>
-                    <br>
-                    <p>教研项目申报</p>
-                    <br>
-                    <el-table :data="jiaoyanData" border style="width: 100%" >
-                        <el-table-column prop="object.id" label="ID"  width="35" align="center">
-                        </el-table-column>
-                        <el-table-column prop="object.partment" label="部门" align="center">
-                        </el-table-column>
-                        <el-table-column prop="object.name" label="项目名称" align="center">
-                        </el-table-column>
-                        <el-table-column prop="object.wenhao" label="立项文号" align="center">
-                        </el-table-column>
-                        <el-table-column prop="object.lianghua" label="成果依据" align="center">
-                        </el-table-column>
-                        <el-table-column prop="object.finishtime" label="完成时间" align="center">
-                        </el-table-column>
-                        <el-table-column align="center" label="人员情况" width="250px">
-                            <template slot-scope="scope">
-                                <el-table :data="scope.row.people" :show-header="false">
-                                    <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
-                                    <el-table-column prop="name" align="center"  label="姓名"></el-table-column>
-                                </el-table>
-                            </template>
-                        </el-table-column>
-                        <el-table-column prop="object.shenbao" label="申报人" align="center"> </el-table-column>
-                        <el-table-column label="操作" width="280px"  align="center">
-                            <template slot-scope="scope">
-                                <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,2)">下载证明材料</el-button>
-                                <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
-                                <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
-                            </template>
-                        </el-table-column>
-                    </el-table>
-                    <div class="pagination">
-                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="jiaoyanxiangmuPageTotal">
-                        </el-pagination>
-                    </div>
-                </div>
-                <div>
-                    <br>
-                    <p>教研论文申报</p>
-                    <br>
-                    <el-table :data="jiaoyanlunwenData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
-                        <el-table-column prop="object.id" label="ID"  width="35" align="center">
-                        </el-table-column>
-                        <el-table-column prop="object.name" label="论文名称" align="center">
-                        </el-table-column>
-                        <el-table-column prop="object.partment" label="部门" align="center">
-                        </el-table-column>
-                        <el-table-column prop="object.finishtime" label="完成时间" align="center">
-                        </el-table-column>
-                        <el-table-column align="center" label="人员情况" width="250px">
-                            <template slot-scope="scope">
-                                <el-table :data="scope.row.people" :show-header="false">
-                                    <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
-                                    <el-table-column prop="name" align="center"  label="姓名"></el-table-column>
-                                </el-table>
-                            </template>
-                        </el-table-column>
-                        <el-table-column prop="object.shenbao" label="申报人" align="center">  </el-table-column>
-                        <el-table-column label="操作" width="280px"  align="center">
-                            <template slot-scope="scope">
-                                <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,3)">下载证明材料</el-button>
-                                <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
-                                <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
-                            </template>
-                        </el-table-column>
-                    </el-table>
-                    <div class="pagination">
-                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="jiaoyanlunwenPageTotal">
-                        </el-pagination>
-                    </div>
-                 </div>
-                <div>
-                    <br>
-                    <p>评估中心相关申报</p>
-                    <br>
-                    <el-table :data="pingguzhongxinData" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
-                        <el-table-column prop="object.id" label="ID" width="35" align="center">
-                        </el-table-column>
-                        <el-table-column prop="object.name" label="名称" align="center">
-                        </el-table-column>
-                        <el-table-column prop="object.grade" label="获奖等级" align="center">
-                        </el-table-column>
-                        <el-table-column prop="object.partment" label="部门" align="center">
-                        </el-table-column>
-                        <el-table-column prop="object.finishtime" label="完成时间" walign="center">
-                        </el-table-column>
-                        <el-table-column align="center" label="人员情况" width="250px">
-                            <template slot-scope="scope">
-                                <el-table :data="scope.row.people" :show-header="false">
-                                    <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
-                                    <el-table-column prop="name" align="center"  label="姓名"></el-table-column>
-                                </el-table>
-                            </template>
-                        </el-table-column>
-                        <el-table-column prop="object.shenbao" label="申报人" align="center">  </el-table-column>
-                        <el-table-column label="操作" width="280px"  align="center">
-                            <template slot-scope="scope">
-                                <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,4)">下载证明材料</el-button>
-                                <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
-                                <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
-                            </template>
-                        </el-table-column>
-                    </el-table>
-                    <div class="pagination">
-                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pingguzhongxinPageTotal">
-                        </el-pagination>
-                    </div>
-                </div>
-                <div>
-                    <br>
-                    <p>教育规划项目申报</p>
-                    <br>
-                    <el-table :data="jiaoyuguihuaData" border style="width: 100%">
-                        <el-table-column prop="object.id" label="ID"  width="35" align="center">
-                        </el-table-column>
-                        <el-table-column prop="object.name" label="项目名称" width="120" align="center">
-                        </el-table-column>
-                        <el-table-column prop="object.danwei" label="结题单位" width="120" align="center">
-                        </el-table-column>
-                        <el-table-column prop="object.level" label="项目级别" width="120" align="center">
-                        </el-table-column>
-                        <el-table-column prop="object.grade" label="结题等级" width="120" align="center">
-                        </el-table-column>
-                        <el-table-column prop="object.partment" label="部门" width="120" align="center">
-                        </el-table-column>
-                        <el-table-column prop="object.finishtime" label="完成时间" width="120" align="center">
-                        </el-table-column>
-                        <el-table-column align="center" label="人员情况" width="250px">
-                            <template slot-scope="scope">
-                                <el-table :data="scope.row.people" :show-header="false">
-                                    <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
-                                    <el-table-column prop="name" align="center"  label="姓名"></el-table-column>
-                                </el-table>
-                            </template>
-                        </el-table-column>
-                        <el-table-column prop="object.shenbao" label="申报人" align="center"> </el-table-column>
-                        <el-table-column label="操作" width="280px"  align="center">
-                            <template slot-scope="scope">
-                                <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,5)">下载证明材料</el-button>
-                                <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
-                                <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
-                            </template>
-
-                        </el-table-column>
-                    </el-table>
-                    <div class="pagination">
-                        <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="jiaoyuguihuaPageTotal">
-                        </el-pagination>
-                    </div>
-                </div>
-                <div>
-                    <br>
-                    <p>新系统校外实践基地申报</p>
+                    <p>校外实践基地申报</p>
                     <br>
                     <el-table :data="xiaowaishijianjidi" border key="xiaowaishijianjidi">
                         <!--                        <el-table-column prop="object.id" label="ID"  width="40" align="center">-->
@@ -241,7 +50,7 @@
                 </div>
                 <div>
                     <br>
-                    <p>新系统实践立项申报</p>
+                    <p>实践立项申报</p>
                     <br>
                     <el-table :data="shijianlixiang" border key="shijianlixiang">
                         <!--                        <el-table-column prop="object.id" label="ID"  width="40" align="center">-->
@@ -276,7 +85,7 @@
                 </div>
                 <div>
                     <br>
-                    <p>新系统实践结项申报</p>
+                    <p>实践结项申报</p>
                     <br>
                     <el-table :data="shijianjiexiang" border key="shijianjiexiang">
                         <!--                        <el-table-column prop="object.id" label="ID"  width="40" align="center">-->
@@ -312,7 +121,7 @@
                 </div>
                 <div>
                     <br>
-                    <p>新系统教材业绩点申报</p>
+                    <p>教材业绩点申报</p>
                     <br>
                     <el-table :data="jiaocaiyejidian" border style="width: 100%">
                         <el-table-column prop="object.id" label="ID"  width="35" align="center">
@@ -354,7 +163,7 @@
                 </div>
                 <div>
                     <br>
-                    <p>新系统教研业绩申报</p>
+                    <p>教研业绩申报</p>
                     <br>
                     <el-table :data="jiaoyanyeji" border style="width: 100%">
                         <el-table-column prop="object.id" label="ID"  width="35" align="center">
@@ -396,7 +205,7 @@
                 </div>
                 <div>
                     <br>
-                    <p>新系统教研论文申报</p>
+                    <p>教研论文申报</p>
                     <br>
                     <el-table :data="jiaoyanlunwen" border key="jiaoyanlunwen">
                         <!--                        <el-table-column prop="object.id" label="ID"  width="40" align="center">-->
@@ -431,7 +240,7 @@
                 </div>
                 <div>
                     <br>
-                    <p>新系统优秀毕设指导教师申报</p>
+                    <p>优秀毕设指导教师申报</p>
                     <br>
                     <el-table :data="youxiubishe" border key="youxiubishe">
                         <!--                        <el-table-column prop="object.id" label="ID"  width="40" align="center">-->
@@ -722,10 +531,9 @@
                         </el-pagination>
                     </div>
                 </div>
-
                 <div>
                     <br>
-                    <p>新系统纵向结题申报</p>
+                    <p>纵向结题申报</p>
                     <br>
                     <el-table :data="zongxiangjieti" border key="zongxiangjieti">
                         <!--                        <el-table-column prop="object.id" label="ID"  width="40" align="center">-->
@@ -765,10 +573,9 @@
                         </el-pagination>
                     </div>
                 </div>
-
                 <div>
                     <br>
-                    <p>新系统科研获奖申报</p>
+                    <p>科研获奖申报</p>
                     <br>
                     <el-table :data="keyanhuojiang" border key="keyanhuojiang">
                         <!--                        <el-table-column prop="object.id" label="ID"  width="40" align="center">-->
@@ -897,8 +704,7 @@
 </template>
 
 <script>
-import chanxueyan from '../show/chanxueyan_edit'
-import {getAllShenBao, getAllWaiting, getSearchShenBao} from "../../../api/shenbaoAPI";
+import { getAllWaiting} from "../../../api/shenbaoAPI";
 import {
     getChanXueYanMetails,
     getHengXiangKeYanMetails,
@@ -907,7 +713,6 @@ import {
     getJiaoYuGuiHuaMetails,
     getKeYanLunWenMetails,
     getKeYanXiangMuJieXiangMetails,
-    getMetails,
     getPingGuZhongXinMetails,
     getRongYuChengHaoMetails,
     getRuanJianZhuZuoMetails,
@@ -925,7 +730,7 @@ import {getJiaoWuChuMetails, passJiaoWuChu} from "../../../api/newSystem";
 import {getSheKeChuMetails, passSheKeChuChu} from "../../../api/SheKeChuAPI";
 export default {
     name: 'permission',
-    components:{"chanxueyan":chanxueyan},
+
     data() {
         return {
             metails:{type:'',id:''},
@@ -948,11 +753,6 @@ export default {
             editVisible: false,
             delVisible: false,
             idx: -1,
-            jiaoyuguihuaData:[],
-            pingguzhongxinData:[],
-            jiaoyanlunwenData:[],
-            jiaoyanData:[],
-            chanxueyanData:[],
             xuekejingsaiData:[],
             keyanxiangmuData:[],
             ruanjianzhuzuoData:[],
@@ -972,20 +772,15 @@ export default {
             zongxiangjieti:[],
             keyanhuojiang:[],
             role:'',
-            chanxueyanPageTotal:0,
             zongxiangkeyanPageTotal:0,
             zhuzuoPageTotal:0,
             zhuanliPageTotal:0,
             xuekejingsaiPageTotal:0,
             ruanjianzhuzuoPageTotal:0,
             rongyuchenghaoPageTotal:0,
-            pingguzhongxinPageTotal:0,
             keyanxiangmujiexiangPageTotal:0,
             keyanlunwenPageTotal:0,
-            jiaoyanxiangmuPageTotal:0,
-            jiaoyanlunwenPageTotal:0,
             hengxiangkeyanPageTotal:0,
-            jiaoyuguihuaPageTotal:0,
             keyanhuojiangPageTotal:0,
             zongxiangjietiPageTotal:0,
             youxiubishePageTotal:0,
@@ -1030,20 +825,6 @@ export default {
         // 获取 easy-mock 的模拟数据
         getData() {
             getAllWaiting(this.query).then(res =>{
-                this.jiaoyuguihuaData=res.jiaoyuguihua,
-                this.pingguzhongxinData=res.pingguzhongxin,
-                this.jiaoyanlunwenData=res.jiaoyanlunwen,
-                this.jiaoyanData=res.jiaoyanxiangmu,
-                this.chanxueyanData=res.chanxueyan,
-                this.xuekejingsaiData=res.xuekejingsai,
-                this.keyanxiangmuData=res.keyanxiangmujiexiang,
-                this.ruanjianzhuzuoData=res.ruanjianzuzuo,
-                this.keyanData=res.keyanxiangmujiexiang,
-                this.zhuzuoData=res.zhuzuo,
-                this.zongxiangData=res.zongxiangkeyan,
-                this.hengxiangData=res.hengxiangkeyan,
-                this.zhuanliData=res.zhuanli,
-                this.honorData=res.rongyuchenghao,
                 this.xiaowaishijianjidi=res.xiaowaishijianjidi,
                 this.shijianlixiang=res.shijianlixiang,
                 this.shijianjiexiang=res.shijianjiexiang,
@@ -1053,6 +834,15 @@ export default {
                 this.youxiubishe=res.youxiubishe,
                 this.zongxiangjieti=res.zongxiangjieti,
                 this.keyanhuojiang=res.keyanhuojiang,
+                    this.xuekejingsaiData=res.xuekejingsai,
+                    this.keyanxiangmuData=res.keyanxiangmu,
+                    this.ruanjianzhuzuoData=res.ruanjianzhuzuo,
+                    this.keyanData=res.keyan,
+                    this.zhuzuoData=res.zhuzuo,
+                    this.zongxiangData=res.zongxiang,
+                    this.hengxiangData=res.hengxiang,
+                    this.zhuanliData=res.zhuanli,
+                    this.honorData=res.honor,
                 this.keyanhuojiangPageTotal=res.keyanhuojiangPageTotal,
                 this.zongxiangjietiPageTotal=res.zongxiangjietiPageTotal,
                 this.youxiubishePageTotal=res.youxiubishePageTotal,
@@ -1062,20 +852,15 @@ export default {
                 this.shijianjiexiangPageTotal=res.shijianjiexiangPageTotal,
                 this.shijianlixiangPageTotal=res.shijianlixiangPageTotal,
                 this.xiaowaishijianjidiPageTotal=res.xiaowaishijianjidiPageTotal,
-                this.chanxueyanPageTotal=res.chanxueyanPageTotal,
-                this.zongxiangkeyanPageTotal=res.zongxiangkeyanPageTotal,
-                this.zhuzuoPageTotal=res.zhuzuoPageTotal,
-                this.zhuanliPageTotal=res.zhuanliPageTotal,
-                this.xuekejingsaiPageTotal=res.xuekejingsaiPageTotal,
-                this.ruanjianzhuzuoPageTotal=res.ruanjianzhuzuoPageTotal,
-                this.rongyuchenghaoPageTotal=res.rongyuchenghaoPageTotal,
-                this.pingguzhongxinPageTotal=res.pingguzhongxinPageTotal,
-                this.keyanxiangmujiexiangPageTotal=res.keyanxiangmujiexiangPageTotal,
-                this.keyanlunwenPageTotal=res.keyanlunwenPageTotal,
-                this.jiaoyanxiangmuPageTotal=res.jiaoyanxiangmuPageTotal,
-                this.jiaoyanlunwenPageTotal=res.jiaoyanlunwenPageTotal,
-                this.hengxiangkeyanPageTotal=res.hengxiangkeyanPageTotal,
-                this.jiaoyuguihuaPageTotal=res.jiaoyuguihuaPageTotal
+                    this.xuekejingsaiPageTotal=res.xuekejingsaiPageTotal,
+                    this.keyanxiangmuPageTotal=res.keyanxiangmuPageTotal,
+                    this.ruanjianzhuzuoPageTotal=res.ruanjianzhuzuoPageTotal,
+                    this.keyanPageTotal=res.keyanPageTotal,
+                    this.zhuzuoPageTotal=res.zhuzuoPageTotal,
+                    this.zongxiangPageTotal=res.zongxiangPageTotal,
+                    this.hengxiangPageTotal=res.hengxiangPageTotal,
+                    this.zhuanliPageTotal=res.zhuanliPageTotal,
+                    this.honorPageTotal=res.honorPageTotal
 
             } )
             this.role=localStorage.getItem('ms_role');
@@ -1111,78 +896,6 @@ export default {
         handle(index, row,type,ispass) {
             let handleres
             switch (type) {
-                case 1:{
-                    passChanXueYan({id:row.object.id,ispass:ispass}).then(res =>{
-                        handleres=res
-                    })
-                    break;
-                }
-                case 2:{
-                    passJiaoYan({id:row.object.id,ispass:ispass}).then(res =>{
-                        handleres=res
-                    })
-                    break;
-                }
-                case 3:{
-                    passJiaoYanLunWen({id:row.object.id,ispass:ispass}).then(res =>{
-                        handleres=res
-                    })
-                    break;
-                }
-                case 4:{
-                    passPingGuZhongXin({id:row.object.id,ispass:ispass}).then(res =>{
-                        handleres=res
-                    })
-                    break;
-                }
-                case 5:{
-                    passJiaoYuGuiHua({id:row.object.id,ispass:ispass}).then(res =>{
-                        handleres=res
-                    })
-                    break;
-                }
-                case 6:{
-                    passZhuanLi({id:row.object.id,ispass:ispass}).then(res =>{
-                        handleres=res
-                    })
-                    break;
-                }
-                case 7:{
-                    passHengXiangKeYan({id:row.object.id,ispass:ispass}).then(res =>{
-                        handleres=res
-                    })
-                    break;
-                }
-                case 8:{
-                    passZongXiangKeYan({id:row.object.id,ispass:ispass}).then(res =>{
-                        handleres=res
-                    })
-                    break;
-                }
-                case 9:{
-                    passZhuZuo({id:row.object.id,ispass:ispass}).then(res =>{
-                        handleres=res
-                    })
-                    break;
-                }
-                case 10:{
-                    passKeYanLunWen({id:row.object.id,ispass:ispass}).then(res =>{
-                        handleres=res
-                    })
-                    break;
-                }
-                case 11:{
-                    passRuanJianZhuZuo({id:row.object.id,ispass:ispass}).then(res =>{
-                        handleres=res
-                    })
-                    break;
-                }
-                case 12:{
-                    passKeYanXiangMuJieXiang({id:row.object.id,ispass:ispass}).then(res =>{
-                        handleres=res
-                    })
-                    break;
-                }
                 case 13:{
                     passXueKeJingSai({id:row.object.id,ispass:ispass}).then(res =>{
                         handleres=res
@@ -1207,198 +920,6 @@ export default {
         },
         handleMetails(index, row,type){
             switch (type) {
-                case 1:{
-                    getChanXueYanMetails({id:row.object.id}).then(res =>{
-                        const blob=new Blob([res],{type:'application/zip'})
-                        console.log(blob)
-                        const downloadElement=document.createElement('a');
-                        const href = window.URL.createObjectURL(blob)
-                        const fileName = (row.object.id+row.object.name+'.zip')
-                        downloadElement.href = href
-                        downloadElement.download = fileName
-                        document.body.appendChild(downloadElement)
-                        downloadElement.click()
-                        document.body.removeChild(downloadElement)
-                        window.URL.revokeObjectURL(href)
-                    })
-                    break;
-                }
-                case 2:{
-                    getJiaoYanMetails({id:row.object.id}).then(res =>{
-                        const blob=new Blob([res],{type:'application/zip'})
-                        console.log(blob)
-                        const downloadElement=document.createElement('a');
-                        const href = window.URL.createObjectURL(blob)
-                        const fileName = (row.object.id+row.object.name+'.zip')
-                        downloadElement.href = href
-                        downloadElement.download = fileName
-                        document.body.appendChild(downloadElement)
-                        downloadElement.click()
-                        document.body.removeChild(downloadElement)
-                        window.URL.revokeObjectURL(href)
-                    })
-                    break;
-                }
-                case 3:{
-                    getJiaoYanLunWenMetails({id:row.object.id}).then(res =>{
-                        const blob=new Blob([res],{type:'application/zip'})
-                        console.log(blob)
-                        const downloadElement=document.createElement('a');
-                        const href = window.URL.createObjectURL(blob)
-                        const fileName = (row.object.id+row.object.name+'.zip')
-                        downloadElement.href = href
-                        downloadElement.download = fileName
-                        document.body.appendChild(downloadElement)
-                        downloadElement.click()
-                        document.body.removeChild(downloadElement)
-                        window.URL.revokeObjectURL(href)
-                    })
-                    break;
-                }
-                case 4:{
-                    getPingGuZhongXinMetails({id:row.object.id}).then(res =>{
-                        const blob=new Blob([res],{type:'application/zip'})
-                        console.log(blob)
-                        const downloadElement=document.createElement('a');
-                        const href = window.URL.createObjectURL(blob)
-                        const fileName = (row.object.id+row.object.name+'.zip')
-                        downloadElement.href = href
-                        downloadElement.download = fileName
-                        document.body.appendChild(downloadElement)
-                        downloadElement.click()
-                        document.body.removeChild(downloadElement)
-                        window.URL.revokeObjectURL(href)
-                    })
-                    break;
-                }
-                case 5:{
-                    getJiaoYuGuiHuaMetails({id:row.object.id}).then(res =>{
-                        const blob=new Blob([res],{type:'application/zip'})
-                        console.log(blob)
-                        const downloadElement=document.createElement('a');
-                        const href = window.URL.createObjectURL(blob)
-                        const fileName = (row.object.id+row.object.name+'.zip')
-                        downloadElement.href = href
-                        downloadElement.download = fileName
-                        document.body.appendChild(downloadElement)
-                        downloadElement.click()
-                        document.body.removeChild(downloadElement)
-                        window.URL.revokeObjectURL(href)
-                    })
-                    break;
-                }
-                case 6:{
-                    getZhuanLiMetails({id:row.object.id}).then(res =>{
-                        const blob=new Blob([res],{type:'application/zip'})
-                        console.log(blob)
-                        const downloadElement=document.createElement('a');
-                        const href = window.URL.createObjectURL(blob)
-                        const fileName = (row.object.id+row.object.name+'.zip')
-                        downloadElement.href = href
-                        downloadElement.download = fileName
-                        document.body.appendChild(downloadElement)
-                        downloadElement.click()
-                        document.body.removeChild(downloadElement)
-                        window.URL.revokeObjectURL(href)
-                    })
-                    break;
-                }
-                case 7:{
-                    getHengXiangKeYanMetails({id:row.object.id}).then(res =>{
-                        const blob=new Blob([res],{type:'application/zip'})
-                        console.log(blob)
-                        const downloadElement=document.createElement('a');
-                        const href = window.URL.createObjectURL(blob)
-                        const fileName = (row.object.id+row.object.name+'.zip')
-                        downloadElement.href = href
-                        downloadElement.download = fileName
-                        document.body.appendChild(downloadElement)
-                        downloadElement.click()
-                        document.body.removeChild(downloadElement)
-                        window.URL.revokeObjectURL(href)
-                    })
-                    break;
-                }
-                case 8:{
-                    getZongXiangKeYanMetails({id:row.object.id}).then(res =>{
-                        const blob=new Blob([res],{type:'application/zip'})
-                        console.log(blob)
-                        const downloadElement=document.createElement('a');
-                        const href = window.URL.createObjectURL(blob)
-                        const fileName = (row.object.id+row.object.name+'.zip')
-                        downloadElement.href = href
-                        downloadElement.download = fileName
-                        document.body.appendChild(downloadElement)
-                        downloadElement.click()
-                        document.body.removeChild(downloadElement)
-                        window.URL.revokeObjectURL(href)
-                    })
-                    break;
-                }
-                case 9:{
-                    getZhuZuoMetails({id:row.object.id}).then(res =>{
-                        const blob=new Blob([res],{type:'application/zip'})
-                        console.log(blob)
-                        const downloadElement=document.createElement('a');
-                        const href = window.URL.createObjectURL(blob)
-                        const fileName = (row.object.id+row.object.name+'.zip')
-                        downloadElement.href = href
-                        downloadElement.download = fileName
-                        document.body.appendChild(downloadElement)
-                        downloadElement.click()
-                        document.body.removeChild(downloadElement)
-                        window.URL.revokeObjectURL(href)
-                    })
-                    break;
-                }
-                case 10:{
-                    getKeYanLunWenMetails({id:row.object.id}).then(res =>{
-                        const blob=new Blob([res],{type:'application/zip'})
-                        console.log(blob)
-                        const downloadElement=document.createElement('a');
-                        const href = window.URL.createObjectURL(blob)
-                        const fileName = (row.object.id+row.object.name+'.zip')
-                        downloadElement.href = href
-                        downloadElement.download = fileName
-                        document.body.appendChild(downloadElement)
-                        downloadElement.click()
-                        document.body.removeChild(downloadElement)
-                        window.URL.revokeObjectURL(href)
-                    })
-                    break;
-                }
-                case 11:{
-                    getRuanJianZhuZuoMetails({id:row.object.id}).then(res =>{
-                        const blob=new Blob([res],{type:'application/zip'})
-                        console.log(blob)
-                        const downloadElement=document.createElement('a');
-                        const href = window.URL.createObjectURL(blob)
-                        const fileName = (row.object.id+row.object.name+'.zip')
-                        downloadElement.href = href
-                        downloadElement.download = fileName
-                        document.body.appendChild(downloadElement)
-                        downloadElement.click()
-                        document.body.removeChild(downloadElement)
-                        window.URL.revokeObjectURL(href)
-                    })
-                    break;
-                }
-                case 12:{
-                    getKeYanXiangMuJieXiangMetails({id:row.object.id}).then(res =>{
-                        const blob=new Blob([res],{type:'application/zip'})
-                        console.log(blob)
-                        const downloadElement=document.createElement('a');
-                        const href = window.URL.createObjectURL(blob)
-                        const fileName = (row.object.id+row.object.name+'.zip')
-                        downloadElement.href = href
-                        downloadElement.download = fileName
-                        document.body.appendChild(downloadElement)
-                        downloadElement.click()
-                        document.body.removeChild(downloadElement)
-                        window.URL.revokeObjectURL(href)
-                    })
-                    break;
-                }
                 case 13:{
                     getXueKeJingSaiMetails({id:row.object.id}).then(res =>{
                         const blob=new Blob([res],{type:'application/zip'})
@@ -1434,8 +955,6 @@ export default {
 
             }
         },
-
-
         newhandle(index, row,ispass) {
             let handleres
            if(row.object.type==='社科处_3.纵向结题'||row.object.type==='社科处_7.科研获奖'){

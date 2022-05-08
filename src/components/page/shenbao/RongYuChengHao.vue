@@ -68,7 +68,7 @@
 </template>
 
 <script>
-    import {updateChanXueYan} from "../../../api/chanxueyanAPI";
+
     import {updateHonor} from "../../../api/rongyuAPI";
     import {getTeacherList} from "../../../api/commonAPI";
 

@@ -18,34 +18,40 @@ export default new Router({
                     path: '/系统首页',
                     component: resolve => require(['../components/page/mypage/Dashboard.vue'], resolve),
                     meta: { title: '系统首页' }
+                },{
+                    path: '/我的申报',
+                    component: resolve => require(['../components/page/mypage/MyShenBao.vue'], resolve),
+                    meta: { title: '我的申报',permission: true }
                 },
-                {
-                    path: '/原系统项目申报',
-                    component: resolve => require(['../components/page/mypage/project_declare.vue'], resolve),
-                    meta: { title: '原系统项目申报' }
-                },{
-                    path: '/新系统项目申报',
-                    component: resolve => require(['../components/page/mypage/newproject_declare.vue'], resolve),
-                    meta: { title: '新系统项目申报' }
-                },{
+              {
                     path: '/项目申报',
-                    component: resolve => require(['../components/page/mypage/firstdeclare.vue'], resolve),
+                    component: resolve => require(['../components/page/mypage/newproject_declare.vue'], resolve),
                     meta: { title: '项目申报' }
+                },    {
+                    path: '/教务处成果申报',
+                    component: resolve => require(['../components/page/shenbao/JiaoWuChuShenBao.vue'], resolve),
+                    meta: { title: '教务处成果申报' }
                 },
-                // {
-                //     path: '/table',
-                //     component: resolve => require(['../components/page/declare.vue'], resolve),
-                //     meta: { title: '申报审批' }
-                // },
                 {
-                    path: '/产学研',
-                    component: resolve => require(['../components/page/quantitation/pro_stu.vue'], resolve),
-                    meta: { title: '产学研' }
-                },{
-                    path: '/教研项目',
-                    component: resolve => require(['../components/page/quantitation/teach_search.vue'], resolve),
-                    meta: { title: '教研项目' }
-                },{
+                    path: '/学科竞赛申报',
+                    component: resolve => require(['../components/page/shenbao/XueKeJingSai.vue'], resolve),
+                    meta: { title: '学科竞赛申报' }
+                },
+                {
+                    path: '/荣誉称号申报',
+                    component: resolve => require(['../components/page/shenbao/RongYuChengHao.vue'], resolve),
+                    meta: { title: '荣誉称号申报' }
+                },
+                {
+                    path: '/社科处项目申报',
+                    component: resolve => require(['../components/page/shenbao/SheKeChuShenBao.vue'], resolve),
+                    meta: { title: '社科处项目申报' }
+                }, {
+                    // vue-schart组件
+                    path: '/科技处成果申报',
+                    component: resolve => require(['../components/page/shenbao/KeJiChuShenBao.vue'], resolve),
+                    meta: { title: '科技处成果申报' }
+                }, {
                     path: '/科研获奖',
                     component: resolve => require(['../components/page/quantitation/keyanhuojiang.vue'], resolve),
                     meta: { title: '科研获奖' }
@@ -54,50 +60,6 @@ export default new Router({
                     component: resolve => require(['../components/page/quantitation/newlongitudinal_per.vue'], resolve),
                     meta: { title: '纵向结题' }
                 },{
-                    path: '/教研论文',
-                    component: resolve => require(['../components/page/quantitation/teach_paper.vue'], resolve),
-                    meta: { title: '教研论文' }
-                },{
-                    path: '/评估中心相关',
-                    component: resolve => require(['../components/page/quantitation/templates.vue'], resolve),
-                    meta: { title: '评估中心相关' }
-                },{
-                    path: '/教育规划项目',
-                    component: resolve => require(['../components/page/quantitation/edu_plan.vue'], resolve),
-                    meta: { title: '教育规划项目' }
-                },{
-                    path: '/专利',
-                    component: resolve => require(['../components/page/quantitation/patent.vue'], resolve),
-                    meta: { title: '专利' }
-                },{
-                    path: '/横向科研项目',
-                    component: resolve => require(['../components/page/quantitation/lateral_per.vue'], resolve),
-                    meta: { title: '横向科研项目' }
-                },{
-                    path: '/纵向科研项目',
-                    component: resolve => require(['../components/page/quantitation/longitudinal_per.vue'], resolve),
-                    meta: { title: '纵向科研项目' }
-                },{
-                    path: '/纵向结题',
-                    component: resolve => require(['../components/page/quantitation/longitudinal_per.vue'], resolve),
-                    meta: { title: '纵向科研项目' }
-                }, {
-                    path: '/著作',
-                    component: resolve => require(['../components/page/quantitation/book.vue'], resolve),
-                    meta: { title: '著作' }
-                },{
-                    path: '/科研论文',
-                    component: resolve => require(['../components/page/quantitation/paper.vue'], resolve),
-                    meta: { title: '科研论文' }
-                },{
-                    path: '/软件著作权',
-                    component: resolve => require(['../components/page/quantitation/software.vue'], resolve),
-                    meta: { title: '软件著作权' }
-                },{
-                    path: '/科研项目结项',
-                    component: resolve => require(['../components/page/quantitation/project.vue'], resolve),
-                    meta: { title: '科研项目结项' }
-                },{
                     path: '/学科竞赛',
                     component: resolve => require(['../components/page/mypage/competition'], resolve),
                     meta: { title: '学科竞赛' }
@@ -105,149 +67,26 @@ export default new Router({
                     path: '/荣誉称号',
                     component: resolve => require(['../components/page/mypage/honor.vue'], resolve),
                     meta: { title: '荣誉称号' }
-                },
-                {
-                    path: '/产学研申报',
-                    component: resolve => require(['../components/page/shenbao/chanxueyan.vue'], resolve),
-                    meta: { title: '产学研申报' }
-                },{
-                    path: '/合并申报',
-                    component: resolve => require(['../components/page/shenbao/HeBingShenBao.vue'], resolve),
-                    meta: { title: '专利/横向科研项目/著作/科研论文/软件著作权/科研项目结项' }
-                },{
-                    path: '/评估中心相关申报',
-                    component: resolve => require(['../components/page/shenbao/PingGuZhongXin.vue'], resolve),
-                    meta: { title: '评估中心相关' }
-                },
-                {
-                    path: '/教务处成果申报',
-                    component: resolve => require(['../components/page/shenbao/JiaoWuChuShenBao.vue'], resolve),
-                    meta: { title: '教务处成果申报' }
-                },
-                {
-                    path: '/社科处项目申报',
-                    component: resolve => require(['../components/page/shenbao/SheKeChuShenBao.vue'], resolve),
-                    meta: { title: '社科处项目申报' }
-                },
-                {
-                    path: '/教研论文申报',
-                    component: resolve => require(['../components/page/shenbao/JiaoYanLunWen.vue'], resolve),
-                    meta: { title: '教研论文申报' }
-                },{
-                    path: '/教研项目申报',
-                    component: resolve => require(['../components/page/shenbao/JiaoYanXiangMu.vue'], resolve),
-                    meta: { title: '教研项目申报' }
-                },{
-                    path: '/教育规划项目申报',
-                    component: resolve => require(['../components/page/shenbao/JiaoYuGuiHua.vue'], resolve),
-                    meta: { title: '教育规划项目申报' }
-                },{
-                    path: '/荣誉称号申报',
-                    component: resolve => require(['../components/page/shenbao/RongYuChengHao.vue'], resolve),
-                    meta: { title: '荣誉称号申报' }
-                },{
-                    path: '/学科竞赛申报',
-                    component: resolve => require(['../components/page/shenbao/XueKeJingSai.vue'], resolve),
-                    meta: { title: '学科竞赛申报' }
-                },{
-                    path: '/纵向科研项目申报',
-                    component: resolve => require(['../components/page/shenbao/ZongXiangKeYan.vue'], resolve),
-                    meta: { title: '纵向科研项目申报' }
-                },{
-                    path: '/新成果申报',
-                    component: resolve => require(['../components/page/shenbao/NewSystemShenBao.vue'], resolve),
-                    meta: { title: '新成果申报' }
                 }, {
-                    path: '/我的申报',
-                    component: resolve => require(['../components/page/mypage/MyShenBao.vue'], resolve),
-                    meta: { title: '我的申报',permission2: true }
-                },{
                     path: '/教务处',
                     component: resolve => require(['../components/page/quantitation/newSystem.vue'], resolve),
                     meta: { title: '教务处'}
-                },
-                // {
-                //     path: '/tabs',
-                //     component: resolve => require(['../components/page/quantitation/Tabs.vue'], resolve),
-                //     meta: { title: 'tab选项卡' }
-                // },
-                // {
-                //     path: '/form',
-                //     component: resolve => require(['../components/page/quantitation/project_declare.vue'], resolve),
-                //     meta: { title: '基本表单' }
-                // },
-                // {
-                //     // 富文本编辑器组件
-                //     path: '/editor',
-                //     component: resolve => require(['../components/page/VueEditor.vue'], resolve),
-                //     meta: { title: '富文本编辑器' }
-                // },
-                // {
-                //     // markdown组件
-                //     path: '/markdown',
-                //     component: resolve => require(['../components/page/Markdown.vue'], resolve),
-                //     meta: { title: 'markdown编辑器' }
-                // },
-                // {
-                //     // 图片上传组件
-                //     path: '/upload',
-                //     component: resolve => require(['../components/page/Upload.vue'], resolve),
-                //     meta: { title: '文件上传' }
-                // },
-                {
+                },{
                     // vue-schart组件
-                    path: '/教研成果统计',
-                    component: resolve => require(['../components/page/mypage/statistical.vue'], resolve),
-                    meta: { title: '教研成果统计' }
+                    path: '/科技处',
+                    component: resolve => require(['../components/page/quantitation/KeJiChu.vue'], resolve),
+                    meta: { title: '科技处' }
                 },
                 {
                     path: '/教研成果明细',
                     component: resolve => require(['../components/page/mypage/newstatistical.vue'], resolve),
                     meta: { title: '教研成果明细' }
                 },
-                // {
-                //     // 拖拽列表组件
-                //     path: '/drag',
-                //     component: resolve => require(['../components/page/DragList.vue'], resolve),
-                //     meta: { title: '拖拽列表' }
-                // },
                 {
                     // 权限页面
                     path: '/申报审批',
                     component: resolve => require(['../components/page/mypage/Permission.vue'], resolve),
                     meta: { title: '申报审批', permission: true }
-                },{
-                    path: '/产学研展示',
-                    component: resolve => require(['../components/page/show/chanxueyan_edit.vue'], resolve),
-                    meta: { title: '产学研展示' }
-                },{
-                    path: '/合并申报展示',
-                    component: resolve => require(['../components/page/show/HeBingShenBao_edit.vue'], resolve),
-                    meta: { title: '合并申报展示' }
-                },{
-                    path: '/教研论文展示',
-                    component: resolve => require(['../components/page/show/JiaoYanLunWen_edit.vue'], resolve),
-                    meta: { title: '教研论文展示' }
-                },{
-                    path: '/教育规划项目展示',
-                    component: resolve => require(['../components/page/show/JiaoYuGuiHua_edit.vue'], resolve),
-                    meta: { title: '教育规划项目展示' }
-                },{
-                    path: '/评估中心展示',
-                    component: resolve => require(['../components/page/show/PingGuZhongXin_edit.vue'], resolve),
-                    meta: { title: '评估中心展示' }
-                },{
-                    path: '/荣誉称号展示',
-                    component: resolve => require(['../components/page/show/RongYuChengHao_edit.vue'], resolve),
-                    meta: { title: '荣誉称号展示' }
-                },{
-                    path: '/学科竞赛展示',
-                    component: resolve => require(['../components/page/show/XueKeJingSai_edit.vue'], resolve),
-                    meta: { title: '学科竞赛展示' }
-                },{
-                    path: '/纵向科研展示',
-                    component: resolve => require(['../components/page/show/ZongXiangKeYan_edit.vue'], resolve),
-                    meta: { title: '纵向科研展示' }
                 }
             ]
         },
