@@ -532,11 +532,10 @@
                         </el-table-column>
                         <el-table-column align="center" label="人员情况" width="185px">
                             <template slot-scope="scope">
-                                <el-table :data="scope.row.people" :show-header="false" v-if="scope.row.people">
+                                <el-table :data="scope.row.people" :show-header="false">
                                     <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
                                     <el-table-column prop="name" align="center"  label="姓名"></el-table-column>
                                 </el-table>
-                                <span v-else>项目完成人均为外校教师</span>
                             </template>
                         </el-table-column>
                     </el-table>
