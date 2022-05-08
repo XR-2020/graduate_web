@@ -47,7 +47,7 @@
                     <el-card shadow="hover" :body-style="{padding: '10px 5px'}">
                         <div class="grid-content grid-con-1">
                             <div class="grid-cont-right">
-                                <div><router-link to="/学科竞赛果申报" style="text-align: center">
+                                <div><router-link to="/学科竞赛申报" style="text-align: center">
                                     <el-button type="primary" style="padding: 15%;font-size: large">学科竞赛果申报</el-button>
                                 </router-link></div>
                             </div>

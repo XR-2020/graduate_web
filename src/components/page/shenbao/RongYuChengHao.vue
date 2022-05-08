@@ -58,7 +58,7 @@
                     </el-form-item>
                     <el-form-item>
                         <el-button type="primary" @click="onSubmit">提交</el-button>
-                        <router-link to="/项目申报" v-if="is_editor"><el-button>取消</el-button></router-link>
+                        <router-link to="/项目申报"><el-button>取消</el-button></router-link>
                     </el-form-item>
                 </el-form>
             </div>

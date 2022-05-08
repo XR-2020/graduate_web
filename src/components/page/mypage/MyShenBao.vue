@@ -15,36 +15,17 @@
                 <el-table :data="daishenhe" border style="width: 100%">
                     <el-table-column prop="object.name" label="申报项目名称"  align="center">
                     </el-table-column>
-                    <el-table-column prop="object.type" label="申报项目类别"  align="center">
+                    <el-table-column prop="object.type" label="项目类别"  align="center">
                         <template slot-scope="scope">
-                            <span v-if="scope.row.tablename=='chanxueyan'">产学研</span>
                             <span v-if="scope.row.tablename=='competition'">学科竞赛</span>
-                            <span v-if="scope.row.tablename=='hengxiangkeyanxiangmu'">横向科研项目</span>
-                            <span v-if="scope.row.tablename=='zongxiangkeyanxiangmu'">纵向科研项目</span>
-                            <span v-if="scope.row.tablename=='zhuzuo'">著作</span>
-                            <span v-if="scope.row.tablename=='zhuanli'">专利</span>
-                            <span v-if="scope.row.tablename=='ruanjianzhuzuoquan'">软件著作权</span>
-                            <span v-if="scope.row.tablename=='pingguzhongxinxiangguan'">评估中心相关</span>
-                            <span v-if="scope.row.tablename=='keyanxiangmujiexiang'">科研项目结项</span>
-                            <span v-if="scope.row.tablename=='keyanlunwen'">科研论文</span>
-                            <span v-if="scope.row.tablename=='jiaoyuguihuaxiangmu'">教育规划项目</span>
-                            <span v-if="scope.row.tablename=='jiaoyanxiangmu'">教研项目</span>
-                            <span v-if="scope.row.tablename=='jiaoyanlunwen'">教研论文</span>
                             <span v-if="scope.row.tablename=='honor'">荣誉称号</span>
                             <span v-if="scope.row.tablename=='newsystem'">教务处成果</span>
                             <span v-if="scope.row.tablename=='shekechu'">社科处成果</span>
+                            <span v-if="scope.row.tablename=='kejichu'">科技处成果</span>
                         </template>
                     </el-table-column>
                     <el-table-column prop="object.partment" label="项目所属部门"  align="center">
                     </el-table-column>
-<!--                    <el-table-column align="center" label="项目人员情况" width="250px" v-if="object.people">-->
-<!--                        <template slot-scope="scope">-->
-<!--                            <el-table :data="scope.row.people" :show-header="false">-->
-<!--                                <el-table-column prop="badge" align="center"  label="工号"></el-table-column>-->
-<!--                                <el-table-column prop="name" align="center"  label="姓名"></el-table-column>-->
-<!--                            </el-table>-->
-<!--                        </template>-->
-<!--                    </el-table-column>-->
                     <el-table-column prop="object.finishtime" label="项目完成时间" align="center">
                     </el-table-column>
                     <el-table-column label="操作" width="280px"  align="center">
@@ -76,22 +57,11 @@
                     </el-table-column>
                     <el-table-column prop="object.type" label="项目类别"  align="center">
                         <template slot-scope="scope">
-                            <span v-if="scope.row.tablename=='chanxueyan'">产学研</span>
                             <span v-if="scope.row.tablename=='competition'">学科竞赛</span>
-                            <span v-if="scope.row.tablename=='hengxiangkeyanxiangmu'">横向科研项目</span>
-                            <span v-if="scope.row.tablename=='zongxiangkeyanxiangmu'">纵向科研项目</span>
-                            <span v-if="scope.row.tablename=='zhuzuo'">著作</span>
-                            <span v-if="scope.row.tablename=='zhuanli'">专利</span>
-                            <span v-if="scope.row.tablename=='ruanjianzhuzuoquan'">软件著作权</span>
-                            <span v-if="scope.row.tablename=='pingguzhongxinxiangguan'">评估中心相关</span>
-                            <span v-if="scope.row.tablename=='keyanxiangmujiexiang'">科研项目结项</span>
-                            <span v-if="scope.row.tablename=='keyanlunwen'">科研论文</span>
-                            <span v-if="scope.row.tablename=='jiaoyuguihuaxiangmu'">教育规划项目</span>
-                            <span v-if="scope.row.tablename=='jiaoyanxiangmu'">教研项目</span>
-                            <span v-if="scope.row.tablename=='jiaoyanlunwen'">教研论文</span>
                             <span v-if="scope.row.tablename=='honor'">荣誉称号</span>
                             <span v-if="scope.row.tablename=='newsystem'">教务处成果</span>
                             <span v-if="scope.row.tablename=='shekechu'">社科处成果</span>
+                            <span v-if="scope.row.tablename=='kejichu'">科技处成果</span>
                         </template>
                     </el-table-column>
                     <el-table-column prop="object.partment" label="项目所属部门"  align="center">
@@ -129,36 +99,17 @@
                 <el-table :data="disPass" border style="width: 100%">
                     <el-table-column prop="object.name" label="项目名称"  align="center">
                     </el-table-column>
-                    <el-table-column prop="object.type" label="项目类别" style=""  align="center">
-                            <template slot-scope="scope">
-                                <span v-if="scope.row.tablename=='chanxueyan'">产学研</span>
-                                <span v-if="scope.row.tablename=='competition'">学科竞赛</span>
-                                <span v-if="scope.row.tablename=='hengxiangkeyanxiangmu'">横向科研项目</span>
-                                <span v-if="scope.row.tablename=='zongxiangkeyanxiangmu'">纵向科研项目</span>
-                                <span v-if="scope.row.tablename=='zhuzuo'">著作</span>
-                                <span v-if="scope.row.tablename=='zhuanli'">专利</span>
-                                <span v-if="scope.row.tablename=='ruanjianzhuzuoquan'">软件著作权</span>
-                                <span v-if="scope.row.tablename=='pingguzhongxinxiangguan'">评估中心相关</span>
-                                <span v-if="scope.row.tablename=='keyanxiangmujiexiang'">科研项目结项</span>
-                                <span v-if="scope.row.tablename=='keyanlunwen'">科研论文</span>
-                                <span v-if="scope.row.tablename=='jiaoyuguihuaxiangmu'">教育规划项目</span>
-                                <span v-if="scope.row.tablename=='jiaoyanxiangmu'">教研项目</span>
-                                <span v-if="scope.row.tablename=='jiaoyanlunwen'">教研论文</span>
-                                <span v-if="scope.row.tablename=='honor'">荣誉称号</span>
-                                <span v-if="scope.row.tablename=='newsystem'">教务处成果</span>
-                                <span v-if="scope.row.tablename=='shekechu'">社科处成果</span>
-                            </template>
+                    <el-table-column prop="object.type" label="项目类别"  align="center">
+                        <template slot-scope="scope">
+                            <span v-if="scope.row.tablename=='competition'">学科竞赛</span>
+                            <span v-if="scope.row.tablename=='honor'">荣誉称号</span>
+                            <span v-if="scope.row.tablename=='newsystem'">教务处成果</span>
+                            <span v-if="scope.row.tablename=='shekechu'">社科处成果</span>
+                            <span v-if="scope.row.tablename=='kejichu'">科技处成果</span>
+                        </template>
                     </el-table-column>
                     <el-table-column prop="object.partment" label="项目所属部门"  align="center">
                     </el-table-column>
-<!--                    <el-table-column align="center" label="项目人员情况" width="250px">-->
-<!--                        <template slot-scope="scope">-->
-<!--                            <el-table :data="scope.row.people" :show-header="false">-->
-<!--                                <el-table-column prop="badge" align="center"  label="工号"></el-table-column>-->
-<!--                                <el-table-column prop="name" align="center"  label="姓名"></el-table-column>-->
-<!--                            </el-table>-->
-<!--                        </template>-->
-<!--                    </el-table-column>-->
                     <el-table-column prop="object.finishtime" label="项目完成时间" align="center">
                     </el-table-column>
                 </el-table>
@@ -261,6 +212,7 @@ import {editZongXiangKeYan} from "../../../api/zongxiangkeyanAPI";
 import {editCompetition} from "../../../api/JingSaiAPI";
 import {editNewSystem} from "../../../api/newSystem";
 import {editSheKeChu} from "../../../api/SheKeChuAPI";
+import {editKeJiChu} from "../../../api/kejichu";
 
 export default {
     inject:['reload'],
@@ -324,145 +276,8 @@ export default {
                     })
                     break;
                 }
-                case "jiaoyanlunwen":{
-                    editJiaoYanLunWen(this.form).then(res => {
-                        if(res!==0){
-                            this.$message.success(`修改成功`);
-                            this.$set(this.tableData, this.idx, this.form);
-                        }else{
-                            this.$message.error(`修改失败`);
-                        }
-                    })
-                   break;
-                }
-                case "jiaoyanxiangmu":{
-                    editJiaoYan(this.form).then(res => {
-                        if(res!==0){
-                            this.$message.success(`修改成功`);
-                            this.$set(this.tableData, this.idx, this.form);
-                        }else{
-                            this.$message.error(`修改失败`);
-                        }
-                    })
-                   break;
-                }
-                case "jiaoyuguihuaxiangmu":{
-                    editJiaoYuGuiHua(this.form).then(res => {
-                        if(res!==0){
-                            this.$message.success(`修改成功`);
-                            this.$set(this.tableData, this.idx, this.form);
-                        }else{
-                            this.$message.error(`修改失败`);
-                        }
-                    })
-                    break;
-                }
-                case "keyanlunwen":{
-                    this.form.type=5;
-                    editHeBing(this.form).then(res => {
-                        if(res!==0){
-                            this.$message.success(`修改成功`);
-                            this.$set(this.tableData, this.idx, this.form);
-                        }else{
-                            this.$message.error(`修改失败`);
-                        }
-                    })
-                    break;
-                }
-                case "keyanxiangmujiexiang":{
-                    this.form.type=7;
-                    editHeBing(this.form).then(res => {
-                        if(res!==0){
-                            this.$message.success(`修改成功`);
-                            this.$set(this.tableData, this.idx, this.form);
-                        }else{
-                            this.$message.error(`修改失败`);
-                        }
-                    })
-                    break;
-                }
-                case "pingguzhongxinxiangguan":{
-                    editPingGuZhongXin(this.form).then(res => {
-                        if(res!==0){
-                            this.$message.success(`修改成功`);
-                            this.$set(this.tableData, this.idx, this.form);
-                        }else{
-                            this.$message.error(`修改失败`);
-                        }
-                    })
-                    break;
-                }
-                case "ruanjianzhuzuoquan":{
-                    this.form.type=6;
-                    editHeBing(this.form).then(res => {
-                        if(res!==0){
-                            this.$message.success(`修改成功`);
-                            this.$set(this.tableData, this.idx, this.form);
-                        }else{
-                            this.$message.error(`修改失败`);
-                        }
-                    })
-                    break;
-                }
-                case "zhuanli":{
-                    this.form.type=2;
-                    editHeBing(this.form).then(res => {
-                        if(res!==0){
-                            this.$message.success(`修改成功`);
-                            this.$set(this.tableData, this.idx, this.form);
-                        }else{
-                            this.$message.error(`修改失败`);
-                        }
-                    })
-                    break;
-                }
-                case "zhuzuo":{
-                    this.form.type=4;
-                    editHeBing(this.form).then(res => {
-                        if(res!==0){
-                            this.$message.success(`修改成功`);
-                            this.$set(this.tableData, this.idx, this.form);
-                        }else{
-                            this.$message.error(`修改失败`);
-                        }
-                    })
-                    break;
-                }
-                case "zongxiangkeyanxiangmu":{
-                    editZongXiangKeYan(this.form).then(res => {
-                        if(res!==0){
-                            this.$message.success(`修改成功`);
-                            this.$set(this.tableData, this.idx, this.form);
-                        }else{
-                            this.$message.error(`修改失败`);
-                        }
-                    })
-                    break;
-                }
-                case "hengxiangkeyanxiangmu":{
-                    this.form.type=3;
-                    editHeBing(this.form).then(res => {
-                        if(res!==0){
-                            this.$message.success(`修改成功`);
-                            this.$set(this.tableData, this.idx, this.form);
-                        }else{
-                            this.$message.error(`修改失败`);
-                        }
-                    })
-                    break;
-                }
                 case "competition":{
                     editCompetition(this.form).then(res => {
-                        if(res!==0){
-                            this.$message.success(`修改成功`);
-                        }else{
-                            this.$message.error(`修改失败`);
-                        }
-                    })
-                    break;
-                }
-                case "chanxueyan":{
-                    editChanXueYan(this.form).then(res => {
                         if(res!==0){
                             this.$message.success(`修改成功`);
                         }else{
@@ -484,6 +299,17 @@ export default {
                 }
                 case "shekechu":{
                     editSheKeChu(this.form).then(res => {
+                        if(res!==0){
+                            this.$message.success(`修改成功`);
+                            this.$set(this.tableData, this.idx, this.form);
+                        }else{
+                            this.$message.error(`修改失败`);
+                        }
+                    })
+                    break;
+                }
+                case "kejichu":{
+                    editKeJiChu(this.form).then(res => {
                         if(res!==0){
                             this.$message.success(`修改成功`);
                             this.$set(this.tableData, this.idx, this.form);

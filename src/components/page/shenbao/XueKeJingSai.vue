@@ -24,7 +24,7 @@
                         <el-input v-model="form.grade"></el-input>
                     </el-form-item>
                     <el-form-item label="指导教师" prop="people">
-                        <el-select multiple filterable v-model="form.people">
+                        <el-select multiple filterable v-model="form.teacher">
                             <el-option
                                 v-for="item in teacher_list"
                                 :key="item.badge"

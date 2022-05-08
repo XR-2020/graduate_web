@@ -128,12 +128,6 @@
                         </el-table-column>
                         <el-table-column prop="object.name" label="项目名称" width="120" align="center">
                         </el-table-column>
-                        <el-table-column prop="object.danwei" label="结题单位" width="120" align="center">
-                        </el-table-column>
-                        <el-table-column prop="object.level" label="项目级别" width="120" align="center">
-                        </el-table-column>
-                        <el-table-column prop="object.grade" label="结题等级" width="120" align="center">
-                        </el-table-column>
                         <el-table-column prop="object.partment" label="部门" width="120" align="center">
                         </el-table-column>
                         <el-table-column prop="object.finishtime" label="完成时间" width="120" align="center">
@@ -169,12 +163,6 @@
                         <el-table-column prop="object.id" label="ID"  width="35" align="center">
                         </el-table-column>
                         <el-table-column prop="object.name" label="项目名称" width="120" align="center">
-                        </el-table-column>
-                        <el-table-column prop="object.danwei" label="结题单位" width="120" align="center">
-                        </el-table-column>
-                        <el-table-column prop="object.level" label="项目级别" width="120" align="center">
-                        </el-table-column>
-                        <el-table-column prop="object.grade" label="结题等级" width="120" align="center">
                         </el-table-column>
                         <el-table-column prop="object.partment" label="部门" width="120" align="center">
                         </el-table-column>
@@ -300,9 +288,9 @@
                         <el-table-column prop="object.shenbao" label="申报人" align="center">  </el-table-column>
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
-                                <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,6)">下载证明材料</el-button>
-                                <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
-                                <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
+                                <el-button size="small" type="info" @click="newHandleMetails(scope.$index, scope.row)">下载证明材料</el-button>
+                                <el-button size="small" type="primary" @click="newhandle(scope.$index, scope.row,1)">通过</el-button>
+                                <el-button size="small" type="danger" @click="newhandle(scope.$index, scope.row,-1)">不通过</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -335,9 +323,9 @@
                         <el-table-column prop="object.shenbao" label="申报人" align="center"> </el-table-column>
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
-                                <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,7)">下载证明材料</el-button>
-                                <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
-                                <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
+                                <el-button size="small" type="info" @click="newHandleMetails(scope.$index, scope.row)">下载证明材料</el-button>
+                                <el-button size="small" type="primary" @click="newhandle(scope.$index, scope.row,1)">通过</el-button>
+                                <el-button size="small" type="danger" @click="newhandle(scope.$index, scope.row,-1)">不通过</el-button>
                             </template>
 
                         </el-table-column>
@@ -358,11 +346,7 @@
                         </el-table-column>
                         <el-table-column prop="object.name" label="项目名称" align="center">
                         </el-table-column>
-                        <el-table-column prop="object.lixiang" label="立项部门" align="center">
-                        </el-table-column>
                         <el-table-column prop="object.type" label="项目类别" align="center">
-                        </el-table-column>
-                        <el-table-column prop="object.level" label="项目级别" align="center">
                         </el-table-column>
                         <el-table-column prop="object.finishtime" label="完成时间" width="120" align="center">
                         </el-table-column>
@@ -377,9 +361,9 @@
                         </el-table-column>
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
-                                <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,8)">下载证明材料</el-button>
-                                <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
-                                <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
+                                <el-button size="small" type="info" @click="newHandleMetails(scope.$index, scope.row)">下载证明材料</el-button>
+                                <el-button size="small" type="primary" @click="newhandle(scope.$index, scope.row,1)">通过</el-button>
+                                <el-button size="small" type="danger" @click="newhandle(scope.$index, scope.row,-1)">不通过</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -412,9 +396,9 @@
                         <el-table-column prop="object.shenbao" label="申报人" align="center"></el-table-column>
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
-                                <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,9)">下载证明材料</el-button>
-                                <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
-                                <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
+                                <el-button size="small" type="info" @click="newHandleMetails(scope.$index, scope.row)">下载证明材料</el-button>
+                                <el-button size="small" type="primary" @click="newhandle(scope.$index, scope.row,1)">通过</el-button>
+                                <el-button size="small" type="danger" @click="newhandle(scope.$index, scope.row,-1)">不通过</el-button>
                             </template>
 
                         </el-table-column>
@@ -448,9 +432,9 @@
                         <el-table-column prop="object.shenbao" label="申报人" align="center"> </el-table-column>
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
-                                <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,10)">下载证明材料</el-button>
-                                <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
-                                <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
+                                <el-button size="small" type="info" @click="newHandleMetails(scope.$index, scope.row)">下载证明材料</el-button>
+                                <el-button size="small" type="primary" @click="newhandle(scope.$index, scope.row,1)">通过</el-button>
+                                <el-button size="small" type="danger" @click="newhandle(scope.$index, scope.row,-1)">不通过</el-button>
                             </template>
 
                         </el-table-column>
@@ -484,9 +468,9 @@
                         <el-table-column prop="object.shenbao" label="申报人" align="center"></el-table-column>
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
-                                <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,11)">下载证明材料</el-button>
-                                <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
-                                <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
+                                <el-button size="small" type="info" @click="newHandleMetails(scope.$index, scope.row)">下载证明材料</el-button>
+                                <el-button size="small" type="primary" @click="newhandle(scope.$index, scope.row,1)">通过</el-button>
+                                <el-button size="small" type="danger" @click="newhandle(scope.$index, scope.row,-1)">不通过</el-button>
                             </template>
 
                         </el-table-column>
@@ -520,9 +504,9 @@
                         </el-table-column>
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
-                                <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,12)">下载证明材料</el-button>
-                                <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
-                                <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
+                                <el-button size="small" type="info" @click="newHandleMetails(scope.$index, scope.row)">下载证明材料</el-button>
+                                <el-button size="small" type="primary" @click="newhandle(scope.$index, scope.row,1)">通过</el-button>
+                                <el-button size="small" type="danger" @click="newhandle(scope.$index, scope.row,-1)">不通过</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -632,14 +616,7 @@
                     </el-table-column>
                     <el-table-column prop="object.level" label="比赛等级"  align="center">
                     </el-table-column>
-
-                    <el-table-column align="center" label="人员情况" width="250px">
-                        <template slot-scope="scope">
-                            <el-table :data="scope.row.people" :show-header="false">
-                                <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
-                                <el-table-column prop="name" align="center"  label="姓名"></el-table-column>
-                            </el-table>
-                        </template>
+                    <el-table-column prop="object.teacher" align="center" label="指导教师" width="250px">
                     </el-table-column>
                     <el-table-column prop="object.student" label="参赛学生" align="center">
                     </el-table-column>
@@ -648,9 +625,9 @@
                     <el-table-column prop="object.shenbao" label="申报人" align="center">   </el-table-column>
                     <el-table-column label="操作" width="280px"  align="center">
                         <template slot-scope="scope">
-                            <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,13)">下载证明材料</el-button>
-                            <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
-                            <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
+                            <el-button size="small" type="info" @click="xueKeJingSaiMetails(scope.$index, scope.row)">下载证明材料</el-button>
+                            <el-button size="small" type="primary" @click="xueKeJingSaihandle(scope.$index, scope.row,1)">通过</el-button>
+                            <el-button size="small" type="danger" @click="xueKeJingSaihandle(scope.$index, scope.row,-1)">不通过</el-button>
                         </template>
 
                     </el-table-column>
@@ -674,20 +651,14 @@
                         </el-table-column>
                         <el-table-column prop="object.finishtime" label="获奖时间"  align="center">
                         </el-table-column>
-                        <el-table-column align="center" label="人员情况" width="250px">
-                            <template slot-scope="scope">
-                                <el-table :data="scope.row.people" :show-header="false">
-                                    <el-table-column prop="badge" align="center"  label="工号"></el-table-column>
-                                    <el-table-column prop="name" align="center"  label="姓名"></el-table-column>
-                                </el-table>
-                            </template>
+                        <el-table-column prop="object.teacher" align="center" label="获奖教师" width="250px">
                         </el-table-column>
                         <el-table-column prop="object.shenbao" label="申报人" align="center">  </el-table-column>
                         <el-table-column label="操作" width="280px"  align="center">
                             <template slot-scope="scope">
-                                <el-button size="small" type="info" @click="handleMetails(scope.$index, scope.row,14)">下载证明材料</el-button>
-                                <el-button size="small" type="primary" @click="handle(scope.$index, scope.row,1,1)">通过</el-button>
-                                <el-button size="small" type="danger" @click="handle(scope.$index, scope.row,1,-1)">不通过</el-button>
+                                <el-button size="small" type="info" @click="rongYuChenHaoMetails(scope.$index, scope.row)">下载证明材料</el-button>
+                                <el-button size="small" type="primary" @click="handlerongYuChenHao(scope.$index, scope.row,1)">通过</el-button>
+                                <el-button size="small" type="danger" @click="handlerongYuChenHao(scope.$index, scope.row,-1)">不通过</el-button>
                             </template>
 
                         </el-table-column>
@@ -728,9 +699,10 @@ import {
 } from "../../../api/commonAPI";
 import {getJiaoWuChuMetails, passJiaoWuChu} from "../../../api/newSystem";
 import {getSheKeChuMetails, passSheKeChuChu} from "../../../api/SheKeChuAPI";
+import {getKeJiChuMetails, passKeJiChu} from "../../../api/kejichu";
 export default {
     name: 'permission',
-
+    inject:['reload'],
     data() {
         return {
             metails:{type:'',id:''},
@@ -835,14 +807,14 @@ export default {
                 this.zongxiangjieti=res.zongxiangjieti,
                 this.keyanhuojiang=res.keyanhuojiang,
                     this.xuekejingsaiData=res.xuekejingsai,
-                    this.keyanxiangmuData=res.keyanxiangmu,
+                    this.keyanxiangmuData=res.keyanxiangmujiexiang,
                     this.ruanjianzhuzuoData=res.ruanjianzhuzuo,
-                    this.keyanData=res.keyan,
+                    this.keyanData=res.keyanlunwen,
                     this.zhuzuoData=res.zhuzuo,
-                    this.zongxiangData=res.zongxiang,
-                    this.hengxiangData=res.hengxiang,
+                    this.zongxiangData=res.zongxiangkeyan,
+                    this.hengxiangData=res.hengxiangkeyan,
                     this.zhuanliData=res.zhuanli,
-                    this.honorData=res.honor,
+                    this.honorData=res.rongyuchenghao,
                 this.keyanhuojiangPageTotal=res.keyanhuojiangPageTotal,
                 this.zongxiangjietiPageTotal=res.zongxiangjietiPageTotal,
                 this.youxiubishePageTotal=res.youxiubishePageTotal,
@@ -853,14 +825,14 @@ export default {
                 this.shijianlixiangPageTotal=res.shijianlixiangPageTotal,
                 this.xiaowaishijianjidiPageTotal=res.xiaowaishijianjidiPageTotal,
                     this.xuekejingsaiPageTotal=res.xuekejingsaiPageTotal,
-                    this.keyanxiangmuPageTotal=res.keyanxiangmuPageTotal,
+                    this.keyanxiangmujiexiangPageTotal=res.keyanxiangmujiexiangPageTotal,
                     this.ruanjianzhuzuoPageTotal=res.ruanjianzhuzuoPageTotal,
-                    this.keyanPageTotal=res.keyanPageTotal,
+                    this.keyanlunwenPageTotal=res.keyanlunwenPageTotal,
                     this.zhuzuoPageTotal=res.zhuzuoPageTotal,
-                    this.zongxiangPageTotal=res.zongxiangPageTotal,
-                    this.hengxiangPageTotal=res.hengxiangPageTotal,
+                    this.zongxiangkeyanPageTotal=res.zongxiangkeyanPageTotal,
+                    this.hengxiangkeyanPageTotal=res.hengxiangkeyanPageTotal,
                     this.zhuanliPageTotal=res.zhuanliPageTotal,
-                    this.honorPageTotal=res.honorPageTotal
+                    this.rongyuchenghaoPageTotal=res.rongyuchenghaoPageTotal
 
             } )
             this.role=localStorage.getItem('ms_role');
@@ -893,90 +865,88 @@ export default {
         filterTag(value, row) {
             return row.tag === value;
         },
-        handle(index, row,type,ispass) {
+        xueKeJingSaihandle(index, row,ispass){
             let handleres
-            switch (type) {
-                case 13:{
-                    passXueKeJingSai({id:row.object.id,ispass:ispass}).then(res =>{
-                        handleres=res
-                    })
-                    break;
-                }
-                case 14:{
-                    passRongYuChengHao({id:row.object.id,ispass:ispass}).then(res =>{
-                        handleres=res
-                    })
-                    break;
-                }
-            }
-            console.log(handleres)
+            passXueKeJingSai({id:row.object.id,ispass:ispass}).then(res =>{
+                handleres=res
+            })
             if(handleres!==0){
-                this.$message.success("通过"+row.object.id+""+row.object.name+"成功");
-                this.getData()
+                this.$message.success("操作"+row.object.id+""+row.object.name+"成功");
             }else{
-                this.$message.error("通过"+row.object.id+""+row.object.name+"失败");
+                this.$message.error("操作"+row.object.id+""+row.object.name+"失败");
             }
-
+            this.reload()
         },
-        handleMetails(index, row,type){
-            switch (type) {
-                case 13:{
-                    getXueKeJingSaiMetails({id:row.object.id}).then(res =>{
-                        const blob=new Blob([res],{type:'application/zip'})
-                        console.log(blob)
-                        const downloadElement=document.createElement('a');
-                        const href = window.URL.createObjectURL(blob)
-                        const fileName = (row.object.id+row.object.name+'.zip')
-                        downloadElement.href = href
-                        downloadElement.download = fileName
-                        document.body.appendChild(downloadElement)
-                        downloadElement.click()
-                        document.body.removeChild(downloadElement)
-                        window.URL.revokeObjectURL(href)
-                    })
-                    break;
-                }
-                case 14:{
-                    getRongYuChengHaoMetails({id:row.object.id}).then(res =>{
-                        const blob=new Blob([res],{type:'application/zip'})
-                        console.log(blob)
-                        const downloadElement=document.createElement('a');
-                        const href = window.URL.createObjectURL(blob)
-                        const fileName = (row.object.id+row.object.name+'.zip')
-                        downloadElement.href = href
-                        downloadElement.download = fileName
-                        document.body.appendChild(downloadElement)
-                        downloadElement.click()
-                        document.body.removeChild(downloadElement)
-                        window.URL.revokeObjectURL(href)
-                    })
-                    break;
-                }
-
+        rongYuChenHaoMetails(index, row){
+            getRongYuChengHaoMetails({id: row.object.id}).then(res => {
+                const blob = new Blob([res], {type: 'application/zip'})
+                console.log(blob)
+                const downloadElement = document.createElement('a');
+                const href = window.URL.createObjectURL(blob)
+                const fileName = (row.object.id + row.object.name + '.zip')
+                downloadElement.href = href
+                downloadElement.download = fileName
+                document.body.appendChild(downloadElement)
+                downloadElement.click()
+                document.body.removeChild(downloadElement)
+                window.URL.revokeObjectURL(href)
+            })
+        },
+       handlerongYuChenHao(index, row,ispass){
+            let handleres
+            passRongYuChengHao({id:row.object.id,ispass:ispass}).then(res =>{
+                handleres=res
+            })
+            if(handleres!==0){
+                this.$message.success("操作"+row.object.id+""+row.object.name+"成功");
+            }else{
+                this.$message.error("操作"+row.object.id+""+row.object.name+"失败");
             }
+            this.reload()
         },
+        xueKeJingSaiMetails(index, row){
+            getXueKeJingSaiMetails({id: row.object.id}).then(res => {
+                const blob = new Blob([res], {type: 'application/zip'})
+                console.log(blob)
+                const downloadElement = document.createElement('a');
+                const href = window.URL.createObjectURL(blob)
+                const fileName = (row.object.id + row.object.name + '.zip')
+                downloadElement.href = href
+                downloadElement.download = fileName
+                document.body.appendChild(downloadElement)
+                downloadElement.click()
+                document.body.removeChild(downloadElement)
+                window.URL.revokeObjectURL(href)
+            })
+        },
+
         newhandle(index, row,ispass) {
             let handleres
-           if(row.object.type==='社科处_3.纵向结题'||row.object.type==='社科处_7.科研获奖'){
+           if(row.object.type.includes('社科处')){
                passSheKeChuChu({id:row.object.id,ispass:ispass}).then(res =>{
                    handleres=res
                })
 
-           }else{
+           }
+           if(row.object.type.includes('科技处')){
+               passKeJiChu({id:row.object.id,ispass:ispass}).then(res =>{
+                   handleres=res
+               })
+           }
+           if(row.object.type.includes('教务处')){
                passJiaoWuChu({id:row.object.id,ispass:ispass}).then(res =>{
                    handleres=res
                })
            }
             if(handleres!==0){
-                this.$message.success("通过"+row.object.id+""+row.object.name+"成功");
-                this.getData()
+                this.$message.success("操作"+row.object.id+""+row.object.name+"成功");
             }else{
-                this.$message.error("通过"+row.object.id+""+row.object.name+"失败");
+                this.$message.error("操作"+row.object.id+""+row.object.name+"失败");
             }
-
+            this.reload()
         },
         newHandleMetails(index, row){
-            if(row.object.type==='社科处_3.纵向结题'||row.object.type==='社科处_7.科研获奖') {
+            if(row.object.type.includes('社科处')){
                 getSheKeChuMetails({id: row.object.id}).then(res => {
                     const blob = new Blob([res], {type: 'application/zip'})
                     console.log(blob)
@@ -990,7 +960,20 @@ export default {
                     document.body.removeChild(downloadElement)
                     window.URL.revokeObjectURL(href)
                 })
-            }else {
+            }else if(row.object.type.includes('科技处')){
+                getKeJiChuMetails({id: row.object.id}).then(res => {
+                    const blob = new Blob([res], {type: 'application/zip'})
+                    console.log(blob)
+                    const downloadElement = document.createElement('a');
+                    const href = window.URL.createObjectURL(blob)
+                    const fileName = (row.object.id + row.object.name + '.zip')
+                    downloadElement.href = href
+                    downloadElement.download = fileName
+                    document.body.appendChild(downloadElement)
+                    downloadElement.click()
+                    document.body.removeChild(downloadElement)
+                    window.URL.revokeObjectURL(href)
+                })}else {
                 getJiaoWuChuMetails({id: row.object.id}).then(res => {
                     const blob = new Blob([res], {type: 'application/zip'})
                     console.log(blob)
