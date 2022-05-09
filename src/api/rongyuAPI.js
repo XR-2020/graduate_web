@@ -59,10 +59,3 @@ export const editHonor = query => {
         data: query
     });
 };
-export const getHonorBadge = query => {
-    return request({
-        url: '/getHonorBadge',
-        method: 'get',
-        params: query
-    });
-};

@@ -677,25 +677,10 @@
 <script>
 import { getAllWaiting} from "../../../api/shenbaoAPI";
 import {
-    getChanXueYanMetails,
-    getHengXiangKeYanMetails,
-    getJiaoYanLunWenMetails,
-    getJiaoYanMetails,
-    getJiaoYuGuiHuaMetails,
-    getKeYanLunWenMetails,
-    getKeYanXiangMuJieXiangMetails,
-    getPingGuZhongXinMetails,
     getRongYuChengHaoMetails,
-    getRuanJianZhuZuoMetails,
     getXueKeJingSaiMetails,
-    getZhuanLiMetails,
-    getZhuZuoMetails,
-    getZongXiangKeYanMetails, passChanXueYan, passHengXiangKeYan, passJiaoYan, passJiaoYanLunWen, passJiaoYuGuiHua,
-    passKeYanLunWen,
-    passKeYanXiangMuJieXiang, passPingGuZhongXin,
     passRongYuChengHao,
-    passRuanJianZhuZuo,
-    passXueKeJingSai, passZhuanLi, passZhuZuo, passZongXiangKeYan
+    passXueKeJingSai
 } from "../../../api/commonAPI";
 import {getJiaoWuChuMetails, passJiaoWuChu} from "../../../api/newSystem";
 import {getSheKeChuMetails, passSheKeChuChu} from "../../../api/SheKeChuAPI";

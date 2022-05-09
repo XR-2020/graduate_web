@@ -81,16 +81,6 @@
                 <el-form-item label="指导教师">
                     <el-input v-model="form.teacher"></el-input>
                 </el-form-item>
-<!--                <el-form-item label="指导教师">-->
-<!--                    <el-select multiple filterable v-model="form.people">-->
-<!--                        <el-option-->
-<!--                            v-for="item in teacher_list"-->
-<!--                            :key="item.badge"-->
-<!--                            :label="item.badge+'—'+item.name"-->
-<!--                            :value="item.badge">-->
-<!--                        </el-option>-->
-<!--                    </el-select>-->
-<!--                </el-form-item>-->
                 <el-form-item label="完成时间">
                     <el-col :span="11">
                         <el-date-picker type="date" placeholder="选择日期" value-format="yyyy-MM-dd" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
@@ -146,16 +136,14 @@
 
 <script>
 import xuekejingsai from '../shenbao/XueKeJingSai'
-import {deleteOneRongYu, deleteRongYu, getAllRongYu, getSearchRongYu} from "../../../api/rongyuAPI";
 import {
     deleteJingSai,
     deleteOneJingSai, editCompetition,
-    getAllJingSai, getComputitionBadge,
+    getAllJingSai,
     getJingSaiDetail,
     getSearchJingSai, insertCompetition
 } from "../../../api/JingSaiAPI";
-import {getZhuZuoDetail, getZhuZuoDetailBadge} from "../../../api/zhuzuoAPI";
-import {editHeBing, getTeacherList} from "../../../api/commonAPI";
+import {getTeacherList} from "../../../api/commonAPI";
     export default {
         inject:['reload'],
         name: 'competition',
@@ -262,9 +250,6 @@ import {editHeBing, getTeacherList} from "../../../api/commonAPI";
                 return row.tag === value;
             },
             handleEdit(index, row) {
-                // getComputitionBadge({id: row.object.id}).then(res =>{
-                //     this.form.people=res.data
-                // } )
                 this.form=row.object;
                 this.editVisible = true;
             },

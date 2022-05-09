@@ -10,8 +10,6 @@
                 <br>
                 <p style="color: #6f7180">待审核</p>
                 <br>
-<!--                <el-input v-model="daiShenHequery.key" placeholder="筛选关键词" style="width: 200px" class="handle-input mr10"></el-input>-->
-<!--                <el-button type="primary" icon="search" @click="searchDaiShenHe">搜索</el-button>-->
                 <el-table :data="daishenhe" border style="width: 100%">
                     <el-table-column prop="object.name" label="申报项目名称"  align="center">
                     </el-table-column>
@@ -49,8 +47,6 @@
                 <br>
                 <p style="color: #5daf34">已通过</p>
                 <br>
-<!--                <el-input v-model="hadPassquery.key" placeholder="筛选关键词" class="handle-input mr10" style="width: 200px"></el-input>-->
-<!--                <el-button type="primary" icon="search" @click="searchHadPass">搜索</el-button>-->
                 <br>
                 <el-table :data="hadPass" border style="width: 100%">
                     <el-table-column prop="object.name" label="项目名称"  align="center">
@@ -66,14 +62,6 @@
                     </el-table-column>
                     <el-table-column prop="object.partment" label="项目所属部门"  align="center">
                     </el-table-column>
-<!--                    <el-table-column align="center" label="项目人员情况" width="250px">-->
-<!--                        <template slot-scope="scope">-->
-<!--                            <el-table :data="scope.row.people" :show-header="false">-->
-<!--                                <el-table-column prop="badge" align="center"  label="工号"></el-table-column>-->
-<!--                                <el-table-column prop="name" align="center"  label="姓名"></el-table-column>-->
-<!--                            </el-table>-->
-<!--                        </template>-->
-<!--                    </el-table-column>-->
                     <el-table-column prop="object.finishtime" label="项目完成时间" align="center">
                     </el-table-column>
                 </el-table>
@@ -93,8 +81,6 @@
                 <br>
                 <p style="color: #dd6161">未通过</p>
                 <br>
-<!--                <el-input v-model="disPassquery.key" placeholder="筛选关键词" style="width: 200px" class="handle-input mr10"></el-input>-->
-<!--                <el-button type="primary" icon="search" @click="searchDisPass">搜索</el-button>-->
                 <br>
                 <el-table :data="disPass" border style="width: 100%">
                     <el-table-column prop="object.name" label="项目名称"  align="center">
@@ -200,15 +186,9 @@
 </template>
 
 <script>
-import {editHeBing, getTeacherList, selectProject} from "../../../api/commonAPI";
-import {editChanXueYan, updateChanXueYan} from "../../../api/chanxueyanAPI";
+import {getTeacherList, selectProject} from "../../../api/commonAPI";
 import {deleteMyShenBao, getDaiShenHeData, getDisData, getHadPassData} from "../../../api/myShenBaoAPI";
 import {editHonor} from "../../../api/rongyuAPI";
-import {editJiaoYanLunWen} from "../../../api/jiaoyanlunwenAPI";
-import {editJiaoYuGuiHua} from "../../../api/jiaoyuguihuaAPI";
-import {editJiaoYan} from "../../../api/jiaoyanAPI";
-import {editPingGuZhongXin} from "../../../api/pingguzhongxinAPI";
-import {editZongXiangKeYan} from "../../../api/zongxiangkeyanAPI";
 import {editCompetition} from "../../../api/JingSaiAPI";
 import {editNewSystem} from "../../../api/newSystem";
 import {editSheKeChu} from "../../../api/SheKeChuAPI";
@@ -257,9 +237,6 @@ export default {
        this.getData();
     },
     methods: {
-        // searchDaiShenHe(){},
-        // searchHadPass(){},
-        // searchDisPass(){},
         handleChange(item){
             this.$forceUpdate();
         },

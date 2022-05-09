@@ -1,14 +1,6 @@
 import request from '../utils/request';
 import qs from "qs";
 
-// ---------------------------------------- 查询爬取网站的类别列表
-export const CrawlerTypeList= query => {
-    return request({
-        url: '/CrawlerTypeList',
-        method: 'get',
-        params: query
-    });
-};
 // ---------------------------------------- 爬取指定类别网站数据
 export const NewSystemCrawlerWebSite= query => {
     return request({

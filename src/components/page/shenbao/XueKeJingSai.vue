@@ -70,7 +70,6 @@
 </template>
 
 <script>
-    import {updateChanXueYan} from "../../../api/chanxueyanAPI";
     import {updateCompetition} from "../../../api/JingSaiAPI";
     import {getTeacherList} from "../../../api/commonAPI";
 

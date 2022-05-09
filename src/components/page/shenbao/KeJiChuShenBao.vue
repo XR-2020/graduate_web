@@ -68,8 +68,6 @@
 </template>
 
 <script>
-    import {updateChanXueYan} from "../../../api/chanxueyanAPI";
-    import {updateHeBing} from "../../../api/shenbaoAPI";
     import {getTeacherList} from "../../../api/commonAPI";
     import {CrawlerTypeList} from "../../../api/newSystem";
     import {insertKeJiChu} from "../../../api/kejichu";

@@ -116,8 +116,6 @@
 <script>
 import {getTeacherList} from "../../../api/commonAPI";
 import {
-   getNewSystemBadge,
-    getNewSystemDetail,
     NewSystemCrawlerWebSite
 } from "../../../api/newSystem";
 import {

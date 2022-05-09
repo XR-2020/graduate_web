@@ -67,7 +67,7 @@
                                 class="upload-demo"
                                 drag
                                 accept=".zip"
-                                action="http://localhost:8080/ZongXiangKeYanMetials"
+                                action="http://localhost:8080/HeBingMetials"
                                 :limit="1"
                                 :on-exceed="handleChange"
                                 :on-success="uploadSuccess"
@@ -89,10 +89,8 @@
 </template>
 
 <script>
-    import {updateChanXueYan} from "../../../api/chanxueyanAPI";
-    import {updateZongXiangKeYan} from "../../../api/zongxiangkeyanAPI";
     import {getTeacherList} from "../../../api/commonAPI";
-    import {insertSheKeChu, updateSheKeChu} from "../../../api/SheKeChuAPI";
+    import {insertSheKeChu} from "../../../api/SheKeChuAPI";
 
     export default {
         inject:['reload'],

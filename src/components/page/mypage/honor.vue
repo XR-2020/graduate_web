@@ -23,14 +23,6 @@
                 </el-table-column>
                 <el-table-column prop="object.finishtime" label="获奖时间"  align="center">
                 </el-table-column>
-<!--                <el-table-column align="center" label="获奖人员情况" width="185px">-->
-<!--                    <template slot-scope="scope">-->
-<!--                        <el-table :data="scope.row.people" :show-header="false">-->
-<!--                            <el-table-column prop="badge" align="center"  label="工号"></el-table-column>-->
-<!--                            <el-table-column prop="name" align="center"  label="姓名"></el-table-column>-->
-<!--                        </el-table>-->
-<!--                    </template>-->
-<!--                </el-table-column>-->
                 <el-table-column prop="object.teacher" label="获奖教师"  align="center">
                 </el-table-column>
                 <el-table-column label="操作" width="200px"  align="center" v-if="role==='4'">
@@ -71,16 +63,7 @@
                 <el-form-item label="获奖教师">
                     <el-input v-model="form.teacher"></el-input>
                 </el-form-item>
-<!--                <el-form-item label="获奖教师">-->
-<!--                    <el-select multiple filterable v-model="form.people">-->
-<!--                        <el-option-->
-<!--                            v-for="item in teacher_list"-->
-<!--                            :key="item.badge"-->
-<!--                            :label="item.badge+'—'+item.name"-->
-<!--                            :value="item.badge">-->
-<!--                        </el-option>-->
-<!--                    </el-select>-->
-<!--                </el-form-item>-->
+
                 <el-form-item label="完成时间">
                     <el-col :span="11">
                         <el-date-picker type="date" placeholder="选择日期" value-format="yyyy-MM-dd" v-model="form.finishtime" style="width: 100%;"></el-date-picker>
@@ -134,15 +117,13 @@
 
 <script>
 import rongyuchenghao from '../shenbao/rongyuchenghao'
-import {getAllJiaoYuGuiHua, getSearchJiaoYuGuiHua, getSearchJiaoYuGuiHuaDetail} from "../../../api/jiaoyuguihuaAPI";
 import {
     deleteOneRongYu,
     deleteRongYu, editHonor,
-    getAllRongYu, getHonorBadge,
+    getAllRongYu,
     getSearchRongYu,
     insertHonor
 } from "../../../api/rongyuAPI";
-import {editCompetition, insertCompetition} from "../../../api/JingSaiAPI";
 import {getTeacherList} from "../../../api/commonAPI";
     export default {
         inject:['reload'],
@@ -256,10 +237,6 @@ import {getTeacherList} from "../../../api/commonAPI";
                 return row.tag === value;
             },
             handleEdit(index, row) {
-                console.log(row)
-                getHonorBadge({id: row.object.id}).then(res =>{
-                    this.form.people=res.data
-                } )
                 this.form=row.object;
                 this.editVisible = true;
             },

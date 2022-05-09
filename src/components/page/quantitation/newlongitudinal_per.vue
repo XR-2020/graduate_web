@@ -110,7 +110,7 @@
 </template>
 
 <script>
-import {crawlerWebSite, getTeacherList} from "../../../api/commonAPI";
+import {getTeacherList} from "../../../api/commonAPI";
 import {NewSystemCrawlerWebSite} from "../../../api/newSystem";
 import {
     deleteOneSheKeChu,
@@ -182,7 +182,6 @@ import {
             },
             onSubmit() {
                 this.editVisible = false;
-                console.log(this.form)
                 editSheKeChu(this.form).then(res => {
                     if(res!==0){
                         this.$message.success(`修改成功`);

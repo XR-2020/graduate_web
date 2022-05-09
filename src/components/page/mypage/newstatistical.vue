@@ -788,7 +788,6 @@
                         </el-table-column>
                         <el-table-column prop="object.teacher" label="指导教师"  align="center">
                         </el-table-column>
-
                         <el-table-column prop="object.student" label="参赛学生" align="center">
                         </el-table-column>
                         <el-table-column prop="object.finishtime" label="获奖时间" align="center">

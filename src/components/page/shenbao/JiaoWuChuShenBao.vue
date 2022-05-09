@@ -69,10 +69,9 @@
 </template>
 
 <script>
-    import {updateChanXueYan} from "../../../api/chanxueyanAPI";
-    import {updateHeBing} from "../../../api/shenbaoAPI";
+
     import {getTeacherList} from "../../../api/commonAPI";
-    import {insertJiaoWuChu, updateJiaoWuChu} from "../../../api/JiaoWuChuAPI";
+    import {insertJiaoWuChu} from "../../../api/JiaoWuChuAPI";
 
     export default {
         inject:['reload'],
