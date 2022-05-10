@@ -36,14 +36,6 @@ export const deleteOneRongYu = query => {
         params: query
     });
 };
-//批量导入
-export const insertHonor = query => {
-    return request({
-        url: '/insertHonor',
-        method: 'post',
-        params: query
-    });
-};
 //申报添加
 export const updateHonor = query => {
     return request({

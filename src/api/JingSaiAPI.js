@@ -45,13 +45,6 @@ export const getJingSaiDetail = query => {
     });
 };
 
-export const insertCompetition = query => {
-    return request({
-        url: '/insertCompetition',
-        method: 'post',
-        params: query
-    });
-};
 export const updateCompetition = query => {
     return request({
         url: '/updateCompetition',

@@ -122,7 +122,6 @@ import {
     deleteRongYu, editHonor,
     getAllRongYu,
     getSearchRongYu,
-    insertHonor
 } from "../../../api/rongyuAPI";
 import {getTeacherList} from "../../../api/commonAPI";
     export default {
@@ -274,15 +273,6 @@ import {getTeacherList} from "../../../api/commonAPI";
                 for (var i=0;i<val.length;i++){
                     this.idList.push(val[i].object.id)
                 }
-            },
-            // 保存编辑
-            saveEdit() {
-                this.editVisible = false;
-                insertHonor(this.form).then(res=>{
-                    this.$message.success(`修改成功`);
-                    this.getData();
-                })
-                this.$message.success(`修改第 ${this.idx+1} 行成功`);
             },
             // 确定删除
             deleteRow(){

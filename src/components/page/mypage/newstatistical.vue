@@ -8,6 +8,7 @@
         <div class="container">
             <div class="handle-box">
                 <el-date-picker
+                    value-format="yyyy-MM-dd"
                     v-model="value"
                     type="daterange"
                     range-separator="至"

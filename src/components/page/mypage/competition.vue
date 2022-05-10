@@ -25,14 +25,6 @@
                 </el-table-column>
                 <el-table-column prop="object.teacher" label="指导教师"  align="center">
                 </el-table-column>
-<!--                <el-table-column align="center" label="指导教师情况" width="185px">-->
-<!--                    <template slot-scope="scope">-->
-<!--                        <el-table :data="scope.row.people" :show-header="false">-->
-<!--                            <el-table-column prop="badge" align="center"  label="工号"></el-table-column>-->
-<!--                            <el-table-column prop="name" align="center"  label="姓名"></el-table-column>-->
-<!--                        </el-table>-->
-<!--                    </template>-->
-<!--                </el-table-column>-->
                 <el-table-column prop="object.student" label="参赛学生" align="center">
                 </el-table-column>
                 <el-table-column prop="object.finishtime" label="获奖时间" align="center">
@@ -141,9 +133,10 @@ import {
     deleteOneJingSai, editCompetition,
     getAllJingSai,
     getJingSaiDetail,
-    getSearchJingSai, insertCompetition
+    getSearchJingSai
 } from "../../../api/JingSaiAPI";
 import {getTeacherList} from "../../../api/commonAPI";
+import {editHonor} from "../../../api/rongyuAPI";
     export default {
         inject:['reload'],
         name: 'competition',
@@ -297,15 +290,6 @@ import {getTeacherList} from "../../../api/commonAPI";
                 for (var i=0;i<val.length;i++){
                     this.idList.push(val[i].object.id)
                 }
-            },
-            // 保存编辑
-            saveEdit() {
-                this.editVisible = false;
-                insertCompetition(this.form).then(res=>{
-                    this.$message.success(`修改成功`);
-                    this.getData();
-                })
-                this.$message.success(`修改第 ${this.idx+1} 行成功`);
             },
             // 确定删除
             deleteRow(){
