@@ -24,13 +24,13 @@ export default new Router({
                     meta: { title: '我的申报',permission: true }
                 },
               {
-                    path: '/项目申报',
+                    path: '/成果申报',
                     component: resolve => require(['../components/page/mypage/newproject_declare.vue'], resolve),
-                    meta: { title: '项目申报' }
+                    meta: { title: '成果申报' }
                 },    {
-                    path: '/教务处成果申报',
+                    path: '/教研成果申报',
                     component: resolve => require(['../components/page/shenbao/JiaoWuChuShenBao.vue'], resolve),
-                    meta: { title: '教务处成果申报' }
+                    meta: { title: '教研成果申报' }
                 },
                 {
                     path: '/学科竞赛申报',
@@ -43,14 +43,14 @@ export default new Router({
                     meta: { title: '荣誉称号申报' }
                 },
                 {
-                    path: '/社科处项目申报',
+                    path: '/社科类科研成果申报',
                     component: resolve => require(['../components/page/shenbao/SheKeChuShenBao.vue'], resolve),
-                    meta: { title: '社科处项目申报' }
+                    meta: { title: '社科类科研成果申报' }
                 }, {
                     // vue-schart组件
-                    path: '/科技处成果申报',
+                    path: '/自科类科研成果申报',
                     component: resolve => require(['../components/page/shenbao/KeJiChuShenBao.vue'], resolve),
-                    meta: { title: '科技处成果申报' }
+                    meta: { title: '自科类科研成果申报' }
                 }, {
                     path: '/科研获奖',
                     component: resolve => require(['../components/page/quantitation/keyanhuojiang.vue'], resolve),
@@ -68,19 +68,19 @@ export default new Router({
                     component: resolve => require(['../components/page/mypage/honor.vue'], resolve),
                     meta: { title: '荣誉称号' }
                 }, {
-                    path: '/教务处',
+                    path: '/教研成果',
                     component: resolve => require(['../components/page/quantitation/newSystem.vue'], resolve),
-                    meta: { title: '教务处'}
+                    meta: { title: '教研成果'}
                 },{
                     // vue-schart组件
-                    path: '/科技处',
+                    path: '/自科类科研成果',
                     component: resolve => require(['../components/page/quantitation/KeJiChu.vue'], resolve),
-                    meta: { title: '科技处' }
+                    meta: { title: '自科类科研成果' }
                 },
                 {
-                    path: '/教研成果明细',
+                    path: '/教研成果综合查询',
                     component: resolve => require(['../components/page/mypage/newstatistical.vue'], resolve),
-                    meta: { title: '教研成果明细' }
+                    meta: { title: '教研成果综合查询' }
                 },
                 {
                     // 权限页面

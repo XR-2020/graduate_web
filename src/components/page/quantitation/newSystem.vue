@@ -2,7 +2,7 @@
     <div class="table">
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-tickets"></i>教务处</el-breadcrumb-item>
+                <el-breadcrumb-item><i class="el-icon-tickets"></i>教研成果</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="container" style="width: 1000px">
@@ -42,8 +42,8 @@
                 <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
                 </el-pagination>
             </div>
-            <router-link to="/新成果申报">
-                <el-button type="primary">成果申报</el-button>
+            <router-link to="/教研成果申报">
+                <el-button type="primary">教研成果申报</el-button>
             </router-link>
         </div>
 

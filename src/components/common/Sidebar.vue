@@ -58,8 +58,8 @@
                     },
                     {
                         icon: 'el-icon-tickets',
-                        index: '项目申报',
-                        title: '项目申报'
+                        index: '成果申报',
+                        title: '成果申报'
                     },
                     {
                         icon: 'el-icon-warning',
@@ -73,12 +73,12 @@
                         subs: [
                             {
                                 icon: 'el-icon-office-building',
-                                index:'教务处',
-                                title:'教务处',
+                                index:'教研成果',
+                                title:'教研成果',
                             },{
                                 icon: 'el-icon-office-building',
-                                index:'社科处',
-                                title: '社科处',
+                                index:'社科类科研成果',
+                                title: '社科类科研成果',
                                 subs:[
                                     {
                                         icon: 'el-icon-trophy',
@@ -92,8 +92,8 @@
                                 ]
                             },{
                                 icon: 'el-icon-office-building',
-                                index:'科技处',
-                                title: '科技处',
+                                index:'自科类科研成果',
+                                title: '自科类科研成果',
                             }
 
                         ]
@@ -110,8 +110,8 @@
                     },
                     {
                         icon: 'el-icon-star-on',
-                        index: '教研成果明细',
-                        title: '教研成果明细'
+                        index: '教研成果综合查询',
+                        title: '教研成果综合查询'
                     }
                 ]
             }

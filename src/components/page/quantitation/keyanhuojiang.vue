@@ -5,7 +5,7 @@
                 <el-breadcrumb-item><i class="el-icon-tickets"></i>科研获奖</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
-        <div class="container" style="width: 1000px">
+        <div class="container" style="width:90%">
             <div class="handle-box">
                 <el-button type="primary" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
                 <el-input v-model="query.key" placeholder="筛选关键词" class="handle-input mr10"></el-input>
@@ -50,8 +50,8 @@
                 <el-pagination background @current-change="handleCurrentChange" layout="total,prev, pager, next" :total="pageTotal">
                 </el-pagination>
             </div>
-            <router-link to="/社科处项目申报">
-                <el-button type="primary">社科项目申报</el-button>
+            <router-link to="/社科类科研成果申报">
+                <el-button type="primary">社科类科研成果</el-button>
             </router-link>
         </div>
 

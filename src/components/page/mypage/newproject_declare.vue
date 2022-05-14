@@ -2,7 +2,7 @@
     <div>
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-tickets"></i>项目申报</el-breadcrumb-item>
+                <el-breadcrumb-item><i class="el-icon-tickets"></i>成果申报</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <br> <br> <br>
@@ -12,8 +12,8 @@
                     <el-card shadow="hover" :body-style="{padding: '10px 5px'}">
                         <div class="grid-content grid-con-1">
                             <div class="grid-cont-right">
-                                <div><router-link to="/教务处成果申报" style="text-align: center">
-                                    <el-button type="primary" style="padding: 15%;font-size: large">教务处成果申报</el-button>
+                                <div><router-link to="/教研成果申报" style="text-align: center">
+                                    <el-button type="primary" style="padding: 15%;font-size: large">教研成果申报</el-button>
                                 </router-link></div>
                             </div>
                         </div>
@@ -23,8 +23,8 @@
                     <el-card shadow="hover" :body-style="{padding: '10px 5px'}">
                         <div class="grid-content grid-con-1">
                             <div class="grid-cont-right">
-                                <div><router-link to="/社科处项目申报" style="text-align: center">
-                                    <el-button type="primary" style="padding: 15%;font-size: large">社科处成果申报</el-button>
+                                <div><router-link to="/社科类科研成果申报" style="text-align: center">
+                                    <el-button type="primary" style="padding: 15%;font-size: large">社科类科研成果申报</el-button>
                                 </router-link></div>
                             </div>
                         </div>
@@ -34,8 +34,8 @@
                     <el-card shadow="hover" :body-style="{padding: '10px 5px'}">
                         <div class="grid-content grid-con-1">
                             <div class="grid-cont-right">
-                                <div><router-link to="/科技处成果申报" style="text-align: center">
-                                    <el-button type="primary" style="padding: 15%;font-size: large">科技处成果申报</el-button>
+                                <div><router-link to="/自科类科研成果申报" style="text-align: center">
+                                    <el-button type="primary" style="padding: 15%;font-size: large">自科类科研成果申报</el-button>
                                 </router-link></div>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                         <div class="grid-content grid-con-1">
                             <div class="grid-cont-right">
                                 <div><router-link to="/学科竞赛申报" style="text-align: center">
-                                    <el-button type="primary" style="padding: 15%;font-size: large">学科竞赛果申报</el-button>
+                                    <el-button type="primary" style="padding: 15%;font-size: large">学科竞赛申报</el-button>
                                 </router-link></div>
                             </div>
                         </div>

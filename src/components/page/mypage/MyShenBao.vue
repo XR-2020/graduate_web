@@ -17,9 +17,9 @@
                         <template slot-scope="scope">
                             <span v-if="scope.row.tablename=='competition'">学科竞赛</span>
                             <span v-if="scope.row.tablename=='honor'">荣誉称号</span>
-                            <span v-if="scope.row.tablename=='newsystem'">教务处成果</span>
-                            <span v-if="scope.row.tablename=='shekechu'">社科处成果</span>
-                            <span v-if="scope.row.tablename=='kejichu'">科技处成果</span>
+                            <span v-if="scope.row.tablename=='newsystem'">教研成果</span>
+                            <span v-if="scope.row.tablename=='shekechu'">社科类科研成果</span>
+                            <span v-if="scope.row.tablename=='kejichu'">自科类科研成果</span>
                         </template>
                     </el-table-column>
                     <el-table-column prop="object.partment" label="项目所属部门"  align="center">
@@ -55,9 +55,9 @@
                         <template slot-scope="scope">
                             <span v-if="scope.row.tablename=='competition'">学科竞赛</span>
                             <span v-if="scope.row.tablename=='honor'">荣誉称号</span>
-                            <span v-if="scope.row.tablename=='newsystem'">教务处成果</span>
-                            <span v-if="scope.row.tablename=='shekechu'">社科处成果</span>
-                            <span v-if="scope.row.tablename=='kejichu'">科技处成果</span>
+                            <span v-if="scope.row.tablename=='newsystem'">教研成果</span>
+                            <span v-if="scope.row.tablename=='shekechu'">社科类科研成果</span>
+                            <span v-if="scope.row.tablename=='kejichu'">自科类科研成果</span>
                         </template>
                     </el-table-column>
                     <el-table-column prop="object.partment" label="项目所属部门"  align="center">
@@ -89,9 +89,9 @@
                         <template slot-scope="scope">
                             <span v-if="scope.row.tablename=='competition'">学科竞赛</span>
                             <span v-if="scope.row.tablename=='honor'">荣誉称号</span>
-                            <span v-if="scope.row.tablename=='newsystem'">教务处成果</span>
-                            <span v-if="scope.row.tablename=='shekechu'">社科处成果</span>
-                            <span v-if="scope.row.tablename=='kejichu'">科技处成果</span>
+                            <span v-if="scope.row.tablename=='newsystem'">教研成果</span>
+                            <span v-if="scope.row.tablename=='shekechu'">社科类科研成果</span>
+                            <span v-if="scope.row.tablename=='kejichu'">自科类科研成果</span>
                         </template>
                     </el-table-column>
                     <el-table-column prop="object.partment" label="项目所属部门"  align="center">

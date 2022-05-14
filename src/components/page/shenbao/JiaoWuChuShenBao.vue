@@ -2,7 +2,7 @@
     <div>
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-tickets"></i> 教务处成果申报</el-breadcrumb-item>
+                <el-breadcrumb-item><i class="el-icon-tickets"></i> 教研成果申报</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="container">
