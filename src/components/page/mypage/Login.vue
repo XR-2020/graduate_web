@@ -2,7 +2,7 @@
     <div class="login-wrap">
         <div class="ms-title">学院教科研成果管理系统</div>
         <div class="ms-login">
-            <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="0px" class="demo-ruleForm">
+            <el-form :model="ruleForm" :rules="rules" ref="subform" label-width="0px" class="demo-ruleForm">
                 <el-form-item prop="username">
                     <el-input v-model="ruleForm.username" placeholder="请输入工号"></el-input>
                 </el-form-item>
@@ -14,6 +14,7 @@
                 </div>
             </el-form>
         </div>
+
     </div>
 </template>
 
@@ -40,20 +41,21 @@
         },
         methods: {
             submitForm(formName) {
-                this.$refs[formName].validate((valid) => {
+                this.$refs.subform.validate((valid) => {
                     if (valid) {
-                        login(this.ruleForm).then(res =>{
-                            if (res.data===null){
-                                this.$message.error("密码或用户名错误,请重新登陆")
-                                this.reload()
-                            }else{
-                                  localStorage.setItem('ms_role',res.data.role);
-                                  localStorage.setItem('ms_username',res.data.name);
-                                  localStorage.setItem('ms_badge',res.data.badge);
-                                  this.$router.push('/');
-                            }
-                        })
-
+                        // login(this.ruleForm).then(res =>{
+                        //     if (res.data===null){
+                        //         this.$message.error("密码或用户名错误,请重新登陆")
+                        //         this.reload()
+                        //     }else{
+                        //           localStorage.setItem('ms_role',res.data.role);//res.data.role
+                        //           localStorage.setItem('ms_username',res.data.name);
+                        //           localStorage.setItem('ms_badge',res.data.badge);
+                        //           this.$router.push('/');
+                        //     }
+                        // })
+                        localStorage.setItem('ms_role','4');//res.data.role
+                        this.$router.push('/');
                     } else {
                         console.log('error submit!!');
                         return false;

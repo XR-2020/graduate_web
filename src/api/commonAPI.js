@@ -52,3 +52,10 @@ export const login = query => {
         params: query
     });
 };
+export const teacheradd = query => {
+    return request({
+        url: '/teacherAdd',
+        method: 'get',
+        params: query
+    });
+};

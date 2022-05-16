@@ -8,8 +8,6 @@
                             <div class="user-info">
                                 <div class="user-info-cont">
                                     <div class="user-info-name">{{name}}</div>
-<!--                                    <br>-->
-<!--                                    <div class="user-info-role">{{role}}</div>-->
                                 </div>
                                <img src="../../../assets/first_page.png">
                             </div>
@@ -18,16 +16,89 @@
                 </el-row>
             </el-col>
         </el-row>
+        <br><br><br>
+        <div><p style="color: #f84e04;text-decoration:underline;font-size: medium;text-align: right;vertical-align: bottom" @click="addteacher=true">添加教师</p></div>
+        <el-dialog title="添加教师" :visible.sync="addteacher" width="50%">
+            <el-form ref="subform" :rules="rules" :model="form" label-width="100px">
+                <el-form-item label="教师姓名" prop="name">
+                    <el-input v-model="form.name"></el-input>
+                </el-form-item>
+                <el-form-item label="教师工号" prop="badge">
+                    <el-input v-model="form.badge" type="text" value=""
+                              onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"
+                              oninput="value=value.replace(/[^\d.]/g,'')"></el-input>
+                </el-form-item>
+                <el-form-item label="教师密码">
+                    <el-input style="width: 310px" v-model="form.badge" disabled></el-input>
+                </el-form-item>
+                <el-form-item label="教师身份" prop="role">
+                    <el-select v-model="form.teacher_role">
+                        <el-option
+                            v-for="item in role_list"
+                            :key="item.label"
+                            :label="item.label"
+                            :value="item.value">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="onSubmit">提交</el-button>
+                    <el-button @click="addteacher=false">取消</el-button>
+                </el-form-item>
+            </el-form>
+        </el-dialog>
     </div>
+
 </template>
 
 <script>
+import {teacheradd, Teacheradd} from "../../../api/commonAPI";
+
     export default {
         name: 'dashboard',
         data() {
             return {
                 name: localStorage.getItem('ms_username'),
                 role:localStorage.getItem('ms_role'),
+                addteacher:false,
+                form:{
+                    name:'',
+                    badge:'',
+                    teacher_role:''
+                },
+                role_list:[
+                    {
+                        label:"教研管理员",
+                        value:1
+                    },
+                    {
+                        label:"科研管理员",
+                        value:2
+                    },
+                    {
+                        label:"学科竞赛管理员",
+                        value:3
+                    },
+                    {
+                        label:"系统管理员",
+                        value:4
+                    },
+                    {
+                        label:"普通教师",
+                        value:5
+                    }
+                ],
+                rules: {
+                    name: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    badge: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                    role: [
+                        { required: true, message: '必填', trigger: 'blur' }
+                    ],
+                }
             }
         },
         computed: {
@@ -44,6 +115,21 @@
                     return '普通教师'
                 }
 
+            }
+        },
+        methods:{
+            onSubmit(){
+                this.$refs.subform.validate(valid => {
+                    teacheradd({name:this.form.name,badge:this.form.badge,role:this.form.teacher_role}).then(res => {
+                        if(res!==0){
+                            this.$message.success("教师   "+this.form.name+"添加成功")
+                        }else{
+                            this.$message.error("添加失败")
+                        }
+                    })
+                })
+
+                this.addteacher=false
             }
         }
     }

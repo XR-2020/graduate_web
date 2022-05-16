@@ -43,7 +43,7 @@
             <router-link to="/学科竞赛申报">
                 <el-button type="primary">学科竞赛申报</el-button>
             </router-link>
-            <el-button type="primary" @click="isimportCompetition"><i class="el-icon-upload el-icon--left"></i>&nbsp;批量导入</el-button>
+            <el-button v-if="role==='4'||role==='3'" type="primary" @click="isimportCompetition"><i class="el-icon-upload el-icon--left"></i>&nbsp;批量导入</el-button>
         </div>
 
         <!-- 编辑弹出框 -->
