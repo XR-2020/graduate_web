@@ -209,7 +209,8 @@ import {getTeacherList} from "../../../api/commonAPI";
                 }
             },
             success(response,file,filename){
-                this.$message.success(response.msg)
+                alert(response.msg)
+                this.reload()
             },
             search() {
                 getSearchRongYu(this.query).then(res =>{

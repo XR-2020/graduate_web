@@ -43,19 +43,17 @@
             submitForm(formName) {
                 this.$refs.subform.validate((valid) => {
                     if (valid) {
-                        // login(this.ruleForm).then(res =>{
-                        //     if (res.data===null){
-                        //         this.$message.error("密码或用户名错误,请重新登陆")
-                        //         this.reload()
-                        //     }else{
-                        //           localStorage.setItem('ms_role',res.data.role);//res.data.role
-                        //           localStorage.setItem('ms_username',res.data.name);
-                        //           localStorage.setItem('ms_badge',res.data.badge);
-                        //           this.$router.push('/');
-                        //     }
-                        // })
-                        localStorage.setItem('ms_role','4');//res.data.role
-                        this.$router.push('/');
+                        login(this.ruleForm).then(res =>{
+                            if (res.data===null){
+                                this.$message.error("密码或用户名错误,请重新登陆")
+                                this.reload()
+                            }else{
+                                  localStorage.setItem('ms_role',res.data.role);//res.data.role
+                                  localStorage.setItem('ms_username',res.data.name);
+                                  localStorage.setItem('ms_badge',res.data.badge);
+                                  this.$router.push('/');
+                            }
+                        })
                     } else {
                         console.log('error submit!!');
                         return false;

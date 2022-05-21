@@ -17,7 +17,7 @@
             </el-col>
         </el-row>
         <br><br><br>
-        <div><p style="color: #f84e04;text-decoration:underline;font-size: medium;text-align: right;vertical-align: bottom" @click="addteacher=true">添加教师</p></div>
+        <div><p v-if="role==='4'" style="color: #f84e04;text-decoration:underline;font-size: medium;text-align: right;vertical-align: bottom" @click="addteacher=true">添加教师</p></div>
         <el-dialog title="添加教师" :visible.sync="addteacher" width="50%">
             <el-form ref="subform" :rules="rules" :model="form" label-width="100px">
                 <el-form-item label="教师姓名" prop="name">

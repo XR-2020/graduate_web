@@ -228,7 +228,8 @@ import {editHonor} from "../../../api/rongyuAPI";
                 this.is_search = true;
             },
             success(response,file,filename){
-                this.$message.success(response.msg)
+              alert(response.msg)
+                this.reload()
             },
             handleDetail(index, row){
                 getJingSaiDetail({id: row.id}).then(res =>{

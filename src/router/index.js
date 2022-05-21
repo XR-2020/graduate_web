@@ -21,7 +21,7 @@ export default new Router({
                 },{
                     path: '/我的申报',
                     component: resolve => require(['../components/page/mypage/MyShenBao.vue'], resolve),
-                    meta: { title: '我的申报',permission: true }
+                    meta: { title: '我的申报',permission2: true }
                 },
               {
                     path: '/成果申报',
