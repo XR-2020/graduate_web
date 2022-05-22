@@ -229,7 +229,7 @@ import {editHonor} from "../../../api/rongyuAPI";
                 this.is_search = true;
             },
             success(response,file,filename){
-              alert(response.msg)
+              alert("导入成功！")
                 this.reload()
             },
             handleDetail(index, row){

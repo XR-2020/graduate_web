@@ -209,7 +209,7 @@ import {getTeacherList} from "../../../api/commonAPI";
                 }
             },
             success(response,file,filename){
-                alert(response.msg)
+                alert("导入成功！")
                 this.reload()
             },
             search() {
