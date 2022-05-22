@@ -110,8 +110,8 @@
                     },
                     {
                         icon: 'el-icon-star-on',
-                        index: '教研成果综合查询',
-                        title: '教研成果综合查询'
+                        index: '教科研成果综合查询',
+                        title: '教科研成果综合查询'
                     }
                 ]
             }

@@ -213,6 +213,7 @@ import {getTeacherList} from "../../../api/commonAPI";
                 this.reload()
             },
             search() {
+                this.query.pageIndex=1
                 getSearchRongYu(this.query).then(res =>{
                     this.tableData = res.list
                     this.pageTotal=res.pageTotal
@@ -241,12 +242,13 @@ import {getTeacherList} from "../../../api/commonAPI";
                 this.editVisible = true;
             },
             handleDelete(index, row) {
+
                 // 二次确认删除
                 this.$confirm('确定要删除吗？', '提示', {
                     type: 'warning'
                 })
                     .then(() => {
-                        deleteOneRongYu({id: row.id}).then(res=>{
+                        deleteOneRongYu({id: row.object.id}).then(res=>{
                             this.getData();
                             this.$message.success('删除成功');
                         }).catch(()=>{

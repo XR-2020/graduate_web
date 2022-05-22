@@ -78,9 +78,9 @@ export default new Router({
                     meta: { title: '自科类科研成果' }
                 },
                 {
-                    path: '/教研成果综合查询',
+                    path: '/教科研成果综合查询',
                     component: resolve => require(['../components/page/mypage/newstatistical.vue'], resolve),
-                    meta: { title: '教研成果综合查询' }
+                    meta: { title: '教科研成果综合查询' }
                 },
                 {
                     // 权限页面

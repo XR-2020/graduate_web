@@ -224,6 +224,7 @@ import {editHonor} from "../../../api/rongyuAPI";
                 }
             },
             search() {
+                this.query.pageIndex=1
                 this.getData()
                 this.is_search = true;
             },
@@ -259,12 +260,13 @@ import {editHonor} from "../../../api/rongyuAPI";
                 })
             },
             handleDelete(index, row) {
+                console.log( row.object.id)
                 // 二次确认删除
                 this.$confirm('确定要删除吗？', '提示', {
                     type: 'warning'
                 })
                     .then(() => {
-                        deleteOneJingSai({id: row.id}).then(res=>{
+                        deleteOneJingSai({id: row.object.id}).then(res=>{
                             this.getData();
                             this.$message.success('删除成功');
                         }).catch(()=>{

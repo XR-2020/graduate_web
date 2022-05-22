@@ -217,6 +217,7 @@ import {
                     })
             },
             search() {
+                this.query.pageIndex=1
                 if(this.query.key!==''){
                     getSearchSheKeChu(this.query).then(res =>{
                         this.tableData = res.list

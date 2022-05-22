@@ -223,6 +223,7 @@ import {deleteNewSystem, deleteOneNewSystem, editNewSystem,
                     })
             },
             search() {
+                this.query.pageIndex=1
                 if(this.query.key!==''){
                     getSearchNewSystem(this.query).then(res =>{
                         this.tableData = res.list
